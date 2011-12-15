@@ -98,7 +98,6 @@ struct egl_display_t
     static egl_display_t& get_display(EGLDisplay dpy);
 
     static EGLBoolean is_valid(EGLDisplay dpy) {
-	LOGI("IS_VALID: %d / %d", ((uintptr_t(dpy)-1U)), NUM_DISPLAYS);
         return ((uintptr_t(dpy)-1U) >= NUM_DISPLAYS) ? EGL_FALSE : EGL_TRUE;
     }
 
@@ -858,8 +857,8 @@ static const extention_map_t gExtentionMap[] = {
             (__eglMustCastToProperFunctionPointerType)&eglCreateImageKHR }, 
     { "eglDestroyImageKHR", 
             (__eglMustCastToProperFunctionPointerType)&eglDestroyImageKHR }, 
-    { "eglSetSwapRectangleANDROID", 
-            (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID }, 
+    //{ "eglSetSwapRectangleANDROID", 
+    //        (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID }, 
     { "eglGetRenderBufferANDROID", 
             (__eglMustCastToProperFunctionPointerType)&eglGetRenderBufferANDROID }, 
 };
