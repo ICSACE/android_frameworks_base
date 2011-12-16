@@ -34,6 +34,7 @@ ifneq (,$(findstring $(TARGET_DEVICE),tuna toro maguro))
 	LOCAL_CFLAGS += -DREFRESH_RATE=59
 endif
 
+LOCAL_CFLAGS += -DREFRESH_RATE=59
 
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \

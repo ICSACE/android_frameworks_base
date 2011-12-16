@@ -857,8 +857,8 @@ static const extention_map_t gExtentionMap[] = {
             (__eglMustCastToProperFunctionPointerType)&eglCreateImageKHR }, 
     { "eglDestroyImageKHR", 
             (__eglMustCastToProperFunctionPointerType)&eglDestroyImageKHR }, 
-    //{ "eglSetSwapRectangleANDROID", 
-    //        (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID }, 
+    { "eglSetSwapRectangleANDROID", 
+            (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID }, 
     { "eglGetRenderBufferANDROID", 
             (__eglMustCastToProperFunctionPointerType)&eglGetRenderBufferANDROID }, 
 };
@@ -1697,9 +1697,11 @@ EGLBoolean eglMakeCurrent(  EGLDisplay dpy, EGLSurface draw,
     EGLContext current_ctx = EGL_NO_CONTEXT;
 
     if ((read == EGL_NO_SURFACE && draw == EGL_NO_SURFACE) && (ctx != EGL_NO_CONTEXT))
+	LOGI("EGL_BAD_MATCH: #1");
         return setError(EGL_BAD_MATCH, EGL_FALSE);
 
     if ((read != EGL_NO_SURFACE || draw != EGL_NO_SURFACE) && (ctx == EGL_NO_CONTEXT))
+	LOGI("EGL_BAD_MATCH: #2");
         return setError(EGL_BAD_MATCH, EGL_FALSE);
 
     if (ctx == EGL_NO_CONTEXT) {
