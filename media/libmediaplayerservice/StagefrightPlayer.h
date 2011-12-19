@@ -40,6 +40,10 @@ public:
 
     virtual status_t setDataSource(const sp<IStreamSource> &source);
 
+<<<<<<< HEAD
+=======
+    virtual status_t setVideoSurface(const sp<Surface> &surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual status_t setVideoSurfaceTexture(
             const sp<ISurfaceTexture> &surfaceTexture);
     virtual status_t prepare();

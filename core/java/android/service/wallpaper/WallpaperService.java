@@ -148,10 +148,14 @@ public abstract class WallpaperService extends Service {
         int mCurWidth;
         int mCurHeight;
         int mWindowFlags = WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+<<<<<<< HEAD
         int mWindowPrivateFlags =
                 WindowManager.LayoutParams.PRIVATE_FLAG_WANTS_OFFSET_NOTIFICATIONS;
         int mCurWindowFlags = mWindowFlags;
         int mCurWindowPrivateFlags = mWindowPrivateFlags;
+=======
+        int mCurWindowFlags = mWindowFlags;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         final Rect mVisibleInsets = new Rect();
         final Rect mWinFrame = new Rect();
         final Rect mContentInsets = new Rect();
@@ -362,6 +366,7 @@ public abstract class WallpaperService extends Service {
                 updateSurface(false, false, false);
             }
         }
+<<<<<<< HEAD
 
         /**
          * Control whether this wallpaper will receive notifications when the wallpaper
@@ -381,6 +386,8 @@ public abstract class WallpaperService extends Service {
                 updateSurface(false, false, false);
             }
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         
         /**
          * Called once to initialize the engine.  After returning, the
@@ -500,8 +507,11 @@ public abstract class WallpaperService extends Service {
             out.print(prefix); out.print("mType="); out.print(mType);
                     out.print(" mWindowFlags="); out.print(mWindowFlags);
                     out.print(" mCurWindowFlags="); out.println(mCurWindowFlags);
+<<<<<<< HEAD
                     out.print(" mWindowPrivateFlags="); out.print(mWindowPrivateFlags);
                     out.print(" mCurWindowPrivateFlags="); out.println(mCurWindowPrivateFlags);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             out.print(prefix); out.print("mVisibleInsets=");
                     out.print(mVisibleInsets.toShortString());
                     out.print(" mWinFrame="); out.print(mWinFrame.toShortString());
@@ -552,8 +562,12 @@ public abstract class WallpaperService extends Service {
             final boolean formatChanged = mFormat != mSurfaceHolder.getRequestedFormat();
             boolean sizeChanged = mWidth != myWidth || mHeight != myHeight;
             final boolean typeChanged = mType != mSurfaceHolder.getRequestedType();
+<<<<<<< HEAD
             final boolean flagsChanged = mCurWindowFlags != mWindowFlags ||
                     mCurWindowPrivateFlags != mWindowPrivateFlags;
+=======
+            final boolean flagsChanged = mCurWindowFlags != mWindowFlags;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (forceRelayout || creating || surfaceCreating || formatChanged || sizeChanged
                     || typeChanged || flagsChanged || redrawNeeded) {
 
@@ -579,8 +593,11 @@ public abstract class WallpaperService extends Service {
                             | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                             | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                             ;
+<<<<<<< HEAD
                     mCurWindowPrivateFlags = mWindowPrivateFlags;
                     mLayout.privateFlags = mWindowPrivateFlags;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                     mLayout.memoryType = mType;
                     mLayout.token = mWindowToken;
@@ -608,7 +625,11 @@ public abstract class WallpaperService extends Service {
 
                     final int relayoutResult = mSession.relayout(
                         mWindow, mWindow.mSeq, mLayout, mWidth, mHeight,
+<<<<<<< HEAD
                             View.VISIBLE, 0, mWinFrame, mContentInsets,
+=======
+                            View.VISIBLE, false, mWinFrame, mContentInsets,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             mVisibleInsets, mConfiguration, mSurfaceHolder.mSurface);
 
                     if (DEBUG) Log.v(TAG, "New surface: " + mSurfaceHolder.mSurface
@@ -654,7 +675,11 @@ public abstract class WallpaperService extends Service {
                         }
 
                         redrawNeeded |= creating
+<<<<<<< HEAD
                                 || (relayoutResult&WindowManagerImpl.RELAYOUT_RES_FIRST_TIME) != 0;
+=======
+                                || (relayoutResult&WindowManagerImpl.RELAYOUT_FIRST_TIME) != 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                         if (forceReport || creating || surfaceCreating
                                 || formatChanged || sizeChanged) {

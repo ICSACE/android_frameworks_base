@@ -46,16 +46,32 @@ namespace uirenderer {
 // Constructors/destructor
 ///////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 Caches::Caches(): Singleton<Caches>(), mInitialized(false) {
+=======
+Caches::Caches(): Singleton<Caches>(), blend(false), lastSrcMode(GL_ZERO),
+        lastDstMode(GL_ZERO), currentProgram(NULL) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     GLint maxTextureUnits;
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &maxTextureUnits);
     if (maxTextureUnits < REQUIRED_TEXTURE_UNITS_COUNT) {
         LOGW("At least %d texture units are required!", REQUIRED_TEXTURE_UNITS_COUNT);
     }
 
+<<<<<<< HEAD
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
 
     init();
+=======
+    glGenBuffers(1, &meshBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, meshBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(gMeshVertices), gMeshVertices, GL_STATIC_DRAW);
+
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+
+    mCurrentBuffer = meshBuffer;
+    mRegionMesh = NULL;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     mDebugLevel = readDebugLevel();
     LOGD("Enabling debug mode %d", mDebugLevel);
@@ -65,6 +81,7 @@ Caches::Caches(): Singleton<Caches>(), mInitialized(false) {
 #endif
 }
 
+<<<<<<< HEAD
 void Caches::init() {
     if (mInitialized) return;
 
@@ -99,6 +116,10 @@ void Caches::terminate() {
     currentProgram = NULL;
 
     mInitialized = false;
+=======
+Caches::~Caches() {
+    delete[] mRegionMesh;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -196,11 +217,16 @@ void Caches::flush(FlushMode mode) {
             patchCache.clear();
             dropShadowCache.clear();
             gradientCache.clear();
+<<<<<<< HEAD
             fontRenderer.clear();
             // fall through
         case kFlushMode_Moderate:
             fontRenderer.flush();
             textureCache.flush();
+=======
+            // fall through
+        case kFlushMode_Moderate:
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             pathCache.clear();
             roundRectShapeCache.clear();
             circleShapeCache.clear();

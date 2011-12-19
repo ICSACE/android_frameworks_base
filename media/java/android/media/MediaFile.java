@@ -71,11 +71,14 @@ public class MediaFile {
     private static final int FIRST_VIDEO_FILE_TYPE = FILE_TYPE_MP4;
     private static final int LAST_VIDEO_FILE_TYPE = FILE_TYPE_WEBM;
     
+<<<<<<< HEAD
     // More video file types
     public static final int FILE_TYPE_MP2PS   = 200;
     private static final int FIRST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
     private static final int LAST_VIDEO_FILE_TYPE2 = FILE_TYPE_MP2PS;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Image file types
     public static final int FILE_TYPE_JPEG    = 31;
     public static final int FILE_TYPE_GIF     = 32;
@@ -240,8 +243,11 @@ public class MediaFile {
         addFileType("PPT", FILE_TYPE_MS_POWERPOINT, "application/mspowerpoint", MtpConstants.FORMAT_MS_POWERPOINT_PRESENTATION);
         addFileType("FLAC", FILE_TYPE_FLAC, "audio/flac", MtpConstants.FORMAT_FLAC);
         addFileType("ZIP", FILE_TYPE_ZIP, "application/zip");
+<<<<<<< HEAD
         addFileType("MPG", FILE_TYPE_MP2PS, "video/mp2p");
         addFileType("MPEG", FILE_TYPE_MP2PS, "video/mp2p");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public static boolean isAudioFileType(int fileType) {
@@ -253,9 +259,13 @@ public class MediaFile {
 
     public static boolean isVideoFileType(int fileType) {
         return (fileType >= FIRST_VIDEO_FILE_TYPE &&
+<<<<<<< HEAD
                 fileType <= LAST_VIDEO_FILE_TYPE)
             || (fileType >= FIRST_VIDEO_FILE_TYPE2 &&
                 fileType <= LAST_VIDEO_FILE_TYPE2);
+=======
+                fileType <= LAST_VIDEO_FILE_TYPE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public static boolean isImageFileType(int fileType) {

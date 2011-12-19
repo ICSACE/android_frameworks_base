@@ -379,6 +379,7 @@ public final class CallManager {
                 mode = AudioManager.MODE_RINGTONE;
                 break;
             case OFFHOOK:
+<<<<<<< HEAD
                 Phone offhookPhone = getFgPhone();
                 if (getActiveFgCallState() == Call.State.IDLE) {
                     // There is no active Fg calls, the OFFHOOK state
@@ -392,6 +393,20 @@ public final class CallManager {
                 } else {
                     // enable IN_CALL audio mode for telephony
                     mode = AudioManager.MODE_IN_CALL;
+=======
+                Phone fgPhone = getFgPhone();
+                // While foreground call is in DIALING,
+                // ALERTING, ACTIVE and DISCONNECTING state
+                if (getActiveFgCallState() != Call.State.IDLE
+                        && getActiveFgCallState() != Call.State.DISCONNECTED) {
+                    if (fgPhone instanceof SipPhone) {
+                        // enable IN_COMMUNICATION audio mode for sipPhone
+                        mode = AudioManager.MODE_IN_COMMUNICATION;
+                    } else {
+                        // enable IN_CALL audio mode for telephony
+                        mode = AudioManager.MODE_IN_CALL;
+                    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 break;
         }

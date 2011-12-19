@@ -201,16 +201,24 @@ void OpenGLRenderer::interrupt() {
 }
 
 void OpenGLRenderer::resume() {
+<<<<<<< HEAD
     sp<Snapshot> snapshot = (mSnapshot != NULL) ? mSnapshot : mFirstSnapshot;
 
     glViewport(0, 0, snapshot->viewport.getWidth(), snapshot->viewport.getHeight());
+=======
+    glViewport(0, 0, mSnapshot->viewport.getWidth(), mSnapshot->viewport.getHeight());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     glEnable(GL_SCISSOR_TEST);
     dirtyClip();
 
     glDisable(GL_DITHER);
 
+<<<<<<< HEAD
     glBindFramebuffer(GL_FRAMEBUFFER, snapshot->fbo);
+=======
+    glBindFramebuffer(GL_FRAMEBUFFER, getTargetFbo());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     mCaches.blend = true;

@@ -40,8 +40,11 @@ import android.provider.Settings;
 import android.service.textservice.SpellCheckerService;
 import android.text.TextUtils;
 import android.util.Slog;
+<<<<<<< HEAD
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.view.textservice.SpellCheckerInfo;
 import android.view.textservice.SpellCheckerSubtype;
 
@@ -224,6 +227,7 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
             if (hashCode == 0 && !allowImplicitlySelectedSubtype) {
                 return null;
             }
+<<<<<<< HEAD
             String candidateLocale = null;
             if (hashCode == 0) {
                 // Spell checker language settings == "auto"
@@ -245,10 +249,15 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
                     candidateLocale = mContext.getResources().getConfiguration().locale.toString();
                 }
             }
+=======
+            final String systemLocale =
+                    mContext.getResources().getConfiguration().locale.toString();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             SpellCheckerSubtype candidate = null;
             for (int i = 0; i < sci.getSubtypeCount(); ++i) {
                 final SpellCheckerSubtype scs = sci.getSubtypeAt(i);
                 if (hashCode == 0) {
+<<<<<<< HEAD
                     if (candidateLocale.equals(locale)) {
                         return scs;
                     } else if (candidate == null) {
@@ -258,6 +267,16 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
                                 && candidateLocale.substring(0, 2).equals(
                                         scsLocale.substring(0, 2))) {
                             // Fall back to the applicable language
+=======
+                    if (systemLocale.equals(locale)) {
+                        return scs;
+                    } else if (candidate == null) {
+                        final String scsLocale = scs.getLocale();
+                        if (systemLocale.length() >= 2
+                                && scsLocale.length() >= 2
+                                && systemLocale.substring(0, 2).equals(
+                                        scsLocale.substring(0, 2))) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             candidate = scs;
                         }
                     }
@@ -266,6 +285,7 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
                         Slog.w(TAG, "Return subtype " + scs.hashCode() + ", input= " + locale
                                 + ", " + scs.getLocale());
                     }
+<<<<<<< HEAD
                     // 3. Use the user specified spell check language
                     return scs;
                 }
@@ -273,6 +293,11 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
             // 4. Fall back to the applicable language and return it if not null
             // 5. Simply just return it even if it's null which means we could find no suitable
             // spell check languages
+=======
+                    return scs;
+                }
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return candidate;
         }
     }
@@ -360,7 +385,11 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
         }
         final String sciId = info.getId();
         final InternalServiceConnection connection = new InternalServiceConnection(
+<<<<<<< HEAD
                 sciId, locale, bundle);
+=======
+                sciId, locale, scListener, bundle);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         final Intent serviceIntent = new Intent(SpellCheckerService.SERVICE_INTERFACE);
         serviceIntent.setComponent(info.getComponent());
         if (DBG) {
@@ -392,6 +421,7 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
             Slog.d(TAG, "FinishSpellCheckerService");
         }
         synchronized(mSpellCheckerMap) {
+<<<<<<< HEAD
             final ArrayList<SpellCheckerBindGroup> removeList =
                     new ArrayList<SpellCheckerBindGroup>();
             for (SpellCheckerBindGroup group : mSpellCheckerBindGroups.values()) {
@@ -402,6 +432,11 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
             final int removeSize = removeList.size();
             for (int i = 0; i < removeSize; ++i) {
                 removeList.get(i).removeListener(listener);
+=======
+            for (SpellCheckerBindGroup group : mSpellCheckerBindGroups.values()) {
+                if (group == null) continue;
+                group.removeListener(listener);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -668,15 +703,22 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
                     if (DBG) {
                         Slog.w(TAG, "Remove " + removeList.get(i));
                     }
+<<<<<<< HEAD
                     final InternalDeathRecipient idr = removeList.get(i);
                     idr.mScListener.asBinder().unlinkToDeath(idr, 0);
                     mListeners.remove(idr);
+=======
+                    mListeners.remove(removeList.get(i));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 cleanLocked();
             }
         }
 
+<<<<<<< HEAD
         // cleanLocked may remove elements from mSpellCheckerBindGroups
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         private void cleanLocked() {
             if (DBG) {
                 Slog.d(TAG, "cleanLocked");
@@ -700,11 +742,14 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
         public void removeAll() {
             Slog.e(TAG, "Remove the spell checker bind unexpectedly.");
             synchronized(mSpellCheckerMap) {
+<<<<<<< HEAD
                 final int size = mListeners.size();
                 for (int i = 0; i < size; ++i) {
                     final InternalDeathRecipient idr = mListeners.get(i);
                     idr.mScListener.asBinder().unlinkToDeath(idr, 0);
                 }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mListeners.clear();
                 cleanLocked();
             }
@@ -712,13 +757,24 @@ public class TextServicesManagerService extends ITextServicesManager.Stub {
     }
 
     private class InternalServiceConnection implements ServiceConnection {
+<<<<<<< HEAD
+=======
+        private final ISpellCheckerSessionListener mListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         private final String mSciId;
         private final String mLocale;
         private final Bundle mBundle;
         public InternalServiceConnection(
+<<<<<<< HEAD
                 String id, String locale, Bundle bundle) {
             mSciId = id;
             mLocale = locale;
+=======
+                String id, String locale, ISpellCheckerSessionListener listener, Bundle bundle) {
+            mSciId = id;
+            mLocale = locale;
+            mListener = listener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mBundle = bundle;
         }
 

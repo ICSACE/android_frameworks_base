@@ -89,8 +89,13 @@ import javax.sip.message.Response;
  */
 class SipSessionGroup implements SipListener {
     private static final String TAG = "SipSession";
+<<<<<<< HEAD
     private static final boolean DEBUG = false;
     private static final boolean DEBUG_PING = false;
+=======
+    private static final boolean DEBUG = true;
+    private static final boolean DEBUG_PING = DEBUG && false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final String ANONYMOUS = "anonymous";
     // Limit the size of thread pool to 1 for the order issue when the phone is
     // waken up from sleep and there are many packets to be processed in the SIP
@@ -205,9 +210,13 @@ class SipSessionGroup implements SipListener {
     }
 
     synchronized void resetExternalAddress() {
+<<<<<<< HEAD
         if (DEBUG) {
             Log.d(TAG, " reset external addr on " + mSipStack);
         }
+=======
+        Log.d(TAG, " reset external addr on " + mSipStack);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mExternalIp = null;
         mExternalPort = 0;
     }
@@ -364,7 +373,11 @@ class SipSessionGroup implements SipListener {
                         + SipSession.State.toString(session.mState));
             }
         } catch (Throwable e) {
+<<<<<<< HEAD
             Log.w(TAG, "event process error: " + event, getRootCause(e));
+=======
+            Log.w(TAG, "event process error: " + event, e);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             session.onError(e);
         }
     }
@@ -395,6 +408,7 @@ class SipSessionGroup implements SipListener {
         if ((rport > 0) && (externalIp != null)) {
             mExternalIp = externalIp;
             mExternalPort = rport;
+<<<<<<< HEAD
             if (DEBUG) {
                 Log.d(TAG, " got external addr " + externalIp + ":" + rport
                         + " on " + mSipStack);
@@ -409,6 +423,11 @@ class SipSessionGroup implements SipListener {
             cause = exception.getCause();
         }
         return exception;
+=======
+            Log.d(TAG, " got external addr " + externalIp + ":" + rport
+                    + " on " + mSipStack);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private SipSessionImpl createNewSession(RequestEvent event,
@@ -903,9 +922,13 @@ class SipSessionGroup implements SipListener {
             if (expires != null && time < expires.getExpires()) {
                 time = expires.getExpires();
             }
+<<<<<<< HEAD
             if (DEBUG) {
                 Log.v(TAG, "Expiry time = " + time);
             }
+=======
+            Log.v(TAG, "Expiry time = " + time);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return time;
         }
 
@@ -1424,6 +1447,18 @@ class SipSessionGroup implements SipListener {
             }
         }
 
+<<<<<<< HEAD
+=======
+        private Throwable getRootCause(Throwable exception) {
+            Throwable cause = exception.getCause();
+            while (cause != null) {
+                exception = cause;
+                cause = exception.getCause();
+            }
+            return exception;
+        }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         private int getErrorCode(Throwable exception) {
             String message = exception.getMessage();
             if (exception instanceof UnknownHostException) {
@@ -1561,10 +1596,15 @@ class SipSessionGroup implements SipListener {
                     try {
                         sendKeepAlive();
                     } catch (Throwable t) {
+<<<<<<< HEAD
                         if (DEBUG) {
                             Log.w(TAG, "keepalive error: "
                                     + mLocalProfile.getUriString(), getRootCause(t));
                         }
+=======
+                        Log.w(TAG, "keepalive error: "
+                                + mLocalProfile.getUriString(), getRootCause(t));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         // It's possible that the keepalive process is being stopped
                         // during session.sendKeepAlive() so need to check mRunning
                         // again here.

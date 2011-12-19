@@ -26,14 +26,21 @@ using namespace android::renderscript;
 FBOCache::FBOCache() {
     mDirty = true;
     mHal.state.colorTargetsCount = 1;
+<<<<<<< HEAD
     mHal.state.colorTargets = new Allocation*[mHal.state.colorTargetsCount];
     mColorTargets = new ObjectBaseRef<Allocation>[mHal.state.colorTargetsCount];
     resetAll(NULL);
+=======
+    mHal.state.colorTargets = new ObjectBaseRef<Allocation>[mHal.state.colorTargetsCount];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 FBOCache::~FBOCache() {
     delete[] mHal.state.colorTargets;
+<<<<<<< HEAD
     delete[] mColorTargets;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 void FBOCache::init(Context *rsc) {
@@ -55,8 +62,12 @@ void FBOCache::bindColorTarget(Context *rsc, Allocation *a, uint32_t slot) {
             return;
         }
     }
+<<<<<<< HEAD
     mColorTargets[slot].set(a);
     mHal.state.colorTargets[slot] = a;
+=======
+    mHal.state.colorTargets[slot].set(a);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mDirty = true;
 }
 
@@ -67,18 +78,28 @@ void FBOCache::bindDepthTarget(Context *rsc, Allocation *a) {
             return;
         }
     }
+<<<<<<< HEAD
     mDepthTarget.set(a);
     mHal.state.depthTarget = a;
+=======
+    mHal.state.depthTarget.set(a);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mDirty = true;
 }
 
 void FBOCache::resetAll(Context *) {
     for (uint32_t i = 0; i < mHal.state.colorTargetsCount; i ++) {
+<<<<<<< HEAD
         mColorTargets[i].set(NULL);
         mHal.state.colorTargets[i] = NULL;
     }
     mDepthTarget.set(NULL);
     mHal.state.depthTarget = NULL;
+=======
+        mHal.state.colorTargets[i].set(NULL);
+    }
+    mHal.state.depthTarget.set(NULL);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mDirty = true;
 }
 

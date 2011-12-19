@@ -292,54 +292,79 @@ void Shutdown(Context *rsc) {
 }
 
 static void rsdForEach17(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(const void *, uint32_t);
     (*(fe*)vRoot)(p->in, p->y);
 }
 
 static void rsdForEach18(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(void *, uint32_t);
     (*(fe*)vRoot)(p->out, p->y);
 }
 
 static void rsdForEach19(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(const void *, void *, uint32_t);
     (*(fe*)vRoot)(p->in, p->out, p->y);
 }
 
 static void rsdForEach21(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(const void *, const void *, uint32_t);
     (*(fe*)vRoot)(p->in, p->usr, p->y);
 }
 
 static void rsdForEach22(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(void *, const void *, uint32_t);
     (*(fe*)vRoot)(p->out, p->usr, p->y);
 }
 
 static void rsdForEach23(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     typedef void (*fe)(const void *, void *, const void *, uint32_t);
     (*(fe*)vRoot)(p->in, p->out, p->usr, p->y);
 }
 
 static void rsdForEach25(const void *vRoot,
+<<<<<<< HEAD
         const android::renderscript::RsForEachStubParamStruct *p,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep) {
@@ -422,6 +447,41 @@ static void rsdForEach31(const void *vRoot,
         pin += instep;
         pout += outstep;
     }
+=======
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(const void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->in, p->x, p->y);
+}
+
+static void rsdForEach26(const void *vRoot,
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->out, p->x, p->y);
+}
+
+static void rsdForEach27(const void *vRoot,
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(const void *, void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->in, p->out, p->x, p->y);
+}
+
+static void rsdForEach29(const void *vRoot,
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(const void *, const void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->in, p->usr, p->x, p->y);
+}
+
+static void rsdForEach30(const void *vRoot,
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(void *, const void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->out, p->usr, p->x, p->y);
+}
+
+static void rsdForEach31(const void *vRoot,
+        const android::renderscript::RsForEachStubParamStruct *p) {
+    typedef void (*fe)(const void *, void *, const void *, uint32_t, uint32_t);
+    (*(fe*)vRoot)(p->in, p->out, p->usr, p->x, p->y);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 

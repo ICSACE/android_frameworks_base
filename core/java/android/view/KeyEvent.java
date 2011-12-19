@@ -579,6 +579,7 @@ public class KeyEvent extends InputEvent implements Parcelable {
     /** Key code constant: 3D Mode key.
      * Toggles the display between 2D and 3D mode. */
     public static final int KEYCODE_3D_MODE         = 206;
+<<<<<<< HEAD
     /** Key code constant: Contacts special function key.
      * Used to launch an address book application. */
     public static final int KEYCODE_CONTACTS        = 207;
@@ -593,6 +594,10 @@ public class KeyEvent extends InputEvent implements Parcelable {
     public static final int KEYCODE_CALCULATOR      = 210;
 
     private static final int LAST_KEYCODE           = KEYCODE_CALCULATOR;
+=======
+
+    private static final int LAST_KEYCODE           = KEYCODE_BUTTON_16;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // NOTE: If you add a new keycode here you must also add it to:
     //  isSystem()
@@ -601,8 +606,11 @@ public class KeyEvent extends InputEvent implements Parcelable {
     //  external/webkit/WebKit/android/plugins/ANPKeyCodes.h
     //  frameworks/base/core/res/res/values/attrs.xml
     //  emulator?
+<<<<<<< HEAD
     //  LAST_KEYCODE
     //  KEYCODE_SYMBOLIC_NAMES
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     //
     //  Also Android currently does not reserve code ranges for vendor-
     //  specific key codes.  If you have new key codes to have, you
@@ -821,10 +829,13 @@ public class KeyEvent extends InputEvent implements Parcelable {
         names.append(KEYCODE_LANGUAGE_SWITCH, "KEYCODE_LANGUAGE_SWITCH");
         names.append(KEYCODE_MANNER_MODE, "KEYCODE_MANNER_MODE");
         names.append(KEYCODE_3D_MODE, "KEYCODE_3D_MODE");
+<<<<<<< HEAD
         names.append(KEYCODE_CONTACTS, "KEYCODE_CONTACTS");
         names.append(KEYCODE_CALENDAR, "KEYCODE_CALENDAR");
         names.append(KEYCODE_MUSIC, "KEYCODE_MUSIC");
         names.append(KEYCODE_CALCULATOR, "KEYCODE_CALCULATOR");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     };
 
     // Symbolic names of all metakeys in bit order from least significant to most significant.

@@ -220,7 +220,11 @@ void ARTPConnection::onRemoveStream(const sp<AMessage> &msg) {
     }
 
     if (it == mStreams.end()) {
+<<<<<<< HEAD
         return;
+=======
+        TRESPASS();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     mStreams.erase(it);
@@ -274,6 +278,7 @@ void ARTPConnection::onPollStreams() {
     }
 
     int res = select(maxSocket + 1, &rs, NULL, NULL, &tv);
+<<<<<<< HEAD
 
     if (res > 0) {
         List<StreamInfo>::iterator it = mStreams.begin();
@@ -303,23 +308,56 @@ void ARTPConnection::onPollStreams() {
         }
     }
 
+=======
+    CHECK_GE(res, 0);
+
+    if (res > 0) {
+        for (List<StreamInfo>::iterator it = mStreams.begin();
+             it != mStreams.end(); ++it) {
+            if ((*it).mIsInjected) {
+                continue;
+            }
+
+            if (FD_ISSET(it->mRTPSocket, &rs)) {
+                receive(&*it, true);
+            }
+            if (FD_ISSET(it->mRTCPSocket, &rs)) {
+                receive(&*it, false);
+            }
+        }
+    }
+
+    postPollEvent();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     int64_t nowUs = ALooper::GetNowUs();
     if (mLastReceiverReportTimeUs <= 0
             || mLastReceiverReportTimeUs + 5000000ll <= nowUs) {
         sp<ABuffer> buffer = new ABuffer(kMaxUDPSize);
+<<<<<<< HEAD
         List<StreamInfo>::iterator it = mStreams.begin();
         while (it != mStreams.end()) {
             StreamInfo *s = &*it;
 
             if (s->mIsInjected) {
                 ++it;
+=======
+        for (List<StreamInfo>::iterator it = mStreams.begin();
+             it != mStreams.end(); ++it) {
+            StreamInfo *s = &*it;
+
+            if (s->mIsInjected) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 continue;
             }
 
             if (s->mNumRTCPPacketsReceived == 0) {
                 // We have never received any RTCP packets on this stream,
                 // we don't even know where to send a report.
+<<<<<<< HEAD
                 ++it;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 continue;
             }
 
@@ -338,6 +376,7 @@ void ARTPConnection::onPollStreams() {
             if (buffer->size() > 0) {
                 LOGV("Sending RR...");
 
+<<<<<<< HEAD
                 ssize_t n;
                 do {
                     n = sendto(
@@ -354,10 +393,17 @@ void ARTPConnection::onPollStreams() {
                     continue;
                 }
 
+=======
+                ssize_t n = sendto(
+                        s->mRTCPSocket, buffer->data(), buffer->size(), 0,
+                        (const struct sockaddr *)&s->mRemoteRTCPAddr,
+                        sizeof(s->mRemoteRTCPAddr));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 CHECK_EQ(n, (ssize_t)buffer->size());
 
                 mLastReceiverReportTimeUs = nowUs;
             }
+<<<<<<< HEAD
 
             ++it;
         }
@@ -366,6 +412,10 @@ void ARTPConnection::onPollStreams() {
     if (!mStreams.empty()) {
         postPollEvent();
     }
+=======
+        }
+    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 status_t ARTPConnection::receive(StreamInfo *s, bool receiveRTP) {
@@ -379,19 +429,29 @@ status_t ARTPConnection::receive(StreamInfo *s, bool receiveRTP) {
         (!receiveRTP && s->mNumRTCPPacketsReceived == 0)
             ? sizeof(s->mRemoteRTCPAddr) : 0;
 
+<<<<<<< HEAD
     ssize_t nbytes;
     do {
         nbytes = recvfrom(
+=======
+    ssize_t nbytes = recvfrom(
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             receiveRTP ? s->mRTPSocket : s->mRTCPSocket,
             buffer->data(),
             buffer->capacity(),
             0,
             remoteAddrLen > 0 ? (struct sockaddr *)&s->mRemoteRTCPAddr : NULL,
             remoteAddrLen > 0 ? &remoteAddrLen : NULL);
+<<<<<<< HEAD
     } while (nbytes < 0 && errno == EINTR);
 
     if (nbytes <= 0) {
         return -ECONNRESET;
+=======
+
+    if (nbytes < 0) {
+        return -1;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     buffer->setRange(0, nbytes);

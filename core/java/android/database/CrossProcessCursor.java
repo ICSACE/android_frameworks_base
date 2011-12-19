@@ -16,6 +16,7 @@
 
 package android.database;
 
+<<<<<<< HEAD
 /**
  * A cross process cursor is an extension of a {@link Cursor} that also supports
  * usage from remote processes.
@@ -35,10 +36,16 @@ public interface CrossProcessCursor extends Cursor {
      * </p>
      *
      * @return The pre-filled window, or null if none.
+=======
+public interface CrossProcessCursor extends Cursor {
+    /**
+     * returns a pre-filled window, return NULL if no such window
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     CursorWindow getWindow();
 
     /**
+<<<<<<< HEAD
      * Copies cursor data into the window.
      * <p>
      * Clears the window and fills it with data beginning at the requested
@@ -59,10 +66,16 @@ public interface CrossProcessCursor extends Cursor {
      * @param window The window to fill.
      */
     void fillWindow(int position, CursorWindow window);
+=======
+     * copies cursor data into the window start at pos
+     */
+    void fillWindow(int pos, CursorWindow winow);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * This function is called every time the cursor is successfully scrolled
      * to a new position, giving the subclass a chance to update any state it
+<<<<<<< HEAD
      * may have.  If it returns false the move function will also do so and the
      * cursor will scroll to the beforeFirst position.
      * <p>
@@ -75,4 +88,15 @@ public interface CrossProcessCursor extends Cursor {
      * @return True if the move is successful, false otherwise.
      */
     boolean onMove(int oldPosition, int newPosition); 
+=======
+     * may have. If it returns false the move function will also do so and the
+     * cursor will scroll to the beforeFirst position.
+     *
+     * @param oldPosition the position that we're moving from
+     * @param newPosition the position that we're moving to
+     * @return true if the move is successful, false otherwise
+     */
+    boolean onMove(int oldPosition, int newPosition); 
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

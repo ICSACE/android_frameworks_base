@@ -4,7 +4,11 @@ page.title=Support Package
 
 <div id="qv-wrapper">
 <div id="qv">
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <h2>In this document</h2>
 <ol>
   <li><a href="#Notes">Revisions</a></li>
@@ -35,8 +39,12 @@ worry less about platform versions.</p>
 
 <p class="note"><strong>Note:</strong> The Support Package includes more than one support
 library. Each one has a different <em>minimum API level</em>. For example, one library requires API
+<<<<<<< HEAD
 level 4 or higher, while another requires API level 13 or higher (v13 is a superset of v4 and
 includes additional
+=======
+level 4 or higher, while another requires API level 13 or higher (v13 is a superset of v4 and includes additional
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 support classes to work with v13 APIs). The minimum version is indicated
 by the directory name, such as {@code v4/} and {@code v13/}.</p>
 
@@ -47,10 +55,15 @@ by the directory name, such as {@code v4/} and {@code v13/}.</p>
 the Support Package, as denoted by revision number.</p>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <div class="toggle-content open">
 
   <p><a href="#" onclick="return toggleContent(this)">
     <img src="{@docRoot}assets/images/triangle-opened.png" class="toggle-content-img" />
+<<<<<<< HEAD
     Support Package, revision 6 (December 2011)
   </a></p>
 
@@ -105,6 +118,9 @@ the Support Package, as denoted by revision number.</p>
   <p><a href="#" onclick="return toggleContent(this)">
     <img src="{@docRoot}assets/images/triangle-closed.png" class="toggle-content-img" />
     Support Package, revision 5 (December 2011)
+=======
+    Support Package, revision 4 (October 2011)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   </a></p>
 
   <div class="toggle-content-toggleme" style="padding-left:2em">
@@ -114,6 +130,7 @@ the Support Package, as denoted by revision number.</p>
         <ul>
           <li>Support for Accessiblity APIs:
             <ul>
+<<<<<<< HEAD
               <li>Added {@link android.support.v4.view.AccessibilityDelegateCompat}
               to support {@link android.view.View.AccessibilityDelegate}.</li>
 
@@ -138,10 +155,36 @@ the Support Package, as denoted by revision number.</p>
               </li>
 
               <li>Modified {@link android.support.v4.view.ViewCompat}
+=======
+              <li>Added <code>AccessibilityDelegateCompat</code> to support
+              {@link android.view.View.AccessibilityDelegate}.</li>
+
+              <li>Added <code>AccessibilityEventCompat</code> to support
+              {@link android.view.accessibility.AccessibilityEvent}.</li>
+
+              <li>Added <code>AccessibilityManagerCompat</code> to support
+              {@link android.view.accessibility.AccessibilityManager}.</li>
+
+              <li>Added <code>AccessibilityNodeInfoCompat</code> to support
+              {@link android.view.accessibility.AccessibilityNodeInfo}.</li>
+
+              <li>Added <code>AccessibilityRecordCompat</code> to support
+              {@link android.view.accessibility.AccessibilityRecord}.</li>
+
+              <li>Added <code>AccessibilityServiceInfoCompat</code> to support
+              {@link android.accessibilityservice.AccessibilityServiceInfo}.</li>
+
+              <li>Added <code>ViewGroupCompat</code>
+              to support accessibility features in {@link android.view.ViewGroup}.
+              </li>
+
+              <li>Modified <code>ViewCompat</code>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
               to support accessibility features in {@link android.view.View}.</li>
             </ul>
           </li>
 
+<<<<<<< HEAD
           <li>Changes to ViewPager:
             <ul>
               <li>Added support for margins between pages.
@@ -175,6 +218,11 @@ the Support Package, as denoted by revision number.</p>
           <li>Added <code>EdgeEffectCompat</code> to
           support {@link android.widget.EdgeEffect}.</li>
 
+=======
+          <li>Added <code>EdgeEffectCompat</code> to
+          support {@link android.widget.EdgeEffect}.</li>
+          
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
           <li>Added <code>LocalBroadcastManager</code> to allow applications to easily
             register for and receive intents within a single application without
             broadcasting them globally.</li>
@@ -190,6 +238,21 @@ the Support Package, as denoted by revision number.</p>
               <li>Various bug fixes.</li>
             </ul>
           </li>
+<<<<<<< HEAD
+=======
+          <li>Changes to <code>ViewPager</code>:
+            <ul>
+              <li>Added support for margins between pages.
+              An optional {@link android.graphics.drawable.Drawable} can be provided
+              to fill the margins.</li>
+              <li>Added support for {@link android.widget.EdgeEffect}.</li>
+              <li>Added support for keyboard navigation</li>
+              <li>Added support to control how many pages are kept to either side
+              of the current page.</li>
+              <li>Improved touch physics.</li>
+            </ul>
+          </li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
           <li>Fixed a {@link android.content.Loader} bug that caused issues in
           canceling {@link android.os.AsyncTask}s when running on Froyo and older
@@ -214,7 +277,11 @@ the Support Package, as denoted by revision number.</p>
     Compatibility Package, revision 3 (July 2011)
   </a></p>
 
+<<<<<<< HEAD
   <div class="toggle-content-toggleme" style="padding-left:2em">
+=======
+  <div class="toggle-content-toggleme" style="padding-left:2em"> 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <dl>
       <dt>Changes for v4 support library:</dt>
       <dd>
@@ -268,14 +335,22 @@ Android 3.2 and higher (all other APIs in the v4 library are already available w
     Compatibility Package, revision 2 (May 2011)
   </a></p>
 
+<<<<<<< HEAD
   <div class="toggle-content-toggleme" style="padding-left:2em">
+=======
+  <div class="toggle-content-toggleme" style="padding-left:2em"> 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <dl>
     <dt>Changes for v4 library:</dt>
     <dd>
       <ul>
         <li>Support for fragment animations</li>
+<<<<<<< HEAD
         <li>Fix {@code android.support.v4.app.Fragment#onActivityResult Fragment.onActivityResult()}
           bug</li>
+=======
+        <li>Fix {@code Fragment.onActivityResult()} bug</li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       </ul>
     </dd>
     </dl>
@@ -291,7 +366,11 @@ Android 3.2 and higher (all other APIs in the v4 library are already available w
     Compatibility Package, revision 1 (March 2011)
   </a></p>
 
+<<<<<<< HEAD
   <div class="toggle-content-toggleme" style="padding-left:2em">
+=======
+  <div class="toggle-content-toggleme" style="padding-left:2em"> 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       <p>Initial release with the v4 library.</p>
   </div>
 
@@ -305,7 +384,11 @@ Android 3.2 and higher (all other APIs in the v4 library are already available w
 Manager. To install:</p>
 
 <ol>
+<<<<<<< HEAD
   <li>Launch the SDK and AVD Manager.
+=======
+  <li>Launch the SDK and AVD Manager. 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <p>From Eclipse, you can select <strong>Window</strong>
 &gt; <strong>Android SDK and AVD Manager</strong>. Or, launch {@code SDK Manager.exe} from
 the {@code &lt;sdk&gt;/} directory (on Windows only) or {@code android} from the {@code
@@ -332,9 +415,16 @@ libs/} directory.
     <p>For example, the library that supports API level 4 and up is located at {@code
 &lt;sdk&gt;/extras/android/support/v4/android-support-v4.jar}.</p>
   </li>
+<<<<<<< HEAD
   <li>Add the JAR to your project build path.
     <p>In Eclipse, right-click the JAR file in the Package Explorer, select <strong>Build
 Path</strong> &gt; <strong>Add to Build Path</strong>.</p>
+=======
+  <li>Add the JAR to your project build path. 
+    <p>In Eclipse, right-click the JAR file in the Package Explorer, select <strong>Build
+Path</strong> &gt; <strong>Add to Build Path</strong>. You should then see the JAR file appear in a
+new directory called Referenced Libraries.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   </li>
 </ol>
 
@@ -343,7 +433,11 @@ provided APIs are available in the {@code android.support} package (for
 example, {@code android.support.v4}).</p>
 
 <p class="note"><strong>Tip:</strong> To see the library APIs in action, take a look at the sample
+<<<<<<< HEAD
 apps in {@code &lt;sdk&gt;/extras/android/support/&lt;version&gt;/samples/}.</p>
+=======
+apps in {@code extras/android/support/&lt;version&gt;/samples/}.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <p class="warning"><strong>Warning:</strong> Be certain that you not confuse the standard
 {@code android} packages with those in {@code android.support} library. Some code completion tools
@@ -381,6 +475,7 @@ differences, however. Most notably:</p>
 
 <ul>
   <li>When creating an activity to use fragments, you must declare your activity to extend the
+<<<<<<< HEAD
 {@link android.support.v4.app.FragmentActivity} class (instead of the traditional
 {@link android.app.Activity} class).</li>
   <li>To manage your fragments and loaders, you must use the methods
@@ -395,6 +490,19 @@ However, when creating your <a href="{@docRoot}guide/topics/ui/menus.html#option
 Menu</a>, you can declare which items should be added to the Action Bar when it's available (on
 Android 3.0 or later). You can do so with the
 {@link android.support.v4.view.MenuCompat#setShowAsAction MenuCompat.setShowAsAction()} method, for
+=======
+{@code FragmentActivity} class (instead of the traditional {@link android.app.Activity}
+class).</li>
+  <li>To manage your fragments and loaders, you must use the methods {@code
+FragmentActivity.getSupportFragmentManager()} and {@code
+FragmentActivity.getSupportLoaderManager()} (instead of the {@link
+android.app.Activity#getFragmentManager()} and {@link android.app.Activity#getLoaderManager()}
+methods).</li>
+  <li>The {@link android.app.ActionBar} is <strong>not supported</strong> by the library.
+However, when creating your <a href="{@docRoot}guide/topics/ui/menus.html#options-menu">Options
+Menu</a>, you can declare which items should be added to the Action Bar when it's available (on
+Android 3.0 or later). You can do so with the {@code MenuCompat.setShowAsAction()} method. For
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 example:
 <pre>
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -404,19 +512,30 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return true;
 }
 </pre>
+<<<<<<< HEAD
 <p>Also see the <a href="{@docRoot}resources/samples/ActionBarCompat/index.html">Action Bar
 Compatibility</a> sample for a demonstration of how to use {@link android.app.ActionBar} on Android
 3.0+ and also support action bar functionality on older versions.</p>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </li>
 </ul>
 
 <div class="note"><p><strong>Tip:</strong> To enable the Holographic theme on devices
 running Android 3.0 or higher, declare in your manifest file that your application targets
+<<<<<<< HEAD
 API level 11, for example:</p>
 <pre>
 &lt;uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11" /&gt;
 </pre>
 <p>This way, your application automatically receives the Holographic theme and the Action Bar for
+=======
+API level 11. For example:</p>
+<pre>
+&lt;uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11" /&gt;
+</pre>
+<p>This way, your application automatically receives the Holographic theme and the Action Bar for 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 each activity when running on Android 3.0 and higher.</p>
 </div>
 
@@ -427,6 +546,7 @@ Apps for Android 3.0</a>.</p>
 
 <h2 id="Docs">Reference Docs</h2>
 
+<<<<<<< HEAD
 <p>The reference documentation for the Support Packages is included as part of the Android
 online developer documentation:</p>
 
@@ -436,11 +556,25 @@ online developer documentation:</p>
   <li><a href="{@docRoot}reference/android/support/v13/app/package-summary.html">Support Package
     API 13 Reference</a></li>
 </ul>
+=======
+<p>The libraries currently do not provide reference documentation for the included APIs. To generate
+your own set using the {@code javadoc} tool, perform the following from a command (as appropriate
+for the library version you're using). In this example, documentation is generated for the v4
+library:</p>
+
+<pre class="no-pretty-print">
+cd &lt;sdk&gt;/extras/android/support/v4/
+mkdir docs
+javadoc -sourcepath src/java/ -subpackages android.support.v4 -d docs
+</pre>
+<p>Open the {@code docs/index.html} file to begin browsing the generated documentation.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 
 <h2 id="Samples">Samples</h2>
 
 <p>If you want to see some code that uses the support libraries, samples are included with the
+<<<<<<< HEAD
 Support Package, inside each support library directory, for example; {@code
 &lt;sdk&gt;/extras/android/support/v4/samples/}. You can also view these samples as part of the
 Android online developer documentation:</p>
@@ -449,7 +583,18 @@ Android online developer documentation:</p>
   <li><a href="{@docRoot}resources/samples/Support4Demos/index.html">Support API 4 Demos</a></li>
   <li><a href="{@docRoot}resources/samples/Support13Demos/index.html">Support API 13 Demos</a></li>
 </ul>
+=======
+Support Package, inside each support library directory. For example, at {@code
+extras/android/support/v4/samples/}.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <p>Additionally, the <a href="http://code.google.com/p/iosched/">Google I/O App</a> is a complete
 application that uses the v4 support library to provide a single APK for both handsets and tablets
 and also demonstrates some of Android's best practices in Android UI design.</p>
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

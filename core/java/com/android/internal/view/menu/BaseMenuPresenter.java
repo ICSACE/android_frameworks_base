@@ -91,6 +91,7 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
                 MenuItemImpl item = visibleItems.get(i);
                 if (shouldIncludeItem(childIndex, item)) {
                     final View convertView = parent.getChildAt(childIndex);
+<<<<<<< HEAD
                     final MenuItemImpl oldItem = convertView instanceof MenuView.ItemView ?
                             ((MenuView.ItemView) convertView).getItemData() : null;
                     final View itemView = getItemView(item, convertView, parent);
@@ -99,6 +100,9 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
                         itemView.setPressed(false);
                         itemView.jumpDrawablesToCurrentState();
                     }
+=======
+                    final View itemView = getItemView(item, convertView, parent);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if (itemView != convertView) {
                         addItemView(itemView, childIndex);
                     }

@@ -37,7 +37,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.R;
+<<<<<<< HEAD
 import com.android.internal.telephony.gsm.UsimServiceTable;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.telephony.ims.IsimRecords;
 import com.android.internal.telephony.test.SimulatedRadioControl;
 import com.android.internal.telephony.gsm.SIMRecords;
@@ -1184,6 +1187,7 @@ public abstract class PhoneBase extends Handler implements Phone {
     public void setVoiceMessageWaiting(int line, int countWaiting) {
         mIccRecords.setVoiceMessageWaiting(line, countWaiting);
     }
+<<<<<<< HEAD
 
     /**
      * Gets the USIM service table from the UICC, if present and available.
@@ -1193,4 +1197,6 @@ public abstract class PhoneBase extends Handler implements Phone {
     public UsimServiceTable getUsimServiceTable() {
         return mIccRecords.getUsimServiceTable();
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

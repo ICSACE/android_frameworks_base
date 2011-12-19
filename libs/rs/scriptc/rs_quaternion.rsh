@@ -66,6 +66,22 @@ rsQuaternionMultiply(rs_quaternion *q, float s) {
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Multiply quaternion by another quaternion
+ * @param q destination quaternion
+ * @param rhs right hand side quaternion to multiply by
+ */
+static void __attribute__((overloadable))
+rsQuaternionMultiply(rs_quaternion *q, const rs_quaternion *rhs) {
+    q->w = -q->x*rhs->x - q->y*rhs->y - q->z*rhs->z + q->w*rhs->w;
+    q->x =  q->x*rhs->w + q->y*rhs->z - q->z*rhs->y + q->w*rhs->x;
+    q->y = -q->x*rhs->z + q->y*rhs->w + q->z*rhs->x + q->w*rhs->y;
+    q->z =  q->x*rhs->y - q->y*rhs->x + q->z*rhs->w + q->w*rhs->z;
+}
+
+/**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * Add two quaternions
  * @param q destination quaternion to add to
  * @param rsh right hand side quaternion to add
@@ -155,6 +171,7 @@ rsQuaternionNormalize(rs_quaternion *q) {
 }
 
 /**
+<<<<<<< HEAD
  * Multiply quaternion by another quaternion
  * @param q destination quaternion
  * @param rhs right hand side quaternion to multiply by
@@ -172,6 +189,8 @@ rsQuaternionMultiply(rs_quaternion *q, const rs_quaternion *rhs) {
 }
 
 /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * Performs spherical linear interpolation between two quaternions
  * @param q result quaternion from interpolation
  * @param q0 first param
@@ -226,6 +245,7 @@ rsQuaternionSlerp(rs_quaternion *q, const rs_quaternion *q0, const rs_quaternion
  * @param p normalized quaternion
  */
 static void rsQuaternionGetMatrixUnit(rs_matrix4x4 *m, const rs_quaternion *q) {
+<<<<<<< HEAD
     float xx = q->x * q->x;
     float xy = q->x * q->y;
     float xz = q->x * q->z;
@@ -246,6 +266,36 @@ static void rsQuaternionGetMatrixUnit(rs_matrix4x4 *m, const rs_quaternion *q) {
     m->m[6]  =        2.0f * ( yz + xw );
     m->m[10] = 1.0f - 2.0f * ( xx + yy );
     m->m[3]  = m->m[7] = m->m[11] = m->m[12] = m->m[13] = m->m[14] = 0.0f;
+=======
+    float x2 = 2.0f * q->x * q->x;
+    float y2 = 2.0f * q->y * q->y;
+    float z2 = 2.0f * q->z * q->z;
+    float xy = 2.0f * q->x * q->y;
+    float wz = 2.0f * q->w * q->z;
+    float xz = 2.0f * q->x * q->z;
+    float wy = 2.0f * q->w * q->y;
+    float wx = 2.0f * q->w * q->x;
+    float yz = 2.0f * q->y * q->z;
+
+    m->m[0] = 1.0f - y2 - z2;
+    m->m[1] = xy - wz;
+    m->m[2] = xz + wy;
+    m->m[3] = 0.0f;
+
+    m->m[4] = xy + wz;
+    m->m[5] = 1.0f - x2 - z2;
+    m->m[6] = yz - wx;
+    m->m[7] = 0.0f;
+
+    m->m[8] = xz - wy;
+    m->m[9] = yz - wx;
+    m->m[10] = 1.0f - x2 - y2;
+    m->m[11] = 0.0f;
+
+    m->m[12] = 0.0f;
+    m->m[13] = 0.0f;
+    m->m[14] = 0.0f;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     m->m[15] = 1.0f;
 }
 

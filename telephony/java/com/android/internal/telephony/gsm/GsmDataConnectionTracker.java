@@ -549,7 +549,11 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
     @Override
     public boolean getAnyDataEnabled() {
         synchronized (mDataEnabledLock) {
+<<<<<<< HEAD
             if (!(mInternalDataEnabled && mUserDataEnabled && sPolicyDataEnabled)) return false;
+=======
+            if (!(mInternalDataEnabled && mUserDataEnabled && mPolicyDataEnabled)) return false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             for (ApnContext apnContext : mApnContexts.values()) {
                 // Make sure we dont have a context that going down
                 // and is explicitly disabled.
@@ -914,6 +918,7 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.NUMERIC)),
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.NAME)),
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.APN)),
+<<<<<<< HEAD
                         NetworkUtils.trimV4AddrZeros(
                                 cursor.getString(
                                 cursor.getColumnIndexOrThrow(Telephony.Carriers.PROXY))),
@@ -924,6 +929,12 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
                         NetworkUtils.trimV4AddrZeros(
                                 cursor.getString(
                                 cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSPROXY))),
+=======
+                        cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.PROXY)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.PORT)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSC)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSPROXY)),
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSPORT)),
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.USER)),
                         cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.PASSWORD)),
@@ -1060,8 +1071,15 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
      * Handles changes to the APN database.
      */
     private void onApnChanged() {
+<<<<<<< HEAD
         State overallState = getOverallState();
         boolean isDisconnected = (overallState == State.IDLE || overallState == State.FAILED);
+=======
+        // TODO: How to handle when multiple APNs are active?
+
+        ApnContext defaultApnContext = mApnContexts.get(Phone.APN_TYPE_DEFAULT);
+        boolean defaultApnIsDisconnected = defaultApnContext.isDisconnected();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (mPhone instanceof GSMPhone) {
             // The "current" may no longer be valid.  MMS depends on this to send properly. TBD
@@ -1072,8 +1090,13 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
         // match the current operator.
         if (DBG) log("onApnChanged: createAllApnList and cleanUpAllConnections");
         createAllApnList();
+<<<<<<< HEAD
         cleanUpAllConnections(!isDisconnected, Phone.REASON_APN_CHANGED);
         if (isDisconnected) {
+=======
+        cleanUpAllConnections(!defaultApnIsDisconnected, Phone.REASON_APN_CHANGED);
+        if (defaultApnIsDisconnected) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             setupDataOnReadyApns(Phone.REASON_APN_CHANGED);
         }
     }
@@ -1726,16 +1749,20 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
     private DataConnection checkForConnectionForApnContext(ApnContext apnContext) {
         // Loop through all apnContexts looking for one with a conn that satisfies this apnType
         String apnType = apnContext.getApnType();
+<<<<<<< HEAD
         ApnSetting dunSetting = null;
 
         if (Phone.APN_TYPE_DUN.equals(apnType)) {
             dunSetting = fetchDunApn();
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         for (ApnContext c : mApnContexts.values()) {
             DataConnection conn = c.getDataConnection();
             if (conn != null) {
                 ApnSetting apnSetting = c.getApnSetting();
+<<<<<<< HEAD
                 if (dunSetting != null) {
                     if (dunSetting.equals(apnSetting)) {
                         if (DBG) {
@@ -1745,6 +1772,9 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
                         return conn;
                     }
                 } else if (apnSetting != null && apnSetting.canHandleType(apnType)) {
+=======
+                if (apnSetting != null && apnSetting.canHandleType(apnType)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if (DBG) {
                         log("checkForConnectionForApnContext: apnContext=" + apnContext +
                                 " found conn=" + conn);
@@ -1868,6 +1898,7 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
             DataConnection dc = apnContext.getDataConnection();
 
             if (DBG) {
+<<<<<<< HEAD
                 // TODO We may use apnContext.getApnSetting() directly
                 // instead of getWaitingApns().get(0)
                 String apnStr = "<unknown>";
@@ -1876,6 +1907,10 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
                     apnStr = apnContext.getWaitingApns().get(0).apn;
                 }
                 log("onDataSetupComplete: success apn=" + apnStr);
+=======
+                log(String.format("onDataSetupComplete: success apn=%s",
+                    apnContext.getWaitingApns().get(0).apn));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             ApnSetting apn = apnContext.getApnSetting();
             if (apn.proxy != null && apn.proxy.length() != 0) {

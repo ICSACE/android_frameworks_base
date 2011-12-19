@@ -4,12 +4,21 @@ package android.webkit;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.Metadata;
+<<<<<<< HEAD
+=======
+import android.util.Log;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+=======
+import android.webkit.HTML5VideoView;
+import android.webkit.HTML5VideoViewProxy;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.MediaController.MediaPlayerControl;
@@ -147,9 +156,13 @@ public class HTML5VideoFullScreen extends HTML5VideoView
     private void prepareForFullScreen() {
         // So in full screen, we reset the MediaPlayer
         mPlayer.reset();
+<<<<<<< HEAD
         MediaController mc = new FullScreenMediaController(mProxy.getContext(), mLayout);
         mc.setSystemUiVisibility(mLayout.getSystemUiVisibility());
         setMediaController(mc);
+=======
+        setMediaController(new MediaController(mProxy.getContext()));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mPlayer.setScreenOnWhilePlaying(true);
         prepareDataAndDisplayMode(mProxy);
     }
@@ -258,6 +271,10 @@ public class HTML5VideoFullScreen extends HTML5VideoView
         mLayout.addView(getSurfaceView(), layoutParams);
 
         mLayout.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         WebChromeClient client = webView.getWebChromeClient();
         if (client != null) {
             client.onShowCustomView(mLayout, mCallback);
@@ -334,6 +351,7 @@ public class HTML5VideoFullScreen extends HTML5VideoView
         }
         return;
     }
+<<<<<<< HEAD
 
     static class FullScreenMediaController extends MediaController {
 
@@ -363,4 +381,6 @@ public class HTML5VideoFullScreen extends HTML5VideoView
 
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

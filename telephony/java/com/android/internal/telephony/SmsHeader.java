@@ -190,9 +190,13 @@ public class SmsHeader {
     public static byte[] toByteArray(SmsHeader smsHeader) {
         if ((smsHeader.portAddrs == null) &&
             (smsHeader.concatRef == null) &&
+<<<<<<< HEAD
             (smsHeader.miscEltList.isEmpty()) &&
             (smsHeader.languageShiftTable == 0) &&
             (smsHeader.languageTable == 0)) {
+=======
+            (smsHeader.miscEltList.size() == 0)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return null;
         }
 

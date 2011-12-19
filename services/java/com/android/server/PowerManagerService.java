@@ -100,6 +100,7 @@ public class PowerManagerService extends IPowerManager.Stub
     private static final int LONG_KEYLIGHT_DELAY = 6000;        // t+6 sec
     private static final int LONG_DIM_TIME = 7000;              // t+N-5 sec
 
+<<<<<<< HEAD
     // How long to wait to debounce light sensor changes in milliseconds
     private static final int LIGHT_SENSOR_DELAY = 2000;
 
@@ -107,6 +108,12 @@ public class PowerManagerService extends IPowerManager.Stub
     private static final int LIGHT_SENSOR_RATE = 1000000;
 
     // For debouncing the proximity sensor in milliseconds
+=======
+    // How long to wait to debounce light sensor changes.
+    private static final int LIGHT_SENSOR_DELAY = 2000;
+
+    // For debouncing the proximity sensor.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final int PROXIMITY_SENSOR_DELAY = 1000;
 
     // trigger proximity if distance is less than 5 cm
@@ -1689,11 +1696,14 @@ public class PowerManagerService extends IPowerManager.Stub
                 // before showing it to the user.  We want the light off
                 // until it is ready to be shown to the user, not it using
                 // whatever the last value it had.
+<<<<<<< HEAD
                 if (DEBUG_SCREEN_ON) {
                     Slog.i(TAG, "Forcing brightness 0: mPowerState=0x"
                             + Integer.toHexString(mPowerState)
                             + " mSkippedScreenOn=" + mSkippedScreenOn);
                 }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mScreenBrightness.forceValueLocked(Power.BRIGHTNESS_OFF);
             }
         }
@@ -2043,6 +2053,7 @@ public class PowerManagerService extends IPowerManager.Stub
             } finally {
                 Binder.restoreCallingIdentity(identity);
             }
+<<<<<<< HEAD
             if (!mSkippedScreenOn) {
                 mScreenBrightness.setTargetLocked(brightness, steps,
                         INITIAL_SCREEN_BRIGHTNESS, nominalCurrentValue);
@@ -2051,6 +2062,14 @@ public class PowerManagerService extends IPowerManager.Stub
                     e.fillInStackTrace();
                     Slog.i(TAG, "Setting screen brightness: " + brightness, e);
                 }
+=======
+            mScreenBrightness.setTargetLocked(brightness, steps,
+                    INITIAL_SCREEN_BRIGHTNESS, nominalCurrentValue);
+            if (DEBUG_SCREEN_ON) {
+                RuntimeException e = new RuntimeException("here");
+                e.fillInStackTrace();
+                Slog.i(TAG, "Setting screen brightness: " + brightness, e);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
@@ -2093,11 +2112,14 @@ public class PowerManagerService extends IPowerManager.Stub
                             ? LightsService.BRIGHTNESS_MODE_SENSOR
                             : LightsService.BRIGHTNESS_MODE_USER);
         if ((mask & SCREEN_BRIGHT_BIT) != 0) {
+<<<<<<< HEAD
             if (DEBUG_SCREEN_ON) {
                 RuntimeException e = new RuntimeException("here");
                 e.fillInStackTrace();
                 Slog.i(TAG, "Set LCD brightness: " + value, e);
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mLcdLight.setBrightness(value, brightnessMode);
         }
         if ((mask & BUTTON_BRIGHT_BIT) != 0) {
@@ -2149,7 +2171,11 @@ public class PowerManagerService extends IPowerManager.Stub
             delta = (targetValue -
                     (nominalCurrentValue >= 0 ? nominalCurrentValue : curValue))
                     / stepsToTarget;
+<<<<<<< HEAD
             if (mSpew || DEBUG_SCREEN_ON) {
+=======
+            if (mSpew) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 String noticeMe = nominalCurrentValue == curValue ? "" : "  ******************";
                 Slog.i(TAG, "setTargetLocked mask=" + mask + " curValue=" + curValue
                         + " target=" + target + " targetValue=" + targetValue + " delta=" + delta
@@ -2213,21 +2239,41 @@ public class PowerManagerService extends IPowerManager.Stub
         }
 
         public void run() {
+<<<<<<< HEAD
             synchronized (mLocks) {
                 // we're turning off
                 final boolean turningOff = animating && targetValue == Power.BRIGHTNESS_OFF;
                 if (mAnimateScreenLights || !turningOff) {
+=======
+            if (mAnimateScreenLights) {
+                synchronized (mLocks) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     long now = SystemClock.uptimeMillis();
                     boolean more = mScreenBrightness.stepLocked();
                     if (more) {
                         mScreenOffHandler.postAtTime(this, now+(1000/60));
                     }
+<<<<<<< HEAD
                 } else {
                     // It's pretty scary to hold mLocks for this long, and we should
                     // redesign this, but it works for now.
                     nativeStartSurfaceFlingerAnimation(
                             mScreenOffReason == WindowManagerPolicy.OFF_BECAUSE_OF_PROX_SENSOR
                             ? 0 : mAnimationSetting);
+=======
+                }
+            } else {
+                synchronized (mLocks) {
+                    // we're turning off
+                    final boolean animate = animating && targetValue == Power.BRIGHTNESS_OFF;
+                    if (animate) {
+                        // It's pretty scary to hold mLocks for this long, and we should
+                        // redesign this, but it works for now.
+                        nativeStartSurfaceFlingerAnimation(
+                                mScreenOffReason == WindowManagerPolicy.OFF_BECAUSE_OF_PROX_SENSOR
+                                ? 0 : mAnimationSetting);
+                    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     mScreenBrightness.jumpToTargetLocked();
                 }
             }
@@ -2539,10 +2585,15 @@ public class PowerManagerService extends IPowerManager.Stub
                 }
 
                 if (mAutoBrightessEnabled && mScreenBrightnessOverride < 0) {
+<<<<<<< HEAD
                     if (!mSkippedScreenOn) {
                         mScreenBrightness.setTargetLocked(lcdValue, AUTOBRIGHTNESS_ANIM_STEPS,
                                 INITIAL_SCREEN_BRIGHTNESS, (int)mScreenBrightness.curValue);
                     }
+=======
+                    mScreenBrightness.setTargetLocked(lcdValue, AUTOBRIGHTNESS_ANIM_STEPS,
+                            INITIAL_SCREEN_BRIGHTNESS, (int)mScreenBrightness.curValue);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 if (mButtonBrightnessOverride < 0) {
                     mButtonLight.setBrightness(buttonValue);
@@ -3066,7 +3117,11 @@ public class PowerManagerService extends IPowerManager.Stub
             try {
                 if (enable) {
                     mSensorManager.registerListener(mLightListener, mLightSensor,
+<<<<<<< HEAD
                             LIGHT_SENSOR_RATE);
+=======
+                            SensorManager.SENSOR_DELAY_NORMAL);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } else {
                     mSensorManager.unregisterListener(mLightListener);
                     mHandler.removeCallbacks(mAutoBrightnessTask);

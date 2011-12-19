@@ -305,7 +305,11 @@ public class MediaRecorder
         setVideoEncodingBitRate(profile.videoBitRate);
         setVideoEncoder(profile.videoCodec);
         if (profile.quality >= CamcorderProfile.QUALITY_TIME_LAPSE_LOW &&
+<<<<<<< HEAD
              profile.quality <= CamcorderProfile.QUALITY_TIME_LAPSE_QVGA) {
+=======
+             profile.quality <= CamcorderProfile.QUALITY_TIME_LAPSE_1080P) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // Enable time lapse. Also don't set audio for time lapse.
             setParameter(String.format("time-lapse-enable=1"));
         } else {
@@ -926,6 +930,7 @@ public class MediaRecorder
     /**
      * Releases resources associated with this MediaRecorder object.
      * It is good practice to call this method when you're done
+<<<<<<< HEAD
      * using the MediaRecorder. In particular, whenever an Activity
      * of an application is paused (its onPause() method is called),
      * or stopped (its onStop() method is called), this method should be
@@ -940,6 +945,9 @@ public class MediaRecorder
      * of the same codec are supported, some performance degradation
      * may be expected when unnecessary multiple instances are used
      * at the same time.
+=======
+     * using the MediaRecorder.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public native void release();
 

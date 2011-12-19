@@ -203,10 +203,14 @@ public class TextureView extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+<<<<<<< HEAD
         destroySurface();
     }
 
     private void destroySurface() {
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mLayer != null) {
             boolean shouldRelease = true;
             if (mListener != null) {
@@ -303,6 +307,7 @@ public class TextureView extends View {
         return false;
     }
 
+<<<<<<< HEAD
     /**
      * @hide
      */
@@ -314,6 +319,8 @@ public class TextureView extends View {
         invalidate(true);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @Override
     HardwareLayer getHardwareLayer() {
         if (mLayer == null) {

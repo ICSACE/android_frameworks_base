@@ -187,6 +187,7 @@ public final class ContactsContract {
     public static final String DEFERRED_SNIPPETING_QUERY = "deferred_snippeting_query";
 
     /**
+<<<<<<< HEAD
      * A boolean parameter for {@link CommonDataKinds.Phone#CONTENT_URI},
      * {@link CommonDataKinds.Email#CONTENT_URI}, and
      * {@link CommonDataKinds.StructuredPostal#CONTENT_URI}.
@@ -197,6 +198,8 @@ public final class ContactsContract {
     public static final String REMOVE_DUPLICATE_ENTRIES = "remove_duplicate_entries";
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * <p>
      * API for obtaining a pre-authorized version of a URI that normally requires special
      * permission (beyond READ_CONTACTS) to read.  The caller obtaining the pre-authorized URI
@@ -1683,6 +1686,10 @@ public final class ContactsContract {
          * Querying for social stream data requires android.permission.READ_SOCIAL_STREAM
          * permission.
          * </p>
+<<<<<<< HEAD
+=======
+         * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          */
         public static final class StreamItems implements StreamItemsColumns {
             /**
@@ -2745,6 +2752,10 @@ public final class ContactsContract {
          * inserting or updating social stream items requires android.permission.WRITE_SOCIAL_STREAM
          * permission.
          * </p>
+<<<<<<< HEAD
+=======
+         * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          */
         public static final class StreamItems implements BaseColumns, StreamItemsColumns {
             /**
@@ -3157,6 +3168,10 @@ public final class ContactsContract {
      * </pre>
      * </dd>
      * </dl>
+<<<<<<< HEAD
+=======
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public static final class StreamItems implements BaseColumns, StreamItemsColumns {
         /**
@@ -3254,6 +3269,10 @@ public final class ContactsContract {
      * Columns in the StreamItems table.
      *
      * @see ContactsContract.StreamItems
+<<<<<<< HEAD
+=======
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     protected interface StreamItemsColumns {
         /**
@@ -3544,6 +3563,10 @@ public final class ContactsContract {
      * <pre>
      * </dd>
      * </dl>
+<<<<<<< HEAD
+=======
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public static final class StreamItemPhotos implements BaseColumns, StreamItemPhotosColumns {
         /**
@@ -3571,6 +3594,10 @@ public final class ContactsContract {
      * Columns in the StreamItemPhotos table.
      *
      * @see ContactsContract.StreamItemPhotos
+<<<<<<< HEAD
+=======
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     protected interface StreamItemPhotosColumns {
         /**
@@ -4670,6 +4697,7 @@ public final class ContactsContract {
          * @hide
          */
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/phone_lookup";
+<<<<<<< HEAD
 
        /**
         * Boolean parameter that is used to look up a SIP address.
@@ -4677,6 +4705,8 @@ public final class ContactsContract {
         * @hide
         */
         public static final String QUERY_PARAMETER_SIP_ADDRESS = "sip";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

@@ -42,7 +42,11 @@ public class WebViewDatabase {
     // log tag
     protected static final String LOGTAG = "webviewdatabase";
 
+<<<<<<< HEAD
     private static final int DATABASE_VERSION = 11;
+=======
+    private static final int DATABASE_VERSION = 10;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // 2 -> 3 Modified Cache table to allow cache of redirects
     // 3 -> 4 Added Oma-Downloads table
     // 4 -> 5 Modified Cache table to support persistent contentLength
@@ -52,9 +56,12 @@ public class WebViewDatabase {
     // 7 -> 8 Move cache to its own db
     // 8 -> 9 Store both scheme and host when storing passwords
     // 9 -> 10 Update httpauth table UNIQUE
+<<<<<<< HEAD
     // 10 -> 11 Drop cookies and cache now managed by the chromium stack,
     //          and update the form data table to use the new format
     //          implemented for b/5265606.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final int CACHE_DATABASE_VERSION = 4;
     // 1 -> 2 Add expires String
     // 2 -> 3 Add content-disposition
@@ -207,9 +214,13 @@ public class WebViewDatabase {
         }
 
         initDatabase(context);
+<<<<<<< HEAD
         if (JniUtil.useChromiumHttpStack()) {
             context.deleteDatabase(CACHE_DATABASE_FILE);
         } else {
+=======
+        if (!JniUtil.useChromiumHttpStack()) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             initCacheDatabase(context);
         }
 
@@ -332,6 +343,7 @@ public class WebViewDatabase {
     }
 
     private static void upgradeDatabase() {
+<<<<<<< HEAD
         upgradeDatabaseToV10();
         upgradeDatabaseFromV10ToV11();
         // Add future database upgrade functions here, one version at a
@@ -378,13 +390,22 @@ public class WebViewDatabase {
             return;
         }
 
+=======
+        int oldVersion = mDatabase.getVersion();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (oldVersion != 0) {
             Log.i(LOGTAG, "Upgrading database from version "
                     + oldVersion + " to "
                     + DATABASE_VERSION + ", which will destroy old data");
         }
+<<<<<<< HEAD
 
         if (9 == oldVersion) {
+=======
+        boolean justPasswords = 8 == oldVersion && 9 == DATABASE_VERSION;
+        boolean justAuth = 9 == oldVersion && 10 == DATABASE_VERSION;
+        if (justAuth) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mDatabase.execSQL("DROP TABLE IF EXISTS "
                     + mTableNames[TABLE_HTTPAUTH_ID]);
             mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_HTTPAUTH_ID]
@@ -397,6 +418,7 @@ public class WebViewDatabase {
             return;
         }
 
+<<<<<<< HEAD
         mDatabase.execSQL("DROP TABLE IF EXISTS "
                 + mTableNames[TABLE_COOKIES_ID]);
         mDatabase.execSQL("DROP TABLE IF EXISTS cache");
@@ -440,6 +462,57 @@ public class WebViewDatabase {
                 + HTTPAUTH_PASSWORD_COL + " TEXT," + " UNIQUE ("
                 + HTTPAUTH_HOST_COL + ", " + HTTPAUTH_REALM_COL
                 + ") ON CONFLICT REPLACE);");
+=======
+        if (!justPasswords) {
+            mDatabase.execSQL("DROP TABLE IF EXISTS "
+                    + mTableNames[TABLE_COOKIES_ID]);
+            mDatabase.execSQL("DROP TABLE IF EXISTS cache");
+            mDatabase.execSQL("DROP TABLE IF EXISTS "
+                    + mTableNames[TABLE_FORMURL_ID]);
+            mDatabase.execSQL("DROP TABLE IF EXISTS "
+                    + mTableNames[TABLE_FORMDATA_ID]);
+            mDatabase.execSQL("DROP TABLE IF EXISTS "
+                    + mTableNames[TABLE_HTTPAUTH_ID]);
+        }
+        mDatabase.execSQL("DROP TABLE IF EXISTS "
+                + mTableNames[TABLE_PASSWORD_ID]);
+
+        mDatabase.setVersion(DATABASE_VERSION);
+
+        if (!justPasswords) {
+            // cookies
+            mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_COOKIES_ID]
+                    + " (" + ID_COL + " INTEGER PRIMARY KEY, "
+                    + COOKIES_NAME_COL + " TEXT, " + COOKIES_VALUE_COL
+                    + " TEXT, " + COOKIES_DOMAIN_COL + " TEXT, "
+                    + COOKIES_PATH_COL + " TEXT, " + COOKIES_EXPIRES_COL
+                    + " INTEGER, " + COOKIES_SECURE_COL + " INTEGER" + ");");
+            mDatabase.execSQL("CREATE INDEX cookiesIndex ON "
+                    + mTableNames[TABLE_COOKIES_ID] + " (path)");
+
+            // formurl
+            mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_FORMURL_ID]
+                    + " (" + ID_COL + " INTEGER PRIMARY KEY, " + FORMURL_URL_COL
+                    + " TEXT" + ");");
+
+            // formdata
+            mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_FORMDATA_ID]
+                    + " (" + ID_COL + " INTEGER PRIMARY KEY, "
+                    + FORMDATA_URLID_COL + " INTEGER, " + FORMDATA_NAME_COL
+                    + " TEXT, " + FORMDATA_VALUE_COL + " TEXT," + " UNIQUE ("
+                    + FORMDATA_URLID_COL + ", " + FORMDATA_NAME_COL + ", "
+                    + FORMDATA_VALUE_COL + ") ON CONFLICT IGNORE);");
+
+            // httpauth
+            mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_HTTPAUTH_ID]
+                    + " (" + ID_COL + " INTEGER PRIMARY KEY, "
+                    + HTTPAUTH_HOST_COL + " TEXT, " + HTTPAUTH_REALM_COL
+                    + " TEXT, " + HTTPAUTH_USERNAME_COL + " TEXT, "
+                    + HTTPAUTH_PASSWORD_COL + " TEXT," + " UNIQUE ("
+                    + HTTPAUTH_HOST_COL + ", " + HTTPAUTH_REALM_COL
+                    + ") ON CONFLICT REPLACE);");
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // passwords
         mDatabase.execSQL("CREATE TABLE " + mTableNames[TABLE_PASSWORD_ID]
                 + " (" + ID_COL + " INTEGER PRIMARY KEY, "
@@ -454,7 +527,11 @@ public class WebViewDatabase {
         if (oldVersion != 0) {
             Log.i(LOGTAG, "Upgrading cache database from version "
                     + oldVersion + " to "
+<<<<<<< HEAD
                     + CACHE_DATABASE_VERSION + ", which will destroy all old data");
+=======
+                    + DATABASE_VERSION + ", which will destroy all old data");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         mCacheDatabase.execSQL("DROP TABLE IF EXISTS cache");
         mCacheDatabase.setVersion(CACHE_DATABASE_VERSION);
@@ -1193,7 +1270,11 @@ public class WebViewDatabase {
                 cursor = mDatabase.query(mTableNames[TABLE_FORMURL_ID],
                         ID_PROJECTION, urlSelection, new String[] { url }, null,
                         null, null);
+<<<<<<< HEAD
                 while (cursor.moveToNext()) {
+=======
+                if (cursor.moveToFirst()) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     long urlid = cursor.getLong(cursor.getColumnIndex(ID_COL));
                     Cursor dataCursor = null;
                     try {

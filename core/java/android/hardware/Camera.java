@@ -303,7 +303,11 @@ public class Camera {
     }
 
     protected void finalize() {
+<<<<<<< HEAD
         release();
+=======
+        native_release();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private native final void native_setup(Object camera_this, int cameraId);
@@ -1098,6 +1102,7 @@ public class Camera {
      * Parameters#getMaxNumDetectedFaces()} returns a number larger than 0.
      * If the face detection has started, apps should not call this again.
      *
+<<<<<<< HEAD
      * <p>When the face detection is running, {@link Parameters#setWhiteBalance(String)},
      * {@link Parameters#setFocusAreas(List)}, and {@link Parameters#setMeteringAreas(List)}
      * have no effect. The camera uses the detected faces to do auto-white balance,
@@ -1113,6 +1118,11 @@ public class Camera {
      * Camera.PictureCallback)} or {@link #stopPreview()}, and then resuming
      * preview with {@link #startPreview()}, the apps should call this method
      * again to resume face detection.</p>
+=======
+     * When the face detection is running, {@link Parameters#setWhiteBalance(String)},
+     * {@link Parameters#setFocusAreas(List)}, and {@link Parameters#setMeteringAreas(List)}
+     * have no effect.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @throws IllegalArgumentException if the face detection is unsupported.
      * @throws RuntimeException if the method fails or the face detection is
@@ -1162,6 +1172,7 @@ public class Camera {
          * camera field of view, and (1000, 1000) represents the bottom-right of
          * the field of view. For example, suppose the size of the viewfinder UI
          * is 800x480. The rect passed from the driver is (-1000, -1000, 0, 0).
+<<<<<<< HEAD
          * The corresponding viewfinder rect should be (0, 0, 400, 240). It is
          * guaranteed left < right and top < bottom. The coordinates can be
          * smaller than -1000 or bigger than 1000. But at least one vertex will
@@ -1187,6 +1198,16 @@ public class Camera {
          * matrix.postScale(view.getWidth() / 2000f, view.getHeight() / 2000f);
          * matrix.postTranslate(view.getWidth() / 2f, view.getHeight() / 2f);
          * </pre>
+=======
+         * The corresponding viewfinder rect should be (0, 0, 400, 240). The
+         * width and height of the rect will not be 0 or negative. The
+         * coordinates can be smaller than -1000 or bigger than 1000. But at
+         * least one vertex will be within (-1000, -1000) and (1000, 1000).
+         *
+         * <p>The direction is relative to the sensor orientation, that is, what
+         * the sensor sees. The direction is not affected by the rotation or
+         * mirroring of {@link #setDisplayOrientation(int)}.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          *
          * @see #startFaceDetection()
          */
@@ -2383,7 +2404,11 @@ public class Camera {
          *
          * <p>The reference code is as follows.
          *
+<<<<<<< HEAD
          * <pre>
+=======
+	 * <pre>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * public void onOrientationChanged(int orientation) {
          *     if (orientation == ORIENTATION_UNKNOWN) return;
          *     android.hardware.Camera.CameraInfo info =
@@ -2398,7 +2423,11 @@ public class Camera {
          *     }
          *     mParameters.setRotation(rotation);
          * }
+<<<<<<< HEAD
          * </pre>
+=======
+	 * </pre>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          *
          * @param rotation The rotation angle in degrees relative to the
          *                 orientation of the camera. Rotation can only be 0,
@@ -2499,16 +2528,23 @@ public class Camera {
 
         /**
          * Sets the white balance. Changing the setting will release the
+<<<<<<< HEAD
          * auto-white balance lock. It is recommended not to change white
          * balance and AWB lock at the same time.
+=======
+         * auto-white balance lock.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          *
          * @param value new white balance.
          * @see #getWhiteBalance()
          * @see #setAutoWhiteBalanceLock(boolean)
          */
         public void setWhiteBalance(String value) {
+<<<<<<< HEAD
             String oldValue = get(KEY_WHITE_BALANCE);
             if (same(value, oldValue)) return;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             set(KEY_WHITE_BALANCE, value);
             set(KEY_AUTO_WHITEBALANCE_LOCK, FALSE);
         }
@@ -3291,6 +3327,10 @@ public class Camera {
          * disable video stabilization.
          * @see #isVideoStabilizationSupported()
          * @see #getVideoStabilization()
+<<<<<<< HEAD
+=======
+         * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          */
         public void setVideoStabilization(boolean toggle) {
             set(KEY_VIDEO_STABILIZATION, toggle ? TRUE : FALSE);
@@ -3303,6 +3343,10 @@ public class Camera {
          * @return true if video stabilization is enabled
          * @see #isVideoStabilizationSupported()
          * @see #setVideoStabilization(boolean)
+<<<<<<< HEAD
+=======
+         * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          */
         public boolean getVideoStabilization() {
             String str = get(KEY_VIDEO_STABILIZATION);
@@ -3316,6 +3360,10 @@ public class Camera {
          * @return true if video stabilization is supported
          * @see #setVideoStabilization(boolean)
          * @see #getVideoStabilization()
+<<<<<<< HEAD
+=======
+         * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          */
         public boolean isVideoStabilizationSupported() {
             String str = get(KEY_VIDEO_STABILIZATION_SUPPORTED);
@@ -3483,11 +3531,14 @@ public class Camera {
 
             return result;
         }
+<<<<<<< HEAD
 
         private boolean same(String s1, String s2) {
             if (s1 == null && s2 == null) return true;
             if (s1 != null && s1.equals(s2)) return true;
             return false;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     };
 }

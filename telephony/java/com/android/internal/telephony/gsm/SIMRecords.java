@@ -91,8 +91,11 @@ public class SIMRecords extends IccRecords {
 
     String pnnHomeName = null;
 
+<<<<<<< HEAD
     UsimServiceTable mUsimServiceTable;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // ***** Constants
 
     // Bitmasks for SPN display rules.
@@ -136,7 +139,11 @@ public class SIMRecords extends IccRecords {
     private static final int EVENT_GET_SPDI_DONE = 13;
     private static final int EVENT_UPDATE_DONE = 14;
     private static final int EVENT_GET_PNN_DONE = 15;
+<<<<<<< HEAD
     protected static final int EVENT_GET_SST_DONE = 17;
+=======
+    private static final int EVENT_GET_SST_DONE = 17;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final int EVENT_GET_ALL_SMS_DONE = 18;
     private static final int EVENT_MARK_SMS_READ_DONE = 19;
     private static final int EVENT_SET_MBDN_DONE = 20;
@@ -248,11 +255,14 @@ public class SIMRecords extends IccRecords {
         return msisdn;
     }
 
+<<<<<<< HEAD
     @Override
     public UsimServiceTable getUsimServiceTable() {
         return mUsimServiceTable;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Set subscriber number to SIM record
      *
@@ -968,9 +978,14 @@ public class SIMRecords extends IccRecords {
                     break;
                 }
 
+<<<<<<< HEAD
                 mUsimServiceTable = new UsimServiceTable(data);
                 if (DBG) log("SST: " + mUsimServiceTable);
                 break;
+=======
+                //Log.d(LOG_TAG, "SST: " + IccUtils.bytesToHexString(data));
+            break;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             case EVENT_GET_INFO_CPHS_DONE:
                 isRecordLoadResponse = true;

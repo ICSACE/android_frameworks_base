@@ -51,6 +51,7 @@ import java.util.Arrays;
  * <p>For more information about using fragments, read the
  * <a href="{@docRoot}guide/topics/fundamentals/fragments.html">Fragments</a> developer guide.</p>
  * </div>
+<<<<<<< HEAD
  *
  * While the FragmentManager API was introduced in
  * {@link android.os.Build.VERSION_CODES#HONEYCOMB}, a version of the API
@@ -58,6 +59,8 @@ import java.util.Arrays;
  * {@link android.support.v4.app.FragmentActivity}.  See the blog post
  * <a href="http://android-developers.blogspot.com/2011/03/fragments-for-all.html">
  * Fragments For All</a> for more details.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  */
 public abstract class FragmentManager {
     /**
@@ -389,7 +392,10 @@ final class FragmentManagerImpl extends FragmentManager {
     static final String TARGET_REQUEST_CODE_STATE_TAG = "android:target_req_state";
     static final String TARGET_STATE_TAG = "android:target_state";
     static final String VIEW_STATE_TAG = "android:view_state";
+<<<<<<< HEAD
     static final String USER_VISIBLE_HINT_TAG = "android:user_visible_hint";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     ArrayList<Runnable> mPendingActions;
     Runnable[] mTmpActions;
@@ -414,7 +420,10 @@ final class FragmentManagerImpl extends FragmentManager {
     boolean mStateSaved;
     boolean mDestroyed;
     String mNoTransactionsBecause;
+<<<<<<< HEAD
     boolean mHavePendingDeferredStart;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     
     // Temporary vars for state save and restore.
     Bundle mStateBundle = null;
@@ -718,6 +727,7 @@ final class FragmentManagerImpl extends FragmentManager {
         return AnimatorInflater.loadAnimator(mActivity, anim);
     }
     
+<<<<<<< HEAD
     public void performPendingDeferredStart(Fragment f) {
         if (f.mDeferStart) {
             if (mExecutingActions) {
@@ -730,6 +740,8 @@ final class FragmentManagerImpl extends FragmentManager {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void moveToState(Fragment f, int newState, int transit, int transitionStyle) {
         // Fragments that are not currently added will sit in the onCreate() state.
         if (!f.mAdded && newState > Fragment.CREATED) {
@@ -739,11 +751,15 @@ final class FragmentManagerImpl extends FragmentManager {
             // While removing a fragment, we can't change it to a higher state.
             newState = f.mState;
         }
+<<<<<<< HEAD
         // Defer start if requested; don't allow it to move to STARTED or higher
         // if it's not already started.
         if (f.mDeferStart && f.mState < Fragment.STARTED && newState > Fragment.STOPPED) {
             newState = Fragment.STOPPED;
         }
+=======
+        
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (f.mState < newState) {
             // For fragments that are created from a layout, when restoring from
             // state we don't want to allow them to be created until they are
@@ -771,6 +787,7 @@ final class FragmentManagerImpl extends FragmentManager {
                             f.mTargetRequestCode = f.mSavedFragmentState.getInt(
                                     FragmentManagerImpl.TARGET_REQUEST_CODE_STATE_TAG, 0);
                         }
+<<<<<<< HEAD
                         f.mUserVisibleHint = f.mSavedFragmentState.getBoolean(
                                 FragmentManagerImpl.USER_VISIBLE_HINT_TAG, true);
                         if (!f.mUserVisibleHint) {
@@ -779,6 +796,8 @@ final class FragmentManagerImpl extends FragmentManager {
                                 newState = Fragment.STOPPED;
                             }
                         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                     f.mActivity = mActivity;
                     f.mFragmentManager = mActivity.mFragments;
@@ -1025,11 +1044,15 @@ final class FragmentManagerImpl extends FragmentManager {
         
         mCurState = newState;
         if (mActive != null) {
+<<<<<<< HEAD
             boolean loadersRunning = false;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             for (int i=0; i<mActive.size(); i++) {
                 Fragment f = mActive.get(i);
                 if (f != null) {
                     moveToState(f, newState, transit, transitStyle);
+<<<<<<< HEAD
                     if (f.mLoaderManager != null) {
                         loadersRunning |= f.mLoaderManager.hasRunningLoaders();
                     }
@@ -1040,6 +1063,11 @@ final class FragmentManagerImpl extends FragmentManager {
                 startPendingDeferredFragments();
             }
 
+=======
+                }
+            }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (mNeedMenuInvalidate && mActivity != null && mCurState == Fragment.RESUMED) {
                 mActivity.invalidateOptionsMenu();
                 mNeedMenuInvalidate = false;
@@ -1047,6 +1075,7 @@ final class FragmentManagerImpl extends FragmentManager {
         }
     }
     
+<<<<<<< HEAD
     void startPendingDeferredFragments() {
         if (mActive == null) return;
 
@@ -1058,6 +1087,8 @@ final class FragmentManagerImpl extends FragmentManager {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void makeActive(Fragment f) {
         if (f.mIndex >= 0) {
             return;
@@ -1365,7 +1396,11 @@ final class FragmentManagerImpl extends FragmentManager {
             
             synchronized (this) {
                 if (mPendingActions == null || mPendingActions.size() == 0) {
+<<<<<<< HEAD
                     break;
+=======
+                    return didSomething;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 
                 numActions = mPendingActions.size();
@@ -1385,6 +1420,7 @@ final class FragmentManagerImpl extends FragmentManager {
             mExecutingActions = false;
             didSomething = true;
         }
+<<<<<<< HEAD
 
         if (mHavePendingDeferredStart) {
             boolean loadersRunning = false;
@@ -1402,6 +1438,10 @@ final class FragmentManagerImpl extends FragmentManager {
         return didSomething;
     }
 
+=======
+    }
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void reportBackStackChanged() {
         if (mBackStackChangeListeners != null) {
             for (int i=0; i<mBackStackChangeListeners.size(); i++) {
@@ -1537,10 +1577,13 @@ final class FragmentManagerImpl extends FragmentManager {
             result.putSparseParcelableArray(
                     FragmentManagerImpl.VIEW_STATE_TAG, f.mSavedViewState);
         }
+<<<<<<< HEAD
         if (!f.mUserVisibleHint) {
             // Only add this if it's not the default value
             result.putBoolean(FragmentManagerImpl.USER_VISIBLE_HINT_TAG, f.mUserVisibleHint);
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         return result;
     }

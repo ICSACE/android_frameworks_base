@@ -33,8 +33,11 @@
 
 namespace android {
 
+<<<<<<< HEAD
 static const int64_t CAMERA_SOURCE_TIMEOUT_NS = 3000000000LL;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 struct CameraSourceListener : public CameraListener {
     CameraSourceListener(const sp<CameraSource> &source);
 
@@ -158,7 +161,10 @@ CameraSource::CameraSource(
       mLastFrameTimestampUs(0),
       mStarted(false),
       mNumFramesEncoded(0),
+<<<<<<< HEAD
       mTimeBetweenFrameCaptureUs(0),
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       mFirstFrameTimeUs(0),
       mNumFramesDropped(0),
       mNumGlitches(0),
@@ -647,8 +653,12 @@ status_t CameraSource::stop() {
     releaseQueuedFrames();
     while (!mFramesBeingEncoded.empty()) {
         if (NO_ERROR !=
+<<<<<<< HEAD
             mFrameCompleteCondition.waitRelative(mLock,
                     mTimeBetweenFrameCaptureUs * 1000LL + CAMERA_SOURCE_TIMEOUT_NS)) {
+=======
+            mFrameCompleteCondition.waitRelative(mLock, 3000000000LL)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             LOGW("Timed out waiting for outstanding frames being encoded: %d",
                 mFramesBeingEncoded.size());
         }
@@ -740,8 +750,12 @@ status_t CameraSource::read(
         Mutex::Autolock autoLock(mLock);
         while (mStarted && mFramesReceived.empty()) {
             if (NO_ERROR !=
+<<<<<<< HEAD
                 mFrameAvailableCondition.waitRelative(mLock,
                     mTimeBetweenFrameCaptureUs * 1000LL + CAMERA_SOURCE_TIMEOUT_NS)) {
+=======
+                mFrameAvailableCondition.waitRelative(mLock, 1000000000LL)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (mCameraRecordingProxy != 0 &&
                     !mCameraRecordingProxy->asBinder()->isBinderAlive()) {
                     LOGW("camera recording proxy is gone");

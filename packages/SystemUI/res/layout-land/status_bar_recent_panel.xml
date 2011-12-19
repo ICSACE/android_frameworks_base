@@ -33,6 +33,7 @@
         android:clipToPadding="false"
         android:clipChildren="false">
 
+<<<<<<< HEAD
         <com.android.systemui.recent.RecentsHorizontalScrollView android:id="@+id/recents_container"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -56,6 +57,41 @@
             </LinearLayout>
 
         </com.android.systemui.recent.RecentsHorizontalScrollView>
+=======
+        <LinearLayout android:id="@+id/recents_glow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|right"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            >
+            <com.android.systemui.recent.RecentsHorizontalScrollView android:id="@+id/recents_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/status_bar_recents_right_glow_margin"
+                android:divider="@null"
+                android:stackFromBottom="true"
+                android:fadingEdge="horizontal"
+                android:scrollbars="none"
+                android:fadingEdgeLength="@dimen/status_bar_recents_fading_edge_length"
+                android:layout_gravity="bottom|left"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:clipChildren="false">
+
+                <LinearLayout android:id="@+id/recents_linear_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:clipToPadding="false"
+                    android:clipChildren="false">
+                </LinearLayout>
+
+            </com.android.systemui.recent.RecentsHorizontalScrollView>
+
+        </LinearLayout>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     </FrameLayout>
 

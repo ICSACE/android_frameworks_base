@@ -56,6 +56,7 @@ static status_t checkAndClearExceptionFromCallback(JNIEnv* env, const char* meth
     return OK;
 }
 
+<<<<<<< HEAD
 // stolen from dalvik/vm/checkJni.cpp
 static bool isValidUtf8(const char* bytes) {
     while (*bytes != '\0') {
@@ -103,6 +104,8 @@ static bool isValidUtf8(const char* bytes) {
     return true;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 class MyMediaScannerClient : public MediaScannerClient
 {
 public:
@@ -170,6 +173,7 @@ public:
             mEnv->ExceptionClear();
             return NO_MEMORY;
         }
+<<<<<<< HEAD
         char *cleaned = NULL;
         if (!isValidUtf8(value)) {
             cleaned = strdup(value);
@@ -186,6 +190,9 @@ public:
         valueStr = mEnv->NewStringUTF(value);
         free(cleaned);
         if (valueStr == NULL) {
+=======
+        if ((valueStr = mEnv->NewStringUTF(value)) == NULL) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mEnv->DeleteLocalRef(nameStr);
             mEnv->ExceptionClear();
             return NO_MEMORY;

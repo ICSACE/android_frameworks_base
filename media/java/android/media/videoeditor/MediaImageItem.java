@@ -154,7 +154,11 @@ public class MediaImageItem extends MediaItem {
 
         final Bitmap imageBitmap;
 
+<<<<<<< HEAD
         if (mWidth > maxResolution.first || mHeight > maxResolution.second) {
+=======
+        if (mHeight > maxResolution.second) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             /**
              *  We need to scale the image
              */
@@ -971,6 +975,7 @@ public class MediaImageItem extends MediaItem {
             /**
              *  Create the bitmap from file
              */
+<<<<<<< HEAD
             int sampleSize = (int) Math.ceil(Math.max(
                     (float) nativeWidth / bitmapWidth,
                     (float) nativeHeight / bitmapHeight));
@@ -978,6 +983,16 @@ public class MediaImageItem extends MediaItem {
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = sampleSize;
             srcBitmap = BitmapFactory.decodeFile(filename, options);
+=======
+            if (nativeWidth / bitmapWidth > 1) {
+
+                final BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = nativeWidth / (int)bitmapWidth;
+                srcBitmap = BitmapFactory.decodeFile(filename, options);
+            } else {
+                srcBitmap = BitmapFactory.decodeFile(filename);
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else {
             bitmapWidth = width;
             bitmapHeight = height;
@@ -1008,6 +1023,7 @@ public class MediaImageItem extends MediaItem {
         srcBitmap.recycle();
         return bitmap;
     }
+<<<<<<< HEAD
 
     public static int nextPowerOf2(int n) {
         n -= 1;
@@ -1018,4 +1034,6 @@ public class MediaImageItem extends MediaItem {
         n |= n >>> 1;
         return n + 1;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

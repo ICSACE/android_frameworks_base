@@ -35,6 +35,10 @@ public:
             const char* path, const KeyedVector<String8, String8> *headers);
 
     virtual status_t    setDataSource(int fd, int64_t offset, int64_t length);
+<<<<<<< HEAD
+=======
+    virtual status_t    setVideoSurface(const sp<Surface>& surface) { return UNKNOWN_ERROR; }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual status_t    setVideoSurfaceTexture(
                                 const sp<ISurfaceTexture>& surfaceTexture)
                             { return UNKNOWN_ERROR; }

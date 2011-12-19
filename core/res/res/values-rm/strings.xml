@@ -1428,8 +1428,11 @@
     <skip />
     <!-- no translation found for description_target_soundon (30052466675500172) -->
     <skip />
+<<<<<<< HEAD
     <!-- no translation found for description_target_unlock_tablet (3833195335629795055) -->
     <skip />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <!-- no translation found for keyboard_headset_required_to_hear_password (5913502399391940888) -->
     <skip />
     <!-- no translation found for keyboard_password_character_no_headset (2859873770886153678) -->

@@ -477,7 +477,11 @@ static void jniPreviewProgressCallback (void* cookie, M4OSA_UInt32 msgType,
         pEnv->CallVoidMethod(pContext->engine,
                 pContext->onPreviewProgressUpdateMethodId,
                 currentMs,isFinished, pContext->mIsUpdateOverlay,
+<<<<<<< HEAD
                 tmpFileName, pContext->mOverlayRenderingMode, error);
+=======
+                tmpFileName, pContext->mOverlayRenderingMode);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (pContext->mIsUpdateOverlay) {
             pContext->mIsUpdateOverlay = false;
@@ -1630,7 +1634,11 @@ videoEditor_populateSettings(
                                      "not initialized");
 
     pContext->onPreviewProgressUpdateMethodId = pEnv->GetMethodID(engineClass,
+<<<<<<< HEAD
             "onPreviewProgressUpdate",     "(IZZLjava/lang/String;II)V");
+=======
+            "onPreviewProgressUpdate",     "(IZZLjava/lang/String;I)V");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Check if the context is valid (required because the context is dereferenced).
     if (needToBeLoaded) {
         // Make sure that we are in a correct state.

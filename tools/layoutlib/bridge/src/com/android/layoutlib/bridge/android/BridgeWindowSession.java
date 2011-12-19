@@ -79,16 +79,23 @@ public final class BridgeWindowSession implements IWindowSession {
     }
 
     public int relayout(IWindow arg0, int seq, LayoutParams arg1, int arg2, int arg3, int arg4,
+<<<<<<< HEAD
             int arg4_5, Rect arg5, Rect arg6, Rect arg7, Configuration arg7b, Surface arg8)
+=======
+            boolean arg4_5, Rect arg5, Rect arg6, Rect arg7, Configuration arg7b, Surface arg8)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             throws RemoteException {
         // pass for now.
         return 0;
     }
 
+<<<<<<< HEAD
     public void performDeferredDestroy(IWindow window) {
         // pass for now.
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean outOfMemory(IWindow window) throws RemoteException {
         return false;
     }

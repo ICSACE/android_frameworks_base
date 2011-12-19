@@ -107,6 +107,7 @@ public interface VideoEditor {
          * @param videoEditor The VideoEditor instance
          */
         public void onStop(VideoEditor videoEditor);
+<<<<<<< HEAD
 
         /**
          * This method notifies the listener when error has occurred during
@@ -118,6 +119,8 @@ public interface VideoEditor {
          * but for now, we just pass whatever error code reported by the native layer.
          */
         public void onError(VideoEditor videoEditor, int error);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

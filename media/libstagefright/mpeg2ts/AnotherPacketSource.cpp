@@ -29,6 +29,7 @@
 namespace android {
 
 AnotherPacketSource::AnotherPacketSource(const sp<MetaData> &meta)
+<<<<<<< HEAD
     : mIsAudio(false),
       mFormat(meta),
       mEOSResult(OK) {
@@ -40,6 +41,10 @@ AnotherPacketSource::AnotherPacketSource(const sp<MetaData> &meta)
     } else {
         CHECK(!strncasecmp("video/", mime, 6));
     }
+=======
+    : mFormat(meta),
+      mEOSResult(OK) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 void AnotherPacketSource::setFormat(const sp<MetaData> &meta) {
@@ -76,7 +81,12 @@ status_t AnotherPacketSource::dequeueAccessUnit(sp<ABuffer> *buffer) {
 
         int32_t discontinuity;
         if ((*buffer)->meta()->findInt32("discontinuity", &discontinuity)) {
+<<<<<<< HEAD
             if (wasFormatChange(discontinuity)) {
+=======
+
+            if (discontinuity == ATSParser::DISCONTINUITY_FORMATCHANGE) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mFormat.clear();
             }
 
@@ -104,7 +114,11 @@ status_t AnotherPacketSource::read(
 
         int32_t discontinuity;
         if (buffer->meta()->findInt32("discontinuity", &discontinuity)) {
+<<<<<<< HEAD
             if (wasFormatChange(discontinuity)) {
+=======
+            if (discontinuity == ATSParser::DISCONTINUITY_FORMATCHANGE) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mFormat.clear();
             }
 
@@ -125,6 +139,7 @@ status_t AnotherPacketSource::read(
     return mEOSResult;
 }
 
+<<<<<<< HEAD
 bool AnotherPacketSource::wasFormatChange(
         int32_t discontinuityType) const {
     if (mIsAudio) {
@@ -134,6 +149,8 @@ bool AnotherPacketSource::wasFormatChange(
     return (discontinuityType & ATSParser::DISCONTINUITY_VIDEO_FORMAT) != 0;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 void AnotherPacketSource::queueAccessUnit(const sp<ABuffer> &buffer) {
     int32_t damaged;
     if (buffer->meta()->findInt32("damaged", &damaged) && damaged) {

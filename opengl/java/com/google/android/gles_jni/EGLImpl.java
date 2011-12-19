@@ -31,8 +31,11 @@ public class EGLImpl implements EGL10 {
     public native boolean     eglInitialize(EGLDisplay display, int[] major_minor);
     public native boolean     eglQueryContext(EGLDisplay display, EGLContext context, int attribute, int[] value);
     public native boolean     eglQuerySurface(EGLDisplay display, EGLSurface surface, int attribute, int[] value);
+<<<<<<< HEAD
     /** @hide **/
     public native boolean     eglReleaseThread();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public native boolean     eglChooseConfig(EGLDisplay display, int[] attrib_list, EGLConfig[] configs, int config_size, int[] num_config);
     public native boolean     eglGetConfigAttrib(EGLDisplay display, EGLConfig config, int attribute, int[] value);
     public native boolean     eglGetConfigs(EGLDisplay display, EGLConfig[] configs, int config_size, int[] num_config);
@@ -46,9 +49,12 @@ public class EGLImpl implements EGL10 {
     public native boolean     eglCopyBuffers(EGLDisplay display, EGLSurface surface, Object native_pixmap);
     public native boolean     eglWaitGL();
     public native boolean     eglWaitNative(int engine, Object bindTarget);
+<<<<<<< HEAD
     
     /** @hide **/
     public static native int  getInitCount(EGLDisplay display);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public EGLContext eglCreateContext(EGLDisplay display, EGLConfig config, EGLContext share_context, int[] attrib_list) {
         int eglContextId = _eglCreateContext(display, config, share_context, attrib_list);
@@ -90,7 +96,11 @@ public class EGLImpl implements EGL10 {
             eglSurfaceId = _eglCreateWindowSurface(display, config, sur, attrib_list);
         } else if (native_window instanceof SurfaceTexture) {
             eglSurfaceId = _eglCreateWindowSurfaceTexture(display, config,
+<<<<<<< HEAD
                     native_window, attrib_list);
+=======
+                    (SurfaceTexture) native_window, attrib_list);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else {
             throw new java.lang.UnsupportedOperationException(
                 "eglCreateWindowSurface() can only be called with an instance of " +

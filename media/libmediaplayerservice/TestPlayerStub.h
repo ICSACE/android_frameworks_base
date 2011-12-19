@@ -75,6 +75,12 @@ class TestPlayerStub : public MediaPlayerInterface {
 
 
     // All the methods below wrap the mPlayer instance.
+<<<<<<< HEAD
+=======
+    virtual status_t setVideoSurface(const android::sp<android::Surface>& s)  {
+        return mPlayer->setVideoSurface(s);
+    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual status_t setVideoSurfaceTexture(
             const android::sp<android::ISurfaceTexture>& st)  {
         return mPlayer->setVideoSurfaceTexture(st);

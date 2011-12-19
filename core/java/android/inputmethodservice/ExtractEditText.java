@@ -156,6 +156,7 @@ public class ExtractEditText extends EditText {
             mIME.onViewClicked(false);
         }
     }
+<<<<<<< HEAD
 
     /**
      * {@inheritDoc}
@@ -200,4 +201,6 @@ public class ExtractEditText extends EditText {
         // This will change the source TextView instead, which will update the ExtractTextView.
         mIME.onExtractedSelectionChanged(start, end);
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

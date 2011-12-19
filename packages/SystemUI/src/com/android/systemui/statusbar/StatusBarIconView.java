@@ -25,7 +25,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.util.AttributeSet;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.Slog;
 import android.util.Log;
 import android.view.ViewDebug;
@@ -76,6 +79,7 @@ public class StatusBarIconView extends AnimatedImageView {
         setScaleType(ImageView.ScaleType.CENTER);
     }
 
+<<<<<<< HEAD
     public StatusBarIconView(Context context, AttributeSet attrs) {
         super(context, attrs);
         final Resources res = context.getResources();
@@ -88,6 +92,8 @@ public class StatusBarIconView extends AnimatedImageView {
         setAlpha(alpha);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static boolean streq(String a, String b) {
         if (a == b) {
             return true;

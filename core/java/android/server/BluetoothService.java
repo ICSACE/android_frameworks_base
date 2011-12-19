@@ -89,7 +89,11 @@ public class BluetoothService extends IBluetooth.Stub {
 
     private int mNativeData;
     private BluetoothEventLoop mEventLoop;
+<<<<<<< HEAD
     private BluetoothHeadset mHeadsetProxy;
+=======
+    private BluetoothHeadset mBluetoothHeadset;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private BluetoothInputDevice mInputDevice;
     private BluetoothPan mPan;
     private boolean mIsAirplaneSensitive;
@@ -145,12 +149,16 @@ public class BluetoothService extends IBluetooth.Stub {
     private final ArrayList<String> mUuidIntentTracker;
     private final HashMap<RemoteService, IBluetoothCallback> mUuidCallbackTracker;
 
+<<<<<<< HEAD
     private static class ServiceRecordClient {
         int pid;
         IBinder binder;
         IBinder.DeathRecipient death;
     }
     private final HashMap<Integer, ServiceRecordClient> mServiceRecordToPid;
+=======
+    private final HashMap<Integer, Pair<Integer, IBinder>> mServiceRecordToPid;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private final HashMap<String, BluetoothDeviceProfileState> mDeviceProfileState;
     private final BluetoothProfileState mA2dpProfileState;
@@ -226,7 +234,11 @@ public class BluetoothService extends IBluetooth.Stub {
         mDeviceOobData = new HashMap<String, Pair<byte[], byte[]>>();
         mUuidIntentTracker = new ArrayList<String>();
         mUuidCallbackTracker = new HashMap<RemoteService, IBluetoothCallback>();
+<<<<<<< HEAD
         mServiceRecordToPid = new HashMap<Integer, ServiceRecordClient>();
+=======
+        mServiceRecordToPid = new HashMap<Integer, Pair<Integer, IBinder>>();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mDeviceProfileState = new HashMap<String, BluetoothDeviceProfileState>();
         mA2dpProfileState = new BluetoothProfileState(mContext, BluetoothProfileState.A2DP);
         mHfpProfileState = new BluetoothProfileState(mContext, BluetoothProfileState.HFP);
@@ -610,7 +622,10 @@ public class BluetoothService extends IBluetooth.Stub {
         }
         mBondState.initBondState();
         initProfileState();
+<<<<<<< HEAD
         getProfileProxy();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -815,7 +830,11 @@ public class BluetoothService extends IBluetooth.Stub {
         }
     }
 
+<<<<<<< HEAD
     /*package*/ String getProperty(String name, boolean checkState) {
+=======
+    /*package*/ synchronized String getProperty(String name, boolean checkState) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // If checkState is false, check if the event loop is running.
         // before making the call to Bluez
         if (checkState) {
@@ -859,14 +878,22 @@ public class BluetoothService extends IBluetooth.Stub {
         return getProperty("Name", false);
     }
 
+<<<<<<< HEAD
     public ParcelUuid[] getUuids() {
+=======
+    public synchronized ParcelUuid[] getUuids() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
         String value =  getProperty("UUIDs", true);
         if (value == null) return null;
         return convertStringToParcelUuid(value);
     }
 
+<<<<<<< HEAD
     private ParcelUuid[] convertStringToParcelUuid(String value) {
+=======
+    private synchronized ParcelUuid[] convertStringToParcelUuid(String value) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         String[] uuidStrings = null;
         // The UUIDs are stored as a "," separated string.
         uuidStrings = value.split(",");
@@ -939,7 +966,11 @@ public class BluetoothService extends IBluetooth.Stub {
      * @return The discoverability window of the device, in seconds.  A negative
      *         value indicates an error.
      */
+<<<<<<< HEAD
     public int getDiscoverableTimeout() {
+=======
+    public synchronized int getDiscoverableTimeout() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
         String timeout = getProperty("DiscoverableTimeout", true);
         if (timeout != null)
@@ -948,7 +979,11 @@ public class BluetoothService extends IBluetooth.Stub {
             return -1;
     }
 
+<<<<<<< HEAD
     public int getScanMode() {
+=======
+    public synchronized int getScanMode() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
         if (!isEnabledInternal())
             return BluetoothAdapter.SCAN_MODE_NONE;
@@ -974,7 +1009,11 @@ public class BluetoothService extends IBluetooth.Stub {
         return stopDiscoveryNative();
     }
 
+<<<<<<< HEAD
     public boolean isDiscovering() {
+=======
+    public synchronized boolean isDiscovering() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
 
         String discoveringProperty = getProperty("Discovering", false);
@@ -1533,6 +1572,7 @@ public class BluetoothService extends IBluetooth.Stub {
             return -1;
         }
 
+<<<<<<< HEAD
         ServiceRecordClient client = new ServiceRecordClient();
         client.pid = Binder.getCallingPid();
         client.binder = b;
@@ -1544,6 +1584,13 @@ public class BluetoothService extends IBluetooth.Stub {
             Log.e(TAG, "", e);
             client.death = null;
         }
+=======
+        int pid = Binder.getCallingPid();
+        mServiceRecordToPid.put(new Integer(handle), new Pair<Integer, IBinder>(pid, b));
+        try {
+            b.linkToDeath(new Reaper(handle, pid, RFCOMM_RECORD_REAPER), 0);
+        } catch (RemoteException e) {Log.e(TAG, "", e);}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return handle;
     }
 
@@ -1558,6 +1605,7 @@ public class BluetoothService extends IBluetooth.Stub {
     }
 
     private synchronized void checkAndRemoveRecord(int handle, int pid) {
+<<<<<<< HEAD
         ServiceRecordClient client = mServiceRecordToPid.get(handle);
         if (client != null && pid == client.pid) {
             if (DBG) Log.d(TAG, "Removing service record " +
@@ -1567,6 +1615,12 @@ public class BluetoothService extends IBluetooth.Stub {
                 client.binder.unlinkToDeath(client.death, 0);
             }
 
+=======
+        Pair<Integer, IBinder> pidPair = mServiceRecordToPid.get(handle);
+        if (pidPair != null && pid == pidPair.first) {
+            if (DBG) Log.d(TAG, "Removing service record " +
+                Integer.toHexString(handle) + " for pid " + pid);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mServiceRecordToPid.remove(handle);
             removeServiceRecordNative(handle);
         }
@@ -1783,8 +1837,13 @@ public class BluetoothService extends IBluetooth.Stub {
 
     private void dumpHeadsetService(PrintWriter pw) {
         pw.println("\n--Headset Service--");
+<<<<<<< HEAD
         if (mHeadsetProxy != null) {
             List<BluetoothDevice> deviceList = mHeadsetProxy.getConnectedDevices();
+=======
+        if (mBluetoothHeadset != null) {
+            List<BluetoothDevice> deviceList = mBluetoothHeadset.getConnectedDevices();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (deviceList.size() == 0) {
                 pw.println("No headsets connected");
             } else {
@@ -1792,20 +1851,36 @@ public class BluetoothService extends IBluetooth.Stub {
                 pw.println("\ngetConnectedDevices[0] = " + device);
                 dumpHeadsetConnectionState(pw, device);
                 pw.println("getBatteryUsageHint() = " +
+<<<<<<< HEAD
                              mHeadsetProxy.getBatteryUsageHint(device));
             }
 
             deviceList.clear();
             deviceList = mHeadsetProxy.getDevicesMatchingConnectionStates(new int[] {
+=======
+                             mBluetoothHeadset.getBatteryUsageHint(device));
+            }
+
+            deviceList.clear();
+            deviceList = mBluetoothHeadset.getDevicesMatchingConnectionStates(new int[] {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                      BluetoothProfile.STATE_CONNECTED, BluetoothProfile.STATE_DISCONNECTED});
             pw.println("--Connected and Disconnected Headsets");
             for (BluetoothDevice device: deviceList) {
                 pw.println(device);
+<<<<<<< HEAD
                 if (mHeadsetProxy.isAudioConnected(device)) {
+=======
+                if (mBluetoothHeadset.isAudioConnected(device)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     pw.println("SCO audio connected to device:" + device);
                 }
             }
         }
+<<<<<<< HEAD
+=======
+        mAdapter.closeProfileProxy(BluetoothProfile.HEADSET, mBluetoothHeadset);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private void dumpInputDeviceProfile(PrintWriter pw) {
@@ -1840,6 +1915,10 @@ public class BluetoothService extends IBluetooth.Stub {
                 pw.println(device);
             }
         }
+<<<<<<< HEAD
+=======
+        mAdapter.closeProfileProxy(BluetoothProfile.INPUT_DEVICE, mBluetoothHeadset);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private void dumpPanProfile(PrintWriter pw) {
@@ -1877,7 +1956,11 @@ public class BluetoothService extends IBluetooth.Stub {
 
     private void dumpHeadsetConnectionState(PrintWriter pw,
             BluetoothDevice device) {
+<<<<<<< HEAD
         switch (mHeadsetProxy.getConnectionState(device)) {
+=======
+        switch (mBluetoothHeadset.getConnectionState(device)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case BluetoothHeadset.STATE_CONNECTING:
                 pw.println("getConnectionState() = STATE_CONNECTING");
                 break;
@@ -1896,9 +1979,16 @@ public class BluetoothService extends IBluetooth.Stub {
     private void dumpApplicationServiceRecords(PrintWriter pw) {
         pw.println("\n--Application Service Records--");
         for (Integer handle : mServiceRecordToPid.keySet()) {
+<<<<<<< HEAD
             Integer pid = mServiceRecordToPid.get(handle).pid;
             pw.println("\tpid " + pid + " handle " + Integer.toHexString(handle));
         }
+=======
+            Integer pid = mServiceRecordToPid.get(handle).first;
+            pw.println("\tpid " + pid + " handle " + Integer.toHexString(handle));
+        }
+        mAdapter.closeProfileProxy(BluetoothProfile.PAN, mBluetoothHeadset);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private void dumpAclConnectedDevices(PrintWriter pw) {
@@ -1941,16 +2031,23 @@ public class BluetoothService extends IBluetooth.Stub {
         }
     }
 
+<<<<<<< HEAD
     private void getProfileProxy() {
         mAdapter.getProfileProxy(mContext,
                                  mBluetoothProfileServiceListener, BluetoothProfile.HEADSET);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =
         new BluetoothProfile.ServiceListener() {
         public void onServiceConnected(int profile, BluetoothProfile proxy) {
             if (profile == BluetoothProfile.HEADSET) {
+<<<<<<< HEAD
                 mHeadsetProxy = (BluetoothHeadset) proxy;
+=======
+                mBluetoothHeadset = (BluetoothHeadset) proxy;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (profile == BluetoothProfile.INPUT_DEVICE) {
                 mInputDevice = (BluetoothInputDevice) proxy;
             } else if (profile == BluetoothProfile.PAN) {
@@ -1959,7 +2056,11 @@ public class BluetoothService extends IBluetooth.Stub {
         }
         public void onServiceDisconnected(int profile) {
             if (profile == BluetoothProfile.HEADSET) {
+<<<<<<< HEAD
                 mHeadsetProxy = null;
+=======
+                mBluetoothHeadset = null;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (profile == BluetoothProfile.INPUT_DEVICE) {
                 mInputDevice = null;
             } else if (profile == BluetoothProfile.PAN) {
@@ -2390,14 +2491,22 @@ public class BluetoothService extends IBluetooth.Stub {
     }
 
     BluetoothDeviceProfileState addProfileState(String address, boolean setTrust) {
+<<<<<<< HEAD
         BluetoothDeviceProfileState state =
             new BluetoothDeviceProfileState(mContext, address, this, mA2dpService, setTrust);
+=======
+        BluetoothDeviceProfileState state = mDeviceProfileState.get(address);
+        if (state != null) return state;
+
+        state = new BluetoothDeviceProfileState(mContext, address, this, mA2dpService, setTrust);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mDeviceProfileState.put(address, state);
         state.start();
         return state;
     }
 
     void removeProfileState(String address) {
+<<<<<<< HEAD
         BluetoothDeviceProfileState state = mDeviceProfileState.get(address);
         if (state == null) return;
 
@@ -2406,6 +2515,12 @@ public class BluetoothService extends IBluetooth.Stub {
     }
 
     String[] getKnownDevices() {
+=======
+        mDeviceProfileState.remove(address);
+    }
+
+    synchronized String[] getKnownDevices() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         String[] bonds = null;
         String val = getProperty("Devices", true);
         if (val != null) {
@@ -2445,6 +2560,7 @@ public class BluetoothService extends IBluetooth.Stub {
         }
     }
 
+<<<<<<< HEAD
     public boolean notifyIncomingConnection(String address, boolean rejected) {
         BluetoothDeviceProfileState state = mDeviceProfileState.get(address);
         if (state != null) {
@@ -2461,11 +2577,21 @@ public class BluetoothService extends IBluetooth.Stub {
                 msg.what = BluetoothDeviceProfileState.CONNECT_HFP_INCOMING;
                 state.sendMessage(msg);
             }
+=======
+    public boolean notifyIncomingConnection(String address) {
+        BluetoothDeviceProfileState state =
+             mDeviceProfileState.get(address);
+        if (state != null) {
+            Message msg = new Message();
+            msg.what = BluetoothDeviceProfileState.CONNECT_HFP_INCOMING;
+            state.sendMessage(msg);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
         return false;
     }
 
+<<<<<<< HEAD
     /*package*/ boolean notifyIncomingA2dpConnection(String address, boolean rejected) {
        BluetoothDeviceProfileState state = mDeviceProfileState.get(address);
        if (state != null) {
@@ -2482,6 +2608,15 @@ public class BluetoothService extends IBluetooth.Stub {
                msg.what = BluetoothDeviceProfileState.CONNECT_A2DP_INCOMING;
                state.sendMessage(msg);
            }
+=======
+    /*package*/ boolean notifyIncomingA2dpConnection(String address) {
+       BluetoothDeviceProfileState state =
+            mDeviceProfileState.get(address);
+       if (state != null) {
+           Message msg = new Message();
+           msg.what = BluetoothDeviceProfileState.CONNECT_A2DP_INCOMING;
+           state.sendMessage(msg);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
            return true;
        }
        return false;

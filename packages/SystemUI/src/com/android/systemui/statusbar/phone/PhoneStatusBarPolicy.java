@@ -82,7 +82,11 @@ public class PhoneStatusBarPolicy {
     private boolean mVolumeVisible;
 
     // bluetooth device status
+<<<<<<< HEAD
     private boolean mBluetoothEnabled = false;
+=======
+    private boolean mBluetoothEnabled;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // wifi
     private static final int[][] sWifiSignalImages = {
@@ -139,6 +143,7 @@ public class PhoneStatusBarPolicy {
         mContext = context;
         mService = (StatusBarManager)context.getSystemService(Context.STATUS_BAR_SERVICE);
 
+<<<<<<< HEAD
         // listen for broadcasts
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_ALARM_CHANGED);
@@ -151,6 +156,8 @@ public class PhoneStatusBarPolicy {
         filter.addAction(TtyIntent.TTY_ENABLED_CHANGE_ACTION);
         mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // storage
         mStorageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
         mStorageManager.registerListener(
@@ -165,6 +172,7 @@ public class PhoneStatusBarPolicy {
         mService.setIconVisibility("cdma_eri", false);
 
         // bluetooth status
+<<<<<<< HEAD
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         int bluetoothIcon = R.drawable.stat_sys_data_bluetooth;
         if (adapter != null) {
@@ -174,6 +182,15 @@ public class PhoneStatusBarPolicy {
             }
         }
         mService.setIcon("bluetooth", bluetoothIcon, 0, null);
+=======
+        mService.setIcon("bluetooth", R.drawable.stat_sys_data_bluetooth, 0, null);
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        if (adapter != null) {
+            mBluetoothEnabled = adapter.isEnabled();
+        } else {
+            mBluetoothEnabled = false;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mService.setIconVisibility("bluetooth", mBluetoothEnabled);
 
         // Alarm clock
@@ -190,6 +207,22 @@ public class PhoneStatusBarPolicy {
         mService.setIcon("volume", R.drawable.stat_sys_ringer_silent, 0, null);
         mService.setIconVisibility("volume", false);
         updateVolume();
+<<<<<<< HEAD
+=======
+
+        IntentFilter filter = new IntentFilter();
+
+        // Register for Intent broadcasts for...
+        filter.addAction(Intent.ACTION_ALARM_CHANGED);
+        filter.addAction(Intent.ACTION_SYNC_STATE_CHANGED);
+        filter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
+        filter.addAction(AudioManager.VIBRATE_SETTING_CHANGED_ACTION);
+        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        filter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+        filter.addAction(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
+        filter.addAction(TtyIntent.TTY_ENABLED_CHANGE_ACTION);
+        mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private final void updateAlarm(Intent intent) {

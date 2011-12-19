@@ -813,6 +813,7 @@ public interface WindowManager extends ViewManager {
         public static final int PRIVATE_FLAG_FORCE_HARDWARE_ACCELERATED = 0x00000002;
 
         /**
+<<<<<<< HEAD
          * By default, wallpapers are sent new offsets when the wallpaper is scrolled. Wallpapers
          * may elect to skp these notifications if they are no doing anything productive with
          * them (they do not affect the wallpaper scrolling operation) by calling
@@ -834,6 +835,8 @@ public interface WindowManager extends ViewManager {
         public static final int PRIVATE_FLAG_SET_NEEDS_MENU_KEY = 0x00000008;
 
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * Control flags that are private to the platform.
          * @hide
          */

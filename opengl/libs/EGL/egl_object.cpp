@@ -55,10 +55,17 @@ void egl_object_t::destroy() {
     }
 }
 
+<<<<<<< HEAD
 bool egl_object_t::get(egl_display_t const* display, egl_object_t* object) {
     // used by LocalRef, this does an incRef() atomically with
     // checking that the object is valid.
     return display->getObject(object);
+=======
+bool egl_object_t::get() {
+    // used by LocalRef, this does an incRef() atomically with
+    // checking that the object is valid.
+    return display->getObject(this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 // ----------------------------------------------------------------------------

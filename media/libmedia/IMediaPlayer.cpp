@@ -35,6 +35,10 @@ enum {
     SET_DATA_SOURCE_URL,
     SET_DATA_SOURCE_FD,
     SET_DATA_SOURCE_STREAM,
+<<<<<<< HEAD
+=======
+    SET_VIDEO_SURFACE,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     PREPARE_ASYNC,
     START,
     STOP,
@@ -111,6 +115,19 @@ public:
         return reply.readInt32();
     }
 
+<<<<<<< HEAD
+=======
+    // pass the buffered Surface to the media player service
+    status_t setVideoSurface(const sp<Surface>& surface)
+    {
+        Parcel data, reply;
+        data.writeInterfaceToken(IMediaPlayer::getInterfaceDescriptor());
+        Surface::writeToParcel(surface, &data);
+        remote()->transact(SET_VIDEO_SURFACE, data, &reply);
+        return reply.readInt32();
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // pass the buffered ISurfaceTexture to the media player service
     status_t setVideoSurfaceTexture(const sp<ISurfaceTexture>& surfaceTexture)
     {
@@ -334,6 +351,15 @@ status_t BnMediaPlayer::onTransact(
             reply->writeInt32(setDataSource(source));
             return NO_ERROR;
         }
+<<<<<<< HEAD
+=======
+        case SET_VIDEO_SURFACE: {
+            CHECK_INTERFACE(IMediaPlayer, data, reply);
+            sp<Surface> surface = Surface::readFromParcel(data);
+            reply->writeInt32(setVideoSurface(surface));
+            return NO_ERROR;
+        } break;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         case SET_VIDEO_SURFACETEXTURE: {
             CHECK_INTERFACE(IMediaPlayer, data, reply);
             sp<ISurfaceTexture> surfaceTexture =

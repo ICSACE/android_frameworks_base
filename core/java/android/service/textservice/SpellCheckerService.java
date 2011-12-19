@@ -24,7 +24,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+<<<<<<< HEAD
 import android.os.Process;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.textservice.SuggestionsInfo;
@@ -147,6 +150,7 @@ public abstract class SpellCheckerService extends Service {
         public void onCancel() {}
 
         /**
+<<<<<<< HEAD
          * Request to close this session.
          * This function will run on the incoming IPC thread.
          * So, this is not called on the main thread,
@@ -155,6 +159,8 @@ public abstract class SpellCheckerService extends Service {
         public void onClose() {}
 
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * @return Locale for this session
          */
         public String getLocale() {
@@ -171,7 +177,11 @@ public abstract class SpellCheckerService extends Service {
 
     // Preventing from exposing ISpellCheckerSession.aidl, create an internal class.
     private static class InternalISpellCheckerSession extends ISpellCheckerSession.Stub {
+<<<<<<< HEAD
         private ISpellCheckerSessionListener mListener;
+=======
+        private final ISpellCheckerSessionListener mListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         private final Session mSession;
         private final String mLocale;
         private final Bundle mBundle;
@@ -188,20 +198,28 @@ public abstract class SpellCheckerService extends Service {
         @Override
         public void onGetSuggestionsMultiple(
                 TextInfo[] textInfos, int suggestionsLimit, boolean sequentialWords) {
+<<<<<<< HEAD
             int pri = Process.getThreadPriority(Process.myTid());
             try {
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+=======
+            try {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mListener.onGetSuggestions(
                         mSession.onGetSuggestionsMultiple(
                                 textInfos, suggestionsLimit, sequentialWords));
             } catch (RemoteException e) {
+<<<<<<< HEAD
             } finally {
                 Process.setThreadPriority(pri);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
         @Override
         public void onCancel() {
+<<<<<<< HEAD
             int pri = Process.getThreadPriority(Process.myTid());
             try {
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
@@ -221,6 +239,9 @@ public abstract class SpellCheckerService extends Service {
                 Process.setThreadPriority(pri);
                 mListener = null;
             }
+=======
+            mSession.onCancel();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         public String getLocale() {

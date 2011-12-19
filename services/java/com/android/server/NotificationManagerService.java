@@ -707,8 +707,12 @@ public class NotificationManagerService extends INotificationManager.Stub
         //     behalf of the download manager without affecting other apps.
         if (!pkg.equals("com.android.providers.downloads")
                 || Log.isLoggable("DownloadManager", Log.VERBOSE)) {
+<<<<<<< HEAD
             EventLog.writeEvent(EventLogTags.NOTIFICATION_ENQUEUE, pkg, id, tag,
                     notification.toString());
+=======
+            EventLog.writeEvent(EventLogTags.NOTIFICATION_ENQUEUE, pkg, id, notification.toString());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         if (pkg == null || notification == null) {
@@ -945,8 +949,12 @@ public class NotificationManagerService extends INotificationManager.Stub
      */
     private void cancelNotification(String pkg, String tag, int id, int mustHaveFlags,
             int mustNotHaveFlags, boolean sendDelete) {
+<<<<<<< HEAD
         EventLog.writeEvent(EventLogTags.NOTIFICATION_CANCEL, pkg, id, tag,
                 mustHaveFlags, mustNotHaveFlags);
+=======
+        EventLog.writeEvent(EventLogTags.NOTIFICATION_CANCEL, pkg, id, mustHaveFlags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         synchronized (mNotificationList) {
             int index = indexOfNotificationLocked(pkg, tag, id);
@@ -974,8 +982,12 @@ public class NotificationManagerService extends INotificationManager.Stub
      */
     boolean cancelAllNotificationsInt(String pkg, int mustHaveFlags,
             int mustNotHaveFlags, boolean doit) {
+<<<<<<< HEAD
         EventLog.writeEvent(EventLogTags.NOTIFICATION_CANCEL_ALL, pkg, mustHaveFlags,
                 mustNotHaveFlags);
+=======
+        EventLog.writeEvent(EventLogTags.NOTIFICATION_CANCEL_ALL, pkg, mustHaveFlags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         synchronized (mNotificationList) {
             final int N = mNotificationList.size();

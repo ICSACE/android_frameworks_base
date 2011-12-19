@@ -25,14 +25,20 @@ import android.net.NetworkStats;
 import android.os.SystemClock;
 import android.util.Slog;
 
+<<<<<<< HEAD
 import com.android.internal.util.ProcFileReader;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
 
 import java.io.BufferedReader;
 import java.io.File;
+<<<<<<< HEAD
 import java.io.FileInputStream;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -109,7 +115,10 @@ public class NetworkStatsFactory {
         final NetworkStats stats = new NetworkStats(SystemClock.elapsedRealtime(), 6);
         final NetworkStats.Entry entry = new NetworkStats.Entry();
 
+<<<<<<< HEAD
         // TODO: transition to ProcFileReader
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // TODO: read directly from proc once headers are added
         final ArrayList<String> keys = Lists.newArrayList(KEY_IFACE, KEY_ACTIVE, KEY_SNAP_RX_BYTES,
                 KEY_SNAP_RX_PACKETS, KEY_SNAP_TX_BYTES, KEY_SNAP_TX_PACKETS, KEY_RX_BYTES,
@@ -260,6 +269,7 @@ public class NetworkStatsFactory {
         final NetworkStats stats = new NetworkStats(SystemClock.elapsedRealtime(), 24);
         final NetworkStats.Entry entry = new NetworkStats.Entry();
 
+<<<<<<< HEAD
         int idx = 1;
         int lastIdx = 1;
 
@@ -271,12 +281,44 @@ public class NetworkStatsFactory {
 
             while (reader.hasMoreData()) {
                 idx = reader.nextInt();
+=======
+        // TODO: remove knownLines check once 5087722 verified
+        final HashSet<String> knownLines = Sets.newHashSet();
+        // TODO: remove lastIdx check once 5270106 verified
+        int lastIdx;
+
+        final ArrayList<String> keys = Lists.newArrayList();
+        final ArrayList<String> values = Lists.newArrayList();
+        final HashMap<String, String> parsed = Maps.newHashMap();
+
+        BufferedReader reader = null;
+        String line = null;
+        try {
+            reader = new BufferedReader(new FileReader(mStatsXtUid));
+
+            // parse first line as header
+            line = reader.readLine();
+            splitLine(line, keys);
+            lastIdx = 1;
+
+            // parse remaining lines
+            while ((line = reader.readLine()) != null) {
+                splitLine(line, values);
+                parseLine(keys, values, parsed);
+
+                if (!knownLines.add(line)) {
+                    throw new IllegalStateException("duplicate proc entry: " + line);
+                }
+
+                final int idx = getParsedInt(parsed, KEY_IDX);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (idx != lastIdx + 1) {
                     throw new IllegalStateException(
                             "inconsistent idx=" + idx + " after lastIdx=" + lastIdx);
                 }
                 lastIdx = idx;
 
+<<<<<<< HEAD
                 entry.iface = reader.nextString();
                 entry.tag = kernelToTag(reader.nextString());
                 entry.uid = reader.nextInt();
@@ -285,10 +327,21 @@ public class NetworkStatsFactory {
                 entry.rxPackets = reader.nextLong();
                 entry.txBytes = reader.nextLong();
                 entry.txPackets = reader.nextLong();
+=======
+                entry.iface = parsed.get(KEY_IFACE);
+                entry.uid = getParsedInt(parsed, KEY_UID);
+                entry.set = getParsedInt(parsed, KEY_COUNTER_SET);
+                entry.tag = kernelToTag(parsed.get(KEY_TAG_HEX));
+                entry.rxBytes = getParsedLong(parsed, KEY_RX_BYTES);
+                entry.rxPackets = getParsedLong(parsed, KEY_RX_PACKETS);
+                entry.txBytes = getParsedLong(parsed, KEY_TX_BYTES);
+                entry.txPackets = getParsedLong(parsed, KEY_TX_PACKETS);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 if (limitUid == UID_ALL || limitUid == entry.uid) {
                     stats.addValues(entry);
                 }
+<<<<<<< HEAD
 
                 reader.finishLine();
             }
@@ -306,12 +359,30 @@ public class NetworkStatsFactory {
     }
 
     @Deprecated
+=======
+            }
+        } catch (NullPointerException e) {
+            throw new IllegalStateException("problem parsing line: " + line, e);
+        } catch (NumberFormatException e) {
+            throw new IllegalStateException("problem parsing line: " + line, e);
+        } catch (IOException e) {
+            throw new IllegalStateException("problem parsing line: " + line, e);
+        } finally {
+            IoUtils.closeQuietly(reader);
+        }
+        return stats;
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static int getParsedInt(HashMap<String, String> parsed, String key) {
         final String value = parsed.get(key);
         return value != null ? Integer.parseInt(value) : 0;
     }
 
+<<<<<<< HEAD
     @Deprecated
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static long getParsedLong(HashMap<String, String> parsed, String key) {
         final String value = parsed.get(key);
         return value != null ? Long.parseLong(value) : 0;
@@ -320,7 +391,10 @@ public class NetworkStatsFactory {
     /**
      * Split given line into {@link ArrayList}.
      */
+<<<<<<< HEAD
     @Deprecated
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static void splitLine(String line, ArrayList<String> outSplit) {
         outSplit.clear();
 
@@ -334,7 +408,10 @@ public class NetworkStatsFactory {
      * Zip the two given {@link ArrayList} as key and value pairs into
      * {@link HashMap}.
      */
+<<<<<<< HEAD
     @Deprecated
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static void parseLine(
             ArrayList<String> keys, ArrayList<String> values, HashMap<String, String> outParsed) {
         outParsed.clear();

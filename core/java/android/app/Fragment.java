@@ -181,8 +181,12 @@ final class FragmentState implements Parcelable {
  *
  * While the Fragment API was introduced in
  * {@link android.os.Build.VERSION_CODES#HONEYCOMB}, a version of the API
+<<<<<<< HEAD
  * at is also available for use on older platforms through
  * {@link android.support.v4.app.FragmentActivity}.  See the blog post
+=======
+ * is also available for use on older platforms.  See the blog post
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <a href="http://android-developers.blogspot.com/2011/03/fragments-for-all.html">
  * Fragments For All</a> for more details.
  *
@@ -340,7 +344,10 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     private static final HashMap<String, Class<?>> sClassMap =
             new HashMap<String, Class<?>>();
     
+<<<<<<< HEAD
     static final int INVALID_STATE = -1;   // Invalid state used as a null value.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static final int INITIALIZING = 0;     // Not yet created.
     static final int CREATED = 1;          // Created.
     static final int ACTIVITY_CREATED = 2; // The activity has finished its creation.
@@ -405,7 +412,11 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     // The fragment manager we are associated with.  Set as soon as the
     // fragment is used in a transaction; cleared after it has been removed
     // from all transactions.
+<<<<<<< HEAD
     FragmentManagerImpl mFragmentManager;
+=======
+    FragmentManager mFragmentManager;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // Activity this fragment is attached to.
     Activity mActivity;
@@ -455,6 +466,7 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     // The View generated for this fragment.
     View mView;
     
+<<<<<<< HEAD
     // Whether this fragment should defer starting until after other fragments
     // have been started and their loaders are finished.
     boolean mDeferStart;
@@ -462,6 +474,8 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     // Hint provided by the app that this fragment is currently visible to the user.
     boolean mUserVisibleHint = true;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     LoaderManagerImpl mLoaderManager;
     boolean mLoadersStarted;
     boolean mCheckedForLoaderManager;
@@ -919,6 +933,7 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     }
 
     /**
+<<<<<<< HEAD
      * Set a hint to the system about whether this fragment's UI is currently visible
      * to the user. This hint defaults to true and is persistent across fragment instance
      * state save and restore.
@@ -948,6 +963,8 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Return the LoaderManager for this fragment, creating it if needed.
      */
     public LoaderManager getLoaderManager() {
@@ -1482,8 +1499,12 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
                 writer.print(" mMenuVisible="); writer.print(mMenuVisible);
                 writer.print(" mHasMenu="); writer.println(mHasMenu);
         writer.print(prefix); writer.print("mRetainInstance="); writer.print(mRetainInstance);
+<<<<<<< HEAD
                 writer.print(" mRetaining="); writer.print(mRetaining);
                 writer.print(" mUserVisibleHint="); writer.println(mUserVisibleHint);
+=======
+                writer.print(" mRetaining="); writer.println(mRetaining);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mFragmentManager != null) {
             writer.print(prefix); writer.print("mFragmentManager=");
                     writer.println(mFragmentManager);

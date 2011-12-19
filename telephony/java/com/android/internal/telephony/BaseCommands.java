@@ -683,6 +683,7 @@ public abstract class BaseCommands implements CommandsInterface {
         mRilConnectedRegistrants.remove(h);
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritDoc}
      */
@@ -690,6 +691,8 @@ public abstract class BaseCommands implements CommandsInterface {
     public void setCurrentPreferredNetworkType() {
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     //***** Protected Methods
     /**
      * Store new RadioState and send notification based on the changes

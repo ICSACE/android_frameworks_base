@@ -20,7 +20,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Resources;
+<<<<<<< HEAD
 import android.graphics.Rect;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.ServiceManager;
 import android.util.AttributeSet;
 import android.util.Slog;
@@ -33,10 +36,13 @@ import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+<<<<<<< HEAD
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.StringBuilder;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.statusbar.IStatusBarService;
 
 import com.android.systemui.R;
@@ -242,6 +248,7 @@ public class NavigationBarView extends LinearLayout {
             Slog.d(TAG, "reorient(): rot=" + mDisplay.getRotation());
         }
     }
+<<<<<<< HEAD
 
     private String getResourceName(int resId) {
         if (resId != 0) {
@@ -317,4 +324,6 @@ public class NavigationBarView extends LinearLayout {
                 );
         pw.println("    }");
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

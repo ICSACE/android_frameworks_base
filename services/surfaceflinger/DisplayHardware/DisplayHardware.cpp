@@ -288,6 +288,25 @@ void DisplayHardware::init(uint32_t dpy)
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &mMaxTextureSize);
     glGetIntegerv(GL_MAX_VIEWPORT_DIMS, mMaxViewportDims);
 
+<<<<<<< HEAD
+=======
+
+#ifdef EGL_ANDROID_swap_rectangle
+    if (extensions.hasExtension("EGL_ANDROID_swap_rectangle")) {
+        if (eglSetSwapRectangleANDROID(display, surface,
+                0, 0, mWidth, mHeight) == EGL_TRUE) {
+            // This could fail if this extension is not supported by this
+            // specific surface (of config)
+            mFlags |= SWAP_RECTANGLE;
+        }
+    }
+    // when we have the choice between PARTIAL_UPDATES and SWAP_RECTANGLE
+    // choose PARTIAL_UPDATES, which should be more efficient
+    if (mFlags & PARTIAL_UPDATES)
+        mFlags &= ~SWAP_RECTANGLE;
+#endif
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     LOGI("EGL informations:");
     LOGI("# of configs : %d", numConfigs);
     LOGI("vendor    : %s", extensions.getEglVendor());
@@ -406,3 +425,7 @@ void DisplayHardware::dump(String8& res) const
 {
     mNativeWindow->dump(res);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

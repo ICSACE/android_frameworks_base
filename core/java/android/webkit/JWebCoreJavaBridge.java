@@ -87,9 +87,17 @@ final class JWebCoreJavaBridge extends Handler {
      * Call native timer callbacks.
      */
     private void fireSharedTimer() { 
+<<<<<<< HEAD
         // clear the flag so that sharedTimerFired() can set a new timer
         mHasInstantTimer = false;
         sharedTimerFired();
+=======
+        PerfChecker checker = new PerfChecker();
+        // clear the flag so that sharedTimerFired() can set a new timer
+        mHasInstantTimer = false;
+        sharedTimerFired();
+        checker.responseAlert("sharedTimer");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

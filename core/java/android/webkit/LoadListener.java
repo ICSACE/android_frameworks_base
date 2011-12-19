@@ -1136,6 +1136,10 @@ class LoadListener extends Handler implements EventHandler {
         // Give the data to WebKit now. We don't have to synchronize on
         // mDataBuilder here because pulling each chunk removes it from the
         // internal list so it cannot be modified.
+<<<<<<< HEAD
+=======
+        PerfChecker checker = new PerfChecker();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ByteArrayBuilder.Chunk c;
         while (true) {
             c = mDataBuilder.getFirstChunk();
@@ -1151,6 +1155,10 @@ class LoadListener extends Handler implements EventHandler {
             } else {
                 c.release();
             }
+<<<<<<< HEAD
+=======
+            checker.responseAlert("res nativeAddData");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -1171,11 +1179,19 @@ class LoadListener extends Handler implements EventHandler {
                     WebViewWorker.MSG_REMOVE_CACHE, this).sendToTarget();
         }
         if (mNativeLoader != 0) {
+<<<<<<< HEAD
+=======
+            PerfChecker checker = new PerfChecker();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (!mSetNativeResponse) {
                 setNativeResponse();
             }
 
             nativeFinished();
+<<<<<<< HEAD
+=======
+            checker.responseAlert("res nativeFinished");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             clearNativeLoader();
         }
     }

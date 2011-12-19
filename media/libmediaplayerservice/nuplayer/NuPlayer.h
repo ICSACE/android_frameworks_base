@@ -42,6 +42,10 @@ struct NuPlayer : public AHandler {
     void setDataSource(
             const char *url, const KeyedVector<String8, String8> *headers);
 
+<<<<<<< HEAD
+=======
+    void setVideoSurface(const sp<Surface> &surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void setVideoSurfaceTexture(const sp<ISurfaceTexture> &surfaceTexture);
     void setAudioSink(const sp<MediaPlayerBase::AudioSink> &sink);
     void start();
@@ -67,7 +71,10 @@ private:
     struct Renderer;
     struct Source;
     struct StreamingSource;
+<<<<<<< HEAD
     struct RTSPSource;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     enum {
         kWhatSetDataSource              = '=DaS',
@@ -112,10 +119,13 @@ private:
         SHUT_DOWN,
     };
 
+<<<<<<< HEAD
     // Once the current flush is complete this indicates whether the
     // notion of time has changed.
     bool mTimeDiscontinuityPending;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     FlushStatus mFlushingAudio;
     FlushStatus mFlushingVideo;
     bool mResetInProgress;

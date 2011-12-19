@@ -23,8 +23,11 @@
 
 #include <utils/Singleton.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "Extensions.h"
 #include "FontRenderer.h"
 #include "GammaFontRenderer.h"
@@ -84,8 +87,14 @@ struct CacheLogger {
 // Caches
 ///////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 class ANDROID_API Caches: public Singleton<Caches> {
     Caches();
+=======
+class Caches: public Singleton<Caches> {
+    Caches();
+    ~Caches();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     friend class Singleton<Caches>;
 
@@ -108,11 +117,14 @@ public:
     };
 
     /**
+<<<<<<< HEAD
      * Initializes the cache.
      */
     void init();
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Flush the cache.
      *
      * @param mode Indicates how much of the cache should be flushed
@@ -120,12 +132,15 @@ public:
     void flush(FlushMode mode);
 
     /**
+<<<<<<< HEAD
      * Destroys all resources associated with this cache. This should
      * be called after a flush(kFlushMode_Full).
      */
     void terminate();
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Indicates whether the renderer is in debug mode.
      * This debug mode provides limited information to app developers.
      */
@@ -204,7 +219,10 @@ public:
 
 private:
     DebugLevel mDebugLevel;
+<<<<<<< HEAD
     bool mInitialized;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }; // class Caches
 
 }; // namespace uirenderer

@@ -24,6 +24,7 @@ namespace android {
 namespace renderscript {
 
 class ProgramRasterState;
+<<<<<<< HEAD
 /*****************************************************************************
  * CAUTION
  *
@@ -34,6 +35,19 @@ class ProgramRasterState;
  *****************************************************************************/
 class ProgramRaster : public ProgramBase {
 public:
+=======
+
+class ProgramRaster : public ProgramBase {
+public:
+    virtual void setup(const Context *, ProgramRasterState *);
+    virtual void serialize(OStream *stream) const;
+    virtual RsA3DClassID getClassId() const { return RS_A3D_CLASS_ID_PROGRAM_RASTER; }
+    static ProgramRaster *createFromStream(Context *rsc, IStream *stream);
+
+    static ObjectBaseRef<ProgramRaster> getProgramRaster(Context *rsc,
+                                                         bool pointSprite,
+                                                         RsCullMode cull);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     struct Hal {
         mutable void *drv;
 
@@ -45,6 +59,7 @@ public:
     };
     Hal mHal;
 
+<<<<<<< HEAD
     virtual void setup(const Context *, ProgramRasterState *);
     virtual void serialize(OStream *stream) const;
     virtual RsA3DClassID getClassId() const { return RS_A3D_CLASS_ID_PROGRAM_RASTER; }
@@ -53,6 +68,8 @@ public:
     static ObjectBaseRef<ProgramRaster> getProgramRaster(Context *rsc,
                                                          bool pointSprite,
                                                          RsCullMode cull);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 protected:
     virtual void preDestroy() const;
     virtual ~ProgramRaster();

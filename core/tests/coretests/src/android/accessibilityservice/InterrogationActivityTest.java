@@ -26,7 +26,10 @@ import android.os.SystemClock;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
+<<<<<<< HEAD
 import android.view.View;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityInteractionClient;
 import android.view.accessibility.AccessibilityManager;
@@ -55,6 +58,7 @@ public class InterrogationActivityTest
     // Timeout before give up wait for the system to process an accessibility setting change.       
     private static final int TIMEOUT_PROPAGATE_ACCESSIBLITY_SETTING = 2000;
 
+<<<<<<< HEAD
     // Timeout for the accessibility state of an Activity to be fully initialized.
     private static final int TIMEOUT_ACCESSIBLITY_STATE_INITIALIZED_MILLIS = 100;
 
@@ -63,23 +67,44 @@ public class InterrogationActivityTest
 
     // The last received accessibility event
     private volatile AccessibilityEvent mLastAccessibilityEvent;
+=======
+    // Handle to a connection to the AccessibilityManagerService
+    private static IAccessibilityServiceConnection sConnection;
+
+    // The last received accessibility event
+    private static volatile AccessibilityEvent sLastFocusAccessibilityEvent;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public InterrogationActivityTest() {
         super(InterrogationActivity.class);
     }
 
+<<<<<<< HEAD
     @Override
     public void setUp() throws Exception {
         ensureConnection();
         bringUpActivityWithInitalizedAccessbility();
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @LargeTest
     public void testFindAccessibilityNodeInfoByViewId() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertNotNull(button);
             assertEquals(0, button.getChildCount());
 
@@ -124,9 +149,21 @@ public class InterrogationActivityTest
     public void testFindAccessibilityNodeInfoByViewText() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view by text
             List<AccessibilityNodeInfo> buttons = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfosByViewTextInActiveWindow(sConnectionId, "butto");
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view by text
+            List<AccessibilityNodeInfo> buttons =  AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfosByViewTextInActiveWindow(connection, "butto");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertEquals(9, buttons.size());
         } finally {
             if (DEBUG) {
@@ -141,11 +178,23 @@ public class InterrogationActivityTest
     public void testFindAccessibilityNodeInfoByViewTextContentDescription() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             bringUpActivityWithInitalizedAccessbility();
 
             // find a view by text
             List<AccessibilityNodeInfo> buttons = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfosByViewTextInActiveWindow(sConnectionId,
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view by text
+            List<AccessibilityNodeInfo> buttons =  AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfosByViewTextInActiveWindow(connection,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         "contentDescription");
             assertEquals(1, buttons.size());
         } finally {
@@ -161,6 +210,15 @@ public class InterrogationActivityTest
     public void testTraverseAllViews() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // make list of expected nodes
             List<String> classNameAndTextList = new ArrayList<String>();
             classNameAndTextList.add("android.widget.LinearLayout");
@@ -178,7 +236,11 @@ public class InterrogationActivityTest
             classNameAndTextList.add("android.widget.ButtonButton9");
 
             AccessibilityNodeInfo root = AccessibilityInteractionClient.getInstance()
+<<<<<<< HEAD
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.root);
+=======
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.root);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertNotNull("We must find the existing root.", root);
 
             Queue<AccessibilityNodeInfo> fringe = new LinkedList<AccessibilityNodeInfo>();
@@ -215,17 +277,34 @@ public class InterrogationActivityTest
     public void testPerformAccessibilityActionFocus() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not focused
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view and make sure it is not focused
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isFocused());
 
             // focus the view
             assertTrue(button.performAction(ACTION_FOCUS));
 
             // find the view again and make sure it is focused
+<<<<<<< HEAD
             button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            button =  AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertTrue(button.isFocused());
         } finally {
             if (DEBUG) {
@@ -239,9 +318,21 @@ public class InterrogationActivityTest
     public void testPerformAccessibilityActionClearFocus() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not focused
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view and make sure it is not focused
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isFocused());
 
             // focus the view
@@ -249,7 +340,11 @@ public class InterrogationActivityTest
 
             // find the view again and make sure it is focused
             button = AccessibilityInteractionClient.getInstance()
+<<<<<<< HEAD
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertTrue(button.isFocused());
 
             // unfocus the view
@@ -257,7 +352,11 @@ public class InterrogationActivityTest
 
             // find the view again and make sure it is not focused
             button = AccessibilityInteractionClient.getInstance()
+<<<<<<< HEAD
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isFocused());
         } finally {
             if (DEBUG) {
@@ -272,9 +371,21 @@ public class InterrogationActivityTest
     public void testPerformAccessibilityActionSelect() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not selected
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view and make sure it is not selected
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isSelected());
 
             // select the view
@@ -282,7 +393,11 @@ public class InterrogationActivityTest
 
             // find the view again and make sure it is selected
             button = AccessibilityInteractionClient.getInstance()
+<<<<<<< HEAD
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertTrue(button.isSelected());
         } finally {
             if (DEBUG) {
@@ -296,9 +411,21 @@ public class InterrogationActivityTest
     public void testPerformAccessibilityActionClearSelection() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not selected
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view and make sure it is not selected
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isSelected());
 
             // select the view
@@ -306,15 +433,24 @@ public class InterrogationActivityTest
 
             // find the view again and make sure it is selected
             button = AccessibilityInteractionClient.getInstance()
+<<<<<<< HEAD
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertTrue(button.isSelected());
 
             // unselect the view
             assertTrue(button.performAction(ACTION_CLEAR_SELECTION));
 
             // find the view again and make sure it is not selected
+<<<<<<< HEAD
             button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            button =  AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isSelected());
         } finally {
             if (DEBUG) {
@@ -329,24 +465,46 @@ public class InterrogationActivityTest
     public void testAccessibilityEventGetSource() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not focused
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();  
+
+            // find a view and make sure it is not focused
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertFalse(button.isSelected());
 
             // focus the view
             assertTrue(button.performAction(ACTION_FOCUS));
 
+<<<<<<< HEAD
             synchronized (this) {
                 try {
                     wait(TIMEOUT_ACCESSIBLITY_STATE_INITIALIZED_MILLIS);
+=======
+            synchronized (sConnection) {
+                try {
+                    sConnection.wait(500);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } catch (InterruptedException ie) {
                     /* ignore */
                 }
             }
 
             // check that last event source
+<<<<<<< HEAD
             AccessibilityNodeInfo source = mLastAccessibilityEvent.getSource();
+=======
+            AccessibilityNodeInfo source = sLastFocusAccessibilityEvent.getSource();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             assertNotNull(source);
 
             // bounds
@@ -388,9 +546,21 @@ public class InterrogationActivityTest
     public void testObjectContract() throws Exception {
         final long startTimeMillis = SystemClock.uptimeMillis();
         try {
+<<<<<<< HEAD
             // find a view and make sure it is not focused
             AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
                 .findAccessibilityNodeInfoByViewIdInActiveWindow(sConnectionId, R.id.button5);
+=======
+            // hook into the system first
+            IAccessibilityServiceConnection connection = getConnection();
+
+            // bring up the activity
+            getActivity();
+
+            // find a view and make sure it is not focused
+            AccessibilityNodeInfo button = AccessibilityInteractionClient.getInstance()
+                .findAccessibilityNodeInfoByViewIdInActiveWindow(connection, R.id.button5);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             AccessibilityNodeInfo parent = button.getParent();
             final int childCount = parent.getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -411,6 +581,7 @@ public class InterrogationActivityTest
         }
     }
 
+<<<<<<< HEAD
     private void bringUpActivityWithInitalizedAccessbility() {
         mLastAccessibilityEvent = null;
         // bring up the activity
@@ -455,13 +626,32 @@ public class InterrogationActivityTest
                         notifyAll();
                     }
                 }
+=======
+    @Override
+    protected void scrubClass(Class<?> testCaseClass) {
+        /* intentionally do not scrub */
+    }
+
+    private IAccessibilityServiceConnection getConnection() throws Exception {
+        if (sConnection == null) {
+            IEventListener listener = new IEventListener.Stub() {
+                public void setConnection(IAccessibilityServiceConnection connection) {}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 public void onInterrupt() {}
 
                 public void onAccessibilityEvent(AccessibilityEvent event) {
+<<<<<<< HEAD
                     mLastAccessibilityEvent = AccessibilityEvent.obtain(event);
                     synchronized (this) {
                         notifyAll();
+=======
+                    if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_FOCUSED) {
+                        sLastFocusAccessibilityEvent = AccessibilityEvent.obtain(event);
+                    }
+                    synchronized (sConnection) {
+                        sConnection.notifyAll();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                 }
             };
@@ -470,11 +660,37 @@ public class InterrogationActivityTest
                 AccessibilityManager.getInstance(getInstrumentation().getContext());
 
             synchronized (this) {
+<<<<<<< HEAD
                 IAccessibilityManager manager = IAccessibilityManager.Stub.asInterface(
                         ServiceManager.getService(Context.ACCESSIBILITY_SERVICE));
                 manager.registerEventListener(listener);
                 wait(TIMEOUT_PROPAGATE_ACCESSIBLITY_SETTING);
             }
         }
+=======
+                if (!accessibilityManager.isEnabled()) {
+                    // Make sure we wake ourselves as the desired state is propagated.
+                    accessibilityManager.addAccessibilityStateChangeListener(
+                            new AccessibilityManager.AccessibilityStateChangeListener() {
+                                public void onAccessibilityStateChanged(boolean enabled) {
+                                    synchronized (this) {
+                                        notifyAll();
+                                    }
+                                }
+                            });
+                    IAccessibilityManager manager = IAccessibilityManager.Stub.asInterface(
+                        ServiceManager.getService(Context.ACCESSIBILITY_SERVICE));
+                    sConnection = manager.registerEventListener(listener);
+
+                    wait(TIMEOUT_PROPAGATE_ACCESSIBLITY_SETTING);
+                } else {
+                    IAccessibilityManager manager = IAccessibilityManager.Stub.asInterface(
+                          ServiceManager.getService(Context.ACCESSIBILITY_SERVICE));
+                    sConnection = manager.registerEventListener(listener);
+                }
+            }
+        }
+        return sConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 }

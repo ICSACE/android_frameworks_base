@@ -1845,7 +1845,11 @@ class MediaArtistNativeHelper {
 
     @SuppressWarnings("unused")
     private void onPreviewProgressUpdate(int progress, boolean isFinished,
+<<<<<<< HEAD
                   boolean updateOverlay, String filename, int renderingMode, int error) {
+=======
+                  boolean updateOverlay, String filename, int renderingMode) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mPreviewProgressListener != null) {
             if (mIsFirstProgress) {
                 mPreviewProgressListener.onStart(mVideoEditor);
@@ -1870,8 +1874,11 @@ class MediaArtistNativeHelper {
 
             if (isFinished) {
                 mPreviewProgressListener.onStop(mVideoEditor);
+<<<<<<< HEAD
             } else if (error != 0) {
                 mPreviewProgressListener.onError(mVideoEditor, error);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 mPreviewProgressListener.onProgress(mVideoEditor, progress, overlayData);
             }

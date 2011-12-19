@@ -22,11 +22,17 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+<<<<<<< HEAD
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLUtils;
 import android.os.Bundle;
 import android.os.Environment;
+=======
+import android.graphics.SurfaceTexture;
+import android.opengl.GLUtils;
+import android.os.Bundle;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.Log;
 import android.view.Gravity;
 import android.view.TextureView;
@@ -41,7 +47,10 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import javax.microedition.khronos.opengles.GL;
 import java.io.BufferedOutputStream;
+<<<<<<< HEAD
 import java.io.File;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -68,8 +77,12 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
                 Bitmap b = mTextureView.getBitmap(800, 800);
                 BufferedOutputStream out = null;
                 try {
+<<<<<<< HEAD
                     File dump = new File(Environment.getExternalStorageDirectory(), "out.png");
                     out = new BufferedOutputStream(new FileOutputStream(dump));
+=======
+                    out = new BufferedOutputStream(new FileOutputStream("/sdcard/out.png"));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     b.compress(Bitmap.CompressFormat.PNG, 100, out);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -172,10 +185,17 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
         private static final int TRIANGLE_VERTICES_DATA_UV_OFFSET = 3;
         private final float[] mTriangleVerticesData = {
                 // X, Y, Z, U, V
+<<<<<<< HEAD
                 -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
                  1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
                 -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
                  1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+=======
+                -1.0f, -1.0f, 0, 0.f, 0.f,
+                1.0f, -1.0f, 0, 1.f, 0.f,
+                -1.0f,  1.0f, 0, 0.f, 1.f,
+                1.0f,   1.0f, 0, 1.f, 1.f,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         };
 
         @Override
@@ -216,6 +236,11 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             while (!mFinished) {
                 checkCurrent();
 
+<<<<<<< HEAD
+=======
+                Log.d(LOG_TAG, "Rendering frame");
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                 checkGlError();
 
@@ -239,7 +264,11 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
                 checkEglError();
 
                 try {
+<<<<<<< HEAD
                     Thread.sleep(2000);
+=======
+                    Thread.sleep(20);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } catch (InterruptedException e) {
                     // Ignore
                 }

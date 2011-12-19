@@ -25,11 +25,20 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+<<<<<<< HEAD
+=======
+import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.FileObserver;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+<<<<<<< HEAD
+=======
+import android.os.SystemProperties;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.storage.IMountService;
 import android.provider.Settings;
 import android.security.KeyStore;
@@ -38,6 +47,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
+=======
+import android.widget.TextView;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -435,6 +448,20 @@ public class LockPatternUtils {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Calls back SetupFaceLock to save the temporary gallery file if this is the backup lock.
+     * This doesn't have to verify that biometric is enabled because it's only called in that case
+    */
+    void moveTempGallery() {
+        Intent intent = new Intent().setClassName("com.android.facelock",
+                "com.android.facelock.SetupFaceLock");
+        intent.putExtra("moveTempGallery", true);
+        mContext.startActivity(intent);
+    }
+
+    /**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Calls back SetupFaceLock to delete the temporary gallery file
      */
     public void deleteTempGallery() {
@@ -486,7 +513,12 @@ public class LockPatternUtils {
                     setLong(PASSWORD_TYPE_KEY, DevicePolicyManager.PASSWORD_QUALITY_BIOMETRIC_WEAK);
                     setLong(PASSWORD_TYPE_ALTERNATE_KEY,
                             DevicePolicyManager.PASSWORD_QUALITY_SOMETHING);
+<<<<<<< HEAD
                     finishBiometricWeak();
+=======
+                    setBoolean(BIOMETRIC_WEAK_EVER_CHOSEN_KEY, true);
+                    moveTempGallery();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 dpm.setActivePasswordState(DevicePolicyManager.PASSWORD_QUALITY_SOMETHING, pattern
                         .size(), 0, 0, 0, 0, 0, 0);
@@ -603,7 +635,12 @@ public class LockPatternUtils {
                 } else {
                     setLong(PASSWORD_TYPE_KEY, DevicePolicyManager.PASSWORD_QUALITY_BIOMETRIC_WEAK);
                     setLong(PASSWORD_TYPE_ALTERNATE_KEY, Math.max(quality, computedQuality));
+<<<<<<< HEAD
                     finishBiometricWeak();
+=======
+                    setBoolean(BIOMETRIC_WEAK_EVER_CHOSEN_KEY, true);
+                    moveTempGallery();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 if (computedQuality != DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED) {
                     int letters = 0;
@@ -964,11 +1001,14 @@ public class LockPatternUtils {
                 com.android.internal.R.bool.config_enable_puk_unlock_screen);
     }
 
+<<<<<<< HEAD
     public boolean isEmergencyCallEnabledWhileSimLocked() {
         return mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_enable_emergency_call_while_sim_locked);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * @return A formatted string of the next alarm (for showing on the lock screen),
      *   or null if there is no next alarm.
@@ -1032,10 +1072,19 @@ public class LockPatternUtils {
      *  {@link TelephonyManager#CALL_STATE_IDLE}
      *  {@link TelephonyManager#CALL_STATE_RINGING}
      *  {@link TelephonyManager#CALL_STATE_OFFHOOK}
+<<<<<<< HEAD
      * @param shown indicates whether the given screen wants the emergency button to show at all
      */
     public void updateEmergencyCallButtonState(Button button, int  phoneState, boolean shown) {
         if (isEmergencyCallCapable() && shown) {
+=======
+     * @param showIfCapable indicates whether the button should be shown if emergency calls are
+     *                      possible on the device
+     */
+    public void updateEmergencyCallButtonState(Button button, int  phoneState,
+            boolean showIfCapable) {
+        if (isEmergencyCallCapable() && showIfCapable) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             button.setVisibility(View.VISIBLE);
         } else {
             button.setVisibility(View.GONE);
@@ -1073,6 +1122,7 @@ public class LockPatternUtils {
         }
         return false;
     }
+<<<<<<< HEAD
 
     private void finishBiometricWeak() {
         setBoolean(BIOMETRIC_WEAK_EVER_CHOSEN_KEY, true);
@@ -1085,4 +1135,6 @@ public class LockPatternUtils {
         mContext.startActivity(intent);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

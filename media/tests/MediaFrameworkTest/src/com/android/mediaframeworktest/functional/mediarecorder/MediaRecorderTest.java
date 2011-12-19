@@ -33,7 +33,10 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.android.mediaframeworktest.MediaProfileReader;
+<<<<<<< HEAD
 import com.android.mediaframeworktest.MediaFrameworkTestRunner;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.Suppress;
@@ -116,6 +119,7 @@ public class MediaRecorderTest extends ActivityInstrumentationTestCase2<MediaFra
         int audioChannels = highQuality? audioCap.mMaxChannels: audioCap.mMinChannels ;
         int audioSamplingRate = highQuality? audioCap.mMaxSampleRate: audioCap.mMinSampleRate;
 
+<<<<<<< HEAD
         //Overide the fps if the min_camera_fps is set
         if (MediaFrameworkTestRunner.mMinCameraFps != 0 &&
             MediaFrameworkTestRunner.mMinCameraFps > videoFps){
@@ -126,6 +130,11 @@ public class MediaRecorderTest extends ActivityInstrumentationTestCase2<MediaFra
             videoFps = MIN_VIDEO_FPS;
         }
 
+=======
+        if (videoFps < MIN_VIDEO_FPS) {
+            videoFps = MIN_VIDEO_FPS;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mSurfaceHolder = MediaFrameworkTest.mSurfaceView.getHolder();
         String filename = ("/sdcard/" + videoEncoder + "_" + audioEncoder + "_" + highQuality + ".3gp");
         try {

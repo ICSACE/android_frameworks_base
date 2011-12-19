@@ -38,7 +38,11 @@ static bool FileHasAcceptableExtension(const char *extension) {
         ".mpeg", ".ogg", ".mid", ".smf", ".imy", ".wma", ".aac",
         ".wav", ".amr", ".midi", ".xmf", ".rtttl", ".rtx", ".ota",
         ".mkv", ".mka", ".webm", ".ts", ".fl", ".flac", ".mxmf",
+<<<<<<< HEAD
         ".avi", ".mpeg", ".mpg"
+=======
+        ".avi",
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     };
     static const size_t kNumValidExtensions =
         sizeof(kValidExtensions) / sizeof(kValidExtensions[0]);
@@ -94,7 +98,11 @@ static MediaScanResult HandleMIDI(
     char buffer[20];
     sprintf(buffer, "%ld", temp);
     status_t status = client->addStringTag("duration", buffer);
+<<<<<<< HEAD
     if (status != OK) {
+=======
+    if (status) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return MEDIA_SCAN_RESULT_ERROR;
     }
     return MEDIA_SCAN_RESULT_OK;
@@ -178,7 +186,11 @@ MediaScanResult StagefrightMediaScanner::processFileInternal(
         const char *value;
         if ((value = mRetriever->extractMetadata(kKeyMap[i].key)) != NULL) {
             status = client.addStringTag(kKeyMap[i].tag, value);
+<<<<<<< HEAD
             if (status != OK) {
+=======
+            if (status) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return MEDIA_SCAN_RESULT_ERROR;
             }
         }

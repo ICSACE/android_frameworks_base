@@ -28,7 +28,10 @@ struct NuPlayer::Source : public RefBase {
     Source() {}
 
     virtual void start() = 0;
+<<<<<<< HEAD
     virtual void stop() {}
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // Returns OK iff more data was available,
     // an error or ERROR_END_OF_STREAM if not.

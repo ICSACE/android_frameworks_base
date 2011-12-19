@@ -35,18 +35,27 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.text.method.TextKeyListener;
+<<<<<<< HEAD
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+=======
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+<<<<<<< HEAD
 import android.widget.Space;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -117,7 +126,10 @@ public class PasswordUnlockScreen extends LinearLayout implements KeyguardScreen
                 Settings.Secure.getInt(mContext.getContentResolver(),
                         Settings.Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED, 0)
                         != 0);
+<<<<<<< HEAD
         boolean imeOrDeleteButtonVisible = false;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mIsAlpha) {
             // We always use the system IME for alpha keyboard, so hide lockscreen's soft keyboard
             mKeyboardHelper.setKeyboardMode(PasswordEntryKeyboardHelper.KEYBOARD_MODE_ALPHA);
@@ -133,7 +145,10 @@ public class PasswordUnlockScreen extends LinearLayout implements KeyguardScreen
             View pinDelete = findViewById(R.id.pinDel);
             if (pinDelete != null) {
                 pinDelete.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
                 imeOrDeleteButtonVisible = true;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 pinDelete.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -186,7 +201,10 @@ public class PasswordUnlockScreen extends LinearLayout implements KeyguardScreen
                 Context.INPUT_METHOD_SERVICE);
         if (mIsAlpha && switchImeButton != null && hasMultipleEnabledIMEsOrSubtypes(imm, false)) {
             switchImeButton.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
             imeOrDeleteButtonVisible = true;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             switchImeButton.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     mCallback.pokeWakelock(); // Leave the screen on a bit longer
@@ -194,6 +212,7 @@ public class PasswordUnlockScreen extends LinearLayout implements KeyguardScreen
                 }
             });
         }
+<<<<<<< HEAD
 
         // If no icon is visible, reset the left margin on the password field so the text is
         // still centered.
@@ -204,6 +223,8 @@ public class PasswordUnlockScreen extends LinearLayout implements KeyguardScreen
                 mPasswordEntry.setLayoutParams(params);
             }
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

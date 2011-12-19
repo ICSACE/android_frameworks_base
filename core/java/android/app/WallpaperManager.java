@@ -212,11 +212,15 @@ public class WallpaperManager {
              */
             mHandler.sendEmptyMessage(MSG_CLEAR_WALLPAPER);
         }
+<<<<<<< HEAD
 
         public Handler getHandler() {
             return mHandler;
         }
 
+=======
+        
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         public Bitmap peekWallpaperBitmap(Context context, boolean returnDefault) {
             synchronized (this) {
                 if (mWallpaper != null) {
@@ -608,7 +612,11 @@ public class WallpaperManager {
             // Ignore
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Set the position of the current wallpaper within any larger space, when
      * that wallpaper is visible behind the given window.  The X and Y offsets
@@ -623,6 +631,7 @@ public class WallpaperManager {
      * @param yOffset The offset along the Y dimension, from 0 to 1.
      */
     public void setWallpaperOffsets(IBinder windowToken, float xOffset, float yOffset) {
+<<<<<<< HEAD
         final IBinder fWindowToken = windowToken;
         final float fXOffset = xOffset;
         final float fYOffset = yOffset;
@@ -643,6 +652,18 @@ public class WallpaperManager {
         });
     }
 
+=======
+        try {
+            //Log.v(TAG, "Sending new wallpaper offsets from app...");
+            ViewRootImpl.getWindowSession(mContext.getMainLooper()).setWallpaperPosition(
+                    windowToken, xOffset, yOffset, mWallpaperXStep, mWallpaperYStep);
+            //Log.v(TAG, "...app returning after sending offsets!");
+        } catch (RemoteException e) {
+            // Ignore.
+        }
+    }
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * For applications that use multiple virtual screens showing a wallpaper,
      * specify the step size between virtual screens. For example, if the

@@ -17,7 +17,10 @@
 package android.graphics;
 
 import java.lang.ref.WeakReference;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -131,6 +134,7 @@ public class SurfaceTexture {
     }
 
     /**
+<<<<<<< HEAD
      * Set the default size of the image buffers.  The image producer may override the buffer size,
      * in which case the producer-set buffer size will be used, not the default size set by this
      * method.  Both video and camera based image producers do override the size.  This method may
@@ -148,6 +152,12 @@ public class SurfaceTexture {
      * {@link javax.microedition.khronos.opengles.GL10#glGetIntegerv glGetIntegerv}).
      * An error due to invalid dimensions might not be reported until
      * updateTexImage() is called.
+=======
+     * Set the size of buffers returned by requestBuffers when a width and height
+     * of zero is requested.
+     *
+     * @hide Pending approval by API council.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public void setDefaultBufferSize(int width, int height) {
         nativeSetDefaultBufferSize(width, height);
@@ -159,10 +169,14 @@ public class SurfaceTexture {
      * implicitly bind its texture to the GL_TEXTURE_EXTERNAL_OES texture target.
      */
     public void updateTexImage() {
+<<<<<<< HEAD
         int err = nativeUpdateTexImage(); 
         if (err != 0) {
             throw new RuntimeException("Error during updateTexImage (see logs)");
         }
+=======
+        nativeUpdateTexImage();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -268,7 +282,11 @@ public class SurfaceTexture {
     private native void nativeGetTransformMatrix(float[] mtx);
     private native long nativeGetTimestamp();
     private native void nativeSetDefaultBufferSize(int width, int height);
+<<<<<<< HEAD
     private native int nativeUpdateTexImage();
+=======
+    private native void nativeUpdateTexImage();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private native int nativeGetQueuedCount();
     private native void nativeRelease();
 

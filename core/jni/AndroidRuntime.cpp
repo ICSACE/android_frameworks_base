@@ -116,7 +116,10 @@ extern int register_android_graphics_Xfermode(JNIEnv* env);
 extern int register_android_graphics_PixelFormat(JNIEnv* env);
 extern int register_android_view_Display(JNIEnv* env);
 extern int register_android_view_GLES20Canvas(JNIEnv* env);
+<<<<<<< HEAD
 extern int register_android_view_HardwareRenderer(JNIEnv* env);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 extern int register_android_view_Surface(JNIEnv* env);
 extern int register_android_view_TextureView(JNIEnv* env);
 extern int register_android_database_CursorWindow(JNIEnv* env);
@@ -1102,7 +1105,10 @@ static const RegJNIRec gRegJNI[] = {
     REG_JNI(register_android_graphics_PixelFormat),
     REG_JNI(register_android_graphics_Graphics),
     REG_JNI(register_android_view_GLES20Canvas),
+<<<<<<< HEAD
     REG_JNI(register_android_view_HardwareRenderer),
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     REG_JNI(register_android_view_Surface),
     REG_JNI(register_android_view_TextureView),
     REG_JNI(register_com_google_android_gles_jni_EGLImpl),

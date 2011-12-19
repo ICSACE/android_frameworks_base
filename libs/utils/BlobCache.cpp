@@ -21,11 +21,15 @@
 #include <string.h>
 
 #include <utils/BlobCache.h>
+<<<<<<< HEAD
 #include <utils/Errors.h>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <utils/Log.h>
 
 namespace android {
 
+<<<<<<< HEAD
 // BlobCache::Header::mMagicNumber value
 static const uint32_t blobCacheMagic = '_Bb$';
 
@@ -35,6 +39,8 @@ static const uint32_t blobCacheVersion = 1;
 // BlobCache::Header::mDeviceVersion value
 static const uint32_t blobCacheDeviceVersion = 1;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 BlobCache::BlobCache(size_t maxKeySize, size_t maxValueSize, size_t maxTotalSize):
         mMaxKeySize(maxKeySize),
         mMaxValueSize(maxValueSize),
@@ -77,10 +83,18 @@ void BlobCache::set(const void* key, size_t keySize, const void* value,
         return;
     }
 
+<<<<<<< HEAD
+=======
+    Mutex::Autolock lock(mMutex);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<Blob> dummyKey(new Blob(key, keySize, false));
     CacheEntry dummyEntry(dummyKey, NULL);
 
     while (true) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ssize_t index = mCacheEntries.indexOf(dummyEntry);
         if (index < 0) {
             // Create a new cache entry.
@@ -137,6 +151,10 @@ size_t BlobCache::get(const void* key, size_t keySize, void* value,
                 keySize, mMaxKeySize);
         return 0;
     }
+<<<<<<< HEAD
+=======
+    Mutex::Autolock lock(mMutex);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<Blob> dummyKey(new Blob(key, keySize, false));
     CacheEntry dummyEntry(dummyKey, NULL);
     ssize_t index = mCacheEntries.indexOf(dummyEntry);
@@ -159,6 +177,7 @@ size_t BlobCache::get(const void* key, size_t keySize, void* value,
     return valueBlobSize;
 }
 
+<<<<<<< HEAD
 static inline size_t align4(size_t size) {
     return (size + 3) & ~3;
 }
@@ -286,6 +305,8 @@ status_t BlobCache::unflatten(void const* buffer, size_t size, int fds[],
     return OK;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 long int BlobCache::blob_random() {
 #ifdef _WIN32
     return rand();
@@ -313,7 +334,11 @@ BlobCache::Blob::Blob(const void* data, size_t size, bool copyData):
         mData(copyData ? malloc(size) : data),
         mSize(size),
         mOwnsData(copyData) {
+<<<<<<< HEAD
     if (data != NULL && copyData) {
+=======
+    if (copyData) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         memcpy(const_cast<void*>(mData), data, size);
     }
 }

@@ -51,6 +51,7 @@ public class NetworkStatsTest extends TestCase {
         assertEquals(-1, stats.findIndex(TEST_IFACE, 6, SET_DEFAULT, TAG_NONE));
     }
 
+<<<<<<< HEAD
     public void testFindIndexHinted() {
         final NetworkStats stats = new NetworkStats(TEST_START, 3)
                 .addValues(TEST_IFACE, 100, SET_DEFAULT, TAG_NONE, 1024L, 8L, 0L, 0L, 10)
@@ -72,6 +73,8 @@ public class NetworkStatsTest extends TestCase {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void testAddEntryGrow() throws Exception {
         final NetworkStats stats = new NetworkStats(TEST_START, 2);
 
@@ -278,6 +281,7 @@ public class NetworkStatsTest extends TestCase {
         assertValues(stats.getTotal(null, ifaces), 1024L, 64L, 0L, 0L, 0L);
     }
 
+<<<<<<< HEAD
     public void testWithoutUid() throws Exception {
         final NetworkStats before = new NetworkStats(TEST_START, 3)
                 .addValues(TEST_IFACE, 100, SET_DEFAULT, TAG_NONE, 128L, 8L, 0L, 2L, 20L)
@@ -310,6 +314,8 @@ public class NetworkStatsTest extends TestCase {
         assertEquals(128L + 512L, clone.getTotalBytes());
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static void assertValues(NetworkStats stats, int index, String iface, int uid, int set,
             int tag, long rxBytes, long rxPackets, long txBytes, long txPackets, long operations) {
         final NetworkStats.Entry entry = stats.getValues(index, null);

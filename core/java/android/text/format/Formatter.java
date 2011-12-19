@@ -21,7 +21,11 @@ import android.net.NetworkUtils;
 
 /**
  * Utility class to aid in formatting common values that are not covered
+<<<<<<< HEAD
  * by the {@link java.util.Formatter} class in {@link java.util}
+=======
+ * by {@link java.util.Formatter}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  */
 public final class Formatter {
 

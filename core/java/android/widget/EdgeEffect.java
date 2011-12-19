@@ -129,7 +129,11 @@ public class EdgeEffect {
         mEdge = res.getDrawable(R.drawable.overscroll_edge);
         mGlow = res.getDrawable(R.drawable.overscroll_glow);
 
+<<<<<<< HEAD
         mMinWidth = (int) (res.getDisplayMetrics().density * MIN_WIDTH + 0.5f);
+=======
+        mMinWidth = (int) (context.getResources().getDisplayMetrics().density * MIN_WIDTH + 0.5f);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mInterpolator = new DecelerateInterpolator();
     }
 

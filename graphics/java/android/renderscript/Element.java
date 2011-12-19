@@ -46,18 +46,25 @@ public class Element extends BaseObj {
     Element[] mElements;
     String[] mElementNames;
     int[] mArraySizes;
+<<<<<<< HEAD
     int[] mOffsetInBytes;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     DataType mType;
     DataKind mKind;
     boolean mNormalized;
     int mVectorSize;
 
+<<<<<<< HEAD
     /**
     * @hide
     * @return element size in bytes
     */
     public int getSizeBytes() {return mSize;}
+=======
+    int getSizeBytes() {return mSize;}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 
     /**
@@ -157,6 +164,7 @@ public class Element extends BaseObj {
     }
 
     /**
+<<<<<<< HEAD
     * @hide
     * @return number of sub-elements in this element
     */
@@ -228,6 +236,8 @@ public class Element extends BaseObj {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Utility function for returning an Element containing a single Boolean.
      *
      * @param rs Context to which the element will belong.
@@ -678,9 +688,13 @@ public class Element extends BaseObj {
         mElements = e;
         mElementNames = n;
         mArraySizes = as;
+<<<<<<< HEAD
         mOffsetInBytes = new int[mElements.length];
         for (int ct = 0; ct < mElements.length; ct++ ) {
             mOffsetInBytes[ct] = mSize;
+=======
+        for (int ct = 0; ct < mElements.length; ct++ ) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mSize += mElements[ct].mSize * mArraySizes[ct];
         }
     }
@@ -731,6 +745,7 @@ public class Element extends BaseObj {
         if(numSubElements > 0) {
             mElements = new Element[numSubElements];
             mElementNames = new String[numSubElements];
+<<<<<<< HEAD
             mArraySizes = new int[numSubElements];
             mOffsetInBytes = new int[numSubElements];
 
@@ -741,6 +756,15 @@ public class Element extends BaseObj {
                 mElements[i].updateFromNative();
                 mOffsetInBytes[i] = mSize;
                 mSize += mElements[i].mSize * mArraySizes[i];
+=======
+
+            int[] subElementIds = new int[numSubElements];
+            mRS.nElementGetSubElements(getID(), subElementIds, mElementNames);
+            for(int i = 0; i < numSubElements; i ++) {
+                mElements[i] = new Element(subElementIds[i], mRS);
+                mElements[i].updateFromNative();
+                mSize += mElements[i].mSize;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 

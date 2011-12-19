@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Build the unit tests,
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
@@ -38,3 +39,6 @@ include $(BUILD_NATIVE_TEST)
 ifeq (,$(ONE_SHOT_MAKEFILE))
 include $(call first-makefiles-under,$(LOCAL_PATH))
 endif
+=======
+include $(call all-subdir-makefiles)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

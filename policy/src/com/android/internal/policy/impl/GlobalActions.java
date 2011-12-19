@@ -67,15 +67,22 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private static final String TAG = "GlobalActions";
 
+<<<<<<< HEAD
     private static final boolean SHOW_SILENT_TOGGLE = true;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private final Context mContext;
     private final AudioManager mAudioManager;
 
     private ArrayList<Action> mItems;
     private AlertDialog mDialog;
 
+<<<<<<< HEAD
     private SilentModeAction mSilentModeAction;
+=======
+    private ToggleAction mSilentModeToggle;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private ToggleAction mAirplaneModeOn;
 
     private MyAdapter mAdapter;
@@ -126,7 +133,43 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
      * @return A new dialog.
      */
     private AlertDialog createDialog() {
+<<<<<<< HEAD
         mSilentModeAction = new SilentModeAction(mAudioManager, mHandler);
+=======
+        mSilentModeToggle = new ToggleAction(
+                R.drawable.ic_audio_vol_mute,
+                R.drawable.ic_audio_vol,
+                R.string.global_action_toggle_silent_mode,
+                R.string.global_action_silent_mode_on_status,
+                R.string.global_action_silent_mode_off_status) {
+
+            void willCreate() {
+                mEnabledIconResId = (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.VIBRATE_IN_SILENT, 1) == 1)
+                    ? R.drawable.ic_audio_ring_notif_vibrate
+                    : R.drawable.ic_audio_vol_mute;
+            }
+
+            void onToggle(boolean on) {
+                if (on) {
+                    mAudioManager.setRingerMode((Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.VIBRATE_IN_SILENT, 1) == 1)
+                        ? AudioManager.RINGER_MODE_VIBRATE
+                        : AudioManager.RINGER_MODE_SILENT);
+                } else {
+                    mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                }
+            }
+
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mAirplaneModeOn = new ToggleAction(
                 R.drawable.ic_lock_airplane_mode,
@@ -168,6 +211,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             }
         };
 
+<<<<<<< HEAD
         mItems = new ArrayList<Action>();
 
         // first: power off
@@ -230,16 +274,74 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mItems.add(mSilentModeAction);
         }
 
+=======
+        mItems = Lists.newArrayList(
+                // silent mode
+                mSilentModeToggle,
+                // next: airplane mode
+                mAirplaneModeOn,
+                // next: screenshot
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
+                    public void onPress() {
+                        takeScreenshot();
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                },
+                // next: reboot
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
+                    public void onPress() {
+                    	ShutdownThread.reboot(mContext, "null", true);
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                },
+                // last: power off
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off, R.string.global_action_power_off) {
+
+                    public void onPress() {
+                        // shutdown by making sure radio and power are handled accordingly.
+                        ShutdownThread.shutdown(mContext, true);
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                });
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mAdapter = new MyAdapter();
 
         final AlertDialog.Builder ab = new AlertDialog.Builder(mContext);
 
         ab.setAdapter(mAdapter, this)
+<<<<<<< HEAD
                 .setInverseBackgroundForced(true);
 
         final AlertDialog dialog = ab.create();
         dialog.getListView().setItemsCanFocus(true);
+=======
+                .setInverseBackgroundForced(true)
+                .setTitle(R.string.global_actions);
+
+        final AlertDialog dialog = ab.create();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
 
         dialog.setOnDismissListener(this);
@@ -332,6 +434,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private void prepareDialog() {
         final boolean silentModeOn =
                 mAudioManager.getRingerMode() != AudioManager.RINGER_MODE_NORMAL;
+<<<<<<< HEAD
+=======
+        mSilentModeToggle.updateState(
+                silentModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mAirplaneModeOn.updateState(mAirplaneState);
         mAdapter.notifyDataSetChanged();
         if (mKeyguardShowing) {
@@ -339,6 +446,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         } else {
             mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
         }
+<<<<<<< HEAD
 
         mDialog.setTitle(R.string.global_actions);
 
@@ -346,24 +454,38 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
             mContext.registerReceiver(mRingerModeReceiver, filter);
         }
+=======
+        mDialog.setTitle(R.string.global_actions);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
 
     /** {@inheritDoc} */
     public void onDismiss(DialogInterface dialog) {
+<<<<<<< HEAD
         if (SHOW_SILENT_TOGGLE) {
             mContext.unregisterReceiver(mRingerModeReceiver);
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /** {@inheritDoc} */
     public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
         if (!(mAdapter.getItem(which) instanceof SilentModeAction)) {
             dialog.dismiss();
         }
         mAdapter.getItem(which).onPress();
     }
 
+=======
+        dialog.dismiss();
+        mAdapter.getItem(which).onPress();
+    }
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * The adapter used for the list within the global actions dialog, taking
      * into account whether the keyguard is showing via
@@ -484,7 +606,13 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         public View create(
                 Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
+<<<<<<< HEAD
             View v = inflater.inflate(R.layout.global_actions_item, parent, false);
+=======
+            View v = (convertView != null) ?
+                    convertView :
+                    inflater.inflate(R.layout.global_actions_item, parent, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             ImageView icon = (ImageView) v.findViewById(R.id.icon);
             TextView messageView = (TextView) v.findViewById(R.id.message);
@@ -561,12 +689,19 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 LayoutInflater inflater) {
             willCreate();
 
+<<<<<<< HEAD
             View v = inflater.inflate(R
+=======
+            View v = (convertView != null) ?
+                    convertView :
+                    inflater.inflate(R
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             .layout.global_actions_item, parent, false);
 
             ImageView icon = (ImageView) v.findViewById(R.id.icon);
             TextView messageView = (TextView) v.findViewById(R.id.message);
             TextView statusView = (TextView) v.findViewById(R.id.status);
+<<<<<<< HEAD
             final boolean enabled = isEnabled();
 
             if (messageView != null) {
@@ -586,6 +721,21 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 statusView.setVisibility(View.VISIBLE);
                 statusView.setEnabled(enabled);
             }
+=======
+
+            messageView.setText(mMessageResId);
+
+            boolean on = ((mState == State.On) || (mState == State.TurningOn));
+            icon.setImageDrawable(context.getResources().getDrawable(
+                    (on ? mEnabledIconResId : mDisabledIconResid)));
+            statusView.setText(on ? mEnabledStatusMessageResId : mDisabledStatusMessageResId);
+            statusView.setVisibility(View.VISIBLE);
+
+            final boolean enabled = isEnabled();
+            messageView.setEnabled(enabled);
+            statusView.setEnabled(enabled);
+            icon.setEnabled(enabled);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             v.setEnabled(enabled);
 
             return v;
@@ -623,6 +773,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
+<<<<<<< HEAD
     private static class SilentModeAction implements Action, View.OnClickListener {
 
         private final int[] ITEM_IDS = { R.id.option1, R.id.option2, R.id.option3 };
@@ -687,6 +838,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -718,6 +871,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     };
 
+<<<<<<< HEAD
     private BroadcastReceiver mRingerModeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -731,14 +885,20 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static final int MESSAGE_REFRESH = 1;
     private static final int DIALOG_DISMISS_DELAY = 300; // ms
 
+=======
+    private static final int MESSAGE_DISMISS = 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == MESSAGE_DISMISS) {
                 if (mDialog != null) {
                     mDialog.dismiss();
                 }
+<<<<<<< HEAD
             } else if (msg.what == MESSAGE_REFRESH) {
                 mAdapter.notifyDataSetChanged();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     };

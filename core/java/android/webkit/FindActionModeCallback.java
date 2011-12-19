@@ -18,8 +18,11 @@ package android.webkit;
 
 import android.content.Context;
 import android.content.res.Resources;
+<<<<<<< HEAD
 import android.graphics.Point;
 import android.graphics.Rect;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
@@ -256,6 +259,7 @@ class FindActionModeCallback implements ActionMode.Callback, TextWatcher,
         // Does nothing.  Needed to implement TextWatcher.
     }
 
+<<<<<<< HEAD
     private Rect mGlobalVisibleRect = new Rect();
     private Point mGlobalVisibleOffset = new Point();
     public int getActionModeGlobalBottom() {
@@ -268,6 +272,15 @@ class FindActionModeCallback implements ActionMode.Callback, TextWatcher,
         }
         view.getGlobalVisibleRect(mGlobalVisibleRect, mGlobalVisibleOffset);
         return mGlobalVisibleRect.bottom;
+=======
+    public int getActionModeHeight() {
+        if (mActionMode == null) {
+            return 0;
+        }
+        View parent = (View) mCustomView.getParent();
+        return parent != null ? parent.getMeasuredHeight()
+                : mCustomView.getMeasuredHeight();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
 }

@@ -44,17 +44,26 @@ public:
         mutable void *drv;
 
         struct State {
+<<<<<<< HEAD
             Allocation **colorTargets;
             uint32_t colorTargetsCount;
             Allocation *depthTarget;
+=======
+            ObjectBaseRef<Allocation> *colorTargets;
+            uint32_t colorTargetsCount;
+            ObjectBaseRef<Allocation> depthTarget;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         };
         State state;
     };
     Hal mHal;
 
 protected:
+<<<<<<< HEAD
     ObjectBaseRef<Allocation> *mColorTargets;
     ObjectBaseRef<Allocation> mDepthTarget;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     bool mDirty;
     void checkError(Context *);
     void setColorAttachment(Context *rsc);

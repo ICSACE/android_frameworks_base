@@ -21,11 +21,16 @@ import com.android.internal.textservice.ISpellCheckerSessionListener;
 import com.android.internal.textservice.ITextServicesManager;
 import com.android.internal.textservice.ITextServicesSessionListener;
 
+<<<<<<< HEAD
 import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.Process;
+=======
+import android.os.Handler;
+import android.os.Message;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.textservice.SpellCheckerInfo;
@@ -126,7 +131,11 @@ public class SpellCheckerSession {
         }
         mSpellCheckerInfo = info;
         mSpellCheckerSessionListenerImpl = new SpellCheckerSessionListenerImpl(mHandler);
+<<<<<<< HEAD
         mInternalListener = new InternalListener(mSpellCheckerSessionListenerImpl);
+=======
+        mInternalListener = new InternalListener();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mTextServicesManager = tsm;
         mIsUsed = true;
         mSpellCheckerSessionListener = listener;
@@ -149,6 +158,7 @@ public class SpellCheckerSession {
     }
 
     /**
+<<<<<<< HEAD
      * Cancel pending and running spell check tasks
      */
     public void cancel() {
@@ -156,13 +166,18 @@ public class SpellCheckerSession {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Finish this session and allow TextServicesManagerService to disconnect the bound spell
      * checker.
      */
     public void close() {
         mIsUsed = false;
         try {
+<<<<<<< HEAD
             mSpellCheckerSessionListenerImpl.close();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mTextServicesManager.finishSpellCheckerService(mSpellCheckerSessionListenerImpl);
         } catch (RemoteException e) {
             // do nothing
@@ -201,6 +216,7 @@ public class SpellCheckerSession {
     private static class SpellCheckerSessionListenerImpl extends ISpellCheckerSessionListener.Stub {
         private static final int TASK_CANCEL = 1;
         private static final int TASK_GET_SUGGESTIONS_MULTIPLE = 2;
+<<<<<<< HEAD
         private static final int TASK_CLOSE = 3;
         private final Queue<SpellCheckerParams> mPendingTasks =
                 new LinkedList<SpellCheckerParams>();
@@ -210,6 +226,14 @@ public class SpellCheckerSession {
         private ISpellCheckerSession mISpellCheckerSession;
         private HandlerThread mThread;
         private Handler mAsyncHandler;
+=======
+        private final Queue<SpellCheckerParams> mPendingTasks =
+                new LinkedList<SpellCheckerParams>();
+        private final Handler mHandler;
+
+        private boolean mOpened;
+        private ISpellCheckerSession mISpellCheckerSession;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         public SpellCheckerSessionListenerImpl(Handler handler) {
             mOpened = false;
@@ -221,7 +245,10 @@ public class SpellCheckerSession {
             public final TextInfo[] mTextInfos;
             public final int mSuggestionsLimit;
             public final boolean mSequentialWords;
+<<<<<<< HEAD
             public ISpellCheckerSession mSession;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             public SpellCheckerParams(int what, TextInfo[] textInfos, int suggestionsLimit,
                     boolean sequentialWords) {
                 mWhat = what;
@@ -231,6 +258,7 @@ public class SpellCheckerSession {
             }
         }
 
+<<<<<<< HEAD
         private void processTask(ISpellCheckerSession session, SpellCheckerParams scp,
                 boolean async) {
             if (async || mAsyncHandler == null) {
@@ -286,10 +314,21 @@ public class SpellCheckerSession {
                     mThread = null;
                     mAsyncHandler = null;
                 }
+=======
+        private void processTask(SpellCheckerParams scp) {
+            switch (scp.mWhat) {
+                case TASK_CANCEL:
+                    processCancel();
+                    break;
+                case TASK_GET_SUGGESTIONS_MULTIPLE:
+                    processGetSuggestionsMultiple(scp);
+                    break;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
         public synchronized void onServiceConnected(ISpellCheckerSession session) {
+<<<<<<< HEAD
             synchronized (this) {
                 mISpellCheckerSession = session;
                 if (session.asBinder() instanceof Binder && mThread == null) {
@@ -321,6 +360,17 @@ public class SpellCheckerSession {
             processOrEnqueueTask(new SpellCheckerParams(TASK_CANCEL, null, 0, false));
         }
 
+=======
+            mISpellCheckerSession = session;
+            mOpened = true;
+            if (DBG)
+                Log.d(TAG, "onServiceConnected - Success");
+            while (!mPendingTasks.isEmpty()) {
+                processTask(mPendingTasks.poll());
+            }
+        }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         public void getSuggestionsMultiple(
                 TextInfo[] textInfos, int suggestionsLimit, boolean sequentialWords) {
             if (DBG) {
@@ -331,6 +381,7 @@ public class SpellCheckerSession {
                             suggestionsLimit, sequentialWords));
         }
 
+<<<<<<< HEAD
         public void close() {
             if (DBG) {
                 Log.w(TAG, "close");
@@ -338,14 +389,28 @@ public class SpellCheckerSession {
             processOrEnqueueTask(new SpellCheckerParams(TASK_CLOSE, null, 0, false));
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         public boolean isDisconnected() {
             return mOpened && mISpellCheckerSession == null;
         }
 
+<<<<<<< HEAD
+=======
+        public boolean checkOpenConnection() {
+            if (mISpellCheckerSession != null) {
+                return true;
+            }
+            Log.e(TAG, "not connected to the spellchecker service.");
+            return false;
+        }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         private void processOrEnqueueTask(SpellCheckerParams scp) {
             if (DBG) {
                 Log.d(TAG, "process or enqueue task: " + mISpellCheckerSession);
             }
+<<<<<<< HEAD
             ISpellCheckerSession session;
             synchronized (this) {
                 session = mISpellCheckerSession;
@@ -369,16 +434,56 @@ public class SpellCheckerSession {
                 }
             }
             processTask(session, scp, false);
+=======
+            if (mISpellCheckerSession == null) {
+                mPendingTasks.offer(scp);
+            } else {
+                processTask(scp);
+            }
+        }
+
+        private void processCancel() {
+            if (!checkOpenConnection()) {
+                return;
+            }
+            if (DBG) {
+                Log.w(TAG, "Cancel spell checker tasks.");
+            }
+            try {
+                mISpellCheckerSession.onCancel();
+            } catch (RemoteException e) {
+                Log.e(TAG, "Failed to cancel " + e);
+            }
+        }
+
+        private void processGetSuggestionsMultiple(SpellCheckerParams scp) {
+            if (!checkOpenConnection()) {
+                return;
+            }
+            if (DBG) {
+                Log.w(TAG, "Get suggestions from the spell checker.");
+            }
+            try {
+                mISpellCheckerSession.onGetSuggestionsMultiple(
+                        scp.mTextInfos, scp.mSuggestionsLimit, scp.mSequentialWords);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Failed to get suggestions " + e);
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         @Override
         public void onGetSuggestions(SuggestionsInfo[] results) {
+<<<<<<< HEAD
             synchronized (this) {
                 if (mHandler != null) {
                     mHandler.sendMessage(Message.obtain(mHandler,
                             MSG_ON_GET_SUGGESTION_MULTIPLE, results));
                 }
             }
+=======
+            mHandler.sendMessage(Message.obtain(mHandler, MSG_ON_GET_SUGGESTION_MULTIPLE, results));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -393,6 +498,7 @@ public class SpellCheckerSession {
         public void onGetSuggestions(SuggestionsInfo[] results);
     }
 
+<<<<<<< HEAD
     private static class InternalListener extends ITextServicesSessionListener.Stub {
         private final SpellCheckerSessionListenerImpl mParentSpellCheckerSessionListenerImpl;
 
@@ -400,12 +506,19 @@ public class SpellCheckerSession {
             mParentSpellCheckerSessionListenerImpl = spellCheckerSessionListenerImpl;
         }
 
+=======
+    private class InternalListener extends ITextServicesSessionListener.Stub {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         @Override
         public void onServiceConnected(ISpellCheckerSession session) {
             if (DBG) {
                 Log.w(TAG, "SpellCheckerSession connected.");
             }
+<<<<<<< HEAD
             mParentSpellCheckerSessionListenerImpl.onServiceConnected(session);
+=======
+            mSpellCheckerSessionListenerImpl.onServiceConnected(session);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

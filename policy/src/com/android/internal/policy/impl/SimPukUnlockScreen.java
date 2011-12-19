@@ -106,7 +106,11 @@ public class SimPukUnlockScreen extends LinearLayout implements KeyguardScreen,
         mHeaderText.setSelected(true);
 
         mKeyguardStatusViewManager = new KeyguardStatusViewManager(this, updateMonitor,
+<<<<<<< HEAD
                 lockpatternutils, callback, false);
+=======
+                lockpatternutils, callback, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mPinText.setFocusableInTouchMode(true);
         mPinText.setOnFocusChangeListener(this);
@@ -242,6 +246,7 @@ public class SimPukUnlockScreen extends LinearLayout implements KeyguardScreen,
 
         new CheckSimPuk(mPukText.getText().toString(),
                 mPinText.getText().toString()) {
+<<<<<<< HEAD
             void onSimLockChangedResponse(final boolean success) {
                 mPinText.post(new Runnable() {
                     public void run() {
@@ -260,6 +265,22 @@ public class SimPukUnlockScreen extends LinearLayout implements KeyguardScreen,
                         }
                     }
                 });
+=======
+            void onSimLockChangedResponse(boolean success) {
+                if (mSimUnlockProgressDialog != null) {
+                    mSimUnlockProgressDialog.hide();
+                }
+                if (success) {
+                    // before closing the keyguard, report back that
+                    // the sim is unlocked so it knows right away
+                    mUpdateMonitor.reportSimUnlocked();
+                    mCallback.goToUnlockScreen();
+                } else {
+                    mHeaderText.setText(R.string.badPuk);
+                    mPukText.setText("");
+                    mPinText.setText("");
+                }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }.start();
     }
@@ -383,9 +404,12 @@ public class SimPukUnlockScreen extends LinearLayout implements KeyguardScreen,
 
         public void onClick(View v) {
             if (v == mCancelButton) {
+<<<<<<< HEAD
                 // clear the PIN/PUK entry fields if the user cancels
                 mPinText.setText("");
                 mPukText.setText("");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mCallback.goToLockScreen();
                 return;
             }

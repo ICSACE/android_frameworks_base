@@ -371,29 +371,44 @@ nElementGetNativeData(JNIEnv *_env, jobject _this, RsContext con, jint id, jintA
 
 
 static void
+<<<<<<< HEAD
 nElementGetSubElements(JNIEnv *_env, jobject _this, RsContext con, jint id,
                        jintArray _IDs,
                        jobjectArray _names,
                        jintArray _arraySizes)
+=======
+nElementGetSubElements(JNIEnv *_env, jobject _this, RsContext con, jint id, jintArray _IDs, jobjectArray _names)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 {
     int dataSize = _env->GetArrayLength(_IDs);
     LOG_API("nElementGetSubElements, con(%p)", con);
 
     uint32_t *ids = (uint32_t *)malloc((uint32_t)dataSize * sizeof(uint32_t));
     const char **names = (const char **)malloc((uint32_t)dataSize * sizeof(const char *));
+<<<<<<< HEAD
     uint32_t *arraySizes = (uint32_t *)malloc((uint32_t)dataSize * sizeof(uint32_t));
 
     rsaElementGetSubElements(con, (RsElement)id, ids, names, arraySizes, (uint32_t)dataSize);
+=======
+
+    rsaElementGetSubElements(con, (RsElement)id, ids, names, (uint32_t)dataSize);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     for(jint i = 0; i < dataSize; i++) {
         _env->SetObjectArrayElement(_names, i, _env->NewStringUTF(names[i]));
         _env->SetIntArrayRegion(_IDs, i, 1, (const jint*)&ids[i]);
+<<<<<<< HEAD
         _env->SetIntArrayRegion(_arraySizes, i, 1, (const jint*)&arraySizes[i]);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     free(ids);
     free(names);
+<<<<<<< HEAD
     free(arraySizes);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 // -----------------------------------
@@ -1245,7 +1260,11 @@ static JNINativeMethod methods[] = {
 {"rsnElementCreate",                 "(IIIZI)I",                              (void*)nElementCreate },
 {"rsnElementCreate2",                "(I[I[Ljava/lang/String;[I)I",           (void*)nElementCreate2 },
 {"rsnElementGetNativeData",          "(II[I)V",                               (void*)nElementGetNativeData },
+<<<<<<< HEAD
 {"rsnElementGetSubElements",         "(II[I[Ljava/lang/String;[I)V",          (void*)nElementGetSubElements },
+=======
+{"rsnElementGetSubElements",         "(II[I[Ljava/lang/String;)V",            (void*)nElementGetSubElements },
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 {"rsnTypeCreate",                    "(IIIIIZZ)I",                            (void*)nTypeCreate },
 {"rsnTypeGetNativeData",             "(II[I)V",                               (void*)nTypeGetNativeData },

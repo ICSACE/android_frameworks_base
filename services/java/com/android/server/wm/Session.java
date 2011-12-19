@@ -151,22 +151,33 @@ final class Session extends IWindowSession.Stub
 
     public int relayout(IWindow window, int seq, WindowManager.LayoutParams attrs,
             int requestedWidth, int requestedHeight, int viewFlags,
+<<<<<<< HEAD
             int flags, Rect outFrame, Rect outContentInsets,
+=======
+            boolean insetsPending, Rect outFrame, Rect outContentInsets,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             Rect outVisibleInsets, Configuration outConfig, Surface outSurface) {
         if (false) Slog.d(WindowManagerService.TAG, ">>>>>> ENTERED relayout from "
                 + Binder.getCallingPid());
         int res = mService.relayoutWindow(this, window, seq, attrs,
+<<<<<<< HEAD
                 requestedWidth, requestedHeight, viewFlags, flags,
+=======
+                requestedWidth, requestedHeight, viewFlags, insetsPending,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 outFrame, outContentInsets, outVisibleInsets, outConfig, outSurface);
         if (false) Slog.d(WindowManagerService.TAG, "<<<<<< EXITING relayout to "
                 + Binder.getCallingPid());
         return res;
     }
 
+<<<<<<< HEAD
     public void performDeferredDestroy(IWindow window) {
         mService.performDeferredDestroyWindow(this, window);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean outOfMemory(IWindow window) {
         return mService.outOfMemoryWindow(this, window);
     }
@@ -310,6 +321,7 @@ final class Session extends IWindowSession.Stub
         synchronized (mService.mWindowMap) {
             long ident = Binder.clearCallingIdentity();
             try {
+<<<<<<< HEAD
                 if (mService.mDragState == null) {
                     // Most likely the drop recipient ANRed and we ended the drag
                     // out from under it.  Log the issue and move on.
@@ -319,6 +331,9 @@ final class Session extends IWindowSession.Stub
 
                 if (mService.mDragState.mToken != token) {
                     // We're in a drag, but the wrong window has responded.
+=======
+                if (mService.mDragState == null || mService.mDragState.mToken != token) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     Slog.w(WindowManagerService.TAG, "Invalid drop-result claim by " + window);
                     throw new IllegalStateException("reportDropResult() by non-recipient");
                 }

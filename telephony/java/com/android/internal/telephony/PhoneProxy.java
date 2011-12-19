@@ -32,7 +32,10 @@ import android.util.Log;
 
 import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.internal.telephony.gsm.GSMPhone;
+<<<<<<< HEAD
 import com.android.internal.telephony.gsm.UsimServiceTable;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.telephony.ims.IsimRecords;
 import com.android.internal.telephony.test.SimulatedRadioControl;
 
@@ -854,9 +857,12 @@ public class PhoneProxy extends Handler implements Phone {
     public void setVoiceMessageWaiting(int line, int countWaiting) {
         mActivePhone.setVoiceMessageWaiting(line, countWaiting);
     }
+<<<<<<< HEAD
 
     @Override
     public UsimServiceTable getUsimServiceTable() {
         return mActivePhone.getUsimServiceTable();
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

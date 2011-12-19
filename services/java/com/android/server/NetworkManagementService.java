@@ -247,11 +247,14 @@ public class NetworkManagementService extends INetworkManagementService.Stub
      * Notify our observers of an interface removal.
      */
     private void notifyInterfaceRemoved(String iface) {
+<<<<<<< HEAD
         // netd already clears out quota and alerts for removed ifaces; update
         // our sanity-checking state.
         mActiveAlertIfaces.remove(iface);
         mActiveQuotaIfaces.remove(iface);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         for (INetworkManagementEventObserver obs : mObservers) {
             try {
                 obs.interfaceRemoved(iface);
@@ -856,6 +859,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
 
         NetworkInterface internalNetworkInterface =
                 NetworkInterface.getByName(internalInterface);
+<<<<<<< HEAD
         if (internalNetworkInterface == null) {
             cmd += " 0";
         } else {
@@ -867,6 +871,15 @@ public class NetworkManagementService extends INetworkManagementService.Stub
                         ia.getNetworkPrefixLength());
                 cmd = cmd + " " + addr.getHostAddress() + "/" + ia.getNetworkPrefixLength();
             }
+=======
+        Collection<InterfaceAddress>interfaceAddresses =
+                internalNetworkInterface.getInterfaceAddresses();
+        cmd += " " + interfaceAddresses.size();
+        for (InterfaceAddress ia : interfaceAddresses) {
+            InetAddress addr = NetworkUtils.getNetworkPart(ia.getAddress(),
+                    ia.getNetworkPrefixLength());
+            cmd = cmd + " " + addr.getHostAddress() + "/" + ia.getNetworkPrefixLength();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         mConnector.doCommand(cmd);
@@ -1140,6 +1153,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
             final StringBuilder command = new StringBuilder();
             command.append("bandwidth removeiquota ").append(iface);
 
+<<<<<<< HEAD
             mActiveQuotaIfaces.remove(iface);
             mActiveAlertIfaces.remove(iface);
 
@@ -1148,6 +1162,14 @@ public class NetworkManagementService extends INetworkManagementService.Stub
                 mConnector.doCommand(command.toString());
             } catch (NativeDaemonConnectorException e) {
                 // TODO: include current iptables state
+=======
+            try {
+                // TODO: support quota shared across interfaces
+                mConnector.doCommand(command.toString());
+                mActiveQuotaIfaces.remove(iface);
+                mActiveAlertIfaces.remove(iface);
+            } catch (NativeDaemonConnectorException e) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 throw new IllegalStateException("Error communicating to native daemon", e);
             }
         }

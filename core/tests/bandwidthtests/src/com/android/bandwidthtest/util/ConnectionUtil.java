@@ -44,8 +44,11 @@ import com.android.bandwidthtest.NetworkState;
 import com.android.bandwidthtest.NetworkState.StateTransitionDirection;
 import com.android.internal.util.AsyncChannel;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.net.UnknownHostException;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.util.List;
 
 /*
@@ -259,6 +262,7 @@ public class ConnectionUtil {
         mConnectivityState[networkType].recordState(networkState);
     }
 
+<<<<<<< HEAD
     /**
      * Set the state transition criteria
      *
@@ -267,6 +271,16 @@ public class ConnectionUtil {
      * @param transitionDir
      * @param targetState
      */
+=======
+   /**
+    * Set the state transition criteria
+    *
+    * @param networkType
+    * @param initState
+    * @param transitionDir
+    * @param targetState
+    */
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void setStateTransitionCriteria(int networkType, State initState,
             StateTransitionDirection transitionDir, State targetState) {
         mConnectivityState[networkType].setStateTransitionCriteria(
@@ -497,8 +511,12 @@ public class ConnectionUtil {
      * @return true if connected to a mobile network, false otherwise.
      */
     public boolean isConnectedToMobile() {
+<<<<<<< HEAD
         NetworkInfo networkInfo = mCM.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return networkInfo.isConnected();
+=======
+        return (mNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -506,10 +524,17 @@ public class ConnectionUtil {
      * @return true if connected to wifi, false otherwise.
      */
     public boolean isConnectedToWifi() {
+<<<<<<< HEAD
         NetworkInfo networkInfo = mCM.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return networkInfo.isConnected();
     }
 
+=======
+        return (mNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI);
+    }
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Associate the device to given SSID
      * If the device is already associated with a WiFi, disconnect and forget it,
@@ -684,6 +709,7 @@ public class ConnectionUtil {
         }
         Log.v(LOG_TAG, "onDestroy, inst=" + Integer.toHexString(hashCode()));
     }
+<<<<<<< HEAD
 
     /**
      * Helper method used to test data connectivity by pinging a series of popular sites.
@@ -710,4 +736,6 @@ public class ConnectionUtil {
         }
         return false;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

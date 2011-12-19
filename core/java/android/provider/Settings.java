@@ -1183,10 +1183,13 @@ public final class Settings {
         public static final String RADIO_WIFI = "wifi";
 
         /**
+<<<<<<< HEAD
          * {@hide}
          */
         public static final String RADIO_WIMAX = "wimax";
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * Constant for use in AIRPLANE_MODE_RADIOS to specify Cellular radio.
          */
         public static final String RADIO_CELL = "cell";
@@ -2759,11 +2762,14 @@ public final class Settings {
             "enabled_accessibility_services";
 
         /**
+<<<<<<< HEAD
          * Whether to speak passwords while in accessibility mode.
          */
         public static final String ACCESSIBILITY_SPEAK_PASSWORD = "speak_password";
 
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * If injection of accessibility enhancing JavaScript scripts
          * is enabled.
          * <p>
@@ -2913,11 +2919,14 @@ public final class Settings {
          */
         public static final String WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON =
                 "wifi_networks_available_notification_on";
+<<<<<<< HEAD
         /**
          * {@hide}
          */
         public static final String WIMAX_NETWORKS_AVAILABLE_NOTIFICATION_ON =
                 "wimax_networks_available_notification_on";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         /**
          * Delay (in seconds) before repeating the Wi-Fi networks available notification.
@@ -3117,6 +3126,7 @@ public final class Settings {
                 "wifi_watchdog_blacklist_followup_interval_ms";
 
         /**
+<<<<<<< HEAD
          * Setting to turn off poor network avoidance on Wi-Fi. Feature is disabled by default and
          * the setting needs to be set to 1 to enable it.
          * @hide
@@ -3125,6 +3135,8 @@ public final class Settings {
                 "wifi_watchdog_poor_network_test_enabled";
 
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * Setting to turn off walled garden test on Wi-Fi. Feature is enabled by default and
          * the setting needs to be set to 0 to disable it.
          * @hide
@@ -4037,6 +4049,26 @@ public final class Settings {
         public static final String SETUP_PREPAID_DETECTION_REDIR_HOST =
                 "setup_prepaid_detection_redir_host";
 
+<<<<<<< HEAD
+=======
+        /**
+         * The user's preferred "dream" (interactive screensaver) component.
+         *
+         * This component will be launched by the PhoneWindowManager after the user's chosen idle
+         * timeout (specified by {@link #DREAM_TIMEOUT}).
+         * @hide
+         */
+        public static final String DREAM_COMPONENT =
+                "dream_component";
+
+        /**
+         * The delay before a "dream" is started (set to 0 to disable).
+         * @hide
+         */
+        public static final String DREAM_TIMEOUT =
+                "dream_timeout";
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         /** {@hide} */
         public static final String NETSTATS_ENABLED = "netstats_enabled";
         /** {@hide} */
@@ -4097,7 +4129,10 @@ public final class Settings {
             ENABLED_ACCESSIBILITY_SERVICES,
             TOUCH_EXPLORATION_ENABLED,
             ACCESSIBILITY_ENABLED,
+<<<<<<< HEAD
             ACCESSIBILITY_SPEAK_PASSWORD,
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             TTS_USE_DEFAULTS,
             TTS_DEFAULT_RATE,
             TTS_DEFAULT_PITCH,

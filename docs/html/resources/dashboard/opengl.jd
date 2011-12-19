@@ -57,7 +57,11 @@ ending on the data collection date noted below.</p>
 <div class="dashboard-panel">
 
 <img alt="" width="400" height="250"
+<<<<<<< HEAD
 src="http://chart.googleapis.com/chart?cht=p&chs=400x250&chco=c4df9b,6fad0c&chl=GL%201.1|GL%202.0%20%26%201.1&chd=t%3A10.1,89.9" />
+=======
+src="http://chart.googleapis.com/chart?cht=p&chs=400x250&chco=c4df9b,6fad0c&chl=GL%201.1|GL%202.0%20%26%201.1&chd=t%3A9.8,90.2" />
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <table>
 <tr>
@@ -66,6 +70,7 @@ src="http://chart.googleapis.com/chart?cht=p&chs=400x250&chco=c4df9b,6fad0c&chl=
 </tr>
 <tr>
 <td>1.1</th>
+<<<<<<< HEAD
 <td>10.1%</td>
 </tr>
 <tr>
@@ -75,5 +80,16 @@ src="http://chart.googleapis.com/chart?cht=p&chs=400x250&chco=c4df9b,6fad0c&chl=
 </table>
 
 <p><em>Data collected during a 7-day period ending on December 1, 2011</em></p>
+=======
+<td>9.8%</td>
+</tr>
+<tr>
+<td>2.0</th>
+<td>90.2%</td>
+</tr>
+</table>
+
+<p><em>Data collected during a 7-day period ending on November 3, 2011</em></p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </div>
 

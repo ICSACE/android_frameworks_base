@@ -21,7 +21,10 @@
 
 #ifndef ANDROID_RS_SERIALIZE
 #include <bcinfo/BitcodeTranslator.h>
+<<<<<<< HEAD
 #include <bcinfo/BitcodeWrapper.h>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #endif
 
 using namespace android;
@@ -197,6 +200,7 @@ bool ScriptC::runCompiler(Context *rsc,
 
     //LOGE("runCompiler %p %p %p %p %p %i", rsc, this, resName, cacheDir, bitcode, bitcodeLen);
 #ifndef ANDROID_RS_SERIALIZE
+<<<<<<< HEAD
     uint32_t sdkVersion = 0;
     bcinfo::BitcodeWrapper bcWrapper((const char *)bitcode, bitcodeLen);
     if (!bcWrapper.unwrap()) {
@@ -215,6 +219,9 @@ bool ScriptC::runCompiler(Context *rsc,
         sdkVersion = rsc->getTargetSdkVersion();
     }
 
+=======
+    uint32_t sdkVersion = rsc->getTargetSdkVersion();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (BT) {
         delete BT;
     }

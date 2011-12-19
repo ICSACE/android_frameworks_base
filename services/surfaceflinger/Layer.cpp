@@ -360,6 +360,21 @@ uint32_t Layer::doTransaction(uint32_t flags)
                 mCurrentScalingMode);
 
         if (!isFixedSize()) {
+<<<<<<< HEAD
+=======
+            // we're being resized and there is a freeze display request,
+            // acquire a freeze lock, so that the screen stays put
+            // until we've redrawn at the new size; this is to avoid
+            // glitches upon orientation changes.
+            if (mFlinger->hasFreezeRequest()) {
+                // if the surface is hidden, don't try to acquire the
+                // freeze lock, since hidden surfaces may never redraw
+                if (!(front.flags & ISurfaceComposer::eLayerHidden)) {
+                    mFreezeLock = mFlinger->getFreezeLock();
+                }
+            }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // this will make sure LayerBase::doTransaction doesn't update
             // the drawing state's size
             Layer::State& editDraw(mDrawingState);
@@ -373,6 +388,17 @@ uint32_t Layer::doTransaction(uint32_t flags)
                 temp.requested_h);
     }
 
+<<<<<<< HEAD
+=======
+    if (temp.sequence != front.sequence) {
+        if (temp.flags & ISurfaceComposer::eLayerHidden || temp.alpha == 0) {
+            // this surface is now hidden, so it shouldn't hold a freeze lock
+            // (it may never redraw, which is fine if it is hidden)
+            mFreezeLock.clear();
+        }
+    }
+        
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     return LayerBase::doTransaction(flags);
 }
 
@@ -446,7 +472,11 @@ void Layer::lockPageFlip(bool& recomputeVisibleRegions)
         glTexParameterx(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameterx(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+<<<<<<< HEAD
         // update the layer size if needed
+=======
+        // update the layer size and release freeze-lock
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         const Layer::State& front(drawingState());
 
         // FIXME: mPostedDirtyRegion = dirty & bounds
@@ -483,6 +513,12 @@ void Layer::lockPageFlip(bool& recomputeVisibleRegions)
 
                 // recompute visible region
                 recomputeVisibleRegions = true;
+<<<<<<< HEAD
+=======
+
+                // we now have the correct size, unfreeze the screen
+                mFreezeLock.clear();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             LOGD_IF(DEBUG_RESIZE,
@@ -515,6 +551,14 @@ void Layer::unlockPageFlip(
         dirtyRegion.andSelf(visibleRegionScreen);
         outDirtyRegion.orSelf(dirtyRegion);
     }
+<<<<<<< HEAD
+=======
+    if (visibleRegionScreen.isEmpty()) {
+        // an invisible layer should not hold a freeze-lock
+        // (because it may never be updated and therefore never release it)
+        mFreezeLock.clear();
+    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 void Layer::dump(String8& result, char* buffer, size_t SIZE) const
@@ -532,9 +576,15 @@ void Layer::dump(String8& result, char* buffer, size_t SIZE) const
     snprintf(buffer, SIZE,
             "      "
             "format=%2d, activeBuffer=[%4ux%4u:%4u,%3X],"
+<<<<<<< HEAD
             " transform-hint=0x%02x, queued-frames=%d\n",
             mFormat, w0, h0, s0,f0,
             getTransformHint(), mQueuedFrames);
+=======
+            " freezeLock=%p, transform-hint=0x%02x, queued-frames=%d\n",
+            mFormat, w0, h0, s0,f0,
+            getFreezeLock().get(), getTransformHint(), mQueuedFrames);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     result.append(buffer);
 
@@ -574,3 +624,7 @@ uint32_t Layer::getTransformHint() const {
 
 
 }; // namespace android
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

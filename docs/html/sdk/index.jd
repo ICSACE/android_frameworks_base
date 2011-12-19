@@ -1,6 +1,7 @@
 page.title=Android SDK
 sdk.redirect=0
 
+<<<<<<< HEAD
 sdk.win_installer=installer_r16-windows.exe
 sdk.win_installer_bytes=29561554
 sdk.win_installer_checksum=3521dda4904886b05980590f83cf3469
@@ -16,6 +17,23 @@ sdk.mac_checksum=d1dc2b6f13eed5e3ce5cf26c4e4c47aa
 sdk.linux_download=android-sdk_r16-linux.tgz
 sdk.linux_bytes=22048174
 sdk.linux_checksum=3ba457f731d51da3741c29c8830a4583
+=======
+sdk.win_installer=installer_r15-windows.exe
+sdk.win_installer_bytes=33902520
+sdk.win_installer_checksum=ee8481cb86a6646a4d963d5142902c5c
+
+sdk.win_download=android-sdk_r15-windows.zip
+sdk.win_bytes=33895447
+sdk.win_checksum=cc2aadf7120d12b574981461736a96e9
+
+sdk.mac_download=android-sdk_r15-macosx.zip
+sdk.mac_bytes=30469921
+sdk.mac_checksum=03d2cdd3565771e8c7a438f1c40cc8a5
+
+sdk.linux_download=android-sdk_r15-linux.tgz
+sdk.linux_bytes=26124434
+sdk.linux_checksum=f529681fd1eda11c6e1e1d44b42c1432
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 @jd:body
 

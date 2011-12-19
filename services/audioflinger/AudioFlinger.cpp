@@ -89,12 +89,15 @@ static const int kRecordThreadSleepUs = 5000;
 
 static const nsecs_t kSetParametersTimeout = seconds(2);
 
+<<<<<<< HEAD
 // minimum sleep time for the mixer thread loop when tracks are active but in underrun
 static const uint32_t kMinThreadSleepTimeUs = 5000;
 // maximum divider applied to the active sleep time in the mixer thread loop
 static const uint32_t kMaxThreadSleepTimeShift = 2;
 
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 // ----------------------------------------------------------------------------
 
 static bool recordingAllowed() {
@@ -1816,6 +1819,7 @@ audio_stream_t* AudioFlinger::PlaybackThread::stream()
     return &mOutput->stream->common;
 }
 
+<<<<<<< HEAD
 uint32_t AudioFlinger::PlaybackThread::activeSleepTimeUs()
 {
     // A2DP output latency is not due only to buffering capacity. It also reflects encoding,
@@ -1828,6 +1832,8 @@ uint32_t AudioFlinger::PlaybackThread::activeSleepTimeUs()
     }
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 // ----------------------------------------------------------------------------
 
 AudioFlinger::MixerThread::MixerThread(const sp<AudioFlinger>& audioFlinger, AudioStreamOut* output, int id, uint32_t device)
@@ -1864,7 +1870,10 @@ bool AudioFlinger::MixerThread::threadLoop()
     uint32_t activeSleepTime = activeSleepTimeUs();
     uint32_t idleSleepTime = idleSleepTimeUs();
     uint32_t sleepTime = idleSleepTime;
+<<<<<<< HEAD
     uint32_t sleepTimeShift = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     Vector< sp<EffectChain> > effectChains;
 #ifdef DEBUG_CPU_USAGE
     ThreadCpuUsage cpu;
@@ -1956,7 +1965,10 @@ bool AudioFlinger::MixerThread::threadLoop()
 
                     standbyTime = systemTime() + kStandbyTimeInNsecs;
                     sleepTime = idleSleepTime;
+<<<<<<< HEAD
                     sleepTimeShift = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     continue;
                 }
             }
@@ -1973,10 +1985,13 @@ bool AudioFlinger::MixerThread::threadLoop()
             // mix buffers...
             mAudioMixer->process();
             sleepTime = 0;
+<<<<<<< HEAD
             // increase sleep time progressively when application underrun condition clears
             if (sleepTimeShift > 0) {
                 sleepTimeShift--;
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             standbyTime = systemTime() + kStandbyTimeInNsecs;
             //TODO: delay standby when effects have a tail
         } else {
@@ -1984,6 +1999,7 @@ bool AudioFlinger::MixerThread::threadLoop()
             // buffer size, then write 0s to the output
             if (sleepTime == 0) {
                 if (mixerStatus == MIXER_TRACKS_ENABLED) {
+<<<<<<< HEAD
                     sleepTime = activeSleepTime >> sleepTimeShift;
                     if (sleepTime < kMinThreadSleepTimeUs) {
                         sleepTime = kMinThreadSleepTimeUs;
@@ -1995,6 +2011,9 @@ bool AudioFlinger::MixerThread::threadLoop()
                     if (sleepTimeShift < kMaxThreadSleepTimeShift) {
                         sleepTimeShift++;
                     }
+=======
+                    sleepTime = activeSleepTime;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } else {
                     sleepTime = idleSleepTime;
                 }
@@ -2100,6 +2119,7 @@ uint32_t AudioFlinger::MixerThread::prepareTracks_l(const SortedVector< wp<Track
         // The first time a track is added we wait
         // for all its buffers to be filled before processing it
         mAudioMixer->setActiveTrack(track->name());
+<<<<<<< HEAD
         // make sure that we have enough frames to mix one full buffer.
         // enforce this condition only once to enable draining the buffer in case the client
         // app does not call stop() and relies on underrun to stop:
@@ -2115,6 +2135,9 @@ uint32_t AudioFlinger::MixerThread::prepareTracks_l(const SortedVector< wp<Track
             }
         }
         if ((cblk->framesReady() >= minFrames) && track->isReady() &&
+=======
+        if (cblk->framesReady() && track->isReady() &&
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 !track->isPaused() && !track->isTerminated())
         {
             //LOGV("track %d u=%08x, s=%08x [OK] on thread %p", track->name(), cblk->user, cblk->server, this);
@@ -2434,6 +2457,14 @@ status_t AudioFlinger::MixerThread::dumpInternals(int fd, const Vector<String16>
     return NO_ERROR;
 }
 
+<<<<<<< HEAD
+=======
+uint32_t AudioFlinger::MixerThread::activeSleepTimeUs()
+{
+    return (uint32_t)(mOutput->stream->get_latency(mOutput->stream) * 1000) / 2;
+}
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 uint32_t AudioFlinger::MixerThread::idleSleepTimeUs()
 {
     return (uint32_t)(((mFrameCount * 1000) / mSampleRate) * 1000) / 2;
@@ -2900,7 +2931,11 @@ uint32_t AudioFlinger::DirectOutputThread::activeSleepTimeUs()
 {
     uint32_t time;
     if (audio_is_linear_pcm(mFormat)) {
+<<<<<<< HEAD
         time = PlaybackThread::activeSleepTimeUs();
+=======
+        time = (uint32_t)(mOutput->stream->get_latency(mOutput->stream) * 1000) / 2;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     } else {
         time = 10000;
     }
@@ -7057,17 +7092,24 @@ void AudioFlinger::EffectHandle::dump(char* buffer, size_t size)
 
 AudioFlinger::EffectChain::EffectChain(const wp<ThreadBase>& wThread,
                                         int sessionId)
+<<<<<<< HEAD
     : mThread(wThread), mSessionId(sessionId), mActiveTrackCnt(0), mTrackCnt(0), mTailBufferCount(0),
+=======
+    : mThread(wThread), mSessionId(sessionId), mActiveTrackCnt(0), mTrackCnt(0),
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       mOwnInBuffer(false), mVolumeCtrlIdx(-1), mLeftVolume(UINT_MAX), mRightVolume(UINT_MAX),
       mNewLeftVolume(UINT_MAX), mNewRightVolume(UINT_MAX)
 {
     mStrategy = AudioSystem::getStrategyForStream(AUDIO_STREAM_MUSIC);
+<<<<<<< HEAD
     sp<ThreadBase> thread = mThread.promote();
     if (thread == 0) {
         return;
     }
     mMaxTailBuffers = ((kProcessTailDurationMs * thread->sampleRate()) / 1000) /
                                     thread->frameCount();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 AudioFlinger::EffectChain::~EffectChain()
@@ -7135,6 +7177,7 @@ void AudioFlinger::EffectChain::process_l()
     }
     bool isGlobalSession = (mSessionId == AUDIO_SESSION_OUTPUT_MIX) ||
             (mSessionId == AUDIO_SESSION_OUTPUT_STAGE);
+<<<<<<< HEAD
     // always process effects unless no more tracks are on the session and the effect tail
     // has been rendered
     bool doProcess = true;
@@ -7160,6 +7203,24 @@ void AudioFlinger::EffectChain::process_l()
 
     size_t size = mEffects.size();
     if (doProcess) {
+=======
+    bool tracksOnSession = false;
+    if (!isGlobalSession) {
+        tracksOnSession = (trackCnt() != 0);
+    }
+
+    // if no track is active, input buffer must be cleared here as the mixer process
+    // will not do it
+    if (tracksOnSession &&
+            activeTrackCnt() == 0) {
+        size_t numSamples = thread->frameCount() * thread->channelCount();
+        memset(mInBuffer, 0, numSamples * sizeof(int16_t));
+    }
+
+    size_t size = mEffects.size();
+    // do not process effect if no track is present in same audio session
+    if (isGlobalSession || tracksOnSession) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         for (size_t i = 0; i < size; i++) {
             mEffects[i]->process();
         }

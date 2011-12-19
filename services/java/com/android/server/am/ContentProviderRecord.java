@@ -73,6 +73,7 @@ class ContentProviderRecord extends ContentProviderHolder {
                     pw.print("multiprocess="); pw.print(info.multiprocess);
                     pw.print(" initOrder="); pw.println(info.initOrder);
         }
+<<<<<<< HEAD
         if (externals != 0) {
             pw.print(prefix); pw.print("externals="); pw.println(externals);
         }
@@ -82,6 +83,14 @@ class ContentProviderRecord extends ContentProviderHolder {
                 pw.print(prefix); pw.print("  - "); pw.println(cproc.toShortString());
             }
         }
+=======
+        if (clients.size() > 0) {
+            pw.print(prefix); pw.print("clients="); pw.println(clients);
+        }
+        if (externals != 0) {
+            pw.print(prefix); pw.print("externals="); pw.println(externals);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public String toString() {

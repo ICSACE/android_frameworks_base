@@ -51,6 +51,7 @@
         android:visibility="gone"
         android:id="@+id/spacer"
         />
+<<<<<<< HEAD
     <!--<FrameLayout
         android:id="@+id/wimax_combo"
         android:layout_height="wrap_content"
@@ -73,6 +74,8 @@
             />
     </FrameLayout>
     -->
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <FrameLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

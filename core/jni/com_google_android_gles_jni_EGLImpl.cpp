@@ -24,8 +24,11 @@
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 
+<<<<<<< HEAD
 #include <EGL/egl_display.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <surfaceflinger/Surface.h>
 #include <SkBitmap.h>
 #include <SkPixelRef.h>
@@ -175,6 +178,7 @@ static jboolean jni_eglQuerySurface(JNIEnv *_env, jobject _this, jobject display
     return success;
 }
 
+<<<<<<< HEAD
 static jint jni_getInitCount(JNIEnv *_env, jobject _clazz, jobject display) {
     EGLDisplay dpy = getDisplay(_env, display);
     egl_display_t* eglDisplay = get_display(dpy); 
@@ -185,6 +189,8 @@ static jboolean jni_eglReleaseThread(JNIEnv *_env, jobject _this) {
     return eglReleaseThread();
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 static jboolean jni_eglChooseConfig(JNIEnv *_env, jobject _this, jobject display,
         jintArray attrib_list, jobjectArray configs, jint config_size, jintArray num_config) {
     if (display == NULL
@@ -538,8 +544,11 @@ static JNINativeMethod methods[] = {
 {"eglInitialize",   "(" DISPLAY "[I)Z", (void*)jni_eglInitialize },
 {"eglQueryContext", "(" DISPLAY CONTEXT "I[I)Z", (void*)jni_eglQueryContext },
 {"eglQuerySurface", "(" DISPLAY SURFACE "I[I)Z", (void*)jni_eglQuerySurface },
+<<<<<<< HEAD
 {"eglReleaseThread","()Z", (void*)jni_eglReleaseThread },
 {"getInitCount",    "(" DISPLAY ")I", (void*)jni_getInitCount },
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 {"eglChooseConfig", "(" DISPLAY "[I[" CONFIG "I[I)Z", (void*)jni_eglChooseConfig },
 {"_eglCreateContext","(" DISPLAY CONFIG CONTEXT "[I)I", (void*)jni_eglCreateContext },
 {"eglGetConfigs",   "(" DISPLAY "[" CONFIG "I[I)Z", (void*)jni_eglGetConfigs },

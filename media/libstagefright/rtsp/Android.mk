@@ -15,6 +15,10 @@ LOCAL_SRC_FILES:=       \
         ARTPSource.cpp              \
         ARTPWriter.cpp              \
         ARTSPConnection.cpp         \
+<<<<<<< HEAD
+=======
+        ARTSPController.cpp         \
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ASessionDescription.cpp     \
 
 LOCAL_C_INCLUDES:= \

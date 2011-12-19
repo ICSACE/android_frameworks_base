@@ -1092,6 +1092,7 @@ public abstract class ActivityManagerNative extends Binder implements IActivityM
             reply.writeNoException();
             return true;
         }
+<<<<<<< HEAD
 
         case KILL_ALL_BACKGROUND_PROCESSES_TRANSACTION: {
             data.enforceInterface(IActivityManager.descriptor);
@@ -1099,6 +1100,8 @@ public abstract class ActivityManagerNative extends Binder implements IActivityM
             reply.writeNoException();
             return true;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         
         case FORCE_STOP_PACKAGE_TRANSACTION: {
             data.enforceInterface(IActivityManager.descriptor);
@@ -2913,7 +2916,11 @@ class ActivityManagerProxy implements IActivityManager
         data.recycle();
         reply.recycle();
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void killBackgroundProcesses(String packageName) throws RemoteException {
         Parcel data = Parcel.obtain();
         Parcel reply = Parcel.obtain();
@@ -2924,6 +2931,7 @@ class ActivityManagerProxy implements IActivityManager
         data.recycle();
         reply.recycle();
     }
+<<<<<<< HEAD
 
     public void killAllBackgroundProcesses() throws RemoteException {
         Parcel data = Parcel.obtain();
@@ -2935,6 +2943,9 @@ class ActivityManagerProxy implements IActivityManager
         reply.recycle();
     }
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void forceStopPackage(String packageName) throws RemoteException {
         Parcel data = Parcel.obtain();
         Parcel reply = Parcel.obtain();

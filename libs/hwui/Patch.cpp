@@ -157,6 +157,7 @@ void Patch::updateVertices(const float bitmapWidth, const float bitmapHeight,
 
     for (uint32_t i = 0; i < mYCount; i++) {
         float stepY = mYDivs[i];
+<<<<<<< HEAD
         const float segment = stepY - previousStepY;
 
         if (i & 1) {
@@ -168,6 +169,16 @@ void Patch::updateVertices(const float bitmapWidth, const float bitmapHeight,
         float vOffset = y1 == y2 ? 0.0f : 0.5 - (0.5 * segment / (y2 - y1));
         float v2 = fmax(0.0f, stepY - vOffset) / bitmapHeight;
         v1 += vOffset / bitmapHeight;
+=======
+
+        if (i & 1) {
+            const float segment = stepY - previousStepY;
+            y2 = y1 + floorf(segment * stretchY + 0.5f);
+        } else {
+            y2 = y1 + stepY - previousStepY;
+        }
+        float v2 = fmax(0.0f, stepY - 0.5f) / bitmapHeight;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (stepY > 0.0f) {
 #if DEBUG_EXPLODE_PATCHES
@@ -182,7 +193,11 @@ void Patch::updateVertices(const float bitmapWidth, const float bitmapHeight,
         }
 
         y1 = y2;
+<<<<<<< HEAD
         v1 = stepY / bitmapHeight;
+=======
+        v1 = (stepY + 0.5f) / bitmapHeight;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         previousStepY = stepY;
     }
@@ -193,7 +208,12 @@ void Patch::updateVertices(const float bitmapWidth, const float bitmapHeight,
         y1 += mYCount * EXPLODE_GAP;
         y2 += mYCount * EXPLODE_GAP;
 #endif
+<<<<<<< HEAD
         generateRow(vertex, y1, y2, v1, 1.0f, stretchX, right - left, bitmapWidth, quadCount);
+=======
+        generateRow(vertex, y1, y2, v1, 1.0f, stretchX, right - left,
+                bitmapWidth, quadCount);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     if (verticesCount > 0) {
@@ -222,6 +242,7 @@ void Patch::generateRow(TextureVertex*& vertex, float y1, float y2, float v1, fl
     // Generate the row quad by quad
     for (uint32_t i = 0; i < mXCount; i++) {
         float stepX = mXDivs[i];
+<<<<<<< HEAD
         const float segment = stepX - previousStepX;
 
         if (i & 1) {
@@ -233,6 +254,16 @@ void Patch::generateRow(TextureVertex*& vertex, float y1, float y2, float v1, fl
         float uOffset = x1 == x2 ? 0.0f : 0.5 - (0.5 * segment / (x2 - x1));
         float u2 = fmax(0.0f, stepX - uOffset) / bitmapWidth;
         u1 += uOffset / bitmapWidth;
+=======
+
+        if (i & 1) {
+            const float segment = stepX - previousStepX;
+            x2 = x1 + floorf(segment * stretchX + 0.5f);
+        } else {
+            x2 = x1 + stepX - previousStepX;
+        }
+        float u2 = fmax(0.0f, stepX - 0.5f) / bitmapWidth;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (stepX > 0.0f) {
 #if DEBUG_EXPLODE_PATCHES
@@ -246,7 +277,11 @@ void Patch::generateRow(TextureVertex*& vertex, float y1, float y2, float v1, fl
         }
 
         x1 = x2;
+<<<<<<< HEAD
         u1 = stepX / bitmapWidth;
+=======
+        u1 = (stepX + 0.5f) / bitmapWidth;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         previousStepX = stepX;
     }
@@ -270,8 +305,13 @@ void Patch::generateQuad(TextureVertex*& vertex, float x1, float y1, float x2, f
     if ((mColorKey >> oldQuadCount) & 0x1) {
 #if DEBUG_PATCHES_EMPTY_VERTICES
         PATCH_LOGD("    quad %d (empty)", oldQuadCount);
+<<<<<<< HEAD
         PATCH_LOGD("        left,  top    = %.2f, %.2f\t\tu1, v1 = %.4f, %.4f", x1, y1, u1, v1);
         PATCH_LOGD("        right, bottom = %.2f, %.2f\t\tu2, v2 = %.4f, %.4f", x2, y2, u2, v2);
+=======
+        PATCH_LOGD("        left,  top    = %.2f, %.2f\t\tu1, v1 = %.2f, %.2f", x1, y1, u1, v1);
+        PATCH_LOGD("        right, bottom = %.2f, %.2f\t\tu2, v2 = %.2f, %.2f", x2, y2, u2, v2);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #endif
         return;
     }
@@ -299,8 +339,13 @@ void Patch::generateQuad(TextureVertex*& vertex, float x1, float y1, float x2, f
 
 #if DEBUG_PATCHES_VERTICES
     PATCH_LOGD("    quad %d", oldQuadCount);
+<<<<<<< HEAD
     PATCH_LOGD("        left,  top    = %.2f, %.2f\t\tu1, v1 = %.4f, %.4f", x1, y1, u1, v1);
     PATCH_LOGD("        right, bottom = %.2f, %.2f\t\tu2, v2 = %.4f, %.4f", x2, y2, u2, v2);
+=======
+    PATCH_LOGD("        left,  top    = %.2f, %.2f\t\tu1, v1 = %.2f, %.2f", x1, y1, u1, v1);
+    PATCH_LOGD("        right, bottom = %.2f, %.2f\t\tu2, v2 = %.2f, %.2f", x2, y2, u2, v2);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #endif
 }
 

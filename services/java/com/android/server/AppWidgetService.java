@@ -24,9 +24,15 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.Intent.FilterComparison;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+=======
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.Intent.FilterComparison;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -39,8 +45,11 @@ import android.content.res.XmlResourceParser;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.Handler;
 import android.os.HandlerThread;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -76,7 +85,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+<<<<<<< HEAD
 import java.util.Set;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 class AppWidgetService extends IAppWidgetService.Stub
 {
@@ -754,6 +766,7 @@ class AppWidgetService extends IAppWidgetService.Stub
                 return;
             }
             ArrayList<AppWidgetId> instances = p.instances;
+<<<<<<< HEAD
             final int callingUid = getCallingUid();
             final int N = instances.size();
             for (int i=0; i<N; i++) {
@@ -761,6 +774,12 @@ class AppWidgetService extends IAppWidgetService.Stub
                 if (canAccessAppWidgetId(id, callingUid)) {
                     updateAppWidgetInstanceLocked(id, views);
                 }
+=======
+            final int N = instances.size();
+            for (int i=0; i<N; i++) {
+                AppWidgetId id = instances.get(i);
+                updateAppWidgetInstanceLocked(id, views);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -808,6 +827,7 @@ class AppWidgetService extends IAppWidgetService.Stub
                     id.host.callbacks = null;
                 }
             }
+<<<<<<< HEAD
 
             // If the host is unavailable, then we call the associated
             // RemoteViewsFactory.onDataSetChanged() directly
@@ -847,6 +867,8 @@ class AppWidgetService extends IAppWidgetService.Stub
                     }
                 }
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

@@ -40,6 +40,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+<<<<<<< HEAD
+=======
+import java.io.UnsupportedEncodingException;
+import java.text.Collator;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 /**
  * The Media provider contains meta data for all available media on both internal
@@ -64,10 +69,14 @@ public final class MediaStore {
     /**
      * Activity Action: Launch a music player.
      * The activity should be able to play, browse, or manipulate music files stored on the device.
+<<<<<<< HEAD
      *
      * @deprecated Use {@link android.content.Intent#CATEGORY_APP_MUSIC} instead.
      */
     @Deprecated
+=======
+     */
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
     public static final String INTENT_ACTION_MUSIC_PLAYER = "android.intent.action.MUSIC_PLAYER";
 

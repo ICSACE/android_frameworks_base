@@ -360,7 +360,11 @@ int main(int argc, char **argv) {
         service->create(getpid(), client, 0);
 
     if (player != NULL && player->setDataSource(source) == NO_ERROR) {
+<<<<<<< HEAD
         player->setVideoSurfaceTexture(surface->getSurfaceTexture());
+=======
+        player->setVideoSurface(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         player->start();
 
         client->waitForEOS();

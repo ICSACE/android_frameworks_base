@@ -16,6 +16,11 @@
 
 package android.accessibilityservice;
 
+<<<<<<< HEAD
+=======
+import com.android.internal.os.HandlerCaller;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -23,11 +28,16 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
+<<<<<<< HEAD
 import android.view.accessibility.AccessibilityInteractionClient;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.android.internal.os.HandlerCaller;
 
+=======
+import android.view.accessibility.AccessibilityNodeInfo;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 /**
  * An accessibility service runs in the background and receives callbacks by the system
  * when {@link AccessibilityEvent}s are fired. Such events denote some state transition
@@ -220,7 +230,11 @@ public abstract class AccessibilityService extends Service {
 
     private AccessibilityServiceInfo mInfo;
 
+<<<<<<< HEAD
     private int mConnectionId;
+=======
+    IAccessibilityServiceConnection mConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * Callback for {@link android.view.accessibility.AccessibilityEvent}s.
@@ -265,11 +279,17 @@ public abstract class AccessibilityService extends Service {
      * AccessibilityManagerService.
      */
     private void sendServiceInfo() {
+<<<<<<< HEAD
         IAccessibilityServiceConnection connection =
             AccessibilityInteractionClient.getInstance().getConnection(mConnectionId);
         if (mInfo != null && connection != null) {
             try {
                 connection.setServiceInfo(mInfo);
+=======
+        if (mInfo != null && mConnection != null) {
+            try {
+                mConnection.setServiceInfo(mInfo);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } catch (RemoteException re) {
                 Log.w(LOG_TAG, "Error while setting AccessibilityServiceInfo", re);
             }
@@ -305,9 +325,14 @@ public abstract class AccessibilityService extends Service {
             mCaller = new HandlerCaller(context, this);
         }
 
+<<<<<<< HEAD
         public void setConnection(IAccessibilityServiceConnection connection, int connectionId) {
             Message message = mCaller.obtainMessageIO(DO_SET_SET_CONNECTION, connectionId,
                     connection);
+=======
+        public void setConnection(IAccessibilityServiceConnection connection) {
+            Message message = mCaller.obtainMessageO(DO_SET_SET_CONNECTION, connection);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mCaller.sendMessage(message);
         }
 
@@ -334,6 +359,7 @@ public abstract class AccessibilityService extends Service {
                     mTarget.onInterrupt();
                     return;
                 case DO_SET_SET_CONNECTION :
+<<<<<<< HEAD
                     final int connectionId = message.arg1;
                     IAccessibilityServiceConnection connection =
                         (IAccessibilityServiceConnection) message.obj;
@@ -347,6 +373,10 @@ public abstract class AccessibilityService extends Service {
                         mConnectionId = AccessibilityInteractionClient.NO_ID;
                         // TODO: Do we need a onServiceDisconnected callback?
                     }
+=======
+                    mConnection = ((IAccessibilityServiceConnection) message.obj);
+                    mTarget.onServiceConnected();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     return;
                 default :
                     Log.w(LOG_TAG, "Unknown message type " + message.what);

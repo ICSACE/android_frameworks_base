@@ -202,30 +202,39 @@ public class NinePatchDrawable extends Drawable {
 
     @Override
     public void setAlpha(int alpha) {
+<<<<<<< HEAD
         if (mPaint == null && alpha == 0xFF) {
             // Fast common case -- leave at normal alpha.
             return;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         getPaint().setAlpha(alpha);
         invalidateSelf();
     }
     
     @Override
     public void setColorFilter(ColorFilter cf) {
+<<<<<<< HEAD
         if (mPaint == null && cf == null) {
             // Fast common case -- leave at no color filter.
             return;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         getPaint().setColorFilter(cf);
         invalidateSelf();
     }
 
     @Override
     public void setDither(boolean dither) {
+<<<<<<< HEAD
         if (mPaint == null && dither == DEFAULT_DITHER) {
             // Fast common case -- leave at default dither.
             return;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         getPaint().setDither(dither);
         invalidateSelf();
     }

@@ -139,6 +139,7 @@ public class ViewConfiguration {
     private static final int EDGE_SLOP = 12;
     
     /**
+<<<<<<< HEAD
      * Distance a touch can wander before we think the user is scrolling in dips.
      * Note that this value defined here is only used as a fallback by legacy/misbehaving
      * applications that do not provide a Context for determining density/configuration-dependent
@@ -150,10 +151,16 @@ public class ViewConfiguration {
      * the characteristics of the touch panel and firmware.
      */
     private static final int TOUCH_SLOP = 8;
+=======
+     * Distance a touch can wander before we think the user is scrolling in pixels
+     */
+    private static final int TOUCH_SLOP = 16;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     
     /**
      * Distance a touch can wander before we think the user is attempting a paged scroll
      * (in dips)
+<<<<<<< HEAD
      *
      * Note that this value defined here is only used as a fallback by legacy/misbehaving
      * applications that do not provide a Context for determining density/configuration-dependent
@@ -162,6 +169,8 @@ public class ViewConfiguration {
      * See the note above on {@link #TOUCH_SLOP} regarding the dimen resource
      * config_viewConfigurationTouchSlop. ViewConfiguration will report a paging touch slop of
      * config_viewConfigurationTouchSlop * 2 when provided with a Context.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     private static final int PAGING_TOUCH_SLOP = TOUCH_SLOP * 2;
     
@@ -293,6 +302,11 @@ public class ViewConfiguration {
         mMinimumFlingVelocity = (int) (density * MINIMUM_FLING_VELOCITY + 0.5f);
         mMaximumFlingVelocity = (int) (density * MAXIMUM_FLING_VELOCITY + 0.5f);
         mScrollbarSize = (int) (density * SCROLL_BAR_SIZE + 0.5f);
+<<<<<<< HEAD
+=======
+        mTouchSlop = (int) (sizeAndDensity * TOUCH_SLOP + 0.5f);
+        mPagingTouchSlop = (int) (sizeAndDensity * PAGING_TOUCH_SLOP + 0.5f);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mDoubleTapSlop = (int) (sizeAndDensity * DOUBLE_TAP_SLOP + 0.5f);
         mScaledTouchExplorationTapSlop = (int) (density * TOUCH_EXPLORATION_TAP_SLOP + 0.5f);
         mWindowTouchSlop = (int) (sizeAndDensity * WINDOW_TOUCH_SLOP + 0.5f);
@@ -315,9 +329,12 @@ public class ViewConfiguration {
 
         mFadingMarqueeEnabled = res.getBoolean(
                 com.android.internal.R.bool.config_ui_enableFadingMarquee);
+<<<<<<< HEAD
         mTouchSlop = res.getDimensionPixelSize(
                 com.android.internal.R.dimen.config_viewConfigurationTouchSlop);
         mPagingTouchSlop = mTouchSlop * 2;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

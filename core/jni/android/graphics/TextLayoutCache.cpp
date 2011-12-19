@@ -346,6 +346,12 @@ void TextLayoutCacheValue::initShaperItem(HB_ShaperItem& shaperItem, HB_FontRec*
     font->x_scale = 1;
     font->y_scale = 1;
 
+<<<<<<< HEAD
+=======
+    shaperItem.font = font;
+    shaperItem.face = HB_NewFace(shaperItem.font, harfbuzzSkiaGetTable);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Reset kerning
     shaperItem.kerning_applied = false;
 
@@ -357,17 +363,28 @@ void TextLayoutCacheValue::initShaperItem(HB_ShaperItem& shaperItem, HB_FontRec*
     fontData->flags = paint->getFlags();
     fontData->hinting = paint->getHinting();
 
+<<<<<<< HEAD
     shaperItem.font = font;
     shaperItem.font->userData = fontData;
 
     shaperItem.face = HB_NewFace(NULL, harfbuzzSkiaGetTable);
 
+=======
+    shaperItem.font->userData = fontData;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // We cannot know, ahead of time, how many glyphs a given script run
     // will produce. We take a guess that script runs will not produce more
     // than twice as many glyphs as there are code points plus a bit of
     // padding and fallback if we find that we are wrong.
     createGlyphArrays(shaperItem, (contextCount + 2) * 2);
 
+<<<<<<< HEAD
+=======
+    // Create log clusters array
+    shaperItem.log_clusters = new unsigned short[contextCount];
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Set the string properties
     shaperItem.string = chars;
     shaperItem.stringLength = contextCount;
@@ -375,6 +392,10 @@ void TextLayoutCacheValue::initShaperItem(HB_ShaperItem& shaperItem, HB_FontRec*
 
 void TextLayoutCacheValue::freeShaperItem(HB_ShaperItem& shaperItem) {
     deleteGlyphArrays(shaperItem);
+<<<<<<< HEAD
+=======
+    delete[] shaperItem.log_clusters;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     HB_FreeFace(shaperItem.face);
 }
 
@@ -388,7 +409,10 @@ void TextLayoutCacheValue::shapeRun(HB_ShaperItem& shaperItem, size_t start, siz
     shaperItem.item.script = isRTL ? HB_Script_Arabic : HB_Script_Common;
 
     // Shape
+<<<<<<< HEAD
     assert(shaperItem.item.length > 0); // Harfbuzz will overwrite other memory if length is 0.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     while (!HB_ShapeItem(&shaperItem)) {
         // We overflowed our arrays. Resize and retry.
         // HB_ShapeItem fills in shaperItem.num_glyphs with the needed size.
@@ -401,10 +425,13 @@ void TextLayoutCacheValue::computeValuesWithHarfbuzz(SkPaint* paint, const UChar
         size_t start, size_t count, size_t contextCount, int dirFlags,
         Vector<jfloat>* const outAdvances, jfloat* outTotalAdvance,
         Vector<jchar>* const outGlyphs) {
+<<<<<<< HEAD
         if (!count) {
             *outTotalAdvance = 0;
             return;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         UBiDiLevel bidiReq = 0;
         bool forceLTR = false;
@@ -545,17 +572,24 @@ void TextLayoutCacheValue::computeRunValuesWithHarfbuzz(HB_ShaperItem& shaperIte
         size_t start, size_t count, bool isRTL,
         Vector<jfloat>* const outAdvances, jfloat* outTotalAdvance,
         Vector<jchar>* const outGlyphs) {
+<<<<<<< HEAD
     if (!count) {
         *outTotalAdvance = 0;
         return;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     shapeRun(shaperItem, start, count, isRTL);
 
 #if DEBUG_GLYPHS
     LOGD("HARFBUZZ -- num_glypth=%d - kerning_applied=%d", shaperItem.num_glyphs,
             shaperItem.kerning_applied);
+<<<<<<< HEAD
     LOGD("         -- string= '%s'", String8(shaperItem.string + start, count).string());
+=======
+    LOGD("         -- string= '%s'", String8(chars + start, count).string());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     LOGD("         -- isDevKernText=%d", paint->isDevKernText());
 
     logGlyphs(shaperItem);
@@ -612,6 +646,7 @@ void TextLayoutCacheValue::deleteGlyphArrays(HB_ShaperItem& shaperItem) {
     delete[] shaperItem.attributes;
     delete[] shaperItem.advances;
     delete[] shaperItem.offsets;
+<<<<<<< HEAD
     delete[] shaperItem.log_clusters;
 }
 
@@ -619,15 +654,24 @@ void TextLayoutCacheValue::createGlyphArrays(HB_ShaperItem& shaperItem, int size
     shaperItem.num_glyphs = size;
 
     // These arrays are all indexed by glyph
+=======
+}
+
+void TextLayoutCacheValue::createGlyphArrays(HB_ShaperItem& shaperItem, int size) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     shaperItem.glyphs = new HB_Glyph[size];
     shaperItem.attributes = new HB_GlyphAttributes[size];
     shaperItem.advances = new HB_Fixed[size];
     shaperItem.offsets = new HB_FixedPoint[size];
+<<<<<<< HEAD
 
     // Although the log_clusters array is indexed by character, Harfbuzz expects that
     // it is big enough to hold one element per glyph.  So we allocate log_clusters along
     // with the other glyph arrays above.
     shaperItem.log_clusters = new unsigned short[size];
+=======
+    shaperItem.num_glyphs = size;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 } // namespace android

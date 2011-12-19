@@ -47,6 +47,7 @@ enum visualizer_state_e {
     VISUALIZER_STATE_ACTIVE,
 };
 
+<<<<<<< HEAD
 // maximum number of reads from same buffer before resetting capture buffer. This means
 // that the framework has stopped playing audio and we must start returning silence
 #define MAX_STALL_COUNT 10
@@ -63,6 +64,19 @@ struct VisualizerContext {
     uint8_t mCaptureBuf[2][VISUALIZER_CAPTURE_SIZE_MAX];
 };
 
+=======
+struct VisualizerContext {
+    const struct effect_interface_s *mItfe;
+    effect_config_t mConfig;
+    uint32_t mState;
+    uint32_t mCaptureIdx;
+    uint32_t mCaptureSize;
+    uint32_t mCurrentBuf;
+    uint8_t mCaptureBuf[2][VISUALIZER_CAPTURE_SIZE_MAX];
+};
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 //
 //--- Local functions
 //
@@ -71,8 +85,11 @@ void Visualizer_reset(VisualizerContext *pContext)
 {
     pContext->mCaptureIdx = 0;
     pContext->mCurrentBuf = 0;
+<<<<<<< HEAD
     pContext->mLastBuf = 1;
     pContext->mStallCount = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     memset(pContext->mCaptureBuf[0], 0x80, VISUALIZER_CAPTURE_SIZE_MAX);
     memset(pContext->mCaptureBuf[1], 0x80, VISUALIZER_CAPTURE_SIZE_MAX);
 }
@@ -424,6 +441,7 @@ int Visualizer_command(effect_handle_t self, uint32_t cmdCode, uint32_t cmdSize,
             memcpy(pReplyData,
                    pContext->mCaptureBuf[pContext->mCurrentBuf ^ 1],
                    pContext->mCaptureSize);
+<<<<<<< HEAD
             // if audio framework has stopped playing audio although the effect is still
             // active we must clear the capture buffer to return silence
             if (pContext->mLastBuf == pContext->mCurrentBuf) {
@@ -442,6 +460,11 @@ int Visualizer_command(effect_handle_t self, uint32_t cmdCode, uint32_t cmdSize,
             memset(pReplyData, 0x80, pContext->mCaptureSize);
         }
 
+=======
+        } else {
+            memset(pReplyData, 0x80, pContext->mCaptureSize);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         break;
 
     default:

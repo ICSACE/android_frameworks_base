@@ -39,12 +39,20 @@ CameraSourceTimeLapse *CameraSourceTimeLapse::CreateFromCamera(
         Size videoSize,
         int32_t videoFrameRate,
         const sp<Surface>& surface,
+<<<<<<< HEAD
         int64_t timeBetweenFrameCaptureUs) {
+=======
+        int64_t timeBetweenTimeLapseFrameCaptureUs) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     CameraSourceTimeLapse *source = new
             CameraSourceTimeLapse(camera, proxy, cameraId,
                 videoSize, videoFrameRate, surface,
+<<<<<<< HEAD
                 timeBetweenFrameCaptureUs);
+=======
+                timeBetweenTimeLapseFrameCaptureUs);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     if (source != NULL) {
         if (source->initCheck() != OK) {
@@ -62,15 +70,26 @@ CameraSourceTimeLapse::CameraSourceTimeLapse(
         Size videoSize,
         int32_t videoFrameRate,
         const sp<Surface>& surface,
+<<<<<<< HEAD
         int64_t timeBetweenFrameCaptureUs)
     : CameraSource(camera, proxy, cameraId, videoSize, videoFrameRate, surface, true),
+=======
+        int64_t timeBetweenTimeLapseFrameCaptureUs)
+    : CameraSource(camera, proxy, cameraId, videoSize, videoFrameRate, surface, true),
+      mTimeBetweenTimeLapseFrameCaptureUs(timeBetweenTimeLapseFrameCaptureUs),
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       mTimeBetweenTimeLapseVideoFramesUs(1E6/videoFrameRate),
       mLastTimeLapseFrameRealTimestampUs(0),
       mSkipCurrentFrame(false) {
 
+<<<<<<< HEAD
     mTimeBetweenFrameCaptureUs = timeBetweenFrameCaptureUs;
     LOGD("starting time lapse mode: %lld us",
         mTimeBetweenFrameCaptureUs);
+=======
+    LOGD("starting time lapse mode: %lld us",
+        mTimeBetweenTimeLapseFrameCaptureUs);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     mVideoWidth = videoSize.width;
     mVideoHeight = videoSize.height;
@@ -257,12 +276,15 @@ bool CameraSourceTimeLapse::skipFrameAndModifyTimeStamp(int64_t *timestampUs) {
             mForceRead = false;
             *timestampUs =
                 mLastFrameTimestampUs + mTimeBetweenTimeLapseVideoFramesUs;
+<<<<<<< HEAD
 
             // Really make sure that this video recording frame will not be dropped.
             if (*timestampUs < mStartTimeUs) {
                 LOGI("set timestampUs to start time stamp %lld us", mStartTimeUs);
                 *timestampUs = mStartTimeUs;
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return false;
         }
     }
@@ -271,14 +293,24 @@ bool CameraSourceTimeLapse::skipFrameAndModifyTimeStamp(int64_t *timestampUs) {
     // The first 2 output frames from the encoder are: decoder specific info and
     // the compressed video frame data for the first input video frame.
     if (mNumFramesEncoded >= 1 && *timestampUs <
+<<<<<<< HEAD
         (mLastTimeLapseFrameRealTimestampUs + mTimeBetweenFrameCaptureUs)) {
         // Skip all frames from last encoded frame until
         // sufficient time (mTimeBetweenFrameCaptureUs) has passed.
+=======
+        (mLastTimeLapseFrameRealTimestampUs + mTimeBetweenTimeLapseFrameCaptureUs)) {
+        // Skip all frames from last encoded frame until
+        // sufficient time (mTimeBetweenTimeLapseFrameCaptureUs) has passed.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Tell the camera to release its recording frame and return.
         LOGV("dataCallbackTimestamp timelapse: skipping intermediate frame");
         return true;
     } else {
+<<<<<<< HEAD
         // Desired frame has arrived after mTimeBetweenFrameCaptureUs time:
+=======
+        // Desired frame has arrived after mTimeBetweenTimeLapseFrameCaptureUs time:
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // - Reset mLastTimeLapseFrameRealTimestampUs to current time.
         // - Artificially modify timestampUs to be one frame time (1/framerate) ahead
         // of the last encoded frame's time stamp.

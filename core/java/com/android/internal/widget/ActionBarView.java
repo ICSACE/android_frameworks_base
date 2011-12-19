@@ -518,7 +518,10 @@ public class ActionBarView extends AbsActionBarView {
 
     public void setHomeButtonEnabled(boolean enable) {
         mHomeLayout.setEnabled(enable);
+<<<<<<< HEAD
         mHomeLayout.setFocusable(enable);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Make sure the home button has an accurate content description for accessibility.
         if (!enable) {
             mHomeLayout.setContentDescription(null);
@@ -537,7 +540,11 @@ public class ActionBarView extends AbsActionBarView {
 
         if ((flagsChanged & DISPLAY_RELAYOUT_MASK) != 0) {
             final boolean showHome = (options & ActionBar.DISPLAY_SHOW_HOME) != 0;
+<<<<<<< HEAD
             final int vis = showHome && mExpandedActionView == null ? VISIBLE : GONE;
+=======
+            final int vis = showHome ? VISIBLE : GONE;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mHomeLayout.setVisibility(vis);
 
             if ((flagsChanged & ActionBar.DISPLAY_HOME_AS_UP) != 0) {

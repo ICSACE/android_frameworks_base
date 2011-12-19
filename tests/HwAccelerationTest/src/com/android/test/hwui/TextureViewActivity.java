@@ -17,23 +17,33 @@
 package com.android.test.hwui;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.Environment;
 import android.view.Gravity;
 import android.view.Surface;
+=======
+import android.view.Gravity;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+<<<<<<< HEAD
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.io.IOException;
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -51,6 +61,7 @@ public class TextureViewActivity extends Activity implements TextureView.Surface
 
         mTextureView = new TextureView(this);
         mTextureView.setSurfaceTextureListener(this);
+<<<<<<< HEAD
         mTextureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +82,8 @@ public class TextureViewActivity extends Activity implements TextureView.Surface
                 }
             }
         });
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         Button button = new Button(this);
         button.setText("Remove/Add");
@@ -100,8 +113,11 @@ public class TextureViewActivity extends Activity implements TextureView.Surface
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
         mCamera = Camera.open();
+<<<<<<< HEAD
         mCamera.setDisplayOrientation(getCameraOrientation());
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         Camera.Size previewSize = mCamera.getParameters().getPreviewSize();
         mTextureView.setLayoutParams(new FrameLayout.LayoutParams(
                 previewSize.width, previewSize.height, Gravity.CENTER));
@@ -115,6 +131,7 @@ public class TextureViewActivity extends Activity implements TextureView.Surface
         mCamera.startPreview();
     }
 
+<<<<<<< HEAD
     private int getCameraOrientation() {
         Camera.CameraInfo info = new Camera.CameraInfo();
         for (int i = 0; i < Camera.getNumberOfCameras(); i++) {
@@ -143,6 +160,8 @@ public class TextureViewActivity extends Activity implements TextureView.Surface
         return (info.orientation - degrees + 360) % 360;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
         // Ignored, the Camera does all the work for us

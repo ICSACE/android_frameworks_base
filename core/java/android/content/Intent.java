@@ -2310,6 +2310,7 @@ public class Intent implements Parcelable, Cloneable {
 
     // ---------------------------------------------------------------------
     // ---------------------------------------------------------------------
+<<<<<<< HEAD
     // Application launch intent categories (see addCategory()).
 
     /**
@@ -2424,6 +2425,8 @@ public class Intent implements Parcelable, Cloneable {
 
     // ---------------------------------------------------------------------
     // ---------------------------------------------------------------------
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Standard extra data keys.
 
     /**
@@ -3009,7 +3012,10 @@ public class Intent implements Parcelable, Cloneable {
     private HashSet<String> mCategories;
     private Bundle mExtras;
     private Rect mSourceBounds;
+<<<<<<< HEAD
     private Intent mSelector;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // ---------------------------------------------------------------------
 
@@ -3038,9 +3044,12 @@ public class Intent implements Parcelable, Cloneable {
         if (o.mSourceBounds != null) {
             this.mSourceBounds = new Rect(o.mSourceBounds);
         }
+<<<<<<< HEAD
         if (o.mSelector != null) {
             this.mSelector = new Intent(o.mSelector);
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     @Override
@@ -3181,6 +3190,7 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+<<<<<<< HEAD
      * Make an Intent for the main activity of an application, without
      * specifying a specific activity to run but giving a selector to find
      * the activity.  This results in a final Intent that is structured
@@ -3214,6 +3224,8 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Make an Intent that can be used to re-launch an application's task
      * in its base state.  This is like {@link #makeMainActivity(ComponentName)},
      * but also sets the flags {@link #FLAG_ACTIVITY_NEW_TASK} and
@@ -3288,7 +3300,10 @@ public class Intent implements Parcelable, Cloneable {
 
             // new format
             Intent intent = new Intent(ACTION_VIEW);
+<<<<<<< HEAD
             Intent baseIntent = intent;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             // fetch data part, if present
             String data = i >= 0 ? uri.substring(0, i) : null;
@@ -3298,9 +3313,14 @@ public class Intent implements Parcelable, Cloneable {
             // loop over contents of Intent, all name=value;
             while (!uri.startsWith("end", i)) {
                 int eq = uri.indexOf('=', i);
+<<<<<<< HEAD
                 if (eq < 0) eq = i-1;
                 int semi = uri.indexOf(';', i);
                 String value = eq < semi ? Uri.decode(uri.substring(eq + 1, semi)) : "";
+=======
+                int semi = uri.indexOf(';', eq);
+                String value = Uri.decode(uri.substring(eq + 1, semi));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 // action
                 if (uri.startsWith("action=", i)) {
@@ -3342,11 +3362,14 @@ public class Intent implements Parcelable, Cloneable {
                     intent.mSourceBounds = Rect.unflattenFromString(value);
                 }
 
+<<<<<<< HEAD
                 // selector
                 else if (semi == (i+3) && uri.startsWith("SEL", i)) {
                     intent = new Intent();
                 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 // extra
                 else {
                     String key = Uri.decode(uri.substring(i + 2, eq));
@@ -3370,12 +3393,15 @@ public class Intent implements Parcelable, Cloneable {
                 i = semi + 1;
             }
 
+<<<<<<< HEAD
             if (intent != baseIntent) {
                 // The Intent had a selector; fix it up.
                 baseIntent.setSelector(intent);
                 intent = baseIntent;
             }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (data != null) {
                 if (data.startsWith("intent:")) {
                     data = data.substring(7);
@@ -3701,7 +3727,11 @@ public class Intent implements Parcelable, Cloneable {
      * Return the set of all categories in the intent.  If there are no categories,
      * returns NULL.
      *
+<<<<<<< HEAD
      * @return The set of categories you can examine.  Do not modify!
+=======
+     * @return Set The set of categories you can examine.  Do not modify!
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @see #hasCategory
      * @see #addCategory
@@ -3711,6 +3741,7 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+<<<<<<< HEAD
      * Return the specific selector associated with this Intent.  If there is
      * none, returns null.  See {@link #setSelector} for more information.
      *
@@ -3721,6 +3752,8 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Sets the ClassLoader that will be used when unmarshalling
      * any Parcelable values from the extras of this Intent.
      *
@@ -4539,6 +4572,7 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+<<<<<<< HEAD
      * Set a selector for this Intent.  This is a modification to the kinds of
      * things the Intent will match.  If the selector is set, it will be used
      * when trying to find entities that can handle the Intent, instead of the
@@ -4582,6 +4616,8 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Add extended data to the intent.  The name must include a package
      * prefix, for example the app com.android.contacts would use names
      * like "com.android.contacts.ShowAll".
@@ -5408,10 +5444,13 @@ public class Intent implements Parcelable, Cloneable {
      * @see #resolveActivity
      */
     public Intent setPackage(String packageName) {
+<<<<<<< HEAD
         if (packageName != null && mSelector != null) {
             throw new IllegalArgumentException(
                     "Can't set package name when selector is already set");
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mPackage = packageName;
         return this;
     }
@@ -5547,18 +5586,25 @@ public class Intent implements Parcelable, Cloneable {
     public static final int FILL_IN_PACKAGE = 1<<4;
 
     /**
+<<<<<<< HEAD
      * Use with {@link #fillIn} to allow the current bounds rectangle to be
+=======
+     * Use with {@link #fillIn} to allow the current package value to be
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * overwritten, even if it is already set.
      */
     public static final int FILL_IN_SOURCE_BOUNDS = 1<<5;
 
     /**
+<<<<<<< HEAD
      * Use with {@link #fillIn} to allow the current selector to be
      * overwritten, even if it is already set.
      */
     public static final int FILL_IN_SELECTOR = 1<<6;
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Copy the contents of <var>other</var> in to this object, but only
      * where fields are not defined by this object.  For purposes of a field
      * being defined, the following pieces of data in the Intent are
@@ -5578,6 +5624,7 @@ public class Intent implements Parcelable, Cloneable {
      *
      * <p>In addition, you can use the {@link #FILL_IN_ACTION},
      * {@link #FILL_IN_DATA}, {@link #FILL_IN_CATEGORIES}, {@link #FILL_IN_PACKAGE},
+<<<<<<< HEAD
      * {@link #FILL_IN_COMPONENT}, {@link #FILL_IN_SOURCE_BOUNDS}, and
      * {@link #FILL_IN_SELECTOR} to override the restriction where the
      * corresponding field will not be replaced if it is already set.
@@ -5585,6 +5632,13 @@ public class Intent implements Parcelable, Cloneable {
      * <p>Note: The component field will only be copied if {@link #FILL_IN_COMPONENT} is explicitly
      * specified.  The selector will only be copied if {@link #FILL_IN_SELECTOR} is
      * explicitly specified.
+=======
+     * and {@link #FILL_IN_COMPONENT} to override the restriction where the
+     * corresponding field will not be replaced if it is already set.
+     *
+     * <p>Note: The component field will only be copied if {@link #FILL_IN_COMPONENT} is explicitly
+     * specified.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * <p>For example, consider Intent A with {data="foo", categories="bar"}
      * and Intent B with {action="gotit", data-type="some/thing",
@@ -5600,8 +5654,12 @@ public class Intent implements Parcelable, Cloneable {
      *
      * @return Returns a bit mask of {@link #FILL_IN_ACTION},
      * {@link #FILL_IN_DATA}, {@link #FILL_IN_CATEGORIES}, {@link #FILL_IN_PACKAGE},
+<<<<<<< HEAD
      * {@link #FILL_IN_COMPONENT}, {@link #FILL_IN_SOURCE_BOUNDS}, and
      * {@link #FILL_IN_SELECTOR} indicating which fields were changed.
+=======
+     * and {@link #FILL_IN_COMPONENT} indicating which fields were changed.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public int fillIn(Intent other, int flags) {
         int changes = 0;
@@ -5626,6 +5684,7 @@ public class Intent implements Parcelable, Cloneable {
         }
         if (other.mPackage != null
                 && (mPackage == null || (flags&FILL_IN_PACKAGE) != 0)) {
+<<<<<<< HEAD
             // Only do this if mSelector is not set.
             if (mSelector == null) {
                 mPackage = other.mPackage;
@@ -5640,6 +5699,10 @@ public class Intent implements Parcelable, Cloneable {
                 mPackage = null;
                 changes |= FILL_IN_SELECTOR;
             }
+=======
+            mPackage = other.mPackage;
+            changes |= FILL_IN_PACKAGE;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         // Component is special: it can -only- be set if explicitly allowed,
         // since otherwise the sender could force the intent somewhere the
@@ -5937,11 +6000,14 @@ public class Intent implements Parcelable, Cloneable {
             first = false;
             b.append("(has extras)");
         }
+<<<<<<< HEAD
         if (mSelector != null) {
             b.append(" sel={");
             mSelector.toShortString(b, secure, comp, extras);
             b.append("}");
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -6002,6 +6068,7 @@ public class Intent implements Parcelable, Cloneable {
 
         uri.append("#Intent;");
 
+<<<<<<< HEAD
         toUriInner(uri, scheme, flags);
         if (mSelector != null) {
             uri.append("SEL;");
@@ -6017,6 +6084,8 @@ public class Intent implements Parcelable, Cloneable {
     }
 
     private void toUriInner(StringBuilder uri, String scheme, int flags) {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (scheme != null) {
             uri.append("scheme=").append(scheme).append(';');
         }
@@ -6071,6 +6140,13 @@ public class Intent implements Parcelable, Cloneable {
                 }
             }
         }
+<<<<<<< HEAD
+=======
+
+        uri.append("end");
+
+        return uri.toString();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public int describeContents() {
@@ -6101,6 +6177,7 @@ public class Intent implements Parcelable, Cloneable {
             out.writeInt(0);
         }
 
+<<<<<<< HEAD
         if (mSelector != null) {
             out.writeInt(1);
             mSelector.writeToParcel(out, flags);
@@ -6108,6 +6185,8 @@ public class Intent implements Parcelable, Cloneable {
             out.writeInt(0);
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         out.writeBundle(mExtras);
     }
 
@@ -6149,10 +6228,13 @@ public class Intent implements Parcelable, Cloneable {
             mCategories = null;
         }
 
+<<<<<<< HEAD
         if (in.readInt() != 0) {
             mSelector = new Intent(in);
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mExtras = in.readBundle();
     }
 

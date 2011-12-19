@@ -76,11 +76,19 @@ class="new">new!</span></li>
     </ul>
     <ul>
       <li class="toggle-list">
+<<<<<<< HEAD
         <div><a href="<?cs var:toroot ?>sdk/android-4.0-highlights.html">
         <span class="en">Android 4.0.x Platform</span></a> <span class="new">new!</span></div>
         <ul>
           <li><a href="<?cs var:toroot ?>sdk/android-4.0.3.html">Android 4.0.3 Platform</a> <span class="new">new!</span></li>
           <li><a href="<?cs var:toroot ?>sdk/android-4.0.html">Android 4.0 Platform</a> </li>
+=======
+        <div><a href="<?cs var:toroot ?>sdk/android-4.0.html">
+        <span class="en">Android 4.0 Platform</span></a> <span class="new">new!</span></div>
+        <ul>
+          <li><a href="<?cs var:toroot ?>sdk/android-4.0-highlights.html">Platform Highlights</a></li>
+          <li><a href="<?cs var:toroot ?>sdk/api_diff/14/changes.html">API Differences Report &raquo;</a></li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         </ul>
       </li>
       <li class="toggle-list">
@@ -150,10 +158,17 @@ class="new">new!</span></li>
       </li>
     </ul>
     <ul>
+<<<<<<< HEAD
       <li><a href="<?cs var:toroot ?>sdk/tools-notes.html">SDK Tools, r16</a> <span
 class="new">new!</span></li>
       <li><a href="<?cs var:toroot ?>sdk/win-usb.html">Google USB Driver, r4</a></li>
       <li><a href="<?cs var:toroot ?>sdk/compatibility-library.html">Support Package, r6</a>
+=======
+      <li><a href="<?cs var:toroot ?>sdk/tools-notes.html">SDK Tools, r15</a> <span
+class="new">new!</span></li>
+      <li><a href="<?cs var:toroot ?>sdk/win-usb.html">Google USB Driver, r4</a></li>
+      <li><a href="<?cs var:toroot ?>sdk/compatibility-library.html">Support Package, r4</a>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       <span class="new">new!</span></li>
     </ul>
   </li>
@@ -169,7 +184,11 @@ class="new">new!</span></li>
       <span style="display:none" class="zh-TW"></span>
       </h2>
     <ul>
+<<<<<<< HEAD
       <li><a href="<?cs var:toroot ?>sdk/eclipse-adt.html">ADT 16.0.1
+=======
+      <li><a href="<?cs var:toroot ?>sdk/eclipse-adt.html">ADT 15.0.0
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
       <span style="display:none" class="de"></span>
       <span style="display:none" class="es"></span>
       <span style="display:none" class="fr"></span>

@@ -263,7 +263,12 @@
         android:label="@string/permlab_writeProfile"
         android:description="@string/permdesc_writeProfile" />
 
+<<<<<<< HEAD
     <!-- Allows an application to read from the user's social stream. -->
+=======
+    <!-- Allows an application to read from the user's social stream.
+         @hide -->
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <permission android:name="android.permission.READ_SOCIAL_STREAM"
         android:permissionGroup="android.permission-group.PERSONAL_INFO"
         android:protectionLevel="dangerous"
@@ -271,7 +276,12 @@
         android:description="@string/permdesc_readSocialStream" />
 
     <!-- Allows an application to write (but not read) the user's
+<<<<<<< HEAD
          social stream data. -->
+=======
+         social stream data.
+         @hide -->
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <permission android:name="android.permission.WRITE_SOCIAL_STREAM"
         android:permissionGroup="android.permission-group.PERSONAL_INFO"
         android:protectionLevel="dangerous"
@@ -421,12 +431,15 @@
         android:description="@string/permdesc_accessWifiState"
         android:label="@string/permlab_accessWifiState" />
 
+<<<<<<< HEAD
     <!-- @hide -->
     <permission android:name="android.permission.ACCESS_WIMAX_STATE"
         android:permissionGroup="android.permission-group.NETWORK"
         android:protectionLevel="normal"
         android:description="@string/permdesc_accessWimaxState"
         android:label="@string/permlab_accessWimaxState" />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <!-- Allows applications to connect to paired bluetooth devices -->
     <permission android:name="android.permission.BLUETOOTH"
         android:permissionGroup="android.permission-group.NETWORK"
@@ -988,12 +1001,15 @@
         android:description="@string/permdesc_changeWifiState"
         android:label="@string/permlab_changeWifiState" />
 
+<<<<<<< HEAD
     <!-- @hide -->
     <permission android:name="android.permission.CHANGE_WIMAX_STATE"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
         android:protectionLevel="dangerous"
         android:description="@string/permdesc_changeWimaxState"
         android:label="@string/permlab_changeWimaxState" />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <!-- Allows applications to enter Wi-Fi Multicast mode -->
     <permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
@@ -1025,6 +1041,7 @@
         android:label="@string/permlab_readLogs"
         android:description="@string/permdesc_readLogs" />
 
+<<<<<<< HEAD
     <!-- Allows an application to use any media decoder when decoding for playback
          @hide -->
     <permission android:name="android.permission.ALLOW_ANY_CODEC_FOR_PLAYBACK"
@@ -1032,6 +1049,8 @@
         android:label="@string/permlab_anyCodecForPlayback"
         android:description="@string/permdesc_anyCodecForPlayback" />
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <!-- ========================================= -->
     <!-- Permissions for special development tools -->
     <!-- ========================================= -->

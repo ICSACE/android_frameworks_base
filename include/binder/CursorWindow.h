@@ -80,7 +80,12 @@ public:
 
     ~CursorWindow();
 
+<<<<<<< HEAD
     static status_t create(const String8& name, size_t size, CursorWindow** outCursorWindow);
+=======
+    static status_t create(const String8& name, size_t size, bool localOnly,
+            CursorWindow** outCursorWindow);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static status_t createFromParcel(Parcel* parcel, CursorWindow** outCursorWindow);
 
     status_t writeToParcel(Parcel* parcel);

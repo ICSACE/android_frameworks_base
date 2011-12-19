@@ -16,6 +16,7 @@
 
 package com.android.nfc_extras;
 
+<<<<<<< HEAD
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.os.Binder;
@@ -27,6 +28,22 @@ import java.io.IOException;
 public class NfcExecutionEnvironment {
     private final NfcAdapterExtras mExtras;
     private final Binder mToken;
+=======
+import java.io.IOException;
+
+import android.annotation.SdkConstant;
+import android.annotation.SdkConstant.SdkConstantType;
+import android.content.Context;
+import android.nfc.INfcAdapterExtras;
+import android.nfc.NfcAdapter;
+import android.os.Binder;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
+
+public class NfcExecutionEnvironment {
+    private final NfcAdapterExtras mExtras;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * Broadcast Action: An ISO-DEP AID was selected.
@@ -112,7 +129,10 @@ public class NfcExecutionEnvironment {
 
     NfcExecutionEnvironment(NfcAdapterExtras extras) {
         mExtras = extras;
+<<<<<<< HEAD
         mToken = new Binder();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -131,7 +151,11 @@ public class NfcExecutionEnvironment {
      */
     public void open() throws IOException {
         try {
+<<<<<<< HEAD
             Bundle b = mExtras.getService().open(mExtras.mPackageName, mToken);
+=======
+            Bundle b = mExtras.getService().open(new Binder());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             throwBundle(b);
         } catch (RemoteException e) {
             mExtras.attemptDeadServiceRecovery(e);
@@ -149,7 +173,11 @@ public class NfcExecutionEnvironment {
      */
     public void close() throws IOException {
         try {
+<<<<<<< HEAD
             throwBundle(mExtras.getService().close(mExtras.mPackageName, mToken));
+=======
+            throwBundle(mExtras.getService().close());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } catch (RemoteException e) {
             mExtras.attemptDeadServiceRecovery(e);
             throw new IOException("NFC Service was dead");
@@ -167,7 +195,11 @@ public class NfcExecutionEnvironment {
     public byte[] transceive(byte[] in) throws IOException {
         Bundle b;
         try {
+<<<<<<< HEAD
             b = mExtras.getService().transceive(mExtras.mPackageName, in);
+=======
+            b = mExtras.getService().transceive(in);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } catch (RemoteException e) {
             mExtras.attemptDeadServiceRecovery(e);
             throw new IOException("NFC Service was dead, need to re-open");

@@ -53,6 +53,10 @@ public:
     ~KeyCharacterMap();
 
     static status_t load(const String8& filename, KeyCharacterMap** outMap);
+<<<<<<< HEAD
+=======
+    static status_t loadByDeviceId(int32_t deviceId, KeyCharacterMap** outMap);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /* Gets the keyboard type. */
     int32_t getKeyboardType() const;

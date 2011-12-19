@@ -277,7 +277,11 @@ public class Build {
         public static final int HONEYCOMB_MR2 = 13;
 
         /**
+<<<<<<< HEAD
          * October 2011: Android 4.0.
+=======
+         * Android 4.0.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          *
          * <p>Applications targeting this or a later release will get these
          * new changes in behavior:</p>
@@ -309,11 +313,14 @@ public class Build {
          * </ul>
          */
         public static final int ICE_CREAM_SANDWICH = 14;
+<<<<<<< HEAD
 
         /**
          * Android 4.0.3.
          */
         public static final int ICE_CREAM_SANDWICH_MR1 = 15;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
     
     /** The type of build, like "user" or "eng". */

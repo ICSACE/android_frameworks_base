@@ -23,7 +23,10 @@
 #include <nativehelper/JNIHelp.h>
 #include <android_runtime/AndroidRuntime.h>
 #include <android_runtime/android_graphics_SurfaceTexture.h>
+<<<<<<< HEAD
 #include <cutils/properties.h>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <utils/ResourceTypes.h>
 
 #include <gui/SurfaceTexture.h>
@@ -135,6 +138,7 @@ static void android_view_GLES20Canvas_flushCaches(JNIEnv* env, jobject clazz,
     }
 }
 
+<<<<<<< HEAD
 static void android_view_GLES20Canvas_initCaches(JNIEnv* env, jobject clazz) {
     if (Caches::hasInstance()) {
         Caches::getInstance().init();
@@ -147,6 +151,8 @@ static void android_view_GLES20Canvas_terminateCaches(JNIEnv* env, jobject clazz
     }
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 // ----------------------------------------------------------------------------
 // Constructors
 // ----------------------------------------------------------------------------
@@ -737,6 +743,7 @@ static jboolean android_view_GLES20Canvas_copyLayer(JNIEnv* env, jobject clazz,
 
 static jboolean android_view_GLES20Canvas_isAvailable(JNIEnv* env, jobject clazz) {
 #ifdef USE_OPENGL_RENDERER
+<<<<<<< HEAD
     char prop[PROPERTY_VALUE_MAX];
     if (property_get("ro.kernel.qemu", prop, NULL) == 0) {
         // not in the emulator
@@ -746,6 +753,9 @@ static jboolean android_view_GLES20Canvas_isAvailable(JNIEnv* env, jobject clazz
     // enabled, 0 otherwise. On old emulator versions it will be undefined.
     property_get("ro.kernel.qemu.gles", prop, "0");
     return atoi(prop) == 1 ? JNI_TRUE : JNI_FALSE;
+=======
+    return JNI_TRUE;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #else
     return JNI_FALSE;
 #endif
@@ -777,8 +787,11 @@ static JNINativeMethod gMethods[] = {
     { "nPreserveBackBuffer",    "()Z",         (void*) android_view_GLES20Canvas_preserveBackBuffer },
     { "nDisableVsync",          "()V",         (void*) android_view_GLES20Canvas_disableVsync },
     { "nFlushCaches",           "(I)V",        (void*) android_view_GLES20Canvas_flushCaches },
+<<<<<<< HEAD
     { "nInitCaches",            "()V",         (void*) android_view_GLES20Canvas_initCaches },
     { "nTerminateCaches",       "()V",         (void*) android_view_GLES20Canvas_terminateCaches },
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     { "nCreateRenderer",    "()I",             (void*) android_view_GLES20Canvas_createRenderer },
     { "nDestroyRenderer",   "(I)V",            (void*) android_view_GLES20Canvas_destroyRenderer },

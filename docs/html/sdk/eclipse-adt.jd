@@ -1,8 +1,15 @@
 page.title=ADT Plugin for Eclipse
+<<<<<<< HEAD
 adt.zip.version=16.0.1
 adt.zip.download=ADT-16.0.1.zip
 adt.zip.bytes=7000078
 adt.zip.checksum=03a2a23650ddac128c8b9e8aaf0aa433
+=======
+adt.zip.version=15.0.0
+adt.zip.download=ADT-15.0.0.zip
+adt.zip.bytes=6750682
+adt.zip.checksum=264f40a89a1107b0c422adae4e1ce0d1
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 @jd:body
 
@@ -113,6 +120,7 @@ padding: .25em 1em;
   <a href="#" onclick="return toggleDiv(this)">
         <img src="{@docRoot}assets/images/triangle-opened.png" class="toggle-img" height="9px"
 width="9px" />
+<<<<<<< HEAD
 ADT 16.0.1</a> <em>(December 2011)</em>
   <div class="toggleme">
 <dl>
@@ -211,6 +219,8 @@ ADT 15.0.1</a> <em>(November 2011)</em>
   <a href="#" onclick="return toggleDiv(this)">
         <img src="{@docRoot}assets/images/triangle-closed.png" class="toggle-img" height="9px"
 width="9px" />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 ADT 15.0.0</a> <em>(October 2011)</em>
   <div class="toggleme">
 <dl>
@@ -218,7 +228,11 @@ ADT 15.0.0</a> <em>(October 2011)</em>
 <dt>Dependencies:</dt>
 
 <dd>ADT 15.0.0 is designed for use with <a href="{@docRoot}sdk/tools-notes.html">SDK Tools r15</a>.
+<<<<<<< HEAD
 If you haven't already installed SDK Tools r15 into your SDK, use the Android SDK Manager to
+=======
+If you haven't already installed SDK Tools r15 into your SDK, use the Android SDK and AVD Manager to
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 do so.</dd>
 
 <dt>Bug fixes:</dt>
@@ -249,10 +263,17 @@ ADT 14.0.0</a> <em>(October 2011)</em>
 <dt>Dependencies:</dt>
 
 <dd>ADT 14.0.0 is designed for use with <a href="{@docRoot}sdk/tools-notes.html">SDK Tools r14</a>.
+<<<<<<< HEAD
 If you haven't already installed SDK Tools r14 into your SDK, use the Android SDK Manager to
 do so.</dd>
 
 <dt>Build system:</dt>
+=======
+If you haven't already installed SDK Tools r14 into your SDK, use the Android SDK and AVD Manager to
+do so.</dd>
+
+<dt>Build system</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
   <ul>
     <li>Changed <code>default.properties</code> to <code>project.properties</code> and
@@ -275,7 +296,11 @@ see the <a href="http://tools.android.com/recent/buildchangesinrevision14">Andro
 site</a>.</p>
 </dd>
 
+<<<<<<< HEAD
 <dt>General improvements:</dt>
+=======
+<dt>General improvements</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
   <ul>
 
@@ -300,7 +325,11 @@ and deleted without affecting the master copy
 </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>XML and Java editors:</dt>
+=======
+<dt>XML and Java editors</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
   <ul>
     <li>Added a new XML formatter that formats all XML files according to the
@@ -319,7 +348,11 @@ href="http://tools.android.com/recent/xmleditingimprovements">more info</a>).</l
   </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>Layout editor:</dt>
+=======
+<dt>Layout editor</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
   <ul>
     <li>Added tooltip feedback for dragging and resizing operations. For
@@ -345,7 +378,11 @@ href="http://tools.android.com/recent/layouteditorcontextmenuimprovements">more 
   </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>Bug fixes:</dt>
+=======
+<dt>Bug fixes</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>Fixed many bugs and added <a
 href="http://tools.android.com/recent/miscellaneousrecentfixes">minor improvements</a>, in
 particular some <a href="http://tools.android.com/recent/linuxfixes">critical bug fixes on
@@ -388,7 +425,11 @@ the Android SDK and AVD Manager to do so.</dd>
 </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>Build system:</dt>
+=======
+<dt>Build system</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
 <ul>
   <li id="build-option">A new option lets you disable the packaging step in the automatic
@@ -400,7 +441,11 @@ the Android SDK and AVD Manager to do so.</dd>
 </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>Bug fixes:</dt>
+=======
+<dt>Bug fixes</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>Many bug fixes are part of this release
 (<a href="http://tools.android.com/recent/adt12bugfixroundup">more info</a>).</dd>
 
@@ -992,7 +1037,11 @@ Manager to download the latest SDK Tools into your SDK. For more information,
 see <a href="{@docRoot}sdk/adding-components.html">Adding SDK Components</a>.</p>
 </dd>
 
+<<<<<<< HEAD
 <dt>General notes:</dt>
+=======
+<dt>General Notes:</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
 <ul>
 <li>AVD Launch dialog now shows scale value.</li>
@@ -1038,7 +1087,11 @@ bigger than the screen.</li>
 </ul>
 </dd>
 
+<<<<<<< HEAD
 <dt>DDMS integration:</dt>
+=======
+<dt>DDMS Integration:</dt>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <dd>
 <ul>
 <li>Includes the improvements from the standlone DDMS, revision 3.</li>

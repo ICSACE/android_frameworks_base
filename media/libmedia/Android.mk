@@ -46,6 +46,7 @@ LOCAL_SRC_FILES:= \
     MemoryLeakTrackUtil.cpp \
     fixedfft.cpp.arm
 
+<<<<<<< HEAD
 ifeq ($(BOARD_USES_AUDIO_LEGACY),true)
     LOCAL_SRC_FILES+= \
         AudioParameter.cpp
@@ -56,12 +57,17 @@ ifeq ($(BOARD_USES_AUDIO_LEGACY),true)
     endif
 endif
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 LOCAL_SHARED_LIBRARIES := \
 	libui libcutils libutils libbinder libsonivox libicuuc libexpat \
         libcamera_client libstagefright_foundation \
         libgui libdl
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 LOCAL_WHOLE_STATIC_LIBRARY := libmedia_helper
 
 LOCAL_MODULE:= libmedia

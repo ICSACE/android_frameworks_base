@@ -24,7 +24,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+<<<<<<< HEAD
 import android.graphics.Rect;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -499,6 +502,7 @@ public class SearchManager
                             ComponentName launchActivity,
                             Bundle appSearchData,
                             boolean globalSearch) {
+<<<<<<< HEAD
         startSearch(initialQuery, selectInitialQuery, launchActivity,
                 appSearchData, globalSearch, null);
     }
@@ -517,6 +521,10 @@ public class SearchManager
                             Rect sourceBounds) {
         if (globalSearch) {
             startGlobalSearch(initialQuery, selectInitialQuery, appSearchData, sourceBounds);
+=======
+        if (globalSearch) {
+            startGlobalSearch(initialQuery, selectInitialQuery, appSearchData);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return;
         }
 
@@ -537,7 +545,11 @@ public class SearchManager
      * Starts the global search activity.
      */
     /* package */ void startGlobalSearch(String initialQuery, boolean selectInitialQuery,
+<<<<<<< HEAD
             Bundle appSearchData, Rect sourceBounds) {
+=======
+            Bundle appSearchData) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ComponentName globalSearchActivity = getGlobalSearchActivity();
         if (globalSearchActivity == null) {
             Log.w(TAG, "No global search activity found.");
@@ -563,7 +575,10 @@ public class SearchManager
         if (selectInitialQuery) {
             intent.putExtra(EXTRA_SELECT_QUERY, selectInitialQuery);
         }
+<<<<<<< HEAD
         intent.setSourceBounds(sourceBounds);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         try {
             if (DBG) Log.d(TAG, "Starting global search: " + intent.toUri(0));
             mContext.startActivity(intent);

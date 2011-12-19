@@ -1982,6 +1982,7 @@ public class InputMethodService extends AbstractInputMethodService {
             conn.setSelection(start, end);
         }
     }
+<<<<<<< HEAD
 
     /**
      * @hide
@@ -2021,6 +2022,9 @@ public class InputMethodService extends AbstractInputMethodService {
         }
     }
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * This is called when the user has clicked on the extracted text view,
      * when running in fullscreen mode.  The default implementation hides
@@ -2036,7 +2040,11 @@ public class InputMethodService extends AbstractInputMethodService {
             setCandidatesViewShown(false);
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * This is called when the user has performed a cursor movement in the
      * extracted text view, when it is running in fullscreen mode.  The default

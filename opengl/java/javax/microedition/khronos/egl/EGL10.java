@@ -114,8 +114,11 @@ public interface EGL10 extends EGL {
     boolean     eglQueryContext(EGLDisplay display, EGLContext context, int attribute, int[] value);
     String      eglQueryString(EGLDisplay display, int name);
     boolean     eglQuerySurface(EGLDisplay display, EGLSurface surface, int attribute, int[] value);
+<<<<<<< HEAD
     /** @hide **/
     boolean     eglReleaseThread();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     boolean     eglSwapBuffers(EGLDisplay display, EGLSurface surface);
     boolean     eglTerminate(EGLDisplay display);
     boolean     eglWaitGL();

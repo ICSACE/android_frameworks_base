@@ -30,7 +30,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
+<<<<<<< HEAD
  * The Surface View for a graphics renderscript (RenderScriptGL) to draw on.
+=======
+ * The Surface View for a graphics renderscript (RenderScriptGL) to draw on. 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  */
 public class RSSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mSurfaceHolder;
@@ -78,11 +82,17 @@ public class RSSurfaceView extends SurfaceView implements SurfaceHolder.Callback
      * not normally called or subclassed by clients of RSSurfaceView.
      */
     public void surfaceDestroyed(SurfaceHolder holder) {
+<<<<<<< HEAD
         synchronized (this) {
             // Surface will be destroyed when we return
             if (mRS != null) {
                 mRS.setSurface(null, 0, 0);
             }
+=======
+        // Surface will be destroyed when we return
+        if (mRS != null) {
+            mRS.setSurface(null, 0, 0);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -91,10 +101,15 @@ public class RSSurfaceView extends SurfaceView implements SurfaceHolder.Callback
      * not normally called or subclassed by clients of RSSurfaceView.
      */
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+<<<<<<< HEAD
         synchronized (this) {
             if (mRS != null) {
                 mRS.setSurface(holder, w, h);
             }
+=======
+        if (mRS != null) {
+            mRS.setSurface(holder, w, h);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -130,10 +145,15 @@ public class RSSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void destroyRenderScriptGL() {
+<<<<<<< HEAD
         synchronized (this) {
             mRS.destroy();
             mRS = null;
         }
+=======
+        mRS.destroy();
+        mRS = null;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public void setRenderScriptGL(RenderScriptGL rs) {

@@ -282,6 +282,7 @@ public class Surface implements Parcelable {
     /**
      * Copy another surface to this one.  This surface now holds a reference
      * to the same data as the original surface, and is -not- the owner.
+<<<<<<< HEAD
      * This is for use by the window manager when returning a window surface
      * back from a client, converting it from the representation being managed
      * by the window manager to the representation the client uses to draw
@@ -300,6 +301,12 @@ public class Surface implements Parcelable {
      */
     public native void transferFrom(Surface o);
 
+=======
+     * @hide
+     */
+    public native void copyFrom(Surface o);
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /** @hide */
     public int getGenerationId() {
         return mSurfaceGenerationId;

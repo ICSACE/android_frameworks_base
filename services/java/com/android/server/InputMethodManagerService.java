@@ -161,6 +161,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     private final LruCache<SuggestionSpan, InputMethodInfo> mSecureSuggestionSpans =
             new LruCache<SuggestionSpan, InputMethodInfo>(SECURE_SUGGESTION_SPANS_MAX_SIZE);
 
+<<<<<<< HEAD
     // Used to bring IME service up to visible adjustment while it is being shown.
     final ServiceConnection mVisibleConnection = new ServiceConnection() {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {
@@ -171,6 +172,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     };
     boolean mVisibleBound = false;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Ongoing notification
     private NotificationManager mNotificationManager;
     private KeyguardManager mKeyguardManager;
@@ -382,10 +385,15 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
                 mScreenOn = true;
+<<<<<<< HEAD
                 refreshImeWindowVisibilityLocked();
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                 mScreenOn = false;
                 setImeWindowVisibilityStatusHiddenLocked();
+=======
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                mScreenOn = false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (intent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
                 hideInputMethodMenu();
                 return;
@@ -480,7 +488,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                             // Uh oh, current input method is no longer around!
                             // Pick another one...
                             Slog.i(TAG, "Current input method removed: " + curInputMethodId);
+<<<<<<< HEAD
                             setImeWindowVisibilityStatusHiddenLocked();
+=======
+                            mImeWindowVis = 0;
+                            updateImeWindowStatusLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             if (!chooseNewDefaultIMELocked()) {
                                 changed = true;
                                 curIm = null;
@@ -504,6 +517,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         }
     }
 
+<<<<<<< HEAD
     private static class MethodCallback extends IInputMethodCallback.Stub {
         private final IInputMethod mMethod;
         private final InputMethodManagerService mParentIMMS;
@@ -511,6 +525,13 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         MethodCallback(final IInputMethod method, final InputMethodManagerService imms) {
             mMethod = method;
             mParentIMMS = imms;
+=======
+    class MethodCallback extends IInputMethodCallback.Stub {
+        final IInputMethod mMethod;
+
+        MethodCallback(IInputMethod method) {
+            mMethod = method;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         @Override
@@ -519,7 +540,11 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
 
         @Override
         public void sessionCreated(IInputMethodSession session) throws RemoteException {
+<<<<<<< HEAD
             mParentIMMS.onSessionCreated(mMethod, session);
+=======
+            onSessionCreated(mMethod, session);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -636,6 +661,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         }
     }
 
+<<<<<<< HEAD
     private void setImeWindowVisibilityStatusHiddenLocked() {
         mImeWindowVis = 0;
         updateImeWindowStatusLocked();
@@ -657,6 +683,9 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     }
 
     private void updateImeWindowStatusLocked() {
+=======
+    void updateImeWindowStatusLocked() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         setImeWindowStatus(mCurToken, mImeWindowVis, mBackDisposition);
     }
 
@@ -870,7 +899,11 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                         if (DEBUG) Slog.v(TAG, "Creating new session for client " + cs);
                         executeOrSendMessage(mCurMethod, mCaller.obtainMessageOO(
                                 MSG_CREATE_SESSION, mCurMethod,
+<<<<<<< HEAD
                                 new MethodCallback(mCurMethod, this)));
+=======
+                                new MethodCallback(mCurMethod)));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                     // Return to client, and we will get back with it when
                     // we have had a session made for it.
@@ -919,8 +952,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 com.android.internal.R.string.input_method_binding_label);
         mCurIntent.putExtra(Intent.EXTRA_CLIENT_INTENT, PendingIntent.getActivity(
                 mContext, 0, new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS), 0));
+<<<<<<< HEAD
         if (mContext.bindService(mCurIntent, this, Context.BIND_AUTO_CREATE
                 | Context.BIND_NOT_VISIBLE)) {
+=======
+        if (mContext.bindService(mCurIntent, this, Context.BIND_AUTO_CREATE)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mLastBindTime = SystemClock.uptimeMillis();
             mHaveConnection = true;
             mCurId = info.getId();
@@ -977,7 +1014,11 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                             + mCurClient);
                     executeOrSendMessage(mCurMethod, mCaller.obtainMessageOO(
                             MSG_CREATE_SESSION, mCurMethod,
+<<<<<<< HEAD
                             new MethodCallback(mCurMethod, this)));
+=======
+                            new MethodCallback(mCurMethod)));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         }
@@ -1002,11 +1043,14 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     }
 
     void unbindCurrentMethodLocked(boolean reportToClient) {
+<<<<<<< HEAD
         if (mVisibleBound) {
             mContext.unbindService(mVisibleConnection);
             mVisibleBound = false;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mHaveConnection) {
             mContext.unbindService(this);
             mHaveConnection = false;
@@ -1036,7 +1080,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 sessionState.session.finishSession();
             } catch (RemoteException e) {
                 Slog.w(TAG, "Session failed to close due to remote exception", e);
+<<<<<<< HEAD
                 setImeWindowVisibilityStatusHiddenLocked();
+=======
+                mImeWindowVis = 0;
+                updateImeWindowStatusLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -1301,7 +1350,20 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     }
                     if (mCurMethod != null) {
                         try {
+<<<<<<< HEAD
                             refreshImeWindowVisibilityLocked();
+=======
+                            final Configuration conf = mRes.getConfiguration();
+                            final boolean haveHardKeyboard = conf.keyboard
+                                    != Configuration.KEYBOARD_NOKEYS;
+                            final boolean hardKeyShown = haveHardKeyboard
+                                    && conf.hardKeyboardHidden
+                                            != Configuration.HARDKEYBOARDHIDDEN_YES;
+                            mImeWindowVis = (mInputShown || hardKeyShown) ? (
+                                    InputMethodService.IME_ACTIVE | InputMethodService.IME_VISIBLE)
+                                    : 0;
+                            updateImeWindowStatusLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             // If subtype is null, try to find the most applicable one from
                             // getCurrentInputMethodSubtype.
                             if (subtype == null) {
@@ -1389,10 +1451,13 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     MSG_SHOW_SOFT_INPUT, getImeShowFlags(), mCurMethod,
                     resultReceiver));
             mInputShown = true;
+<<<<<<< HEAD
             if (mHaveConnection && !mVisibleBound) {
                 mContext.bindService(mCurIntent, mVisibleConnection, Context.BIND_AUTO_CREATE);
                 mVisibleBound = true;
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             res = true;
         } else if (mHaveConnection && SystemClock.uptimeMillis()
                 >= (mLastBindTime+TIME_TO_RECONNECT)) {
@@ -1404,8 +1469,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     SystemClock.uptimeMillis()-mLastBindTime,1);
             Slog.w(TAG, "Force disconnect/connect to the IME in showCurrentInputLocked()");
             mContext.unbindService(this);
+<<<<<<< HEAD
             mContext.bindService(mCurIntent, this, Context.BIND_AUTO_CREATE
                     | Context.BIND_NOT_VISIBLE);
+=======
+            mContext.bindService(mCurIntent, this, Context.BIND_AUTO_CREATE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         return res;
@@ -1427,11 +1496,21 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                         if (!mIWindowManager.inputMethodClientHasFocus(client)) {
                             if (DEBUG) Slog.w(TAG, "Ignoring hideSoftInput of uid "
                                     + uid + ": " + client);
+<<<<<<< HEAD
                             setImeWindowVisibilityStatusHiddenLocked();
                             return false;
                         }
                     } catch (RemoteException e) {
                         setImeWindowVisibilityStatusHiddenLocked();
+=======
+                            mImeWindowVis = 0;
+                            updateImeWindowStatusLocked();
+                            return false;
+                        }
+                    } catch (RemoteException e) {
+                        mImeWindowVis = 0;
+                        updateImeWindowStatusLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         return false;
                     }
                 }
@@ -1464,10 +1543,13 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         } else {
             res = false;
         }
+<<<<<<< HEAD
         if (mHaveConnection && mVisibleBound) {
             mContext.unbindService(mVisibleConnection);
             mVisibleBound = false;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mInputShown = false;
         mShowRequested = false;
         mShowExplicitlyRequested = false;

@@ -345,11 +345,14 @@ public final class CookieManager {
      * a system private class.
      */
     public synchronized void setCookie(WebAddress uri, String value) {
+<<<<<<< HEAD
         if (JniUtil.useChromiumHttpStack()) {
             nativeSetCookie(uri.toString(), value, false);
             return;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (value != null && value.length() > MAX_COOKIE_LENGTH) {
             return;
         }
@@ -505,10 +508,13 @@ public final class CookieManager {
      * is a system private class.
      */
     public synchronized String getCookie(WebAddress uri) {
+<<<<<<< HEAD
         if (JniUtil.useChromiumHttpStack()) {
             return nativeGetCookie(uri.toString(), false);
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (!mAcceptCookie || uri == null) {
             return null;
         }
@@ -582,8 +588,11 @@ public final class CookieManager {
      * {@hide}  Too late to release publically.
      */
     public void waitForCookieOperationsToComplete() {
+<<<<<<< HEAD
         // Note that this function is applicable for both the java
         // and native http stacks, and works correctly with either.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         synchronized (this) {
             while (pendingCookieOperations > 0) {
                 try {

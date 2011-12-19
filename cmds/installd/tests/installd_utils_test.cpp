@@ -34,6 +34,7 @@ extern "C" {
 #define TEST_SYSTEM_DIR1 "/system/app/"
 #define TEST_SYSTEM_DIR2 "/vendor/app/"
 
+<<<<<<< HEAD
 #define REALLY_LONG_APP_NAME "com.example." \
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa." \
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa." \
@@ -44,6 +45,8 @@ extern "C" {
         "shared_prefs_shared_prefs_shared_prefs_shared_prefs_shared_prefs_shared_prefs_" \
         "shared_prefs_shared_prefs_shared_prefs_shared_prefs_shared_prefs_shared_prefs_"
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 namespace android {
 
 class UtilsTest : public testing::Test {
@@ -220,7 +223,11 @@ TEST_F(UtilsTest, CheckSystemApp_BadPathEscapeFail) {
 
 TEST_F(UtilsTest, GetPathFromString_NullPathFail) {
     dir_rec_t test1;
+<<<<<<< HEAD
     EXPECT_EQ(-1, get_path_from_string(&test1, (const char *) NULL))
+=======
+    EXPECT_EQ(-1, get_path_from_string(&test1, NULL))
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             << "Should not allow NULL as a path.";
 }
 
@@ -337,6 +344,7 @@ TEST_F(UtilsTest, CreatePkgPathInDir_ProtectedDir) {
             << "Package path should be in /data/app-private/";
 }
 
+<<<<<<< HEAD
 TEST_F(UtilsTest, CreatePersonaPath_Primary) {
     char path[PKG_PATH_MAX];
 
@@ -381,6 +389,8 @@ TEST_F(UtilsTest, CreateMovePath_Fail_LeafTooLong) {
             << "Should fail to create move path for primary user";
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 TEST_F(UtilsTest, CopyAndAppend_Normal) {
     //int copy_and_append(dir_rec_t* dst, dir_rec_t* src, char* suffix)
     dir_rec_t dst;

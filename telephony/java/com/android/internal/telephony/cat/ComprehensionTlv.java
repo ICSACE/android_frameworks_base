@@ -94,7 +94,10 @@ class ComprehensionTlv {
                 startIndex = ctlv.mValueIndex + ctlv.mLength;
             } else {
                 CatLog.d(LOG_TAG, "decodeMany: ctlv is null, stop decoding");
+<<<<<<< HEAD
                 items.clear();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             }
         }
@@ -124,10 +127,14 @@ class ComprehensionTlv {
             case 0:
             case 0xff:
             case 0x80:
+<<<<<<< HEAD
                 // for error handling
                 // these one make exception while decoding the abnormal command.
                 // (in case of Ghana MTN simcard , JDI simcard)
                 return null;
+=======
+                throw new ResultException(ResultCode.CMD_DATA_NOT_UNDERSTOOD);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             case 0x7f: // tag is in three-byte format
                 tag = ((data[curIndex] & 0xff) << 8)

@@ -810,6 +810,7 @@ public final class SimulatedCommands extends BaseCommands
     /**
      * {@inheritDoc}
      */
+<<<<<<< HEAD
     public void sendEnvelopeWithStatus(String contents, Message response) {
         resultSuccess(response, null);
     }
@@ -817,6 +818,8 @@ public final class SimulatedCommands extends BaseCommands
     /**
      * {@inheritDoc}
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void handleCallSetupRequestFromSim(
             boolean accept, Message response) {
         resultSuccess(response, null);
@@ -1044,11 +1047,14 @@ public final class SimulatedCommands extends BaseCommands
         unimplemented(result);
     }
 
+<<<<<<< HEAD
     public void acknowledgeIncomingGsmSmsWithPdu(boolean success, String ackPdu,
             Message result) {
         unimplemented(result);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * parameters equivalent to 27.007 AT+CRSM command
      * response.obj will be an AsyncResult

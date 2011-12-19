@@ -25,6 +25,7 @@ namespace android {
 namespace renderscript {
 
 class ProgramStoreState;
+<<<<<<< HEAD
 /*****************************************************************************
  * CAUTION
  *
@@ -35,6 +36,25 @@ class ProgramStoreState;
  *****************************************************************************/
 class ProgramStore : public ProgramBase {
 public:
+=======
+
+class ProgramStore : public ProgramBase {
+public:
+    virtual void setup(const Context *, ProgramStoreState *);
+
+    virtual void serialize(OStream *stream) const;
+    virtual RsA3DClassID getClassId() const { return RS_A3D_CLASS_ID_PROGRAM_STORE; }
+    static ProgramStore *createFromStream(Context *rsc, IStream *stream);
+    static ObjectBaseRef<ProgramStore> getProgramStore(Context *,
+                                                       bool colorMaskR, bool colorMaskG,
+                                                       bool colorMaskB, bool colorMaskA,
+                                                       bool depthMask, bool ditherEnable,
+                                                       RsBlendSrcFunc srcFunc, RsBlendDstFunc destFunc,
+                                                       RsDepthFunc depthFunc);
+
+    void init();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     struct Hal {
         mutable void *drv;
 
@@ -57,6 +77,7 @@ public:
     };
     Hal mHal;
 
+<<<<<<< HEAD
     virtual void setup(const Context *, ProgramStoreState *);
 
     virtual void serialize(OStream *stream) const;
@@ -69,6 +90,8 @@ public:
                                                        RsBlendSrcFunc srcFunc, RsBlendDstFunc destFunc,
                                                        RsDepthFunc depthFunc);
     void init();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 protected:
     virtual void preDestroy() const;
     virtual ~ProgramStore();

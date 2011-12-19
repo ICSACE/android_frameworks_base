@@ -1575,6 +1575,7 @@ public class PhoneNumberUtils
         // If the number passed in is null, just return false:
         if (number == null) return false;
 
+<<<<<<< HEAD
         // If the number passed in is a SIP address, return false, since the
         // concept of "emergency numbers" is only meaningful for calls placed
         // over the cell network.
@@ -1586,6 +1587,8 @@ public class PhoneNumberUtils
             return false;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Strip the separators from the number before comparing it
         // to the list.
         number = extractNetworkPortionAlt(number);
@@ -2118,6 +2121,7 @@ public class PhoneNumberUtils
     }
 
     /**
+<<<<<<< HEAD
      * @return the "username" part of the specified SIP address,
      *         i.e. the part before the "@" character (or "%40").
      *
@@ -2143,6 +2147,8 @@ public class PhoneNumberUtils
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * This function handles the plus code conversion within NANP CDMA network
      * If the number format is
      * 1)+1NANP,remove +,

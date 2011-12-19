@@ -336,10 +336,13 @@ private:
 
     int64_t retrieveDecodingTimeUs(bool isCodecSpecific);
 
+<<<<<<< HEAD
     status_t parseAVCCodecSpecificData(
             const void *data, size_t size,
             unsigned *profile, unsigned *level);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     OMXCodec(const OMXCodec &);
     OMXCodec &operator=(const OMXCodec &);
 };

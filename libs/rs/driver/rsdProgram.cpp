@@ -43,7 +43,11 @@ bool rsdProgramVertexInit(const Context *rsc, const ProgramVertex *pv,
 
 static void SyncProgramConstants(const Context *rsc, const Program *p) {
     for (uint32_t ct=0; ct < p->mHal.state.texturesCount; ct++) {
+<<<<<<< HEAD
         const Allocation *a = p->mHal.state.textures[ct];
+=======
+        const Allocation *a = p->mHal.state.textures[ct].get();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (!a) {
             continue;
         }

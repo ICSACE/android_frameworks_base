@@ -16,12 +16,18 @@
 
 package android.view;
 
+<<<<<<< HEAD
 import android.app.ActivityManager;
 import android.content.ComponentCallbacks2;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.opengl.ManagedEGLContext;
+=======
+import android.content.res.CompatibilityInfo;
+import android.content.res.Configuration;
+import android.graphics.PixelFormat;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.IBinder;
 import android.util.AndroidRuntimeException;
 import android.util.Log;
@@ -63,11 +69,16 @@ public class WindowManagerImpl implements WindowManager {
      * The user is navigating with keys (not the touch screen), so
      * navigational focus should be shown.
      */
+<<<<<<< HEAD
     public static final int RELAYOUT_RES_IN_TOUCH_MODE = 0x1;
+=======
+    public static final int RELAYOUT_IN_TOUCH_MODE = 0x1;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * This is the first time the window is being drawn,
      * so the client must call drawingFinished() when done
      */
+<<<<<<< HEAD
     public static final int RELAYOUT_RES_FIRST_TIME = 0x2;
     /**
      * The window manager has changed the surface from the last call.
@@ -91,6 +102,12 @@ public class WindowManagerImpl implements WindowManager {
 
     public static final int ADD_FLAG_APP_VISIBLE = 0x2;
     public static final int ADD_FLAG_IN_TOUCH_MODE = RELAYOUT_RES_IN_TOUCH_MODE;
+=======
+    public static final int RELAYOUT_FIRST_TIME = 0x2;
+    
+    public static final int ADD_FLAG_APP_VISIBLE = 0x2;
+    public static final int ADD_FLAG_IN_TOUCH_MODE = RELAYOUT_IN_TOUCH_MODE;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     
     public static final int ADD_OKAY = 0;
     public static final int ADD_BAD_APP_TOKEN = -1;
@@ -431,6 +448,7 @@ public class WindowManagerImpl implements WindowManager {
      */
     public void trimMemory(int level) {
         if (HardwareRenderer.isAvailable()) {
+<<<<<<< HEAD
             switch (level) {
                 case ComponentCallbacks2.TRIM_MEMORY_COMPLETE:
                 case ComponentCallbacks2.TRIM_MEMORY_MODERATE:
@@ -455,6 +473,9 @@ public class WindowManagerImpl implements WindowManager {
                 default:
                     HardwareRenderer.trimMemory(level);
             }
+=======
+            HardwareRenderer.trimMemory(level);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

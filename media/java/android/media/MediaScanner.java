@@ -377,7 +377,47 @@ public class MediaScanner
         }
     }
 
+<<<<<<< HEAD
     private MediaInserter mMediaInserter;
+=======
+    private class FileInserter {
+
+        private final Uri mUri;
+        private final ContentValues[] mValues;
+        private int mIndex;
+
+        public FileInserter(Uri uri, int count) {
+            mUri = uri;
+            mValues = new ContentValues[count];
+        }
+
+        public Uri insert(ContentValues values) {
+            if (mIndex == mValues.length) {
+                flush();
+            }
+            mValues[mIndex++] = values;
+            // URI not needed when doing bulk inserts
+            return null;
+        }
+
+        public void flush() {
+            while (mIndex < mValues.length) {
+                mValues[mIndex++] = null;
+            }
+            try {
+                mMediaProvider.bulkInsert(mUri, mValues);
+            } catch (RemoteException e) {
+                Log.e(TAG, "RemoteException in FileInserter.flush()", e);
+            }
+            mIndex = 0;
+        }
+    }
+
+    private FileInserter mAudioInserter;
+    private FileInserter mVideoInserter;
+    private FileInserter mImageInserter;
+    private FileInserter mFileInserter;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // hashes file path to FileCacheEntry.
     // path should be lower case if mCaseInsensitivePaths is true
@@ -844,6 +884,7 @@ public class MediaScanner
             }
 
             Uri tableUri = mFilesUri;
+<<<<<<< HEAD
             MediaInserter inserter = mMediaInserter;
             if (!mNoMedia) {
                 if (MediaFile.isVideoFileType(mFileType)) {
@@ -852,6 +893,19 @@ public class MediaScanner
                     tableUri = mImagesUri;
                 } else if (MediaFile.isAudioFileType(mFileType)) {
                     tableUri = mAudioUri;
+=======
+            FileInserter inserter = mFileInserter;
+            if (!mNoMedia) {
+                if (MediaFile.isVideoFileType(mFileType)) {
+                    tableUri = mVideoUri;
+                    inserter = mVideoInserter;
+                } else if (MediaFile.isImageFileType(mFileType)) {
+                    tableUri = mImagesUri;
+                    inserter = mImageInserter;
+                } else if (MediaFile.isAudioFileType(mFileType)) {
+                    tableUri = mAudioUri;
+                    inserter = mAudioInserter;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
             Uri result = null;
@@ -874,7 +928,11 @@ public class MediaScanner
                 if (inserter == null || entry.mFormat == MtpConstants.FORMAT_ASSOCIATION) {
                     result = mMediaProvider.insert(tableUri, values);
                 } else {
+<<<<<<< HEAD
                     inserter.insert(tableUri, values);
+=======
+                    result = inserter.insert(values);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
 
                 if (result != null) {
@@ -1173,8 +1231,16 @@ public class MediaScanner
             long prescan = System.currentTimeMillis();
 
             if (ENABLE_BULK_INSERTS) {
+<<<<<<< HEAD
                 // create MediaInserter for bulk inserts
                 mMediaInserter = new MediaInserter(mMediaProvider, 500);
+=======
+                // create FileInserters for bulk inserts
+                mAudioInserter = new FileInserter(mAudioUri, 500);
+                mVideoInserter = new FileInserter(mVideoUri, 500);
+                mImageInserter = new FileInserter(mImagesUri, 500);
+                mFileInserter = new FileInserter(mFilesUri, 500);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             for (int i = 0; i < directories.length; i++) {
@@ -1183,8 +1249,19 @@ public class MediaScanner
 
             if (ENABLE_BULK_INSERTS) {
                 // flush remaining inserts
+<<<<<<< HEAD
                 mMediaInserter.flushAll();
                 mMediaInserter = null;
+=======
+                mAudioInserter.flush();
+                mVideoInserter.flush();
+                mImageInserter.flush();
+                mFileInserter.flush();
+                mAudioInserter = null;
+                mVideoInserter = null;
+                mImageInserter = null;
+                mFileInserter = null;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             long scan = System.currentTimeMillis();

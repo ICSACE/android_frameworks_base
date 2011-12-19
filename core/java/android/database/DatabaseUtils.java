@@ -237,8 +237,12 @@ public class DatabaseUtils {
             return Cursor.FIELD_TYPE_BLOB;
         } else if (obj instanceof Float || obj instanceof Double) {
             return Cursor.FIELD_TYPE_FLOAT;
+<<<<<<< HEAD
         } else if (obj instanceof Long || obj instanceof Integer
                 || obj instanceof Short || obj instanceof Byte) {
+=======
+        } else if (obj instanceof Long || obj instanceof Integer) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return Cursor.FIELD_TYPE_INTEGER;
         } else {
             return Cursor.FIELD_TYPE_STRING;
@@ -246,6 +250,7 @@ public class DatabaseUtils {
     }
 
     /**
+<<<<<<< HEAD
      * Fills the specified cursor window by iterating over the contents of the cursor.
      * The window is filled until the cursor is exhausted or the window runs out
      * of space.
@@ -322,6 +327,8 @@ public class DatabaseUtils {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Appends an SQL string to the given StringBuilder, including the opening
      * and closing single quotes. Any single quotes internal to sqlString will
      * be escaped.

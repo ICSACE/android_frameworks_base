@@ -152,12 +152,15 @@ class ZoomManager {
     private float mDisplayDensity;
 
     /*
+<<<<<<< HEAD
      * The factor that is used to tweak the zoom scale on a double-tap,
      * and can be changed via WebSettings. Range is from 0.75f to 1.25f.
      */
     private float mDoubleTapZoomFactor = 1.0f;
 
     /*
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * The scale factor that is used as the minimum increment when going from
      * overview to reading level on a double tap.
      */
@@ -169,7 +172,15 @@ class ZoomManager {
     
     /*
      * The initial scale for the WebView. 0 means default. If initial scale is
+<<<<<<< HEAD
      * greater than 0, the WebView starts with this value as its initial scale.
+=======
+     * greater than 0 the WebView starts with this value as its initial scale. The
+     * value is converted from an integer percentage so it is guarenteed to have
+     * no more than 2 significant digits after the decimal.  This restriction
+     * allows us to convert the scale back to the original percentage by simply
+     * multiplying the value by 100.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     private float mInitialScale;
 
@@ -309,14 +320,25 @@ class ZoomManager {
     }
 
     public final float getDefaultScale() {
+<<<<<<< HEAD
         return mDefaultScale;
+=======
+        return mInitialScale > 0 ? mInitialScale : mDefaultScale;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
      * Returns the zoom scale used for reading text on a double-tap.
      */
     public final float getReadingLevelScale() {
+<<<<<<< HEAD
         return mDisplayDensity * mDoubleTapZoomFactor;
+=======
+        WebSettings settings = mWebView.getSettings();
+        final float doubleTapZoomFactor = settings != null
+            ? settings.getDoubleTapZoom() / 100.f : 1.0f;
+        return mDisplayDensity * doubleTapZoomFactor;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public final float getInvDefaultScale() {
@@ -350,6 +372,11 @@ class ZoomManager {
 
     public final void setInitialScaleInPercent(int scaleInPercent) {
         mInitialScale = scaleInPercent * 0.01f;
+<<<<<<< HEAD
+=======
+        mActualScale = mInitialScale > 0 ? mInitialScale : mDefaultScale;
+        mInvActualScale = 1 / mActualScale;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public final float computeScaleWithLimits(float scale) {
@@ -493,19 +520,25 @@ class ZoomManager {
 
         if (mHardwareAccelerated) {
             mWebView.updateScrollCoordinates(mWebView.getScrollX() - tx, mWebView.getScrollY() - ty);
+<<<<<<< HEAD
             // By adding webView matrix, we need to offset the canvas a bit
             // to make the animation smooth.
             canvas.translate(tx, ty);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             setZoomScale(zoomScale, false);
 
             if (mZoomScale == 0) {
                 // We've reached the end of the zoom animation.
                 mInHWAcceleratedZoom = false;
+<<<<<<< HEAD
 
                 // Ensure that the zoom level is pushed to WebCore. This has not
                 // yet occurred because we prevent it from happening while
                 // mInHWAcceleratedZoom is true.
                 mWebView.sendViewSizeZoom(false);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } else {
             canvas.translate(tx, ty);
@@ -521,6 +554,7 @@ class ZoomManager {
         return mZoomScale != 0 || mInHWAcceleratedZoom;
     }
 
+<<<<<<< HEAD
     public void updateDoubleTapZoom(int doubleTapZoom) {
         boolean zoomIn = (mTextWrapScale - mActualScale) < .1f;
         mDoubleTapZoomFactor = doubleTapZoom / 100.0f;
@@ -528,6 +562,13 @@ class ZoomManager {
         float newScale = zoomIn ? mTextWrapScale
                 : Math.min(mTextWrapScale, mActualScale);
         setZoomScale(newScale, true, true);
+=======
+    public void updateDoubleTapZoom() {
+        if (mInZoomOverview) {
+            mTextWrapScale = getReadingLevelScale();
+            refreshZoomScale(true);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public void refreshZoomScale(boolean reflowText) {
@@ -1123,11 +1164,18 @@ class ZoomManager {
             float scale;
             if (mInitialScale > 0) {
                 scale = mInitialScale;
+<<<<<<< HEAD
             } else if (viewState.mIsRestored || viewState.mViewScale > 0) {
                 scale = (viewState.mViewScale > 0)
                     ? viewState.mViewScale : overviewScale;
                 mTextWrapScale = (viewState.mTextWrapScale > 0)
                     ? viewState.mTextWrapScale : getReadingLevelScale();
+=======
+                mTextWrapScale = scale;
+            } else if (viewState.mViewScale > 0) {
+                mTextWrapScale = viewState.mTextWrapScale;
+                scale = viewState.mViewScale;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 scale = overviewScale;
                 if (!settings.getUseWideViewPort()
@@ -1143,7 +1191,11 @@ class ZoomManager {
             }
             boolean reflowText = false;
             if (!viewState.mIsRestored) {
+<<<<<<< HEAD
                 if (settings.getUseFixedViewport()) {
+=======
+                if (settings.getUseFixedViewport() && mInitialScale == 0) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     // Override the scale only in case of fixed viewport.
                     scale = Math.max(scale, overviewScale);
                     mTextWrapScale = Math.max(mTextWrapScale, overviewScale);

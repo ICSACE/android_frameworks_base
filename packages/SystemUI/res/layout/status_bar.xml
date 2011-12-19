@@ -31,6 +31,7 @@
     <LinearLayout android:id="@+id/icons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:paddingLeft="6dip"
         android:paddingRight="6dip"
         android:orientation="horizontal"
@@ -60,6 +61,23 @@
         <LinearLayout android:id="@+id/statusIcons"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+=======
+        android:orientation="horizontal">
+            
+        <com.android.systemui.statusbar.phone.IconMerger android:id="@+id/notificationIcons"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="6dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"/>  
+            
+        <LinearLayout android:id="@+id/statusIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:gravity="center_vertical"
             android:orientation="horizontal"/>    
 
@@ -67,7 +85,11 @@
             android:id="@+id/signal_battery_cluster"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+<<<<<<< HEAD
             android:paddingLeft="2dp"
+=======
+            android:layout_marginRight="6dp"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:orientation="horizontal"
             android:gravity="center"
             >
@@ -80,7 +102,11 @@
                 android:id="@+id/battery"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
                 android:paddingLeft="4dip"
+=======
+                android:paddingLeft="6dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 />
         </LinearLayout>
 
@@ -90,7 +116,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:singleLine="true"
+<<<<<<< HEAD
             android:paddingLeft="6dip"
+=======
+            android:paddingRight="6dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:gravity="center_vertical|left"
             />
     </LinearLayout>

@@ -34,8 +34,12 @@ namespace uirenderer {
 
 TextureCache::TextureCache():
         mCache(GenerationCache<SkBitmap*, Texture*>::kUnlimitedCapacity),
+<<<<<<< HEAD
         mSize(0), mMaxSize(MB(DEFAULT_TEXTURE_CACHE_SIZE)),
         mFlushRate(DEFAULT_TEXTURE_CACHE_FLUSH_RATE) {
+=======
+        mSize(0), mMaxSize(MB(DEFAULT_TEXTURE_CACHE_SIZE)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     char property[PROPERTY_VALUE_MAX];
     if (property_get(PROPERTY_TEXTURE_CACHE_SIZE, property, NULL) > 0) {
         INIT_LOGD("  Setting texture cache size to %sMB", property);
@@ -44,6 +48,7 @@ TextureCache::TextureCache():
         INIT_LOGD("  Using default texture cache size of %.2fMB", DEFAULT_TEXTURE_CACHE_SIZE);
     }
 
+<<<<<<< HEAD
     if (property_get(PROPERTY_TEXTURE_CACHE_FLUSH_RATE, property, NULL) > 0) {
         float flushRate = atof(property);
         INIT_LOGD("  Setting texture cache flush rate to %.2f%%", flushRate * 100.0f);
@@ -53,6 +58,8 @@ TextureCache::TextureCache():
                 DEFAULT_TEXTURE_CACHE_FLUSH_RATE * 100.0f);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     init();
 }
 
@@ -94,10 +101,13 @@ void TextureCache::setMaxSize(uint32_t maxSize) {
     }
 }
 
+<<<<<<< HEAD
 void TextureCache::setFlushRate(float flushRate) {
     mFlushRate = fmaxf(0.0f, fminf(1.0f, flushRate));
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 ///////////////////////////////////////////////////////////////////////////////
 // Callbacks
 ///////////////////////////////////////////////////////////////////////////////
@@ -182,6 +192,7 @@ void TextureCache::clear() {
     TEXTURE_LOGD("TextureCache:clear(), mSize = %d", mSize);
 }
 
+<<<<<<< HEAD
 void TextureCache::flush() {
     if (mFlushRate >= 1.0f || mCache.size() == 0) return;
     if (mFlushRate <= 0.0f) {
@@ -197,6 +208,8 @@ void TextureCache::flush() {
     }
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 void TextureCache::generateTexture(SkBitmap* bitmap, Texture* texture, bool regenerate) {
     SkAutoLockPixels alp(*bitmap);
 

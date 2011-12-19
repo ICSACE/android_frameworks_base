@@ -29,7 +29,11 @@
 
     <com.android.internal.widget.DigitalClock android:id="@+id/time"
         android:layout_marginTop="@dimen/keyguard_lockscreen_status_line_clockfont_top_margin"
+<<<<<<< HEAD
         android:layout_marginBottom="@dimen/keyguard_lockscreen_status_line_clockfont_bottom_margin"
+=======
+        android:layout_marginBottom="12dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:layout_marginRight="@dimen/keyguard_lockscreen_status_line_font_right_margin"
         android:layout_gravity="right">
 
@@ -42,6 +46,10 @@
             android:ellipsize="none"
             android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
             android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
+=======
+            android:layout_marginBottom="6dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:textColor="@color/lockscreen_clock_background"
             />
 
@@ -52,6 +60,10 @@
             android:ellipsize="none"
             android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
             android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
+=======
+            android:layout_marginBottom="6dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:textColor="@color/lockscreen_clock_foreground"
             />
 
@@ -108,10 +120,18 @@
         android:id="@+id/lockPattern"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:layout_marginRight="8dip"
         android:layout_marginBottom="4dip"
         android:layout_marginLeft="8dip"
         android:layout_gravity="center_horizontal"
+=======
+        android:layout_marginTop="8dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginBottom="4dip"
+        android:layout_marginLeft="8dip"
+        android:layout_gravity="center|bottom"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      />
 
     <TextView

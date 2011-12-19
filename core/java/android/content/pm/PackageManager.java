@@ -153,6 +153,7 @@ public abstract class PackageManager {
     public static final int GET_PERMISSIONS               = 0x00001000;
 
     /**
+<<<<<<< HEAD
      * Flag parameter to retrieve some information about all applications (even
      * uninstalled ones) which have data directories. This state could have
      * resulted if applications have been deleted with flag
@@ -161,6 +162,12 @@ public abstract class PackageManager {
      * <p>
      * Note: this flag may cause less information about currently installed
      * applications to be returned.
+=======
+     * Flag parameter to retrieve all applications(even uninstalled ones) with data directories.
+     * This state could have resulted if applications have been deleted with flag
+     * DONT_DELETE_DATA
+     * with a possibility of being replaced or reinstalled in future
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public static final int GET_UNINSTALLED_PACKAGES = 0x00002000;
 

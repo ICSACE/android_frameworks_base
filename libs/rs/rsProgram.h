@@ -30,6 +30,22 @@ namespace renderscript {
 
 class Program : public ProgramBase {
 public:
+<<<<<<< HEAD
+=======
+
+    Program(Context *, const char * shaderText, uint32_t shaderLength,
+                       const uint32_t * params, uint32_t paramLength);
+    virtual ~Program();
+    virtual bool freeChildren();
+
+    void bindAllocation(Context *, Allocation *, uint32_t slot);
+
+    bool isUserProgram() const {return !mIsInternal;}
+
+    void bindTexture(Context *, uint32_t slot, Allocation *);
+    void bindSampler(Context *, uint32_t slot, Sampler *);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     struct Hal {
         mutable void *drv;
 
@@ -40,6 +56,7 @@ public:
             // and filtered.
             //
             // Constants are strictly accessed by the shader code
+<<<<<<< HEAD
             Allocation **textures;
             RsTextureTarget *textureTargets;
             uint32_t texturesCount;
@@ -52,12 +69,27 @@ public:
             uint32_t constantsCount;
 
             Element **inputElements;
+=======
+            ObjectBaseRef<Allocation> *textures;
+            RsTextureTarget *textureTargets;
+            uint32_t texturesCount;
+
+            ObjectBaseRef<Sampler> *samplers;
+            uint32_t samplersCount;
+
+            ObjectBaseRef<Allocation> *constants;
+            ObjectBaseRef<Type> *constantTypes;
+            uint32_t constantsCount;
+
+            ObjectBaseRef<Element> *inputElements;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             uint32_t inputElementsCount;
         };
         State state;
     };
     Hal mHal;
 
+<<<<<<< HEAD
     Program(Context *, const char * shaderText, uint32_t shaderLength,
                        const uint32_t * params, uint32_t paramLength);
     virtual ~Program();
@@ -77,6 +109,9 @@ protected:
     ObjectBaseRef<Type> *mConstantTypes;
     ObjectBaseRef<Element> *mInputElements;
 
+=======
+protected:
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     bool mIsInternal;
     String8 mUserShader;
     void initMemberVars();

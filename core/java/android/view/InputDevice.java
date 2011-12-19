@@ -19,6 +19,10 @@ package android.view;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
+<<<<<<< HEAD
+=======
+import android.os.ServiceManager;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +47,10 @@ public final class InputDevice implements Parcelable {
     private String mName;
     private int mSources;
     private int mKeyboardType;
+<<<<<<< HEAD
     private String mKeyCharacterMapFile;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private final ArrayList<MotionRange> mMotionRanges = new ArrayList<MotionRange>();
 
@@ -360,10 +367,13 @@ public final class InputDevice implements Parcelable {
         return KeyCharacterMap.load(mId);
     }
 
+<<<<<<< HEAD
     String getKeyCharacterMapFile() {
         return mKeyCharacterMapFile;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Gets information about the range of values for a particular {@link MotionEvent} axis.
      * If the device supports multiple sources, the same axis may have different meanings
@@ -536,7 +546,10 @@ public final class InputDevice implements Parcelable {
         mName = in.readString();
         mSources = in.readInt();
         mKeyboardType = in.readInt();
+<<<<<<< HEAD
         mKeyCharacterMapFile = in.readString();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         for (;;) {
             int axis = in.readInt();
@@ -554,7 +567,10 @@ public final class InputDevice implements Parcelable {
         out.writeString(mName);
         out.writeInt(mSources);
         out.writeInt(mKeyboardType);
+<<<<<<< HEAD
         out.writeString(mKeyCharacterMapFile);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         final int numRanges = mMotionRanges.size();
         for (int i = 0; i < numRanges; i++) {
@@ -593,8 +609,11 @@ public final class InputDevice implements Parcelable {
         }
         description.append("\n");
 
+<<<<<<< HEAD
         description.append("  Key Character Map: ").append(mKeyCharacterMapFile).append("\n");
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         description.append("  Sources: 0x").append(Integer.toHexString(mSources)).append(" (");
         appendSourceDescriptionIfApplicable(description, SOURCE_KEYBOARD, "keyboard");
         appendSourceDescriptionIfApplicable(description, SOURCE_DPAD, "dpad");

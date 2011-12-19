@@ -31,7 +31,10 @@ import android.inputmethodservice.Keyboard.Key;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
+<<<<<<< HEAD
 import android.provider.Settings;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -968,6 +971,7 @@ public class KeyboardView extends View implements View.OnClickListener {
             AccessibilityEvent event = AccessibilityEvent.obtain(eventType);
             onInitializeAccessibilityEvent(event);
             String text = null;
+<<<<<<< HEAD
             // This is very efficient since the properties are cached.
             final boolean speakPassword = Settings.Secure.getInt(mContext.getContentResolver(),
                     Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0) != 0;
@@ -975,6 +979,10 @@ public class KeyboardView extends View implements View.OnClickListener {
             // used to avoid leaking passwords.
             if (speakPassword || mAudioManager.isBluetoothA2dpOn()
                     || mAudioManager.isWiredHeadsetOn()) {
+=======
+            // Add text only if headset is used to avoid leaking passwords.
+            if (mAudioManager.isBluetoothA2dpOn() || mAudioManager.isWiredHeadsetOn()) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 switch (code) {
                     case Keyboard.KEYCODE_ALT:
                         text = mContext.getString(R.string.keyboardview_keycode_alt);
@@ -1151,10 +1159,19 @@ public class KeyboardView extends View implements View.OnClickListener {
 
     @Override
     public boolean onHoverEvent(MotionEvent event) {
+<<<<<<< HEAD
+=======
+        // If touch exploring is enabled we ignore touch events and transform
+        // the stream of hover events as touch events. This allows one consistent
+        // event stream to drive the keyboard since during touch exploring the
+        // first touch generates only hover events and tapping on the same
+        // location generates hover and touch events.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mAccessibilityManager.isTouchExplorationEnabled() && event.getPointerCount() == 1) {
             final int action = event.getAction();
             switch (action) {
                 case MotionEvent.ACTION_HOVER_ENTER:
+<<<<<<< HEAD
                 case MotionEvent.ACTION_HOVER_MOVE:
                     final int touchX = (int) event.getX() - mPaddingLeft;
                     int touchY = (int) event.getY() - mPaddingTop;
@@ -1174,6 +1191,37 @@ public class KeyboardView extends View implements View.OnClickListener {
 
     @Override
     public boolean onTouchEvent(MotionEvent me) {
+=======
+                    event.setAction(MotionEvent.ACTION_DOWN);
+                    break;
+                case MotionEvent.ACTION_HOVER_MOVE:
+                    event.setAction(MotionEvent.ACTION_MOVE);
+                    break;
+                case MotionEvent.ACTION_HOVER_EXIT:
+                    event.setAction(MotionEvent.ACTION_UP);
+                    break;
+            }
+            onTouchEventInternal(event);
+            event.setAction(action);
+        }
+        return super.onHoverEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // If touch exploring is enabled we ignore touch events and transform
+        // the stream of hover events as touch events. This allows one consistent
+        // event stream to drive the keyboard since during touch exploring the
+        // first touch generates only hover events and tapping on the same
+        // location generates hover and touch events.
+        if (mAccessibilityManager.isTouchExplorationEnabled()) {
+            return true;
+        }
+        return onTouchEventInternal(event);
+    }
+
+    private boolean onTouchEventInternal(MotionEvent me) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Convert multi-pointer up/down events to single up/down events to 
         // deal with the typical multi-pointer behavior of two-thumb typing
         final int pointerCount = me.getPointerCount();

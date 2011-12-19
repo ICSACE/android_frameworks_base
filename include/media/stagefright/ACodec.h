@@ -166,8 +166,11 @@ private:
 
     bool allYourBuffersAreBelongToUs();
 
+<<<<<<< HEAD
     size_t countBuffersOwnedByComponent(OMX_U32 portIndex) const;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void deferMessage(const sp<AMessage> &msg);
     void processDeferredMessages();
 

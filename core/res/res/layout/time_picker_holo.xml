@@ -28,10 +28,17 @@
     <!-- hour -->
     <NumberPicker
         android:id="@+id/hour"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dip"
         android:layout_marginRight="14dip"
+=======
+        android:layout_width="48dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dip"
+        android:layout_marginRight="20dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:focusable="true"
         android:focusableInTouchMode="true"
         />
@@ -47,10 +54,17 @@
     <!-- minute -->
     <NumberPicker
         android:id="@+id/minute"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dip"
         android:layout_marginRight="16dip"
+=======
+        android:layout_width="48dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:focusable="true"
         android:focusableInTouchMode="true"
         />
@@ -58,10 +72,17 @@
     <!-- AM / PM -->
     <NumberPicker
         android:id="@+id/amPm"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dip"
         android:layout_marginRight="16dip"
+=======
+        android:layout_width="48dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dip"
+        android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:focusable="true"
         android:focusableInTouchMode="true"
         />

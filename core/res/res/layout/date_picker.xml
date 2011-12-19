@@ -32,6 +32,10 @@
     <LinearLayout android:id="@+id/pickers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center">
@@ -39,7 +43,11 @@
         <!-- Month -->
         <NumberPicker
             android:id="@+id/month"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
+=======
+            android:layout_width="80dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
@@ -50,7 +58,11 @@
         <!-- Day -->
         <NumberPicker
             android:id="@+id/day"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
+=======
+            android:layout_width="80dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
@@ -61,7 +73,11 @@
         <!-- Year -->
         <NumberPicker
             android:id="@+id/year"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
+=======
+            android:layout_width="95dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
@@ -76,7 +92,11 @@
         android:id="@+id/calendar_view"
         android:layout_width="245dip"
         android:layout_height="280dip"
+<<<<<<< HEAD
         android:layout_marginLeft="44dip"
+=======
+        android:layout_marginLeft="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:layout_weight="1"
         android:focusable="true"
         android:focusableInTouchMode="true"

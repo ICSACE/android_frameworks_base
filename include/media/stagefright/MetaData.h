@@ -85,7 +85,10 @@ enum {
     kKeyDate              = 'date',  // cstring
     kKeyWriter            = 'writ',  // cstring
     kKeyCompilation       = 'cpil',  // cstring
+<<<<<<< HEAD
     kKeyLocation          = 'loc ',  // cstring
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     kKeyTimeScale         = 'tmsl',  // int32_t
 
     // video profile and level

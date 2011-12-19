@@ -743,9 +743,12 @@ public abstract class Window {
     public void setFlags(int flags, int mask) {
         final WindowManager.LayoutParams attrs = getAttributes();
         attrs.flags = (attrs.flags&~mask) | (flags&mask);
+<<<<<<< HEAD
         if ((mask&WindowManager.LayoutParams.FLAG_NEEDS_MENU_KEY) != 0) {
             attrs.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_SET_NEEDS_MENU_KEY;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mForcedWindowFlags |= mask;
         if (mCallback != null) {
             mCallback.onWindowAttributesChanged(attrs);

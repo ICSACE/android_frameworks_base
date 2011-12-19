@@ -1432,6 +1432,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
         send(rr);
     }
 
+<<<<<<< HEAD
     public void
     acknowledgeIncomingGsmSmsWithPdu(boolean success, String ackPdu, Message result) {
         RILRequest rr
@@ -1446,6 +1447,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
 
         send(rr);
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public void
     iccIO (int command, int fileid, String path, int p1, int p2, int p3,
@@ -1824,6 +1827,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
     /**
      * {@inheritDoc}
      */
+<<<<<<< HEAD
     public void sendEnvelopeWithStatus(String contents, Message response) {
         RILRequest rr = RILRequest.obtain(
                 RILConstants.RIL_REQUEST_STK_SEND_ENVELOPE_WITH_STATUS, response);
@@ -1838,6 +1842,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
     /**
      * {@inheritDoc}
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void handleCallSetupRequestFromSim(
             boolean accept, Message response) {
 
@@ -1856,6 +1862,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
     /**
      * {@inheritDoc}
      */
+<<<<<<< HEAD
     @Override
     public void setCurrentPreferredNetworkType() {
         if (RILJ_LOGD) riljLog("setCurrentPreferredNetworkType: " + mSetPreferredNetworkType);
@@ -1866,6 +1873,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
     /**
      * {@inheritDoc}
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void setPreferredNetworkType(int networkType , Message response) {
         RILRequest rr = RILRequest.obtain(
                 RILConstants.RIL_REQUEST_SET_PREFERRED_NETWORK_TYPE, response);
@@ -1873,7 +1882,10 @@ public class RIL extends BaseCommands implements CommandsInterface {
         rr.mp.writeInt(1);
         rr.mp.writeInt(networkType);
 
+<<<<<<< HEAD
         mSetPreferredNetworkType = networkType;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mPreferredNetworkType = networkType;
 
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest)
@@ -2317,8 +2329,11 @@ public class RIL extends BaseCommands implements CommandsInterface {
             case RIL_REQUEST_REPORT_STK_SERVICE_IS_RUNNING: ret = responseVoid(p); break;
             case RIL_REQUEST_CDMA_GET_SUBSCRIPTION_SOURCE: ret =  responseInts(p); break;
             case RIL_REQUEST_ISIM_AUTHENTICATION: ret =  responseString(p); break;
+<<<<<<< HEAD
             case RIL_REQUEST_ACKNOWLEDGE_INCOMING_GSM_SMS_WITH_PDU: ret = responseVoid(p); break;
             case RIL_REQUEST_STK_SEND_ENVELOPE_WITH_STATUS: ret = responseICC_IO(p); break;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             default:
                 throw new RuntimeException("Unrecognized solicited response: " + rr.mRequest);
             //break;
@@ -3554,8 +3569,11 @@ public class RIL extends BaseCommands implements CommandsInterface {
             case RIL_REQUEST_REPORT_STK_SERVICE_IS_RUNNING: return "RIL_REQUEST_REPORT_STK_SERVICE_IS_RUNNING";
             case RIL_REQUEST_CDMA_GET_SUBSCRIPTION_SOURCE: return "RIL_REQUEST_CDMA_GET_SUBSCRIPTION_SOURCE";
             case RIL_REQUEST_ISIM_AUTHENTICATION: return "RIL_REQUEST_ISIM_AUTHENTICATION";
+<<<<<<< HEAD
             case RIL_REQUEST_ACKNOWLEDGE_INCOMING_GSM_SMS_WITH_PDU: return "RIL_REQUEST_ACKNOWLEDGE_INCOMING_GSM_SMS_WITH_PDU";
             case RIL_REQUEST_STK_SEND_ENVELOPE_WITH_STATUS: return "RIL_REQUEST_STK_SEND_ENVELOPE_WITH_STATUS";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             default: return "<unknown request>";
         }
     }
@@ -3809,3 +3827,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
         send(rr);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

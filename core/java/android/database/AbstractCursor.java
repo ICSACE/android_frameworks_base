@@ -53,10 +53,14 @@ public abstract class AbstractCursor implements CrossProcessCursor {
     abstract public boolean isNull(int column);
 
     public int getType(int column) {
+<<<<<<< HEAD
         // Reflects the assumption that all commonly used field types (meaning everything
         // but blobs) are convertible to strings so it should be safe to call
         // getString to retrieve them.
         return FIELD_TYPE_STRING;
+=======
+        throw new UnsupportedOperationException();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     // TODO implement getBlob in all cursor types
@@ -188,9 +192,52 @@ public abstract class AbstractCursor implements CrossProcessCursor {
         return result;
     }
 
+<<<<<<< HEAD
     @Override
     public void fillWindow(int position, CursorWindow window) {
         DatabaseUtils.cursorFillWindow(this, position, window);
+=======
+    /**
+     * Copy data from cursor to CursorWindow
+     * @param position start position of data
+     * @param window
+     */
+    public void fillWindow(int position, CursorWindow window) {
+        if (position < 0 || position >= getCount()) {
+            return;
+        }
+        window.acquireReference();
+        try {
+            int oldpos = mPos;
+            mPos = position - 1;
+            window.clear();
+            window.setStartPosition(position);
+            int columnNum = getColumnCount();
+            window.setNumColumns(columnNum);
+            while (moveToNext() && window.allocRow()) {
+                for (int i = 0; i < columnNum; i++) {
+                    String field = getString(i);
+                    if (field != null) {
+                        if (!window.putString(field, mPos, i)) {
+                            window.freeLastRow();
+                            break;
+                        }
+                    } else {
+                        if (!window.putNull(mPos, i)) {
+                            window.freeLastRow();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            mPos = oldpos;
+        } catch (IllegalStateException e){
+            // simply ignore it
+        } finally {
+            window.releaseReference();
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public final boolean move(int offset) {

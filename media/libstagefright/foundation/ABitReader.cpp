@@ -79,6 +79,7 @@ void ABitReader::skipBits(size_t n) {
 }
 
 void ABitReader::putBits(uint32_t x, size_t n) {
+<<<<<<< HEAD
     CHECK_LE(n, 32u);
 
     while (mNumBitsLeft + n > 32) {
@@ -86,6 +87,9 @@ void ABitReader::putBits(uint32_t x, size_t n) {
         --mData;
         ++mSize;
     }
+=======
+    CHECK_LE(mNumBitsLeft + n, 32u);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     mReservoir = (mReservoir >> n) | (x << (32 - n));
     mNumBitsLeft += n;

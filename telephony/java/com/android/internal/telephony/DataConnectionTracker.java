@@ -167,9 +167,13 @@ public abstract class DataConnectionTracker extends Handler {
     // independent of mInternalDataEnabled and requests for APN access
     // persisted
     protected boolean mUserDataEnabled = true;
+<<<<<<< HEAD
 
     // TODO: move away from static state once 5587429 is fixed.
     protected static boolean sPolicyDataEnabled = true;
+=======
+    protected boolean mPolicyDataEnabled = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private boolean[] dataEnabled = new boolean[APN_NUM_TYPES];
 
@@ -768,7 +772,11 @@ public abstract class DataConnectionTracker extends Handler {
     public boolean getAnyDataEnabled() {
         final boolean result;
         synchronized (mDataEnabledLock) {
+<<<<<<< HEAD
             result = (mInternalDataEnabled && mUserDataEnabled && sPolicyDataEnabled
+=======
+            result = (mInternalDataEnabled && mUserDataEnabled && mPolicyDataEnabled
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     && (enabledCount != 0));
         }
         if (!result && DBG) log("getAnyDataEnabled " + result);
@@ -1134,8 +1142,13 @@ public abstract class DataConnectionTracker extends Handler {
     protected void onSetPolicyDataEnabled(boolean enabled) {
         synchronized (mDataEnabledLock) {
             final boolean prevEnabled = getAnyDataEnabled();
+<<<<<<< HEAD
             if (sPolicyDataEnabled != enabled) {
                 sPolicyDataEnabled = enabled;
+=======
+            if (mPolicyDataEnabled != enabled) {
+                mPolicyDataEnabled = enabled;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (prevEnabled != getAnyDataEnabled()) {
                     if (!prevEnabled) {
                         resetAllRetryCounts();

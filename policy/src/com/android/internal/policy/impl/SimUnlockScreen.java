@@ -100,7 +100,11 @@ public class SimUnlockScreen extends LinearLayout implements KeyguardScreen, Vie
         mOkButton.setOnClickListener(this);
 
         mKeyguardStatusViewManager = new KeyguardStatusViewManager(this, updateMonitor,
+<<<<<<< HEAD
                 lockpatternutils, callback, false);
+=======
+                lockpatternutils, callback, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         setFocusableInTouchMode(true);
     }
@@ -214,6 +218,7 @@ public class SimUnlockScreen extends LinearLayout implements KeyguardScreen, Vie
         getSimUnlockProgressDialog().show();
 
         new CheckSimPin(mPinText.getText().toString()) {
+<<<<<<< HEAD
             void onSimLockChangedResponse(final boolean success) {
                 mPinText.post(new Runnable() {
                     public void run() {
@@ -233,6 +238,23 @@ public class SimUnlockScreen extends LinearLayout implements KeyguardScreen, Vie
                         mCallback.pokeWakelock();
                     }
                 });
+=======
+            void onSimLockChangedResponse(boolean success) {
+                if (mSimUnlockProgressDialog != null) {
+                    mSimUnlockProgressDialog.hide();
+                }
+                if (success) {
+                    // before closing the keyguard, report back that
+                    // the sim is unlocked so it knows right away
+                    mUpdateMonitor.reportSimUnlocked();
+                    mCallback.goToUnlockScreen();
+                } else {
+                    mHeaderText.setText(R.string.keyguard_password_wrong_pin_code);
+                    mPinText.setText("");
+                    mEnteredDigits = 0;
+                }
+                mCallback.pokeWakelock();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }.start();
     }
@@ -359,7 +381,10 @@ public class SimUnlockScreen extends LinearLayout implements KeyguardScreen, Vie
 
         public void onClick(View v) {
             if (v == mCancelButton) {
+<<<<<<< HEAD
                 mPinText.setText(""); // clear the PIN entry field if the user cancels
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mCallback.goToLockScreen();
                 return;
             }

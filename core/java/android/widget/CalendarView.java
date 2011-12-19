@@ -16,6 +16,11 @@
 
 package android.widget;
 
+<<<<<<< HEAD
+=======
+import com.android.internal.R;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.annotation.Widget;
 import android.app.Service;
 import android.content.Context;
@@ -29,6 +34,10 @@ import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+<<<<<<< HEAD
+=======
+import android.text.format.DateFormat;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -41,8 +50,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
 
+<<<<<<< HEAD
 import com.android.internal.R;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -120,6 +132,14 @@ public class CalendarView extends FrameLayout {
     private static final int SCROLL_CHANGE_DELAY = 40;
 
     /**
+<<<<<<< HEAD
+=======
+     * String for formatting the month name in the title text view.
+     */
+    private static final String FORMAT_MONTH_NAME = "MMMM, yyyy";
+
+    /**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * String for parsing dates.
      */
     private static final String DATE_FORMAT = "MM/dd/yyyy";
@@ -934,6 +954,7 @@ public class CalendarView extends FrameLayout {
      * @param calendar A day in the new focus month.
      */
     private void setMonthDisplayed(Calendar calendar) {
+<<<<<<< HEAD
         final int newMonthDisplayed = calendar.get(Calendar.MONTH);
         if (mCurrentMonthDisplayed != newMonthDisplayed) {
             mCurrentMonthDisplayed = newMonthDisplayed;
@@ -945,6 +966,13 @@ public class CalendarView extends FrameLayout {
             mMonthName.setText(newMonthName);
             mMonthName.invalidate();
         }
+=======
+        mMonthName.setText(DateFormat.format(FORMAT_MONTH_NAME, calendar));
+        mMonthName.invalidate();
+        mCurrentMonthDisplayed = calendar.get(Calendar.MONTH);
+        mAdapter.setFocusMonth(mCurrentMonthDisplayed);
+        // TODO Send Accessibility Event
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

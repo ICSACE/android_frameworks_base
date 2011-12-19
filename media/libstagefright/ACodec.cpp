@@ -342,7 +342,10 @@ void ACodec::initiateSetup(const sp<AMessage> &msg) {
 }
 
 void ACodec::signalFlush() {
+<<<<<<< HEAD
     LOGV("[%s] signalFlush", mComponentName.c_str());
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     (new AMessage(kWhatFlush, id()))->post();
 }
 
@@ -682,10 +685,13 @@ void ACodec::setComponentRole(
     static const MimeToRole kMimeToRole[] = {
         { MEDIA_MIMETYPE_AUDIO_MPEG,
             "audio_decoder.mp3", "audio_encoder.mp3" },
+<<<<<<< HEAD
         { MEDIA_MIMETYPE_AUDIO_MPEG_LAYER_I,
             "audio_decoder.mp1", "audio_encoder.mp1" },
         { MEDIA_MIMETYPE_AUDIO_MPEG_LAYER_II,
             "audio_decoder.mp2", "audio_encoder.mp2" },
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         { MEDIA_MIMETYPE_AUDIO_AMR_NB,
             "audio_decoder.amrnb", "audio_encoder.amrnb" },
         { MEDIA_MIMETYPE_AUDIO_AMR_WB,
@@ -1093,6 +1099,7 @@ status_t ACodec::initNativeWindow() {
     return OK;
 }
 
+<<<<<<< HEAD
 size_t ACodec::countBuffersOwnedByComponent(OMX_U32 portIndex) const {
     size_t n = 0;
 
@@ -1107,6 +1114,8 @@ size_t ACodec::countBuffersOwnedByComponent(OMX_U32 portIndex) const {
     return n;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 bool ACodec::allYourBuffersAreBelongToUs(
         OMX_U32 portIndex) {
     for (size_t i = 0; i < mBuffers[portIndex].size(); ++i) {
@@ -2056,6 +2065,7 @@ bool ACodec::ExecutingState::onMessageReceived(const sp<AMessage> &msg) {
 
         case kWhatFlush:
         {
+<<<<<<< HEAD
             LOGV("[%s] ExecutingState flushing now "
                  "(codec owns %d/%d input, %d/%d output).",
                     mCodec->mComponentName.c_str(),
@@ -2064,6 +2074,8 @@ bool ACodec::ExecutingState::onMessageReceived(const sp<AMessage> &msg) {
                     mCodec->countBuffersOwnedByComponent(kPortIndexOutput),
                     mCodec->mBuffers[kPortIndexOutput].size());
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mActive = false;
 
             CHECK_EQ(mCodec->mOMX->sendCommand(
@@ -2203,12 +2215,15 @@ bool ACodec::OutputPortSettingsChangedState::onOMXEvent(
                          err);
 
                     mCodec->signalError();
+<<<<<<< HEAD
 
                     // This is technically not correct, since we were unable
                     // to allocate output buffers and therefore the output port
                     // remains disabled. It is necessary however to allow us
                     // to shutdown the codec properly.
                     mCodec->changeState(mCodec->mExecutingState);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
 
                 return true;
@@ -2437,9 +2452,12 @@ bool ACodec::FlushingState::onMessageReceived(const sp<AMessage> &msg) {
 
 bool ACodec::FlushingState::onOMXEvent(
         OMX_EVENTTYPE event, OMX_U32 data1, OMX_U32 data2) {
+<<<<<<< HEAD
     LOGV("[%s] FlushingState onOMXEvent(%d,%ld)",
             mCodec->mComponentName.c_str(), event, data1);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     switch (event) {
         case OMX_EventCmdComplete:
         {

@@ -22,8 +22,11 @@
 
 #include <GLES2/gl2.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "Extensions.h"
 #include "ProgramCache.h"
 #include "TextureCache.h"
@@ -54,8 +57,13 @@ struct SkiaShader {
         kCompose
     };
 
+<<<<<<< HEAD
     ANDROID_API SkiaShader(Type type, SkShader* key, SkShader::TileMode tileX,
             SkShader::TileMode tileY, SkMatrix* matrix, bool blend);
+=======
+    SkiaShader(Type type, SkShader* key, SkShader::TileMode tileX, SkShader::TileMode tileY,
+            SkMatrix* matrix, bool blend);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual ~SkiaShader();
 
     virtual SkiaShader* copy() = 0;
@@ -141,7 +149,11 @@ private:
  * A shader that draws a bitmap.
  */
 struct SkiaBitmapShader: public SkiaShader {
+<<<<<<< HEAD
     ANDROID_API SkiaBitmapShader(SkBitmap* bitmap, SkShader* key, SkShader::TileMode tileX,
+=======
+    SkiaBitmapShader(SkBitmap* bitmap, SkShader* key, SkShader::TileMode tileX,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             SkShader::TileMode tileY, SkMatrix* matrix, bool blend);
     SkiaShader* copy();
 
@@ -171,8 +183,13 @@ private:
  * A shader that draws a linear gradient.
  */
 struct SkiaLinearGradientShader: public SkiaShader {
+<<<<<<< HEAD
     ANDROID_API SkiaLinearGradientShader(float* bounds, uint32_t* colors, float* positions,
             int count, SkShader* key, SkShader::TileMode tileMode, SkMatrix* matrix, bool blend);
+=======
+    SkiaLinearGradientShader(float* bounds, uint32_t* colors, float* positions, int count,
+            SkShader* key, SkShader::TileMode tileMode, SkMatrix* matrix, bool blend);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ~SkiaLinearGradientShader();
     SkiaShader* copy();
 
@@ -195,8 +212,13 @@ private:
  * A shader that draws a sweep gradient.
  */
 struct SkiaSweepGradientShader: public SkiaShader {
+<<<<<<< HEAD
     ANDROID_API SkiaSweepGradientShader(float x, float y, uint32_t* colors, float* positions,
             int count, SkShader* key, SkMatrix* matrix, bool blend);
+=======
+    SkiaSweepGradientShader(float x, float y, uint32_t* colors, float* positions, int count,
+            SkShader* key, SkMatrix* matrix, bool blend);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ~SkiaSweepGradientShader();
     SkiaShader* copy();
 
@@ -220,9 +242,14 @@ protected:
  * A shader that draws a circular gradient.
  */
 struct SkiaCircularGradientShader: public SkiaSweepGradientShader {
+<<<<<<< HEAD
     ANDROID_API SkiaCircularGradientShader(float x, float y, float radius, uint32_t* colors,
             float* positions, int count, SkShader* key,SkShader::TileMode tileMode,
             SkMatrix* matrix, bool blend);
+=======
+    SkiaCircularGradientShader(float x, float y, float radius, uint32_t* colors, float* positions,
+            int count, SkShader* key,SkShader::TileMode tileMode, SkMatrix* matrix, bool blend);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     SkiaShader* copy();
 
     void describe(ProgramDescription& description, const Extensions& extensions);
@@ -236,8 +263,12 @@ private:
  * A shader that draws two shaders, composited with an xfermode.
  */
 struct SkiaComposeShader: public SkiaShader {
+<<<<<<< HEAD
     ANDROID_API SkiaComposeShader(SkiaShader* first, SkiaShader* second, SkXfermode::Mode mode,
             SkShader* key);
+=======
+    SkiaComposeShader(SkiaShader* first, SkiaShader* second, SkXfermode::Mode mode, SkShader* key);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ~SkiaComposeShader();
     SkiaShader* copy();
 

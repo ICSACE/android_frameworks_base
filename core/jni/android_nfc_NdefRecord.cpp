@@ -149,7 +149,11 @@ static jint android_nfc_NdefRecord_parseNdefRecord(JNIEnv *e, jobject o,
 
     /* Set flags field */
     mFlags = e->GetFieldID(record_cls, "mFlags", "B");
+<<<<<<< HEAD
     e->SetByteField(o, mFlags, record.Flags);
+=======
+    e->SetIntField(o, mFlags, record.Flags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     ret = 0;
 

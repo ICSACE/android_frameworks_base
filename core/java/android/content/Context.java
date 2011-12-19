@@ -185,6 +185,7 @@ public abstract class Context {
      * used to reduce the amount that the client process's overall importance
      * is used to impact it.
      */
+<<<<<<< HEAD
     public static final int BIND_ADJUST_WITH_ACTIVITY = 0x0080;
 
     /**
@@ -193,6 +194,9 @@ public abstract class Context {
      * @hide
      */
     public static final int BIND_NOT_VISIBLE = 0x40000000;
+=======
+    public static final int BIND_ADJUST_WITH_ACTIVITY = 0x0040;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /** Return an AssetManager instance for your application's package. */
     public abstract AssetManager getAssets();

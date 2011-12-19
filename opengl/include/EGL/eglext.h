@@ -226,7 +226,31 @@ typedef EGLBoolean (EGLAPIENTRYP PFNEGLGETSYNCATTRIBNVPROC) (EGLSyncNV sync, EGL
 #ifndef EGL_ANDROID_image_native_buffer
 #define EGL_ANDROID_image_native_buffer 1
 struct ANativeWindowBuffer;
+<<<<<<< HEAD
 #define EGL_NATIVE_BUFFER_ANDROID               0x3140  /* eglCreateImageKHR target */
+=======
+#define EGL_NATIVE_BUFFER_ANDROID       0x3140  /* eglCreateImageKHR target */
+#endif
+
+#ifndef EGL_EGLEXT_PROTOTYPES
+#define EGL_EGLEXT_PROTOTYPES 1
+#endif
+
+#ifndef EGL_ANDROID_get_render_buffer
+#define EGL_ANDROID_get_render_buffer 1
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI EGLClientBuffer EGLAPIENTRY eglGetRenderBufferANDROID(EGLDisplay dpy, EGLSurface draw);
+#endif
+typedef EGLClientBuffer (EGLAPIENTRYP PFNEGLGETRENDERBUFFERANDROIDPROC) (EGLDisplay dpy, EGLSurface draw);
+#endif
+
+#ifndef EGL_ANDROID_swap_rectangle
+#define EGL_ANDROID_swap_rectangle 1
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI EGLBoolean EGLAPIENTRY eglSetSwapRectangleANDROID (EGLDisplay dpy, EGLSurface draw, EGLint left, EGLint top, EGLint width, EGLint height);
+#endif /* EGL_EGLEXT_PROTOTYPES */
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLSETSWAPRECTANGLEANDROIDPROC) (EGLDisplay dpy, EGLSurface draw, EGLint left, EGLint top, EGLint width, EGLint height);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #endif
 
 #ifndef EGL_ANDROID_recordable
@@ -248,6 +272,7 @@ typedef EGLuint64NV (EGLAPIENTRYP PFNEGLGETSYSTEMTIMEFREQUENCYNVPROC)(void);
 typedef EGLuint64NV (EGLAPIENTRYP PFNEGLGETSYSTEMTIMENVPROC)(void);
 #endif
 
+<<<<<<< HEAD
 
 /* EGL_ANDROID_blob_cache
  */
@@ -263,6 +288,8 @@ typedef void (EGLAPIENTRYP PFNEGLSETBLOBCACHEFUNCSANDROIDPROC) (EGLDisplay dpy,
         EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get);
 #endif
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #ifdef __cplusplus
 }
 #endif

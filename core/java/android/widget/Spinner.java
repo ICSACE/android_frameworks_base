@@ -68,7 +68,10 @@ public class Spinner extends AbsSpinner implements OnClickListener {
     int mDropDownWidth;
 
     private int mGravity;
+<<<<<<< HEAD
     private boolean mDisableChildrenWhenDisabled;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private Rect mTempRect = new Rect();
 
@@ -187,9 +190,12 @@ public class Spinner extends AbsSpinner implements OnClickListener {
 
         mPopup.setPromptText(a.getString(com.android.internal.R.styleable.Spinner_prompt));
 
+<<<<<<< HEAD
         mDisableChildrenWhenDisabled = a.getBoolean(
                 com.android.internal.R.styleable.Spinner_disableChildrenWhenDisabled, false);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         a.recycle();
 
         // Base constructor can call setAdapter before we initialize mPopup.
@@ -200,6 +206,7 @@ public class Spinner extends AbsSpinner implements OnClickListener {
         }
     }
 
+<<<<<<< HEAD
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
@@ -211,6 +218,8 @@ public class Spinner extends AbsSpinner implements OnClickListener {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Describes how the selected item view is positioned. Currently only the horizontal component
      * is used. The default is determined by the current theme.
@@ -413,9 +422,12 @@ public class Spinner extends AbsSpinner implements OnClickListener {
         addViewInLayout(child, 0, lp);
 
         child.setSelected(hasFocus());
+<<<<<<< HEAD
         if (mDisableChildrenWhenDisabled) {
             child.setEnabled(isEnabled());
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // Get measure specs
         int childHeightSpec = ViewGroup.getChildMeasureSpec(mHeightMeasureSpec,

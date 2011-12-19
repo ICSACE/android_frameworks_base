@@ -15,7 +15,11 @@
  */
 package android.speech.tts;
 
+<<<<<<< HEAD
 import android.speech.tts.TextToSpeechService.UtteranceProgressDispatcher;
+=======
+import android.speech.tts.TextToSpeechService.UtteranceCompletedDispatcher;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.Log;
 
 /**
@@ -62,12 +66,20 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
 
     private volatile boolean mDone = false;
 
+<<<<<<< HEAD
     private final UtteranceProgressDispatcher mDispatcher;
+=======
+    private final UtteranceCompletedDispatcher mDispatcher;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private final String mCallingApp;
     private final EventLogger mLogger;
 
     PlaybackSynthesisCallback(int streamType, float volume, float pan,
+<<<<<<< HEAD
             AudioPlaybackHandler audioTrackHandler, UtteranceProgressDispatcher dispatcher,
+=======
+            AudioPlaybackHandler audioTrackHandler, UtteranceCompletedDispatcher dispatcher,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             String callingApp, EventLogger logger) {
         mStreamType = streamType;
         mVolume = volume;
@@ -80,23 +92,42 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
 
     @Override
     void stop() {
+<<<<<<< HEAD
         stopImpl(false);
     }
 
     void stopImpl(boolean wasError) {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (DBG) Log.d(TAG, "stop()");
 
         // Note that mLogger.mError might be true too at this point.
         mLogger.onStopped();
 
+<<<<<<< HEAD
         SynthesisMessageParams token;
+=======
+        SynthesisMessageParams token = null;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         synchronized (mStateLock) {
             if (mStopped) {
                 Log.w(TAG, "stop() called twice");
                 return;
             }
 
+<<<<<<< HEAD
             token = mToken;
+=======
+            // mToken will be null if the engine encounters
+            // an error before it called start().
+            if (mToken == null) {
+                // In all other cases, mAudioTrackHandler.stop() will
+                // result in onComplete being called.
+                mLogger.onWriteData();
+            } else {
+                token = mToken;
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mStopped = true;
         }
 
@@ -105,6 +136,7 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
             // point it will write an additional buffer to the token - but we
             // won't worry about that because the audio playback queue will be cleared
             // soon after (see SynthHandler#stop(String).
+<<<<<<< HEAD
             token.setIsError(wasError);
             token.clearBuffers();
             if (wasError) {
@@ -123,6 +155,9 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
                 // We have to dispatch the error ourselves.
                 mDispatcher.dispatchOnError();
             }
+=======
+            token.clearBuffers();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -232,7 +267,11 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
         // Currently, this call will not be logged if error( ) is called
         // before start.
         mLogger.onError();
+<<<<<<< HEAD
         stopImpl(true);
+=======
+        stop();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
 }

@@ -126,8 +126,11 @@ public class DataCallState {
                 // set link addresses
                 if (addresses != null && addresses.length > 0) {
                     for (String addr : addresses) {
+<<<<<<< HEAD
                         addr = addr.trim();
                         if (addr.isEmpty()) continue;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         LinkAddress la;
                         int addrPrefixLen;
 
@@ -161,8 +164,11 @@ public class DataCallState {
                 // set dns servers
                 if (dnses != null && dnses.length > 0) {
                     for (String addr : dnses) {
+<<<<<<< HEAD
                         addr = addr.trim();
                         if (addr.isEmpty()) continue;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         InetAddress ia;
                         try {
                             ia = NetworkUtils.numericToInetAddress(addr);
@@ -178,8 +184,11 @@ public class DataCallState {
                     dnsServers[0] = SystemProperties.get(propertyPrefix + "dns1");
                     dnsServers[1] = SystemProperties.get(propertyPrefix + "dns2");
                     for (String dnsAddr : dnsServers) {
+<<<<<<< HEAD
                         dnsAddr = dnsAddr.trim();
                         if (dnsAddr.isEmpty()) continue;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         InetAddress ia;
                         try {
                             ia = NetworkUtils.numericToInetAddress(dnsAddr);
@@ -204,8 +213,11 @@ public class DataCallState {
                     }
                 }
                 for (String addr : gateways) {
+<<<<<<< HEAD
                     addr = addr.trim();
                     if (addr.isEmpty()) continue;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     InetAddress ia;
                     try {
                         ia = NetworkUtils.numericToInetAddress(addr);

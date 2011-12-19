@@ -112,7 +112,11 @@ public:
     static void openGlobalTransaction();
         
     //! Close a composer transaction on all active SurfaceComposerClients.
+<<<<<<< HEAD
     static void closeGlobalTransaction(bool synchronous = false);
+=======
+    static void closeGlobalTransaction();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     
     //! Freeze the specified display but not transactions.
     static status_t freezeDisplay(DisplayID dpy, uint32_t flags = 0);

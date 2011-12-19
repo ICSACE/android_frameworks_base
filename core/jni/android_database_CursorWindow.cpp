@@ -57,7 +57,12 @@ static void throwUnknownTypeException(JNIEnv * env, jint type) {
     jniThrowException(env, "java/lang/IllegalStateException", msg.string());
 }
 
+<<<<<<< HEAD
 static jint nativeCreate(JNIEnv* env, jclass clazz, jstring nameObj, jint cursorWindowSize) {
+=======
+static jint nativeCreate(JNIEnv* env, jclass clazz,
+        jstring nameObj, jint cursorWindowSize, jboolean localOnly) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     String8 name;
     if (nameObj) {
         const char* nameStr = env->GetStringUTFChars(nameObj, NULL);
@@ -69,7 +74,11 @@ static jint nativeCreate(JNIEnv* env, jclass clazz, jstring nameObj, jint cursor
     }
 
     CursorWindow* window;
+<<<<<<< HEAD
     status_t status = CursorWindow::create(name, cursorWindowSize, &window);
+=======
+    status_t status = CursorWindow::create(name, cursorWindowSize, localOnly, &window);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (status || !window) {
         LOGE("Could not allocate CursorWindow '%s' of size %d due to error %d.",
                 name.string(), cursorWindowSize, status);
@@ -481,7 +490,11 @@ static jboolean nativePutNull(JNIEnv* env, jclass clazz, jint windowPtr,
 static JNINativeMethod sMethods[] =
 {
     /* name, signature, funcPtr */
+<<<<<<< HEAD
     { "nativeCreate", "(Ljava/lang/String;I)I",
+=======
+    { "nativeCreate", "(Ljava/lang/String;IZ)I",
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             (void*)nativeCreate },
     { "nativeCreateFromParcel", "(Landroid/os/Parcel;)I",
             (void*)nativeCreateFromParcel },

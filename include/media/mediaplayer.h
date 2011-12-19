@@ -170,6 +170,10 @@ public:
 
             status_t        setDataSource(int fd, int64_t offset, int64_t length);
             status_t        setDataSource(const sp<IStreamSource> &source);
+<<<<<<< HEAD
+=======
+            status_t        setVideoSurface(const sp<Surface>& surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             status_t        setVideoSurfaceTexture(
                                     const sp<ISurfaceTexture>& surfaceTexture);
             status_t        setListener(const sp<MediaPlayerListener>& listener);

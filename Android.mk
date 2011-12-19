@@ -329,6 +329,7 @@ non_base_dirs := \
 	../../external/apache-http/src/org/apache/http
 
 # These are relative to frameworks/base
+<<<<<<< HEAD
 dirs_to_check_apis := \
   $(fwbase_dirs_to_document) \
 	$(non_base_dirs)
@@ -340,10 +341,17 @@ dirs_to_document := \
   $(addprefix ../../, $(FRAMEWORKS_SUPPORT_JAVA_SRC_DIRS))
 
 # These are relative to frameworks/base
+=======
+dirs_to_document := \
+	$(fwbase_dirs_to_document) \
+	$(non_base_dirs)
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 html_dirs := \
 	$(FRAMEWORKS_BASE_SUBDIRS) \
 	$(non_base_dirs)
 
+<<<<<<< HEAD
 # Common sources for doc check and api check
 common_src_files := \
 	$(call find-other-html-files, $(html_dirs)) \
@@ -359,6 +367,14 @@ framework_docs_LOCAL_SRC_FILES := \
 framework_docs_LOCAL_API_CHECK_SRC_FILES := \
 	$(call find-other-java-files, $(dirs_to_check_apis)) \
 	$(common_src_files)
+=======
+# These are relative to frameworks/base
+framework_docs_LOCAL_SRC_FILES := \
+	$(call find-other-java-files, $(dirs_to_document)) \
+	$(call find-other-html-files, $(html_dirs)) \
+	$(addprefix ../../libcore/, $(call libcore_to_document, $(LOCAL_PATH)/../../libcore)) \
+	$(addprefix ../../system/media/mca/, $(call libfilterfw_to_document, $(LOCAL_PATH)/../../system/media/mca))
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 # This is used by ide.mk as the list of source files that are
 # always included.
@@ -398,7 +414,10 @@ framework_docs_LOCAL_DROIDDOC_OPTIONS := \
     -since ./frameworks/base/api/12.xml 12 \
     -since ./frameworks/base/api/13.xml 13 \
     -since ./frameworks/base/api/14.txt 14 \
+<<<<<<< HEAD
     -since ./frameworks/base/api/15.txt 15 \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 		-werror -hide 113 \
 		-overview $(LOCAL_PATH)/core/java/overview.html
 
@@ -429,8 +448,11 @@ web_docs_sample_code_flags := \
 		            resources/samples/BackupRestore "Backup and Restore" \
 		-samplecode $(sample_dir)/BluetoothChat \
 		            resources/samples/BluetoothChat "Bluetooth Chat" \
+<<<<<<< HEAD
 		-samplecode $(sample_dir)/BluetoothHDP \
 		            resources/samples/BluetoothHDP "Bluetooth HDP Demo" \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 		-samplecode $(sample_dir)/BusinessCard \
 		            resources/samples/BusinessCard "Business Card" \
 		-samplecode $(sample_dir)/ContactManager \
@@ -445,14 +467,20 @@ web_docs_sample_code_flags := \
 		            resources/samples/JetBoy "JetBoy" \
 		-samplecode $(sample_dir)/LunarLander \
 		            resources/samples/LunarLander "Lunar Lander" \
+<<<<<<< HEAD
 		-samplecode $(sample_dir)/training/ads-and-ux \
 		            resources/samples/training/ads-and-ux "Mobile Advertisement Integration" \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 		-samplecode $(sample_dir)/MultiResolution \
 		            resources/samples/MultiResolution "Multiple Resolutions" \
 		-samplecode $(sample_dir)/NFCDemo \
 		            resources/samples/NFCDemo "NFC Demo" \
+<<<<<<< HEAD
 		-samplecode $(sample_dir)/training/multiscreen/newsreader \
 		            resources/samples/newsreader "News Reader" \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 		-samplecode $(sample_dir)/NotePad \
 		            resources/samples/NotePad "Note Pad" \
 		-samplecode $(sample_dir)/SpellChecker/SampleSpellCheckerService \
@@ -483,8 +511,11 @@ web_docs_sample_code_flags := \
 		            resources/samples/TicTacToeLib "TicTacToeLib" \
 		-samplecode $(sample_dir)/TicTacToeMain \
 		            resources/samples/TicTacToeMain "TicTacToeMain" \
+<<<<<<< HEAD
 		-samplecode $(sample_dir)/ToyVpn \
 		            resources/samples/ToyVpn "Toy VPN Client" \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 		-samplecode $(sample_dir)/USB \
 		            resources/samples/USB "USB" \
 		-samplecode $(sample_dir)/WeatherListWidget \
@@ -502,10 +533,14 @@ web_docs_sample_code_flags := \
 		-samplecode $(sample_dir)/XmlAdapters \
 		            resources/samples/XmlAdapters "XML Adapters" \
 		-samplecode $(sample_dir)/TtsEngine \
+<<<<<<< HEAD
 		            resources/samples/TtsEngine "Text To Speech Engine" \
 		-samplecode $(sample_dir)/training/device-management-policy \
 		            resources/samples/training/device-management-policy "Device Management Policy"
 
+=======
+		            resources/samples/TtsEngine "Text To Speech Engine"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 ## SDK version identifiers used in the published docs
   # major[.minor] version for current SDK. (full releases only)
@@ -521,7 +556,11 @@ framework_docs_LOCAL_DROIDDOC_OPTIONS += \
 # ====  the api stubs and current.xml ===========================
 include $(CLEAR_VARS)
 
+<<<<<<< HEAD
 LOCAL_SRC_FILES:=$(framework_docs_LOCAL_API_CHECK_SRC_FILES)
+=======
+LOCAL_SRC_FILES:=$(framework_docs_LOCAL_SRC_FILES)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 LOCAL_INTERMEDIATE_SOURCES:=$(framework_docs_LOCAL_INTERMEDIATE_SOURCES)
 LOCAL_JAVA_LIBRARIES:=$(framework_docs_LOCAL_JAVA_LIBRARIES)
 LOCAL_MODULE_CLASS:=$(framework_docs_LOCAL_MODULE_CLASS)

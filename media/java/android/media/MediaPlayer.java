@@ -1149,6 +1149,7 @@ public class MediaPlayer
     /**
      * Releases resources associated with this MediaPlayer object.
      * It is considered good practice to call this method when you're
+<<<<<<< HEAD
      * done using the MediaPlayer. In particular, whenever an Activity
      * of an application is paused (its onPause() method is called),
      * or stopped (its onStop() method is called), this method should be
@@ -1163,6 +1164,16 @@ public class MediaPlayer
      * of the same codec are supported, some performance degradation
      * may be expected when unnecessary multiple instances are used
      * at the same time.
+=======
+     * done using the MediaPlayer. For instance, whenever the Activity
+     * of an application is paused, this method should be invoked to
+     * release the MediaPlayer object. In addition to unnecessary resources
+     * (such as memory and instances of codecs) being hold, failure to
+     * call this method immediately if a MediaPlayer object is no longer
+     * needed may also lead to continuous battery consumption for mobile
+     * devices, and playback failure if no multiple instances of the
+     * same codec is supported on a device.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public void release() {
         stayAwake(false);

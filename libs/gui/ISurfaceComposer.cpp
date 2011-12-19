@@ -79,7 +79,11 @@ public:
     }
 
     virtual void setTransactionState(const Vector<ComposerState>& state,
+<<<<<<< HEAD
             int orientation, uint32_t flags)
+=======
+            int orientation)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     {
         Parcel data, reply;
         data.writeInterfaceToken(ISurfaceComposer::getInterfaceDescriptor());
@@ -90,7 +94,10 @@ public:
             b->write(data);
         }
         data.writeInt32(orientation);
+<<<<<<< HEAD
         data.writeInt32(flags);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         remote()->transact(BnSurfaceComposer::SET_TRANSACTION_STATE, data, &reply);
     }
 
@@ -205,8 +212,12 @@ status_t BnSurfaceComposer::onTransact(
                 state.add(s);
             }
             int orientation = data.readInt32();
+<<<<<<< HEAD
             uint32_t flags = data.readInt32();
             setTransactionState(state, orientation, flags);
+=======
+            setTransactionState(state, orientation);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } break;
         case BOOT_FINISHED: {
             CHECK_INTERFACE(ISurfaceComposer, data, reply);

@@ -245,13 +245,25 @@ public final class MccTable
      */
     private static void setWifiCountryCodeFromMcc(PhoneBase phone, int mcc) {
         String country = MccTable.countryCodeForMcc(mcc);
+<<<<<<< HEAD
         if (!country.isEmpty()) {
+=======
+        if (country != null && !country.isEmpty()) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             Context context = phone.getContext();
             Log.d(LOG_TAG, "WIFI_COUNTRY_CODE set to " + country);
             WifiManager wM = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             //persist
+<<<<<<< HEAD
             wM.setCountryCode(country, true);
         }
+=======
+	    if (wM != null){
+            	//wM.setCountryCode(country, true);
+		//He's climbin through yo wifi and snatchin yo channels up tryna rape em. Hideja kids, hidja wife, hidja ya husband AND tha dog! They rapin errbody out hur! Fuck this shit!
+	    }
+        }else Log.d(LOG_TAG, "WIFI_COUNTRY_CODE is null!");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     static {

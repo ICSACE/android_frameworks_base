@@ -79,7 +79,11 @@ import java.util.HashSet;
 public abstract class ViewGroup extends View implements ViewParent, ViewManager {
 
     private static final boolean DBG = false;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Views which have been hidden or removed which need to be animated on
      * their way out.
@@ -352,7 +356,11 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     private static final int ARRAY_CAPACITY_INCREMENT = 12;
 
     // Used to draw cached views
+<<<<<<< HEAD
     private Paint mCachePaint;
+=======
+    private final Paint mCachePaint = new Paint();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // Used to animate add/remove changes in layout
     private LayoutTransition mTransition;
@@ -405,6 +413,11 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
         mChildren = new View[ARRAY_INITIAL_CAPACITY];
         mChildrenCount = 0;
 
+<<<<<<< HEAD
+=======
+        mCachePaint.setDither(false);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mPersistentDrawingCache = PERSISTENT_SCROLLING_CACHE;
     }
 
@@ -2229,10 +2242,21 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     @Override
     void onInitializeAccessibilityNodeInfoInternal(AccessibilityNodeInfo info) {
         super.onInitializeAccessibilityNodeInfoInternal(info);
+<<<<<<< HEAD
         for (int i = 0, count = mChildrenCount; i < count; i++) {
             View child = mChildren[i];
             if ((child.mViewFlags & VISIBILITY_MASK) == VISIBLE
                     && (child.mPrivateFlags & IS_ROOT_NAMESPACE) == 0) {
+=======
+        // If the view is not the topmost one in the view hierarchy and it is
+        // marked as the logical root of a view hierarchy, do not go any deeper.
+        if ((!(getParent() instanceof ViewRootImpl)) && (mPrivateFlags & IS_ROOT_NAMESPACE) != 0) {
+            return;
+        }
+        for (int i = 0, count = mChildrenCount; i < count; i++) {
+            View child = mChildren[i];
+            if ((child.mViewFlags & VISIBILITY_MASK) == VISIBLE) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 info.addChild(child);
             }
         }
@@ -2719,6 +2743,16 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             return more;
         }
 
+<<<<<<< HEAD
+=======
+        float alpha = child.getAlpha();
+        // Bail out early if the view does not need to be drawn
+        if (alpha <= ViewConfiguration.ALPHA_THRESHOLD && (child.mPrivateFlags & ALPHA_SET) == 0 &&
+                !(child instanceof SurfaceView)) {
+            return more;
+        }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (hardwareAccelerated) {
             // Clear INVALIDATED flag to allow invalidation to occur during rendering, but
             // retain the flag's value temporarily in the mRecreateDisplayList flag
@@ -2772,7 +2806,10 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             }
         }
 
+<<<<<<< HEAD
         float alpha = child.getAlpha();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (transformToApply != null || alpha < 1.0f || !child.hasIdentityMatrix()) {
             if (transformToApply != null || !childHasIdentityMatrix) {
                 int transX = 0;
@@ -2897,11 +2934,14 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
 
             if (layerType == LAYER_TYPE_NONE) {
                 cachePaint = mCachePaint;
+<<<<<<< HEAD
                 if (cachePaint == null) {
                     cachePaint = new Paint();
                     cachePaint.setDither(false);
                     mCachePaint = cachePaint;
                 }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (alpha < 1.0f) {
                     cachePaint.setAlpha((int) (alpha * 255));
                     mGroupFlags |= FLAG_ALPHA_LOWER_THAN_ONE;
@@ -4176,6 +4216,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
      * {@inheritDoc}
      */
     public boolean getChildVisibleRect(View child, Rect r, android.graphics.Point offset) {
+<<<<<<< HEAD
         // It doesn't make a whole lot of sense to call this on a view that isn't attached,
         // but for some simple tests it can be useful. If we don't have attach info this
         // will allocate memory.
@@ -4213,6 +4254,17 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
         }
 
         return false;
+=======
+        int dx = child.mLeft - mScrollX;
+        int dy = child.mTop - mScrollY;
+        if (offset != null) {
+            offset.x += dx;
+            offset.y += dy;
+        }
+        r.offset(dx, dy);
+        return r.intersect(0, 0, mRight - mLeft, mBottom - mTop) &&
+               (mParent == null || mParent.getChildVisibleRect(this, r, offset));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

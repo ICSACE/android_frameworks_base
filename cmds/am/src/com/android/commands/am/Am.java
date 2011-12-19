@@ -60,8 +60,11 @@ public class Am {
     private boolean mWaitOption = false;
     private boolean mStopOption = false;
 
+<<<<<<< HEAD
     private int mRepeat = 0;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private String mProfileFile;
     private boolean mProfileAutoStop;
 
@@ -109,10 +112,13 @@ public class Am {
             runStartService();
         } else if (op.equals("force-stop")) {
             runForceStop();
+<<<<<<< HEAD
         } else if (op.equals("kill")) {
             runKill();
         } else if (op.equals("kill-all")) {
             runKillAll();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else if (op.equals("instrument")) {
             runInstrument();
         } else if (op.equals("broadcast")) {
@@ -121,20 +127,26 @@ public class Am {
             runProfile();
         } else if (op.equals("dumpheap")) {
             runDumpHeap();
+<<<<<<< HEAD
         } else if (op.equals("set-debug-app")) {
             runSetDebugApp();
         } else if (op.equals("clear-debug-app")) {
             runClearDebugApp();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else if (op.equals("monitor")) {
             runMonitor();
         } else if (op.equals("screen-compat")) {
             runScreenCompat();
         } else if (op.equals("display-size")) {
             runDisplaySize();
+<<<<<<< HEAD
         } else if (op.equals("to-uri")) {
             runToUri(false);
         } else if (op.equals("to-intent-uri")) {
             runToUri(true);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else {
             throw new IllegalArgumentException("Unknown command: " + op);
         }
@@ -142,13 +154,19 @@ public class Am {
 
     private Intent makeIntent() throws URISyntaxException {
         Intent intent = new Intent();
+<<<<<<< HEAD
         Intent baseIntent = intent;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         boolean hasIntentInfo = false;
 
         mDebugOption = false;
         mWaitOption = false;
         mStopOption = false;
+<<<<<<< HEAD
         mRepeat = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mProfileFile = null;
         Uri data = null;
         String type = null;
@@ -157,6 +175,7 @@ public class Am {
         while ((opt=nextOption()) != null) {
             if (opt.equals("-a")) {
                 intent.setAction(nextArgRequired());
+<<<<<<< HEAD
                 if (intent == baseIntent) {
                     hasIntentInfo = true;
                 }
@@ -175,21 +194,49 @@ public class Am {
                 if (intent == baseIntent) {
                     hasIntentInfo = true;
                 }
+=======
+                hasIntentInfo = true;
+            } else if (opt.equals("-d")) {
+                data = Uri.parse(nextArgRequired());
+                hasIntentInfo = true;
+            } else if (opt.equals("-t")) {
+                type = nextArgRequired();
+                hasIntentInfo = true;
+            } else if (opt.equals("-c")) {
+                intent.addCategory(nextArgRequired());
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("-e") || opt.equals("--es")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
                 intent.putExtra(key, value);
+<<<<<<< HEAD
             } else if (opt.equals("--esn")) {
                 String key = nextArgRequired();
                 intent.putExtra(key, (String) null);
+=======
+                hasIntentInfo = true;
+            } else if (opt.equals("--esn")) {
+                String key = nextArgRequired();
+                intent.putExtra(key, (String) null);
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--ei")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
                 intent.putExtra(key, Integer.valueOf(value));
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--eu")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
                 intent.putExtra(key, Uri.parse(value));
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--eia")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
@@ -199,10 +246,18 @@ public class Am {
                     list[i] = Integer.valueOf(strings[i]);
                 }
                 intent.putExtra(key, list);
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--el")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
                 intent.putExtra(key, Long.valueOf(value));
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--ela")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
@@ -212,18 +267,30 @@ public class Am {
                     list[i] = Long.valueOf(strings[i]);
                 }
                 intent.putExtra(key, list);
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("--ez")) {
                 String key = nextArgRequired();
                 String value = nextArgRequired();
                 intent.putExtra(key, Boolean.valueOf(value));
+<<<<<<< HEAD
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("-n")) {
                 String str = nextArgRequired();
                 ComponentName cn = ComponentName.unflattenFromString(str);
                 if (cn == null) throw new IllegalArgumentException("Bad component name: " + str);
                 intent.setComponent(cn);
+<<<<<<< HEAD
                 if (intent == baseIntent) {
                     hasIntentInfo = true;
                 }
+=======
+                hasIntentInfo = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("-f")) {
                 String str = nextArgRequired();
                 intent.setFlags(Integer.decode(str).intValue());
@@ -271,9 +338,12 @@ public class Am {
                 intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
             } else if (opt.equals("--receiver-replace-pending")) {
                 intent.addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+<<<<<<< HEAD
             } else if (opt.equals("--selector")) {
                 intent.setDataAndType(data, type);
                 intent = new Intent();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("-D")) {
                 mDebugOption = true;
             } else if (opt.equals("-W")) {
@@ -284,8 +354,11 @@ public class Am {
             } else if (opt.equals("--start-profiler")) {
                 mProfileFile = nextArgRequired();
                 mProfileAutoStop = false;
+<<<<<<< HEAD
             } else if (opt.equals("-R")) {
                 mRepeat = Integer.parseInt(nextArgRequired());
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (opt.equals("-S")) {
                 mStopOption = true;
             } else {
@@ -296,6 +369,7 @@ public class Am {
         }
         intent.setDataAndType(data, type);
 
+<<<<<<< HEAD
         final boolean hasSelector = intent != baseIntent;
         if (hasSelector) {
             // A selector was specified; fix up.
@@ -332,6 +406,27 @@ public class Am {
             baseIntent.setPackage(arg);
         }
         if (baseIntent != null) {
+=======
+        String arg = nextArg();
+        if (arg != null) {
+            Intent baseIntent;
+            if (arg.indexOf(':') >= 0) {
+                // The argument is a URI.  Fully parse it, and use that result
+                // to fill in any data not specified so far.
+                baseIntent = Intent.parseUri(arg, Intent.URI_INTENT_SCHEME);
+            } else if (arg.indexOf('/') >= 0) {
+                // The argument is a component name.  Build an Intent to launch
+                // it.
+                baseIntent = new Intent(Intent.ACTION_MAIN);
+                baseIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                baseIntent.setComponent(ComponentName.unflattenFromString(arg));
+            } else {
+                // Assume the argument is a package name.
+                baseIntent = new Intent(Intent.ACTION_MAIN);
+                baseIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                baseIntent.setPackage(arg);
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             Bundle extras = intent.getExtras();
             intent.replaceExtras((Bundle)null);
             Bundle uriExtras = baseIntent.getExtras();
@@ -342,7 +437,11 @@ public class Am {
                     baseIntent.removeCategory(c);
                 }
             }
+<<<<<<< HEAD
             intent.fillIn(baseIntent, Intent.FILL_IN_COMPONENT | Intent.FILL_IN_SELECTOR);
+=======
+            intent.fillIn(baseIntent, Intent.FILL_IN_COMPONENT);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (extras == null) {
                 extras = uriExtras;
             } else if (uriExtras != null) {
@@ -375,6 +474,7 @@ public class Am {
             mimeType = mAm.getProviderMimeType(intent.getData());
         }
 
+<<<<<<< HEAD
         do {
             if (mStopOption) {
                 String packageName;
@@ -513,12 +613,147 @@ public class Am {
                 mAm.unhandledBack();
             }
         } while (mRepeat > 1);
+=======
+        if (mStopOption) {
+            String packageName;
+            if (intent.getComponent() != null) {
+                packageName = intent.getComponent().getPackageName();
+            } else {
+                IPackageManager pm = IPackageManager.Stub.asInterface(
+                        ServiceManager.getService("package"));
+                if (pm == null) {
+                    System.err.println("Error: Package manager not running; aborting");
+                    return;
+                }
+                List<ResolveInfo> activities = pm.queryIntentActivities(intent, mimeType, 0);
+                if (activities == null || activities.size() <= 0) {
+                    System.err.println("Error: Intent does not match any activities: "
+                            + intent);
+                    return;
+                } else if (activities.size() > 1) {
+                    System.err.println("Error: Intent matches multiple activities; can't stop: "
+                            + intent);
+                    return;
+                }
+                packageName = activities.get(0).activityInfo.packageName;
+            }
+            System.out.println("Stopping: " + packageName);
+            mAm.forceStopPackage(packageName);
+            Thread.sleep(250);
+        }
+
+        System.out.println("Starting: " + intent);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        ParcelFileDescriptor fd = null;
+
+        if (mProfileFile != null) {
+            try {
+                fd = ParcelFileDescriptor.open(
+                        new File(mProfileFile),
+                        ParcelFileDescriptor.MODE_CREATE |
+                        ParcelFileDescriptor.MODE_TRUNCATE |
+                        ParcelFileDescriptor.MODE_READ_WRITE);
+            } catch (FileNotFoundException e) {
+                System.err.println("Error: Unable to open file: " + mProfileFile);
+                return;
+            }
+        }
+
+        IActivityManager.WaitResult result = null;
+        int res;
+        if (mWaitOption) {
+            result = mAm.startActivityAndWait(null, intent, mimeType,
+                        null, 0, null, null, 0, false, mDebugOption,
+                        mProfileFile, fd, mProfileAutoStop);
+            res = result.result;
+        } else {
+            res = mAm.startActivity(null, intent, mimeType,
+                    null, 0, null, null, 0, false, mDebugOption,
+                    mProfileFile, fd, mProfileAutoStop);
+        }
+        PrintStream out = mWaitOption ? System.out : System.err;
+        boolean launched = false;
+        switch (res) {
+            case IActivityManager.START_SUCCESS:
+                launched = true;
+                break;
+            case IActivityManager.START_SWITCHES_CANCELED:
+                launched = true;
+                out.println(
+                        "Warning: Activity not started because the "
+                        + " current activity is being kept for the user.");
+                break;
+            case IActivityManager.START_DELIVERED_TO_TOP:
+                launched = true;
+                out.println(
+                        "Warning: Activity not started, intent has "
+                        + "been delivered to currently running "
+                        + "top-most instance.");
+                break;
+            case IActivityManager.START_RETURN_INTENT_TO_CALLER:
+                launched = true;
+                out.println(
+                        "Warning: Activity not started because intent "
+                        + "should be handled by the caller");
+                break;
+            case IActivityManager.START_TASK_TO_FRONT:
+                launched = true;
+                out.println(
+                        "Warning: Activity not started, its current "
+                        + "task has been brought to the front");
+                break;
+            case IActivityManager.START_INTENT_NOT_RESOLVED:
+                out.println(
+                        "Error: Activity not started, unable to "
+                        + "resolve " + intent.toString());
+                break;
+            case IActivityManager.START_CLASS_NOT_FOUND:
+                out.println(NO_CLASS_ERROR_CODE);
+                out.println("Error: Activity class " +
+                        intent.getComponent().toShortString()
+                        + " does not exist.");
+                break;
+            case IActivityManager.START_FORWARD_AND_REQUEST_CONFLICT:
+                out.println(
+                        "Error: Activity not started, you requested to "
+                        + "both forward and receive its result");
+                break;
+            case IActivityManager.START_PERMISSION_DENIED:
+                out.println(
+                        "Error: Activity not started, you do not "
+                        + "have permission to access it.");
+                break;
+            default:
+                out.println(
+                        "Error: Activity not started, unknown error code " + res);
+                break;
+        }
+        if (mWaitOption && launched) {
+            if (result == null) {
+                result = new IActivityManager.WaitResult();
+                result.who = intent.getComponent();
+            }
+            System.out.println("Status: " + (result.timeout ? "timeout" : "ok"));
+            if (result.who != null) {
+                System.out.println("Activity: " + result.who.flattenToShortString());
+            }
+            if (result.thisTime >= 0) {
+                System.out.println("ThisTime: " + result.thisTime);
+            }
+            if (result.totalTime >= 0) {
+                System.out.println("TotalTime: " + result.totalTime);
+            }
+            System.out.println("Complete");
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private void runForceStop() throws Exception {
         mAm.forceStopPackage(nextArgRequired());
     }
 
+<<<<<<< HEAD
     private void runKill() throws Exception {
         mAm.killBackgroundProcesses(nextArgRequired());
     }
@@ -527,6 +762,8 @@ public class Am {
         mAm.killAllBackgroundProcesses();
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private void sendBroadcast() throws Exception {
         Intent intent = makeIntent();
         IntentReceiver receiver = new IntentReceiver();
@@ -697,6 +934,7 @@ public class Am {
         }
     }
 
+<<<<<<< HEAD
     private void runSetDebugApp() throws Exception {
         boolean wait = false;
         boolean persistent = false;
@@ -722,6 +960,8 @@ public class Am {
         mAm.setDebugApp(null, false, true);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     class MyActivityController extends IActivityController.Stub {
         final String mGdbPort;
 
@@ -1091,11 +1331,14 @@ public class Am {
         }
     }
 
+<<<<<<< HEAD
     private void runToUri(boolean intentScheme) throws Exception {
         Intent intent = makeIntent();
         System.out.println(intent.toUri(intentScheme ? Intent.URI_INTENT_SCHEME : 0));
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private class IntentReceiver extends IIntentReceiver.Stub {
         private boolean mFinished = false;
 
@@ -1248,18 +1491,25 @@ public class Am {
     private static void showUsage() {
         System.err.println(
                 "usage: am [subcommand] [options]\n" +
+<<<<<<< HEAD
                 "usage: am start [-D] [-W] [-P <FILE>] [--start-profiler <FILE>]\n" +
                 "               [--R COUNT] [-S] <INTENT>\n" +
                 "       am startservice <INTENT>\n" +
                 "       am force-stop <PACKAGE>\n" +
                 "       am kill <PACKAGE>\n" +
                 "       am kill-all\n" +
+=======
+                "usage: am start [-D] [-W] [-P <FILE>] [--start-profiler <FILE>] [-S] <INTENT>\n" +
+                "       am startservice <INTENT>\n" +
+                "       am force-stop <PACKAGE>\n" +
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "       am broadcast <INTENT>\n" +
                 "       am instrument [-r] [-e <NAME> <VALUE>] [-p <FILE>] [-w]\n" +
                 "               [--no-window-animation] <COMPONENT>\n" +
                 "       am profile [looper] start <PROCESS> <FILE>\n" +
                 "       am profile [looper] stop [<PROCESS>]\n" +
                 "       am dumpheap [flags] <PROCESS> <FILE>\n" +
+<<<<<<< HEAD
                 "       am set-debug-app [-w] [--persistent] <PACKAGE>\n" +
                 "       am clear-debug-app\n" +
                 "       am monitor [--gdb <port>]\n" +
@@ -1267,26 +1517,37 @@ public class Am {
                 "       am display-size [reset|MxN]\n" +
                 "       am to-uri [INTENT]\n" +
                 "       am to-intent-uri [INTENT]\n" +
+=======
+                "       am monitor [--gdb <port>]\n" +
+                "       am screen-compat [on|off] <PACKAGE>\n" +
+                "       am display-size [reset|MxN]\n" +
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "\n" +
                 "am start: start an Activity.  Options are:\n" +
                 "    -D: enable debugging\n" +
                 "    -W: wait for launch to complete\n" +
                 "    --start-profiler <FILE>: start profiler and send results to <FILE>\n" +
                 "    -P <FILE>: like above, but profiling stops when app goes idle\n" +
+<<<<<<< HEAD
                 "    -R: repeat the activity launch <COUNT> times.  Prior to each repeat,\n" +
                 "        the top activity will be finished.\n" +
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "    -S: force stop the target app before starting the activity\n" +
                 "\n" +
                 "am startservice: start a Service.\n" +
                 "\n" +
                 "am force-stop: force stop everything associated with <PACKAGE>.\n" +
                 "\n" +
+<<<<<<< HEAD
                 "am kill: Kill all processes associated with <PACKAGE>.  Only kills.\n" +
                 "  processes that are safe to kill -- that is, will not impact the user\n" +
                 "  experience.\n" +
                 "\n" +
                 "am kill-all: Kill all background processes.\n" +
                 "\n" +
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "am broadcast: send a broadcast Intent.\n" +
                 "\n" +
                 "am instrument: start an Instrumentation.  Typically this target <COMPONENT>\n" +
@@ -1305,12 +1566,15 @@ public class Am {
                 "am dumpheap: dump the heap of a process.  Options are:\n" +
                 "    -n: dump native heap instead of managed heap\n" +
                 "\n" +
+<<<<<<< HEAD
                 "am set-debug-app: set application <PACKAGE> to debug.  Options are:\n" +
                 "    -w: wait for debugger when application starts\n" +
                 "    --persistent: retain this value\n" +
                 "\n" +
                 "am clear-debug-app: clear the previously set-debug-app.\n" +
                 "\n" +
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "am monitor: start monitoring for crashes or ANRs.\n" +
                 "    --gdb: start gdbserv on the given port at crash/ANR\n" +
                 "\n" +
@@ -1318,10 +1582,13 @@ public class Am {
                 "\n" +
                 "am display-size: override display size.\n" +
                 "\n" +
+<<<<<<< HEAD
                 "am to-uri: print the given Intent specification as a URI.\n" +
                 "\n" +
                 "am to-intent-uri: print the given Intent specification as an intent: URI.\n" +
                 "\n" +
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "<INTENT> specifications include these flags and arguments:\n" +
                 "    [-a <ACTION>] [-d <DATA_URI>] [-t <MIME_TYPE>]\n" +
                 "    [-c <CATEGORY> [-c <CATEGORY>] ...]\n" +
@@ -1346,7 +1613,10 @@ public class Am {
                 "    [--activity-single-top] [--activity-clear-task]\n" +
                 "    [--activity-task-on-home]\n" +
                 "    [--receiver-registered-only] [--receiver-replace-pending]\n" +
+<<<<<<< HEAD
                 "    [--selector]\n" +
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 "    [<URI> | <PACKAGE> | <COMPONENT>]\n"
                 );
     }

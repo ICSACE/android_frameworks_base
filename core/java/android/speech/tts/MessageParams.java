@@ -15,22 +15,37 @@
  */
 package android.speech.tts;
 
+<<<<<<< HEAD
 import android.speech.tts.TextToSpeechService.UtteranceProgressDispatcher;
+=======
+import android.speech.tts.TextToSpeechService.UtteranceCompletedDispatcher;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 abstract class MessageParams {
     static final int TYPE_SYNTHESIS = 1;
     static final int TYPE_AUDIO = 2;
     static final int TYPE_SILENCE = 3;
 
+<<<<<<< HEAD
     private final UtteranceProgressDispatcher mDispatcher;
     private final String mCallingApp;
 
     MessageParams(UtteranceProgressDispatcher dispatcher, String callingApp) {
+=======
+    private final UtteranceCompletedDispatcher mDispatcher;
+    private final String mCallingApp;
+
+    MessageParams(UtteranceCompletedDispatcher dispatcher, String callingApp) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mDispatcher = dispatcher;
         mCallingApp = callingApp;
     }
 
+<<<<<<< HEAD
     UtteranceProgressDispatcher getDispatcher() {
+=======
+    UtteranceCompletedDispatcher getDispatcher() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return mDispatcher;
     }
 

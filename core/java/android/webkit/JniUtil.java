@@ -22,7 +22,10 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
+<<<<<<< HEAD
 import java.io.File;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.io.InputStream;
 
 class JniUtil {
@@ -80,12 +83,16 @@ class JniUtil {
         checkInitialized();
 
         if (sCacheDirectory == null) {
+<<<<<<< HEAD
             File cacheDir = sContext.getCacheDir();
             if (cacheDir == null) {
                 sCacheDirectory = "";
             } else {
                 sCacheDirectory = cacheDir.getAbsolutePath();
             }
+=======
+            sCacheDirectory = sContext.getCacheDir().getAbsolutePath();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         return sCacheDirectory;

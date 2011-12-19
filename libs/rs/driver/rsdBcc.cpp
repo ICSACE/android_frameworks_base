@@ -226,7 +226,10 @@ static void wc_xy(void *usr, uint32_t idx) {
     RsdHal * dc = (RsdHal *)mtls->rsc->mHal.drv;
     uint32_t sig = mtls->sig;
 
+<<<<<<< HEAD
     outer_foreach_t fn = dc->mForEachLaunch[sig];
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     while (1) {
         uint32_t slice = (uint32_t)android_atomic_inc(&mtls->mSliceNum);
         uint32_t yStart = mtls->yStart + slice * mtls->mSliceSize;
@@ -240,10 +243,23 @@ static void wc_xy(void *usr, uint32_t idx) {
         //LOGE("usr ptr in %p,  out %p", mtls->ptrIn, mtls->ptrOut);
         for (p.y = yStart; p.y < yEnd; p.y++) {
             uint32_t offset = mtls->dimX * p.y;
+<<<<<<< HEAD
             p.out = mtls->ptrOut + (mtls->eStrideOut * offset);
             p.in = mtls->ptrIn + (mtls->eStrideIn * offset);
             fn(&mtls->script->mHal.info.root, &p, mtls->xStart, mtls->xEnd,
                mtls->eStrideIn, mtls->eStrideOut);
+=======
+            uint8_t *xPtrOut = mtls->ptrOut + (mtls->eStrideOut * offset);
+            const uint8_t *xPtrIn = mtls->ptrIn + (mtls->eStrideIn * offset);
+
+            for (p.x = mtls->xStart; p.x < mtls->xEnd; p.x++) {
+                p.in = xPtrIn;
+                p.out = xPtrOut;
+                dc->mForEachLaunch[sig](&mtls->script->mHal.info.root, &p);
+                xPtrIn += mtls->eStrideIn;
+                xPtrOut += mtls->eStrideOut;
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 }
@@ -257,7 +273,10 @@ static void wc_x(void *usr, uint32_t idx) {
     RsdHal * dc = (RsdHal *)mtls->rsc->mHal.drv;
     uint32_t sig = mtls->sig;
 
+<<<<<<< HEAD
     outer_foreach_t fn = dc->mForEachLaunch[sig];
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     while (1) {
         uint32_t slice = (uint32_t)android_atomic_inc(&mtls->mSliceNum);
         uint32_t xStart = mtls->xStart + slice * mtls->mSliceSize;
@@ -267,12 +286,26 @@ static void wc_x(void *usr, uint32_t idx) {
             return;
         }
 
+<<<<<<< HEAD
         //LOGE("usr slice %i idx %i, x %i,%i", slice, idx, xStart, xEnd);
         //LOGE("usr ptr in %p,  out %p", mtls->ptrIn, mtls->ptrOut);
 
         p.out = mtls->ptrOut + (mtls->eStrideOut * xStart);
         p.in = mtls->ptrIn + (mtls->eStrideIn * xStart);
         fn(&mtls->script->mHal.info.root, &p, xStart, xEnd, mtls->eStrideIn, mtls->eStrideOut);
+=======
+        //LOGE("usr idx %i, x %i,%i  y %i,%i", idx, mtls->xStart, mtls->xEnd, yStart, yEnd);
+        //LOGE("usr ptr in %p,  out %p", mtls->ptrIn, mtls->ptrOut);
+        uint8_t *xPtrOut = mtls->ptrOut + (mtls->eStrideOut * xStart);
+        const uint8_t *xPtrIn = mtls->ptrIn + (mtls->eStrideIn * xStart);
+        for (p.x = xStart; p.x < xEnd; p.x++) {
+            p.in = xPtrIn;
+            p.out = xPtrOut;
+            dc->mForEachLaunch[sig](&mtls->script->mHal.info.root, &p);
+            xPtrIn += mtls->eStrideIn;
+            xPtrOut += mtls->eStrideOut;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 }
 
@@ -383,17 +416,33 @@ void rsdScriptInvokeForEach(const Context *rsc,
         uint32_t sig = mtls.sig;
 
         //LOGE("launch 3");
+<<<<<<< HEAD
         outer_foreach_t fn = dc->mForEachLaunch[sig];
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         for (p.ar[0] = mtls.arrayStart; p.ar[0] < mtls.arrayEnd; p.ar[0]++) {
             for (p.z = mtls.zStart; p.z < mtls.zEnd; p.z++) {
                 for (p.y = mtls.yStart; p.y < mtls.yEnd; p.y++) {
                     uint32_t offset = mtls.dimX * mtls.dimY * mtls.dimZ * p.ar[0] +
                                       mtls.dimX * mtls.dimY * p.z +
                                       mtls.dimX * p.y;
+<<<<<<< HEAD
                     p.out = mtls.ptrOut + (mtls.eStrideOut * offset);
                     p.in = mtls.ptrIn + (mtls.eStrideIn * offset);
                     fn(&mtls.script->mHal.info.root, &p, mtls.xStart, mtls.xEnd,
                        mtls.eStrideIn, mtls.eStrideOut);
+=======
+                    uint8_t *xPtrOut = mtls.ptrOut + (mtls.eStrideOut * offset);
+                    const uint8_t *xPtrIn = mtls.ptrIn + (mtls.eStrideIn * offset);
+
+                    for (p.x = mtls.xStart; p.x < mtls.xEnd; p.x++) {
+                        p.in = xPtrIn;
+                        p.out = xPtrOut;
+                        dc->mForEachLaunch[sig](&s->mHal.info.root, &p);
+                        xPtrIn += mtls.eStrideIn;
+                        xPtrOut += mtls.eStrideOut;
+                    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         }

@@ -105,8 +105,13 @@ void updateMeshInfo() {
         rsgMeshComputeBoundingBox(info->mMesh,
                                   &minX, &minY, &minZ,
                                   &maxX, &maxY, &maxZ);
+<<<<<<< HEAD
         info->bBoxMin = (float3){minX, minY, minZ};
         info->bBoxMax = (float3){maxX, maxY, maxZ};
+=======
+        info->bBoxMin = (minX, minY, minZ);
+        info->bBoxMax = (maxX, maxY, maxZ);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         gLookAt += (info->bBoxMin + info->bBoxMax)*0.5f;
     }
     gLookAt = gLookAt / (float)size;

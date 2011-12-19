@@ -768,7 +768,11 @@ public class WifiManager {
      */
     public void setCountryCode(String country, boolean persist) {
         try {
+<<<<<<< HEAD
             mService.setCountryCode(country, persist);
+=======
+            if (country != null) mService.setCountryCode(country, persist);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } catch (RemoteException e) { }
     }
 

@@ -37,7 +37,10 @@ import android.provider.Settings;
 import android.provider.Settings.Secure;
 import android.util.Log;
 
+<<<<<<< HEAD
 import com.android.internal.R;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.util.Protocol;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
@@ -69,8 +72,12 @@ public class WifiWatchdogStateMachine extends StateMachine {
 
     private static final boolean DBG = false;
     private static final String TAG = "WifiWatchdogStateMachine";
+<<<<<<< HEAD
     private static final String DISABLED_NETWORK_NOTIFICATION_ID = "WifiWatchdog.networkdisabled";
     private static final String WALLED_GARDEN_NOTIFICATION_ID = "WifiWatchdog.walledgarden";
+=======
+    private static final String WATCHDOG_NOTIFICATION_ID = "Android.System.WifiWatchdog";
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private static final int WIFI_SIGNAL_LEVELS = 4;
     /**
@@ -150,7 +157,10 @@ public class WifiWatchdogStateMachine extends StateMachine {
     private ConnectedState mConnectedState = new ConnectedState();
     private DnsCheckingState mDnsCheckingState = new DnsCheckingState();
     private OnlineWatchState mOnlineWatchState = new OnlineWatchState();
+<<<<<<< HEAD
     private OnlineState mOnlineState = new OnlineState();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private DnsCheckFailureState mDnsCheckFailureState = new DnsCheckFailureState();
     private DelayWalledGardenState mDelayWalledGardenState = new DelayWalledGardenState();
     private WalledGardenState mWalledGardenState = new WalledGardenState();
@@ -164,7 +174,10 @@ public class WifiWatchdogStateMachine extends StateMachine {
     private int mMinDnsResponses;
     private int mDnsPingTimeoutMs;
     private long mBlacklistFollowupIntervalMs;
+<<<<<<< HEAD
     private boolean mPoorNetworkDetectionEnabled;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private boolean mWalledGardenTestEnabled;
     private String mWalledGardenUrl;
 
@@ -189,8 +202,12 @@ public class WifiWatchdogStateMachine extends StateMachine {
      */
     public boolean mDisableAPNextFailure = false;
     private static boolean sWifiOnly = false;
+<<<<<<< HEAD
     private boolean mDisabledNotificationShown;
     private boolean mWalledGardenNotificationShown;
+=======
+    private boolean mNotificationShown;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean mHasConnectedWifiManager = false;
 
     /**
@@ -228,7 +245,10 @@ public class WifiWatchdogStateMachine extends StateMachine {
                     addState(mWalledGardenState, mConnectedState);
                     addState(mBlacklistedApState, mConnectedState);
                     addState(mOnlineWatchState, mConnectedState);
+<<<<<<< HEAD
                     addState(mOnlineState, mConnectedState);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         setInitialState(mWatchdogDisabledState);
         updateSettings();
@@ -414,10 +434,13 @@ public class WifiWatchdogStateMachine extends StateMachine {
         mBlacklistFollowupIntervalMs = Secure.getLong(mContentResolver,
                 Settings.Secure.WIFI_WATCHDOG_BLACKLIST_FOLLOWUP_INTERVAL_MS,
                 DEFAULT_BLACKLIST_FOLLOWUP_INTERVAL_MS);
+<<<<<<< HEAD
         //TODO: enable this by default after changing watchdog behavior
         //Also, update settings description
         mPoorNetworkDetectionEnabled = getSettingsBoolean(mContentResolver,
                 Settings.Secure.WIFI_WATCHDOG_POOR_NETWORK_TEST_ENABLED, false);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mWalledGardenTestEnabled = getSettingsBoolean(mContentResolver,
                 Settings.Secure.WIFI_WATCHDOG_WALLED_GARDEN_TEST_ENABLED, true);
         mWalledGardenUrl = getSettingsStr(mContentResolver,
@@ -487,6 +510,7 @@ public class WifiWatchdogStateMachine extends StateMachine {
         mLastWalledGardenCheckTime = null;
         mNumCheckFailures = 0;
         mBssids.clear();
+<<<<<<< HEAD
         setDisabledNetworkNotificationVisible(false);
         setWalledGardenNotificationVisible(false);
     }
@@ -557,6 +581,53 @@ public class WifiWatchdogStateMachine extends StateMachine {
             notificationManager.cancel(DISABLED_NETWORK_NOTIFICATION_ID, 1);
         }
         mDisabledNotificationShown = visible;
+=======
+        cancelNetworkNotification();
+    }
+
+    private void popUpBrowser() {
+        Uri uri = Uri.parse("http://www.google.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
+    }
+
+    private void displayDisabledNetworkNotification(String ssid) {
+        Resources r = Resources.getSystem();
+        CharSequence title =
+                r.getText(com.android.internal.R.string.wifi_watchdog_network_disabled);
+        String msg = ssid +
+                r.getText(com.android.internal.R.string.wifi_watchdog_network_disabled_detailed);
+
+        Notification wifiDisabledWarning = new Notification.Builder(mContext)
+            .setSmallIcon(com.android.internal.R.drawable.stat_sys_warning)
+            .setDefaults(Notification.DEFAULT_ALL)
+            .setTicker(title)
+            .setContentTitle(title)
+            .setContentText(msg)
+            .setContentIntent(PendingIntent.getActivity(mContext, 0,
+                    new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0))
+            .setWhen(System.currentTimeMillis())
+            .setAutoCancel(true)
+            .getNotification();
+
+        NotificationManager notificationManager = (NotificationManager) mContext
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(WATCHDOG_NOTIFICATION_ID, 1, wifiDisabledWarning);
+        mNotificationShown = true;
+    }
+
+    public void cancelNetworkNotification() {
+        if (mNotificationShown) {
+            NotificationManager notificationManager = (NotificationManager) mContext
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancel(WATCHDOG_NOTIFICATION_ID, 1);
+            mNotificationShown = false;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     class DefaultState extends State {
@@ -611,10 +682,16 @@ public class WifiWatchdogStateMachine extends StateMachine {
                     NetworkInfo networkInfo = (NetworkInfo)
                             stateChangeIntent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
 
+<<<<<<< HEAD
                     setDisabledNetworkNotificationVisible(false);
                     setWalledGardenNotificationVisible(false);
                     switch (networkInfo.getState()) {
                         case CONNECTED:
+=======
+                    switch (networkInfo.getState()) {
+                        case CONNECTED:
+                            cancelNetworkNotification();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             WifiInfo wifiInfo = (WifiInfo)
                                 stateChangeIntent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
                             if (wifiInfo == null) {
@@ -630,6 +707,7 @@ public class WifiWatchdogStateMachine extends StateMachine {
 
                             initConnection(wifiInfo);
                             mConnectionInfo = wifiInfo;
+<<<<<<< HEAD
                             mNetEventCounter++;
                             if (mPoorNetworkDetectionEnabled) {
                                 updateBssids();
@@ -637,6 +715,11 @@ public class WifiWatchdogStateMachine extends StateMachine {
                             } else {
                                 transitionTo(mDelayWalledGardenState);
                             }
+=======
+                            updateBssids();
+                            transitionTo(mDnsCheckingState);
+                            mNetEventCounter++;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             break;
                         default:
                             mNetEventCounter++;
@@ -688,6 +771,7 @@ public class WifiWatchdogStateMachine extends StateMachine {
         public boolean processMessage(Message msg) {
             switch (msg.what) {
                 case EVENT_SCAN_RESULTS_AVAILABLE:
+<<<<<<< HEAD
                     if (mPoorNetworkDetectionEnabled) {
                         updateBssids();
                     }
@@ -700,6 +784,14 @@ public class WifiWatchdogStateMachine extends StateMachine {
                         transitionTo(mOnlineState);
                     }
                     return HANDLED;
+=======
+                    updateBssids();
+                    return HANDLED;
+                case EVENT_WATCHDOG_SETTINGS_CHANGE:
+                    // Stop current checks, but let state update
+                    transitionTo(mOnlineWatchState);
+                    return NOT_HANDLED;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             return NOT_HANDLED;
         }
@@ -846,11 +938,15 @@ public class WifiWatchdogStateMachine extends StateMachine {
                         transitionTo(mWalledGardenState);
                     } else {
                         if (DBG) log("Walled garden test complete - online");
+<<<<<<< HEAD
                         if (mPoorNetworkDetectionEnabled) {
                             transitionTo(mOnlineWatchState);
                         } else {
                             transitionTo(mOnlineState);
                         }
+=======
+                        transitionTo(mOnlineWatchState);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                     return HANDLED;
                 default:
@@ -982,6 +1078,7 @@ public class WifiWatchdogStateMachine extends StateMachine {
         }
     }
 
+<<<<<<< HEAD
 
     /* Child state of ConnectedState indicating that we are online
      * and there is nothing to do
@@ -989,6 +1086,8 @@ public class WifiWatchdogStateMachine extends StateMachine {
     class OnlineState extends State {
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     class DnsCheckFailureState extends State {
 
         @Override
@@ -1031,7 +1130,11 @@ public class WifiWatchdogStateMachine extends StateMachine {
                 }
                 mWifiManager.disableNetwork(networkId, WifiConfiguration.DISABLED_DNS_FAILURE);
                 if (mShowDisabledNotification && mConnectionInfo.isExplicitConnect()) {
+<<<<<<< HEAD
                     setDisabledNetworkNotificationVisible(true);
+=======
+                    displayDisabledNetworkNotification(mConnectionInfo.getSSID());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
                 transitionTo(mNotConnectedState);
             } else {
@@ -1064,12 +1167,17 @@ public class WifiWatchdogStateMachine extends StateMachine {
                 }
                 return HANDLED;
             }
+<<<<<<< HEAD
             setWalledGardenNotificationVisible(true);
             if (mPoorNetworkDetectionEnabled) {
                 transitionTo(mOnlineWatchState);
             } else {
                 transitionTo(mOnlineState);
             }
+=======
+            popUpBrowser();
+            transitionTo(mOnlineWatchState);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return HANDLED;
         }
     }

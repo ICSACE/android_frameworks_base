@@ -25,9 +25,15 @@ import android.util.Log;
 /**
  * Wraps a BulkCursor around an existing Cursor making it remotable.
  * <p>
+<<<<<<< HEAD
  * If the wrapped cursor returns non-null from {@link CrossProcessCursor#getWindow}
  * then it is assumed to own the window.  Otherwise, the adaptor provides a
  * window to be filled and ensures it gets closed as needed during deactivation
+=======
+ * If the wrapped cursor is a {@link AbstractWindowedCursor} then it owns
+ * the cursor window.  Otherwise, the adaptor takes ownership of the
+ * cursor itself and ensures it gets closed as needed during deactivation
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * and requeries.
  * </p>
  *
@@ -48,11 +54,20 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
     private CrossProcessCursor mCursor;
 
     /**
+<<<<<<< HEAD
      * The cursor window that was filled by the cross process cursor in the
      * case where the cursor does not support getWindow.
      * This field is only ever non-null when the window has actually be filled.
      */
     private CursorWindow mFilledWindow;
+=======
+     * The cursor window used by the cross process cursor.
+     * This field is always null for abstract windowed cursors since they are responsible
+     * for managing the lifetime of their window.
+     */
+    private CursorWindow mWindowForNonWindowedCursor;
+    private boolean mWindowForNonWindowedCursorWasFilled;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private static final class ContentObserverProxy extends ContentObserver {
         protected IContentObserver mRemote;
@@ -89,10 +104,18 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
 
     public CursorToBulkCursorAdaptor(Cursor cursor, IContentObserver observer,
             String providerName) {
+<<<<<<< HEAD
         if (cursor instanceof CrossProcessCursor) {
             mCursor = (CrossProcessCursor)cursor;
         } else {
             mCursor = new CrossProcessCursorWrapper(cursor);
+=======
+        try {
+            mCursor = (CrossProcessCursor) cursor;
+        } catch (ClassCastException e) {
+            throw new UnsupportedOperationException(
+                    "Only CrossProcessCursor cursors are supported across process for now", e);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         mProviderName = providerName;
 
@@ -101,10 +124,18 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
         }
     }
 
+<<<<<<< HEAD
     private void closeFilledWindowLocked() {
         if (mFilledWindow != null) {
             mFilledWindow.close();
             mFilledWindow = null;
+=======
+    private void closeWindowForNonWindowedCursorLocked() {
+        if (mWindowForNonWindowedCursor != null) {
+            mWindowForNonWindowedCursor.close();
+            mWindowForNonWindowedCursor = null;
+            mWindowForNonWindowedCursorWasFilled = false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -115,7 +146,11 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
             mCursor = null;
         }
 
+<<<<<<< HEAD
         closeFilledWindowLocked();
+=======
+        closeWindowForNonWindowedCursorLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private void throwIfCursorIsClosed() {
@@ -136,6 +171,7 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
         synchronized (mLock) {
             throwIfCursorIsClosed();
 
+<<<<<<< HEAD
             if (!mCursor.moveToPosition(startPos)) {
                 closeFilledWindowLocked();
                 return null;
@@ -154,6 +190,32 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
                         || startPos >= window.getStartPosition() + window.getNumRows()) {
                     window.clear();
                     mCursor.fillWindow(startPos, window);
+=======
+            CursorWindow window;
+            if (mCursor instanceof AbstractWindowedCursor) {
+                AbstractWindowedCursor windowedCursor = (AbstractWindowedCursor)mCursor;
+                window = windowedCursor.getWindow();
+                if (window == null) {
+                    window = new CursorWindow(mProviderName, false /*localOnly*/);
+                    windowedCursor.setWindow(window);
+                }
+
+                mCursor.moveToPosition(startPos);
+            } else {
+                window = mWindowForNonWindowedCursor;
+                if (window == null) {
+                    window = new CursorWindow(mProviderName, false /*localOnly*/);
+                    mWindowForNonWindowedCursor = window;
+                }
+
+                mCursor.moveToPosition(startPos);
+
+                if (!mWindowForNonWindowedCursorWasFilled
+                        || startPos < window.getStartPosition()
+                        || startPos >= window.getStartPosition() + window.getNumRows()) {
+                    mCursor.fillWindow(startPos, window);
+                    mWindowForNonWindowedCursorWasFilled = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
 
@@ -202,7 +264,11 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
                 mCursor.deactivate();
             }
 
+<<<<<<< HEAD
             closeFilledWindowLocked();
+=======
+            closeWindowForNonWindowedCursorLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -218,7 +284,11 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
         synchronized (mLock) {
             throwIfCursorIsClosed();
 
+<<<<<<< HEAD
             closeFilledWindowLocked();
+=======
+            closeWindowForNonWindowedCursorLocked();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             try {
                 if (!mCursor.requery()) {

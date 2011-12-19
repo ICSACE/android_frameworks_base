@@ -29,7 +29,10 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.IBinder;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Message;
 import android.os.Process;
 import android.os.RemoteException;
@@ -49,10 +52,16 @@ import java.util.HashSet;
 /**
  * An entry in the history stack, representing an activity.
  */
+<<<<<<< HEAD
 final class ActivityRecord {
     final ActivityManagerService service; // owner
     final ActivityStack stack; // owner
     final IApplicationToken.Stub appToken; // window manager token
+=======
+final class ActivityRecord extends IApplicationToken.Stub {
+    final ActivityManagerService service; // owner
+    final ActivityStack stack; // owner
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     final ActivityInfo info; // all about me
     final int launchedFromUid; // always the uid who started the activity.
     final Intent intent;    // the original intent that generated us
@@ -80,7 +89,10 @@ final class ActivityRecord {
     ThumbnailHolder thumbHolder; // where our thumbnails should go.
     long launchTime;        // when we starting launching this activity
     long startTime;         // last time this activity was started
+<<<<<<< HEAD
     long lastVisibleTime;   // last time this activity became visible
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     long cpuTimeAtResume;   // the cpu time of host process at the time of resuming activity
     Configuration configuration; // configuration activity was last running in
     CompatibilityInfo compat;// last used compatibility mode
@@ -189,10 +201,13 @@ final class ActivityRecord {
                     TimeUtils.formatDuration(launchTime, pw); pw.print(" startTime=");
                     TimeUtils.formatDuration(startTime, pw); pw.println("");
         }
+<<<<<<< HEAD
         if (lastVisibleTime != 0) {
             pw.print(prefix); pw.print("lastVisibleTime=");
                     TimeUtils.formatDuration(lastVisibleTime, pw); pw.println("");
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (waitingVisible || nowVisible) {
             pw.print(prefix); pw.print("waitingVisible="); pw.print(waitingVisible);
                     pw.print(" nowVisible="); pw.println(nowVisible);
@@ -207,6 +222,7 @@ final class ActivityRecord {
         }
     }
 
+<<<<<<< HEAD
     static class Token extends IApplicationToken.Stub {
         final WeakReference<ActivityRecord> weakActivity;
 
@@ -271,6 +287,8 @@ final class ActivityRecord {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ActivityRecord(ActivityManagerService _service, ActivityStack _stack, ProcessRecord _caller,
             int _launchedFromUid, Intent _intent, String _resolvedType,
             ActivityInfo aInfo, Configuration _configuration,
@@ -278,7 +296,10 @@ final class ActivityRecord {
             boolean _componentSpecified) {
         service = _service;
         stack = _stack;
+<<<<<<< HEAD
         appToken = new Token(this);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         info = aInfo;
         launchedFromUid = _launchedFromUid;
         intent = _intent;
@@ -517,7 +538,11 @@ final class ActivityRecord {
                 ar.add(intent);
                 service.grantUriPermissionFromIntentLocked(callingUid, packageName,
                         intent, getUriPermissionsLocked());
+<<<<<<< HEAD
                 app.thread.scheduleNewIntent(ar, appToken);
+=======
+                app.thread.scheduleNewIntent(ar, this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 sent = true;
             } catch (RemoteException e) {
                 Slog.w(ActivityManagerService.TAG,
@@ -542,14 +567,22 @@ final class ActivityRecord {
     void pauseKeyDispatchingLocked() {
         if (!keysPaused) {
             keysPaused = true;
+<<<<<<< HEAD
             service.mWindowManager.pauseKeyDispatching(appToken);
+=======
+            service.mWindowManager.pauseKeyDispatching(this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
     void resumeKeyDispatchingLocked() {
         if (keysPaused) {
             keysPaused = false;
+<<<<<<< HEAD
             service.mWindowManager.resumeKeyDispatching(appToken);
+=======
+            service.mWindowManager.resumeKeyDispatching(this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -584,18 +617,30 @@ final class ActivityRecord {
     
     public void startFreezingScreenLocked(ProcessRecord app, int configChanges) {
         if (mayFreezeScreenLocked(app)) {
+<<<<<<< HEAD
             service.mWindowManager.startAppFreezingScreen(appToken, configChanges);
+=======
+            service.mWindowManager.startAppFreezingScreen(this, configChanges);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
     
     public void stopFreezingScreenLocked(boolean force) {
         if (force || frozenBeforeDestroy) {
             frozenBeforeDestroy = false;
+<<<<<<< HEAD
             service.mWindowManager.stopAppFreezingScreen(appToken, force);
         }
     }
     
     public void windowsDrawn() {
+=======
+            service.mWindowManager.stopAppFreezingScreen(this, force);
+        }
+    }
+    
+    public void windowsVisible() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         synchronized(service) {
             if (launchTime != 0) {
                 final long curTime = SystemClock.uptimeMillis();
@@ -627,17 +672,23 @@ final class ActivityRecord {
                 stack.mInitialStartTime = 0;
             }
             startTime = 0;
+<<<<<<< HEAD
         }
     }
 
     public void windowsVisible() {
         synchronized(service) {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             stack.reportActivityVisibleLocked(this);
             if (ActivityManagerService.DEBUG_SWITCH) Log.v(
                     ActivityManagerService.TAG, "windowsVisible(): " + this);
             if (!nowVisible) {
                 nowVisible = true;
+<<<<<<< HEAD
                 lastVisibleTime = SystemClock.uptimeMillis();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (!idle) {
                     // Instead of doing the full stop routine here, let's just
                     // hide any activities we now can, and let them stop when
@@ -760,7 +811,11 @@ final class ActivityRecord {
         }
         if (app != null && app.thread != null) {
             try {
+<<<<<<< HEAD
                 app.thread.scheduleSleeping(appToken, _sleeping);
+=======
+                app.thread.scheduleSleeping(this, _sleeping);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (sleeping && !stack.mGoingToSleepActivities.contains(this)) {
                     stack.mGoingToSleepActivities.add(this);
                 }

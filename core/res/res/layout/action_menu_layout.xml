@@ -18,6 +18,10 @@
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
+<<<<<<< HEAD
      android:divider="?android:attr/actionBarDivider"
+=======
+     android:divider="?android:attr/dividerVertical"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      android:dividerPadding="12dip"
      android:gravity="center_vertical" />

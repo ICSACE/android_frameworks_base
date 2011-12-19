@@ -404,12 +404,20 @@ MediaProfiles::createVideoEditorCap(const char **atts, MediaProfiles *profiles)
     CHECK(!strcmp("maxInputFrameWidth", atts[0]) &&
           !strcmp("maxInputFrameHeight", atts[2])  &&
           !strcmp("maxOutputFrameWidth", atts[4]) &&
+<<<<<<< HEAD
           !strcmp("maxOutputFrameHeight", atts[6]) &&
           !strcmp("maxPrefetchYUVFrames", atts[8]));
 
     MediaProfiles::VideoEditorCap *pVideoEditorCap =
         new MediaProfiles::VideoEditorCap(atoi(atts[1]), atoi(atts[3]),
                 atoi(atts[5]), atoi(atts[7]), atoi(atts[9]));
+=======
+          !strcmp("maxOutputFrameHeight", atts[6]));
+
+    MediaProfiles::VideoEditorCap *pVideoEditorCap =
+        new MediaProfiles::VideoEditorCap(atoi(atts[1]), atoi(atts[3]),
+                atoi(atts[5]), atoi(atts[7]));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     logVideoEditorCap(*pVideoEditorCap);
     profiles->mVideoEditorCap = pVideoEditorCap;
@@ -851,8 +859,12 @@ MediaProfiles::createDefaultVideoEditorCap(MediaProfiles *profiles)
                 VIDEOEDITOR_DEFAULT_MAX_INPUT_FRAME_WIDTH,
                 VIDEOEDITOR_DEFUALT_MAX_INPUT_FRAME_HEIGHT,
                 VIDEOEDITOR_DEFAULT_MAX_OUTPUT_FRAME_WIDTH,
+<<<<<<< HEAD
                 VIDEOEDITOR_DEFUALT_MAX_OUTPUT_FRAME_HEIGHT,
                 VIDEOEDITOR_DEFAULT_MAX_PREFETCH_YUV_FRAMES);
+=======
+                VIDEOEDITOR_DEFUALT_MAX_OUTPUT_FRAME_HEIGHT);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 /*static*/ void
 MediaProfiles::createDefaultExportVideoProfiles(MediaProfiles *profiles)
@@ -1021,8 +1033,11 @@ int MediaProfiles::getVideoEditorCapParamByName(const char *name) const
         return mVideoEditorCap->mMaxOutputFrameWidth;
     if (!strcmp("videoeditor.output.height.max", name))
         return mVideoEditorCap->mMaxOutputFrameHeight;
+<<<<<<< HEAD
     if (!strcmp("maxPrefetchYUVFrames", name))
         return mVideoEditorCap->mMaxPrefetchYUVFrames;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     LOGE("The given video editor param name %s is not found", name);
     return -1;

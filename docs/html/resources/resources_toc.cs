@@ -1,5 +1,6 @@
 <ul>
   <li>
+<<<<<<< HEAD
     <h2><span class="en">Android Training</span>
     </h2>
     <ul>
@@ -237,6 +238,8 @@
       
       
   <li>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <h2><span class="en">Technical Resources</span>
     </h2>
     <ul>

@@ -14,9 +14,12 @@
  ** limitations under the License.
  */
 
+<<<<<<< HEAD
 #include <string.h>
 
 #include "egl_cache.h"
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "egl_display.h"
 #include "egl_object.h"
 #include "egl_tls.h"
@@ -27,6 +30,7 @@
 namespace android {
 // ----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 static char const * const sVendorString     = "Android";
 static char const * const sVersionString    = "1.4 Android META-EGL";
 static char const * const sClientApiString  = "OpenGL ES";
@@ -57,6 +61,8 @@ static char const * const sExtensionString  =
 //      "EGL_ANDROID_recordable "               // mandatory
 //      "EGL_ANDROID_blob_cache "               // strongly recommended
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 extern void initEglTraceLevel();
 extern void setGLHooksThreadSpecific(gl_hooks_t const *value);
 
@@ -76,7 +82,10 @@ egl_display_t::egl_display_t() :
 
 egl_display_t::~egl_display_t() {
     magic = 0;
+<<<<<<< HEAD
     egl_cache_t::get()->terminate();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 egl_display_t* egl_display_t::get(EGLDisplay dpy) {
@@ -94,6 +103,7 @@ void egl_display_t::removeObject(egl_object_t* object) {
     objects.remove(object);
 }
 
+<<<<<<< HEAD
 bool egl_display_t::getObject(egl_object_t* object) const {
     Mutex::Autolock _l(lock);
     if (objects.indexOf(object) >= 0) {
@@ -101,6 +111,13 @@ bool egl_display_t::getObject(egl_object_t* object) const {
             object->incRef();
             return true;
         }
+=======
+bool egl_display_t::getObject(egl_object_t* object) {
+    Mutex::Autolock _l(lock);
+    if (objects.indexOf(object) >= 0) {
+        object->incRef();
+        return true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
     return false;
 }
@@ -206,6 +223,7 @@ EGLBoolean egl_display_t::initialize(EGLint *major, EGLint *minor) {
         }
     }
 
+<<<<<<< HEAD
     // the query strings are per-display
     mVendorString.setTo(sVendorString);
     mVersionString.setTo(sVersionString);
@@ -242,6 +260,8 @@ EGLBoolean egl_display_t::initialize(EGLint *major, EGLint *minor) {
 
     egl_cache_t::get()->initialize(this);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     EGLBoolean res = EGL_FALSE;
     for (int i = 0; i < IMPL_NUM_IMPLEMENTATIONS; i++) {
         egl_connection_t* const cnx = &gEGLImpl[i];

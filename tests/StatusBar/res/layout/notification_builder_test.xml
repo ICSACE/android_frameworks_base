@@ -605,11 +605,14 @@
                         style="@style/FieldContents"
                         android:text="pineapple2"
                         />
+<<<<<<< HEAD
                 <RadioButton
                         android:id="@+id/large_icon_small"
                         style="@style/FieldContents"
                         android:text="small"
                         />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             </RadioGroup>
             
 

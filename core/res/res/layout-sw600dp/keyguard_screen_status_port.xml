@@ -23,8 +23,14 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="20dip"
         android:gravity="right"
+=======
+        android:layout_marginLeft="140dip"
+        android:layout_marginTop="20dip"
+        android:gravity="left"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         >
 
     <TextView
@@ -32,7 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
         android:textSize="16sp"
+=======
+        android:textSize="17sp"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:drawablePadding="4dip"
         android:layout_marginTop="32dip"
         android:singleLine="true"
@@ -72,6 +82,22 @@
             android:layout_alignTop="@id/timeDisplayBackground"
             />
 
+<<<<<<< HEAD
+=======
+        <TextView android:id="@+id/am_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/timeDisplayBackground"
+            android:layout_alignBaseline="@id/timeDisplayBackground"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:textSize="30sp"
+            android:layout_marginLeft="8dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/lockscreen_clock_am_pm"
+            />
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     </com.android.internal.widget.DigitalClock>
 
     <LinearLayout
@@ -86,16 +112,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
             android:textSize="16sp"/>
+=======
+            android:textSize="17sp"/>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         <TextView
             android:id="@+id/alarm_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawablePadding="4dip"
             android:textSize="16sp"/>
+=======
+            android:layout_marginLeft="30dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="17sp"/>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     </LinearLayout>
 
@@ -104,7 +140,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
+<<<<<<< HEAD
         android:textSize="16sp"
+=======
+        android:textSize="17sp"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
 
@@ -115,7 +155,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
         android:textSize="16sp"
+=======
+        android:textSize="17sp"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:singleLine="false"
         android:visibility="invisible"
         android:textColor="@color/lockscreen_owner_info"

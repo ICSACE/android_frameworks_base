@@ -16,6 +16,10 @@
 
 package android.view.accessibility;
 
+<<<<<<< HEAD
+=======
+import android.accessibilityservice.IAccessibilityServiceConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Parcelable;
 import android.view.View;
 
@@ -77,8 +81,13 @@ public class AccessibilityRecord {
 
     int mAddedCount= UNDEFINED;
     int mRemovedCount = UNDEFINED;
+<<<<<<< HEAD
     int mSourceViewId = UNDEFINED;
     int mSourceWindowId = UNDEFINED;
+=======
+    int mSourceViewId = View.NO_ID;
+    int mSourceWindowId = View.NO_ID;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     CharSequence mClassName;
     CharSequence mContentDescription;
@@ -86,8 +95,12 @@ public class AccessibilityRecord {
     Parcelable mParcelableData;
 
     final List<CharSequence> mText = new ArrayList<CharSequence>();
+<<<<<<< HEAD
 
     int mConnectionId = UNDEFINED;
+=======
+    IAccessibilityServiceConnection mConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /*
      * Hide constructor.
@@ -108,8 +121,13 @@ public class AccessibilityRecord {
             mSourceWindowId = source.getAccessibilityWindowId();
             mSourceViewId = source.getAccessibilityViewId();
         } else {
+<<<<<<< HEAD
             mSourceWindowId = UNDEFINED;
             mSourceViewId = UNDEFINED;
+=======
+            mSourceWindowId = View.NO_ID;
+            mSourceViewId = View.NO_ID;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -119,21 +137,48 @@ public class AccessibilityRecord {
      *   <strong>Note:</strong> It is a client responsibility to recycle the received info
      *   by calling {@link AccessibilityNodeInfo#recycle() AccessibilityNodeInfo#recycle()}
      *   to avoid creating of multiple instances.
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * </p>
      * @return The info of the source.
      */
     public AccessibilityNodeInfo getSource() {
         enforceSealed();
+<<<<<<< HEAD
         if (mConnectionId == UNDEFINED || mSourceWindowId == UNDEFINED
                 || mSourceViewId == UNDEFINED) {
             return null;
         }
         AccessibilityInteractionClient client = AccessibilityInteractionClient.getInstance();
         return client.findAccessibilityNodeInfoByAccessibilityId(mConnectionId, mSourceWindowId,
+=======
+        if (mSourceWindowId == View.NO_ID || mSourceViewId == View.NO_ID || mConnection == null) {
+            return null;
+        }
+        AccessibilityInteractionClient client = AccessibilityInteractionClient.getInstance();
+        return client.findAccessibilityNodeInfoByAccessibilityId(mConnection, mSourceWindowId,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mSourceViewId);
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Sets the connection for interacting with the AccessibilityManagerService.
+     *
+     * @param connection The connection.
+     *
+     * @hide
+     */
+    public void setConnection(IAccessibilityServiceConnection connection) {
+        enforceNotSealed();
+        mConnection = connection;
+    }
+
+    /**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Gets the id of the window from which the event comes from.
      *
      * @return The window id.
@@ -379,6 +424,11 @@ public class AccessibilityRecord {
      * Gets the max scroll offset of the source left edge in pixels.
      *
      * @return The max scroll.
+<<<<<<< HEAD
+=======
+     *
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public int getMaxScrollX() {
         return mMaxScrollX;
@@ -387,6 +437,11 @@ public class AccessibilityRecord {
      * Sets the max scroll offset of the source left edge in pixels.
      *
      * @param maxScrollX The max scroll.
+<<<<<<< HEAD
+=======
+     *
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public void setMaxScrollX(int maxScrollX) {
         enforceNotSealed();
@@ -397,6 +452,11 @@ public class AccessibilityRecord {
      * Gets the max scroll offset of the source top edge in pixels.
      *
      * @return The max scroll.
+<<<<<<< HEAD
+=======
+     *
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public int getMaxScrollY() {
         return mMaxScrollY;
@@ -406,6 +466,11 @@ public class AccessibilityRecord {
      * Sets the max scroll offset of the source top edge in pixels.
      *
      * @param maxScrollY The max scroll.
+<<<<<<< HEAD
+=======
+     *
+     * @hide
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public void setMaxScrollY(int maxScrollY) {
         enforceNotSealed();
@@ -549,6 +614,7 @@ public class AccessibilityRecord {
     }
 
     /**
+<<<<<<< HEAD
      * Sets the unique id of the IAccessibilityServiceConnection over which
      * this instance can send requests to the system.
      *
@@ -562,6 +628,8 @@ public class AccessibilityRecord {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Sets if this instance is sealed.
      *
      * @param sealed Whether is sealed.
@@ -709,7 +777,11 @@ public class AccessibilityRecord {
         mText.addAll(record.mText);
         mSourceWindowId = record.mSourceWindowId;
         mSourceViewId = record.mSourceViewId;
+<<<<<<< HEAD
         mConnectionId = record.mConnectionId;
+=======
+        mConnection = record.mConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -733,9 +805,14 @@ public class AccessibilityRecord {
         mBeforeText = null;
         mParcelableData = null;
         mText.clear();
+<<<<<<< HEAD
         mSourceViewId = UNDEFINED;
         mSourceWindowId = UNDEFINED;
         mConnectionId = UNDEFINED;
+=======
+        mSourceViewId = View.NO_ID;
+        mSourceWindowId = View.NO_ID;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     @Override

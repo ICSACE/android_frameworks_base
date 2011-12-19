@@ -25,9 +25,14 @@ import android.os.Message;
 import android.os.SystemProperties;
 import android.provider.Telephony.Sms;
 import android.provider.Telephony.Sms.Intents;
+<<<<<<< HEAD
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsCbMessage;
 import android.telephony.SmsManager;
+=======
+import android.telephony.ServiceState;
+import android.telephony.SmsCbMessage;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
 
@@ -42,6 +47,10 @@ import com.android.internal.telephony.SmsStorageMonitor;
 import com.android.internal.telephony.SmsUsageMonitor;
 import com.android.internal.telephony.TelephonyProperties;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -56,6 +65,7 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
     /** New broadcast SMS */
     private static final int EVENT_NEW_BROADCAST_SMS = 101;
 
+<<<<<<< HEAD
     /** Result of writing SM to UICC (when SMS-PP service is not available). */
     private static final int EVENT_WRITE_SMS_COMPLETE = 102;
 
@@ -66,6 +76,11 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             SmsUsageMonitor usageMonitor) {
         super(phone, storageMonitor, usageMonitor);
         mDataDownloadHandler = new UsimDataDownloadHandler(mCm);
+=======
+    public GsmSMSDispatcher(PhoneBase phone, SmsStorageMonitor storageMonitor,
+            SmsUsageMonitor usageMonitor) {
+        super(phone, storageMonitor, usageMonitor);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mCm.setOnNewGsmSms(this, EVENT_NEW_SMS, null);
         mCm.setOnSmsStatus(this, EVENT_NEW_SMS_STATUS_REPORT, null);
         mCm.setOnNewGsmBroadcastSms(this, EVENT_NEW_BROADCAST_SMS, null);
@@ -100,6 +115,7 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             handleBroadcastSms((AsyncResult)msg.obj);
             break;
 
+<<<<<<< HEAD
         case EVENT_WRITE_SMS_COMPLETE:
             AsyncResult ar = (AsyncResult) msg.obj;
             if (ar.exception == null) {
@@ -112,6 +128,8 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             }
             break;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         default:
             super.handleMessage(msg);
         }
@@ -173,6 +191,7 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             return Intents.RESULT_SMS_HANDLED;
         }
 
+<<<<<<< HEAD
         // Send SMS-PP data download messages to UICC. See 3GPP TS 31.111 section 7.1.1.
         if (sms.isUsimDataDownload()) {
             UsimServiceTable ust = mPhone.getUsimServiceTable();
@@ -196,6 +215,8 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             }
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mSmsReceiveDisabled) {
             // Device doesn't support SMS service,
             Log.d(TAG, "Received short message on device which doesn't support "
@@ -239,11 +260,15 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             byte[] data, PendingIntent sentIntent, PendingIntent deliveryIntent) {
         SmsMessage.SubmitPdu pdu = SmsMessage.getSubmitPdu(
                 scAddr, destAddr, destPort, data, (deliveryIntent != null));
+<<<<<<< HEAD
         if (pdu != null) {
             sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
         } else {
             Log.e(TAG, "GsmSMSDispatcher.sendData(): getSubmitPdu() returned null");
         }
+=======
+        sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /** {@inheritDoc} */
@@ -252,11 +277,15 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
             PendingIntent sentIntent, PendingIntent deliveryIntent) {
         SmsMessage.SubmitPdu pdu = SmsMessage.getSubmitPdu(
                 scAddr, destAddr, text, (deliveryIntent != null));
+<<<<<<< HEAD
         if (pdu != null) {
             sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
         } else {
             Log.e(TAG, "GsmSMSDispatcher.sendText(): getSubmitPdu() returned null");
         }
+=======
+        sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /** {@inheritDoc} */
@@ -274,11 +303,15 @@ public final class GsmSMSDispatcher extends SMSDispatcher {
         SmsMessage.SubmitPdu pdu = SmsMessage.getSubmitPdu(scAddress, destinationAddress,
                 message, deliveryIntent != null, SmsHeader.toByteArray(smsHeader),
                 encoding, smsHeader.languageTable, smsHeader.languageShiftTable);
+<<<<<<< HEAD
         if (pdu != null) {
             sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
         } else {
             Log.e(TAG, "GsmSMSDispatcher.sendNewSubmitPdu(): getSubmitPdu() returned null");
         }
+=======
+        sendRawPdu(pdu.encodedScAddress, pdu.encodedMessage, sentIntent, deliveryIntent);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /** {@inheritDoc} */

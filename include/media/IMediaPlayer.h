@@ -40,6 +40,10 @@ public:
                                     const KeyedVector<String8, String8>* headers) = 0;
     virtual status_t        setDataSource(int fd, int64_t offset, int64_t length) = 0;
     virtual status_t        setDataSource(const sp<IStreamSource>& source) = 0;
+<<<<<<< HEAD
+=======
+    virtual status_t        setVideoSurface(const sp<Surface>& surface) = 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual status_t        setVideoSurfaceTexture(
                                     const sp<ISurfaceTexture>& surfaceTexture) = 0;
     virtual status_t        prepareAsync() = 0;

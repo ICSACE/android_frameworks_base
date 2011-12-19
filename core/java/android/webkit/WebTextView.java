@@ -16,16 +16,27 @@
 
 package android.webkit;
 
+<<<<<<< HEAD
+=======
+import com.android.internal.widget.EditableInputConnection;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+<<<<<<< HEAD
 import android.graphics.Paint.Style;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+=======
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -60,12 +71,20 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import junit.framework.Assert;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+import junit.framework.Assert;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 /**
  * WebTextView is a specialized version of EditText used by WebView
  * to overlay html textfields (and textareas) to use our standard
@@ -76,8 +95,11 @@ import java.util.ArrayList;
 
     static final String LOGTAG = "webtextview";
 
+<<<<<<< HEAD
     private int mRingInset;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private WebView         mWebView;
     private boolean         mSingle;
     private int             mWidthSpec;
@@ -209,6 +231,7 @@ import java.util.ArrayList;
             }
         };
         mReceiver = new MyResultReceiver(mHandler);
+<<<<<<< HEAD
         float ringWidth = 2f * context.getResources().getDisplayMetrics().density;
         mRingInset = (int) ringWidth;
         setBackgroundDrawable(new BackgroundDrawable(mRingInset));
@@ -253,6 +276,8 @@ import java.util.ArrayList;
             return PixelFormat.TRANSLUCENT;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public void setAutoFillable(int queryId) {
@@ -262,12 +287,15 @@ import java.util.ArrayList;
     }
 
     @Override
+<<<<<<< HEAD
     public void setPadding(int left, int top, int right, int bottom) {
         super.setPadding(left + mRingInset, top + mRingInset,
                 right + mRingInset, bottom + mRingInset);
     }
 
     @Override
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.isSystem()) {
             return super.dispatchKeyEvent(event);
@@ -624,6 +652,10 @@ import java.util.ArrayList;
                 mPreChange.substring(0, mMaxLength).equals(postChange))) {
             return;
         }
+<<<<<<< HEAD
+=======
+        mPreChange = postChange;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (0 == count) {
             if (before > 0) {
                 // For this and all changes to the text, update our cache
@@ -661,9 +693,15 @@ import java.util.ArrayList;
         // Prefer sending javascript events, so when adding one character,
         // don't replace the unchanged text.
         if (count > 1 && before == count - 1) {
+<<<<<<< HEAD
             String replaceButOne =  mPreChange.subSequence(start,
                     start + before).toString();
             String replacedString = s.subSequence(start,
+=======
+            String replaceButOne =  s.subSequence(start,
+                    start + before).toString();
+            String replacedString = getText().subSequence(start,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     start + before).toString();
             if (replaceButOne.equals(replacedString)) {
                 // we're just adding one character
@@ -672,7 +710,10 @@ import java.util.ArrayList;
                 count = 1;
             }
         }
+<<<<<<< HEAD
         mPreChange = postChange;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Find the last character being replaced.  If it can be represented by
         // events, we will pass them to native so we can see javascript events.
         // Otherwise, replace the text being changed in the textfield.
@@ -978,6 +1019,7 @@ import java.util.ArrayList;
      */
     /* package */ void setRect(int x, int y, int width, int height) {
         LayoutParams lp = (LayoutParams) getLayoutParams();
+<<<<<<< HEAD
         x -= mRingInset;
         y -= mRingInset;
         width += 2 * mRingInset;
@@ -994,11 +1036,24 @@ import java.util.ArrayList;
                 lp.width = width;
                 lp.height = height;
             }
+=======
+        if (null == lp) {
+            lp = new LayoutParams(width, height, x, y);
+        } else {
+            lp.x = x;
+            lp.y = y;
+            lp.width = width;
+            lp.height = height;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         if (getParent() == null) {
             // Insert the view so that it's drawn first (at index 0)
             mWebView.addView(this, 0, lp);
+<<<<<<< HEAD
         } else if (needsUpdate) {
+=======
+        } else {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             setLayoutParams(lp);
         }
         // Set up a measure spec so a layout can always be recreated.

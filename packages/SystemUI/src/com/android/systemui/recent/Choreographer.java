@@ -120,6 +120,7 @@ import android.view.View;
 
         createAnimation(appearing);
 
+<<<<<<< HEAD
         // isHardwareAccelerated() checks if we're attached to a window and if that
         // window is HW accelerated-- we were sometimes not attached to a window
         // and buildLayer was throwing an IllegalStateException
@@ -127,6 +128,10 @@ import android.view.View;
             mContentView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             mContentView.buildLayer();
         }
+=======
+        mContentView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        mContentView.buildLayer();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContentAnim.start();
 
         mVisible = appearing;

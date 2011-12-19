@@ -29,6 +29,7 @@ parent.link=index.html
       </ol>
     </li>
     <li><a href="#saving-media">Saving Media Files</a></li>
+<<<<<<< HEAD
     <li><a href="#camera-features">Camera Features</a>
       <ol>
         <li><a href="#check-feature">Checking feature availability</a></li>
@@ -38,6 +39,8 @@ parent.link=index.html
         <li><a href="#time-lapse-video">Time lapse video</a></li>
       </ol>
     </li>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   </ol>
   <h2>Key Classes</h2>
   <ol>
@@ -48,7 +51,12 @@ parent.link=index.html
   </ol>
   <h2>See also</h2>
   <ol>
+<<<<<<< HEAD
     <li><a href="{@docRoot}guide/topics/media/mediaplayer.html">Media Playback</a></li>
+=======
+    <li><a href="{@docRoot}reference/android/hardware/Camera.html">Camera</a></li>
+    <li><a href="{@docRoot}reference/android/media/MediaRecorder.html">MediaRecorder</a></li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <li><a href="{@docRoot}guide/topics/data/data-storage.html">Data Storage</a></li>
   </ol>
   </div>
@@ -72,7 +80,11 @@ manifest</a>.</li>
 
   <li><strong>Quick Picture or Customized Camera</strong> - How will your application use the
 camera? Are you just interested in snapping a quick picture or video clip, or will your application
+<<<<<<< HEAD
 provide a new way to use cameras? For a getting a quick snap or clip, consider
+=======
+provide a new way to use cameras? For a getting a quick snap or clip, consider 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <a href="#intents">Using Existing Camera Apps</a>. For developing a customized camera feature, check
 out the <a href="#custom-camera">Building a Camera App</a> section.</li>
 
@@ -93,7 +105,11 @@ classes:</p>
 <dl>
   <dt>{@link android.hardware.Camera}</dt>
   <dd>This class is the primary API for controlling device cameras. This class is used to take
+<<<<<<< HEAD
 pictures or videos when you are building a camera application.</dd>
+=======
+pictures or videos when you are building a camera application.</a>.</dd>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
   <dt>{@link android.view.SurfaceView}</dt>
   <dd>This class is used to present a live camera preview to the user.</dd>
@@ -128,8 +144,13 @@ for example:
 <pre>
 &lt;uses-feature android:name=&quot;android.hardware.camera&quot; /&gt;
 </pre>
+<<<<<<< HEAD
   <p>For a list of camera features, see the manifest
 <a href="{@docRoot}guide/topics/manifest/uses-feature-element.html#hw-features">Features
+=======
+  <p>For a list of camera features, see the manifest <a
+href="{@docRoot}guide/topics/manifest/uses-feature-element.html#features-reference">Features
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 Reference</a>.</p>
   <p>Adding camera features to your manifest causes Android Market to prevent your application from
 being installed to devices that do not include a camera or do not support the camera features you
@@ -156,6 +177,7 @@ application must request the audio capture permission.
 &lt;uses-permission android:name="android.permission.RECORD_AUDIO" /&gt;
 </pre>
   </li>
+<<<<<<< HEAD
   <li><strong>Location Permission</strong> - If your application tags images with GPS location
 information, you must request location permission:
 <pre>
@@ -165,6 +187,8 @@ information, you must request location permission:
 <a href="{@docRoot}guide/topics/location/obtaining-user-location.html">Obtaining User
 Location</a>.</p>
   </li>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </ul>
 
 
@@ -241,8 +265,13 @@ After the user finishes taking a picture (or cancels the operation), the user in
 your application, and you must intercept the {@link
 android.app.Activity#onActivityResult(int, int, android.content.Intent) onActivityResult()}
 method to receive the result of the intent and continue your application execution. For information
+<<<<<<< HEAD
 on how to receive the completed intent, see <a href="#intent-receive">Receiving camera intent
 result</a>.</p>
+=======
+on how to receive the completed intent, see <a href="#intent-receive">Receiving Camera Intent
+Result</a>.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 
 <h3 id="intent-video">Video capture intent</h3>
@@ -377,8 +406,13 @@ properly release it for use by other applications.</li>
 
 <p>Camera hardware is a shared resource that must be carefully managed so your application does
 not collide with other applications that may also want to use it. The following sections discusses
+<<<<<<< HEAD
 how to detect camera hardware, how to request access to a camera, how to capture pictures or video
 and how to release the camera when your application is done using it.</p>
+=======
+how to detect camera hardware, how to request access to a camera and how to release it when your
+application is done using it.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <p class="caution"><strong>Caution:</strong> Remember to release the {@link android.hardware.Camera}
 object by calling the {@link android.hardware.Camera#release() Camera.release()} when your
@@ -509,8 +543,12 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
           // ignore: tried to stop a non-existent preview
         }
 
+<<<<<<< HEAD
         // set preview size and make any resize, rotate or
         // reformatting changes here
+=======
+        // make any resize, rotate or reformatting changes here
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // start preview with new settings
         try {
@@ -524,12 +562,15 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 }
 </pre>
 
+<<<<<<< HEAD
 <p>If you want to set a specific size for your camera preview, set this in the {@code
 surfaceChanged()} method as noted in the comments above. When setting preview size, you
 <em>must use</em> values from {@link android.hardware.Camera.Parameters#getSupportedPreviewSizes}.
 <em>Do not</em> set arbitrary values in the {@link
 android.hardware.Camera.Parameters#setPreviewSize setPreviewSize()} method.</p>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <h3 id="preview-layout">Placing preview in a layout</h3>
 <p>A camera preview class, such as the example shown in the previous section, must be placed in the
@@ -804,10 +845,13 @@ without creating a camera preview first and skip the first few steps of this pro
 since users typically prefer to see a preview before starting a recording, that process is not
 discussed here.</p>
 
+<<<<<<< HEAD
 <p class="note"><strong>Tip:</strong> If your application is typically used for recording video, set
 {@link android.hardware.Camera.Parameters#setRecordingHint} to {@code true} prior to starting your
 preview. This setting can help reduce the time it takes to start recording.</p>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <h4 id="configuring-mediarecorder">Configuring MediaRecorder</h4>
 <p>When using the {@link android.media.MediaRecorder} class to record video, you must perform
 configuration steps in a <em>specific order</em> and then call the {@link
@@ -879,7 +923,11 @@ setAudioChannels()}</li>
   <li>{@link android.media.MediaRecorder#setAudioSamplingRate(int) setAudioSamplingRate()}</li>
 </ul>
 
+<<<<<<< HEAD
 <h4 id="start-stop-mediarecorder">Starting and stopping MediaRecorder</h4>
+=======
+<h4 id="start-stop-mediarecorder">Starting and Stopping MediaRecorder</h4>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <p>When starting and stopping video recording using the {@link android.media.MediaRecorder} class,
 you must follow a specific order, as listed below.</p>
 
@@ -966,7 +1014,11 @@ public class CameraActivity extends Activity {
     private MediaRecorder mMediaRecorder;
 
     ...
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     &#64;Override
     protected void onPause() {
         super.onPause();
@@ -1080,6 +1132,7 @@ instead. For more information, see <a
 href="{@docRoot}guide/topics/data/data-storage.html#SavingSharedFiles">Saving Shared Files</a>.</p>
 
 <p>For more information about saving files on an Android device, see <a
+<<<<<<< HEAD
 href="{@docRoot}guide/topics/data/data-storage.html">Data Storage</a>.</p>
 
 
@@ -1502,3 +1555,6 @@ href="#configuring-mediarecorder">Configuring MediaRecorder</a>. Once the config
 you start the video recording as if you were recording a normal video clip. For more information
 about configuring and running {@link android.media.MediaRecorder}, see <a
 href="#capture-video">Capturing videos</a>.</p>
+=======
+href="{@docRoot}guide/topics/data/data-storage.html">Data Storage</a>.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

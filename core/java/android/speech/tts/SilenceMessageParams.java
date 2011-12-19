@@ -16,13 +16,21 @@
 package android.speech.tts;
 
 import android.os.ConditionVariable;
+<<<<<<< HEAD
 import android.speech.tts.TextToSpeechService.UtteranceProgressDispatcher;
+=======
+import android.speech.tts.TextToSpeechService.UtteranceCompletedDispatcher;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 class SilenceMessageParams extends MessageParams {
     private final ConditionVariable mCondVar = new ConditionVariable();
     private final long mSilenceDurationMs;
 
+<<<<<<< HEAD
     SilenceMessageParams(UtteranceProgressDispatcher dispatcher,
+=======
+    SilenceMessageParams(UtteranceCompletedDispatcher dispatcher,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             String callingApp, long silenceDurationMs) {
         super(dispatcher, callingApp);
         mSilenceDurationMs = silenceDurationMs;

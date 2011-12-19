@@ -15,11 +15,18 @@
  */
 
 #include "include/AMRExtractor.h"
+<<<<<<< HEAD
+=======
+#include "include/AVIExtractor.h"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "include/MP3Extractor.h"
 #include "include/MPEG4Extractor.h"
 #include "include/WAVExtractor.h"
 #include "include/OggExtractor.h"
+<<<<<<< HEAD
 #include "include/MPEG2PSExtractor.h"
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "include/MPEG2TSExtractor.h"
 #include "include/NuCachedSource2.h"
 #include "include/HTTPBase.h"
@@ -112,7 +119,11 @@ void DataSource::RegisterDefaultSniffers() {
     RegisterSniffer(SniffMPEG2TS);
     RegisterSniffer(SniffMP3);
     RegisterSniffer(SniffAAC);
+<<<<<<< HEAD
     RegisterSniffer(SniffMPEG2PS);
+=======
+    RegisterSniffer(SniffAVI);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     char value[PROPERTY_VALUE_MAX];
     if (property_get("drm.service.enabled", value, NULL)

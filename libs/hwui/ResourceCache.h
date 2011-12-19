@@ -17,8 +17,11 @@
 #ifndef ANDROID_HWUI_RESOURCE_CACHE_H
 #define ANDROID_HWUI_RESOURCE_CACHE_H
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <SkBitmap.h>
 #include <SkiaColorFilter.h>
 #include <SkiaShader.h>
@@ -51,7 +54,11 @@ public:
     ResourceType resourceType;
 };
 
+<<<<<<< HEAD
 class ANDROID_API ResourceCache {
+=======
+class ResourceCache {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     KeyedVector<void *, ResourceReference *>* mCache;
 public:
     ResourceCache();

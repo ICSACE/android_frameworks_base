@@ -144,7 +144,11 @@
         android:layout_marginRight="2dip"
         android:orientation="horizontal">
 
+<<<<<<< HEAD
         <Button android:id="@+id/cancel"
+=======
+        <Button android:id="@+id/ok"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_width="0sp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -152,7 +156,11 @@
             android:layout_marginRight="2dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
+<<<<<<< HEAD
             android:text="@android:string/cancel"
+=======
+            android:text="@android:string/ok"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         />
 
         <Button android:id="@+id/zero"
@@ -165,7 +173,11 @@
             android:textStyle="bold"
         />
 
+<<<<<<< HEAD
         <Button android:id="@+id/ok"
+=======
+        <Button android:id="@+id/cancel"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_width="0sp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -173,7 +185,11 @@
             android:layout_marginRight="2dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
+<<<<<<< HEAD
             android:text="@android:string/ok"
+=======
+            android:text="@android:string/cancel"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         />
 
     </LinearLayout>

@@ -244,6 +244,7 @@ public class LockPatternKeyguardView extends KeyguardViewBase implements Handler
             // TODO: examine all widgets to derive clock status
             mUpdateMonitor.reportClockVisible(false);
 
+<<<<<<< HEAD
             // If there's not a bg protection view containing the transport, then show a black
             // background. Otherwise, allow the normal background to show.
             if (findViewById(R.id.transport_bg_protect) == null) {
@@ -252,6 +253,10 @@ public class LockPatternKeyguardView extends KeyguardViewBase implements Handler
             } else {
                 resetBackground();
             }
+=======
+            // TODO: We should disable the wallpaper instead
+            setBackgroundColor(0xff000000);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         public void requestHide(View view) {
@@ -558,12 +563,18 @@ public class LockPatternKeyguardView extends KeyguardViewBase implements Handler
         mScreenOn = false;
         mForgotPattern = false;
         mHasOverlay = mUpdateMonitor.getPhoneState() != TelephonyManager.CALL_STATE_IDLE;
+<<<<<<< HEAD
 
         // Emulate activity life-cycle for both lock and unlock screen.
         if (mLockScreen != null) {
             ((KeyguardScreen) mLockScreen).onPause();
         }
         if (mUnlockScreen != null) {
+=======
+        if (mMode == Mode.LockScreen) {
+            ((KeyguardScreen) mLockScreen).onPause();
+        } else {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             ((KeyguardScreen) mUnlockScreen).onPause();
         }
 
@@ -654,11 +665,17 @@ public class LockPatternKeyguardView extends KeyguardViewBase implements Handler
 
     @Override
     public void show() {
+<<<<<<< HEAD
         // Emulate activity life-cycle for both lock and unlock screen.
         if (mLockScreen != null) {
             ((KeyguardScreen) mLockScreen).onResume();
         }
         if (mUnlockScreen != null) {
+=======
+        if (mMode == Mode.LockScreen) {
+            ((KeyguardScreen) mLockScreen).onResume();
+        } else {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             ((KeyguardScreen) mUnlockScreen).onResume();
         }
 

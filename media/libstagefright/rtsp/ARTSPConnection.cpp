@@ -187,6 +187,7 @@ bool ARTSPConnection::ParseURL(
     return true;
 }
 
+<<<<<<< HEAD
 static status_t MakeSocketBlocking(int s, bool blocking) {
     // Make socket non-blocking.
     int flags = fcntl(s, F_GETFL, 0);
@@ -194,6 +195,12 @@ static status_t MakeSocketBlocking(int s, bool blocking) {
     if (flags == -1) {
         return UNKNOWN_ERROR;
     }
+=======
+static void MakeSocketBlocking(int s, bool blocking) {
+    // Make socket non-blocking.
+    int flags = fcntl(s, F_GETFL, 0);
+    CHECK_NE(flags, -1);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     if (blocking) {
         flags &= ~O_NONBLOCK;
@@ -201,9 +208,13 @@ static status_t MakeSocketBlocking(int s, bool blocking) {
         flags |= O_NONBLOCK;
     }
 
+<<<<<<< HEAD
     flags = fcntl(s, F_SETFL, flags);
 
     return flags == -1 ? UNKNOWN_ERROR : OK;
+=======
+    CHECK_NE(fcntl(s, F_SETFL, flags), -1);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 void ARTSPConnection::onConnect(const sp<AMessage> &msg) {
@@ -307,6 +318,7 @@ void ARTSPConnection::onConnect(const sp<AMessage> &msg) {
     reply->post();
 }
 
+<<<<<<< HEAD
 void ARTSPConnection::performDisconnect() {
     if (mUIDValid) {
         HTTPBase::UnRegisterSocketUserTag(mSocket);
@@ -327,12 +339,32 @@ void ARTSPConnection::performDisconnect() {
 void ARTSPConnection::onDisconnect(const sp<AMessage> &msg) {
     if (mState == CONNECTED || mState == CONNECTING) {
         performDisconnect();
+=======
+void ARTSPConnection::onDisconnect(const sp<AMessage> &msg) {
+    if (mState == CONNECTED || mState == CONNECTING) {
+        if (mUIDValid) {
+            HTTPBase::UnRegisterSocketUserTag(mSocket);
+        }
+        close(mSocket);
+        mSocket = -1;
+
+        flushPendingRequests();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     sp<AMessage> reply;
     CHECK(msg->findMessage("reply", &reply));
 
     reply->setInt32("result", OK);
+<<<<<<< HEAD
+=======
+    mState = DISCONNECTED;
+
+    mUser.clear();
+    mPass.clear();
+    mAuthType = NONE;
+    mNonce.clear();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     reply->post();
 }
@@ -437,6 +469,7 @@ void ARTSPConnection::onSendRequest(const sp<AMessage> &msg) {
             send(mSocket, request.c_str() + numBytesSent,
                  request.size() - numBytesSent, 0);
 
+<<<<<<< HEAD
         if (n < 0 && errno == EINTR) {
             continue;
         }
@@ -456,6 +489,23 @@ void ARTSPConnection::onSendRequest(const sp<AMessage> &msg) {
                 reply->post();
             }
 
+=======
+        if (n == 0) {
+            // Server closed the connection.
+            LOGE("Server unexpectedly closed the connection.");
+
+            reply->setInt32("result", ERROR_IO);
+            reply->post();
+            return;
+        } else if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+
+            LOGE("Error sending rtsp request.");
+            reply->setInt32("result", -errno);
+            reply->post();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return;
         }
 
@@ -526,6 +576,7 @@ status_t ARTSPConnection::receive(void *data, size_t size) {
     size_t offset = 0;
     while (offset < size) {
         ssize_t n = recv(mSocket, (uint8_t *)data + offset, size - offset, 0);
+<<<<<<< HEAD
 
         if (n < 0 && errno == EINTR) {
             continue;
@@ -542,6 +593,19 @@ status_t ARTSPConnection::receive(void *data, size_t size) {
                 LOGE("Error reading rtsp response. (%s)", strerror(errno));
                 return -errno;
             }
+=======
+        if (n == 0) {
+            // Server closed the connection.
+            LOGE("Server unexpectedly closed the connection.");
+            return ERROR_IO;
+        } else if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+
+            LOGE("Error reading rtsp response.");
+            return -errno;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         offset += (size_t)n;
@@ -659,7 +723,10 @@ bool ARTSPConnection::receiveRTSPReponse() {
     }
 
     AString line;
+<<<<<<< HEAD
     ssize_t lastDictIndex = -1;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     for (;;) {
         if (!receiveLine(&line)) {
             break;
@@ -669,6 +736,7 @@ bool ARTSPConnection::receiveRTSPReponse() {
             break;
         }
 
+<<<<<<< HEAD
         LOGV("line: '%s'", line.c_str());
 
         if (line.c_str()[0] == ' ' || line.c_str()[0] == '\t') {
@@ -684,6 +752,9 @@ bool ARTSPConnection::receiveRTSPReponse() {
 
             continue;
         }
+=======
+        LOGV("line: %s", line.c_str());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         ssize_t colonPos = line.find(":");
         if (colonPos < 0) {
@@ -696,12 +767,18 @@ bool ARTSPConnection::receiveRTSPReponse() {
         key.tolower();
 
         line.erase(0, colonPos + 1);
+<<<<<<< HEAD
 
         lastDictIndex = response->mHeaders.add(key, line);
     }
 
     for (size_t i = 0; i < response->mHeaders.size(); ++i) {
         response->mHeaders.editValueAt(i).trim();
+=======
+        line.trim();
+
+        response->mHeaders.add(key, line);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     unsigned long contentLength = 0;
@@ -718,8 +795,29 @@ bool ARTSPConnection::receiveRTSPReponse() {
     if (contentLength > 0) {
         response->mContent = new ABuffer(contentLength);
 
+<<<<<<< HEAD
         if (receive(response->mContent->data(), contentLength) != OK) {
             return false;
+=======
+        size_t numBytesRead = 0;
+        while (numBytesRead < contentLength) {
+            ssize_t n = recv(
+                    mSocket, response->mContent->data() + numBytesRead,
+                    contentLength - numBytesRead, 0);
+
+            if (n == 0) {
+                // Server closed the connection.
+                TRESPASS();
+            } else if (n < 0) {
+                if (errno == EINTR) {
+                    continue;
+                }
+
+                TRESPASS();
+            }
+
+            numBytesRead += (size_t)n;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -786,6 +884,7 @@ bool ARTSPConnection::handleServerRequest(const sp<ARTSPResponse> &request) {
             send(mSocket, response.c_str() + numBytesSent,
                  response.size() - numBytesSent, 0);
 
+<<<<<<< HEAD
         if (n < 0 && errno == EINTR) {
             continue;
         }
@@ -800,6 +899,19 @@ bool ARTSPConnection::handleServerRequest(const sp<ARTSPResponse> &request) {
 
             performDisconnect();
 
+=======
+        if (n == 0) {
+            // Server closed the connection.
+            LOGE("Server unexpectedly closed the connection.");
+
+            return false;
+        } else if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+
+            LOGE("Error sending rtsp response.");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return false;
         }
 

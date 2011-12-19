@@ -314,6 +314,7 @@ class EGLLogWrapper implements EGL11 {
         checkError();
         return result;
     }
+<<<<<<< HEAD
     
     /** @hide **/
     public boolean eglReleaseThread() {
@@ -324,6 +325,8 @@ class EGLLogWrapper implements EGL11 {
         checkError();
         return result;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public boolean eglSwapBuffers(EGLDisplay display, EGLSurface surface) {
         begin("eglInitialize");

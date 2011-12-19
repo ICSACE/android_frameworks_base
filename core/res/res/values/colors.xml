@@ -107,9 +107,15 @@
     <color name="keyguard_text_color_decline">#fe0a5a</color>
 
     <!-- keyguard clock -->
+<<<<<<< HEAD
     <color name="lockscreen_clock_background">#ffffffff</color>
     <color name="lockscreen_clock_foreground">#ffffffff</color>
     <color name="lockscreen_clock_am_pm">#ffffffff</color>
+=======
+    <color name="lockscreen_clock_background">#e5ffffff</color>
+    <color name="lockscreen_clock_foreground">#e5ffffff</color>
+    <color name="lockscreen_clock_am_pm">#ff9a9a9a</color>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <color name="lockscreen_owner_info">#ff9a9a9a</color>
 
     <!-- FaceLock -->

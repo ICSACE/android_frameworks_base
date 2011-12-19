@@ -28,9 +28,19 @@ ifeq ($(TARGET_BOARD_PLATFORM), omap4)
 endif
 ifeq ($(TARGET_BOARD_PLATFORM), s5pc110)
 	LOCAL_CFLAGS += -DHAS_CONTEXT_PRIORITY -DNEVER_DEFAULT_TO_ASYNC_MODE
+<<<<<<< HEAD
 	LOCAL_CFLAGS += -DREFRESH_RATE=56
 endif
 
+=======
+endif
+
+ifneq (,$(findstring $(TARGET_DEVICE),tuna toro maguro))
+	LOCAL_CFLAGS += -DREFRESH_RATE=59
+endif
+
+LOCAL_CFLAGS += -DREFRESH_RATE=59
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \
@@ -59,3 +69,7 @@ LOCAL_C_INCLUDES += hardware/libhardware/modules/gralloc
 LOCAL_MODULE:= libsurfaceflinger
 
 include $(BUILD_SHARED_LIBRARY)
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

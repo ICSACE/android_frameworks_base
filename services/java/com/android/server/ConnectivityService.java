@@ -26,10 +26,15 @@ import static android.net.NetworkPolicyManager.RULE_REJECT_METERED;
 import android.bluetooth.BluetoothTetheringDataTracker;
 import android.content.ContentResolver;
 import android.content.Context;
+<<<<<<< HEAD
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+=======
+import android.content.Intent;
+import android.content.pm.PackageManager;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.database.ContentObserver;
 import android.net.ConnectivityManager;
 import android.net.DummyDataStateTracker;
@@ -53,7 +58,10 @@ import android.net.Proxy;
 import android.net.ProxyProperties;
 import android.net.RouteInfo;
 import android.net.wifi.WifiStateTracker;
+<<<<<<< HEAD
 import android.net.wimax.WimaxManagerConstants;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Binder;
 import android.os.FileUtils;
 import android.os.Handler;
@@ -81,6 +89,7 @@ import com.android.server.connectivity.Tethering;
 import com.android.server.connectivity.Vpn;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
+<<<<<<< HEAD
 import dalvik.system.DexClassLoader;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -89,6 +98,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.InvocationTargetException;
+=======
+
+import java.io.FileDescriptor;
+import java.io.IOException;
+import java.io.PrintWriter;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -498,12 +513,15 @@ public class ConnectivityService extends IConnectivityManager.Stub {
                 mNetTrackers[netType] = BluetoothTetheringDataTracker.getInstance();
                 mNetTrackers[netType].startMonitoring(context, mHandler);
                 break;
+<<<<<<< HEAD
             case ConnectivityManager.TYPE_WIMAX:
                 mNetTrackers[netType] = makeWimaxStateTracker();
                 if (mNetTrackers[netType]!= null) {
                     mNetTrackers[netType].startMonitoring(context, mHandler);
                 }
                 break;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case ConnectivityManager.TYPE_ETHERNET:
                 mNetTrackers[netType] = EthernetDataTracker.getInstance();
                 mNetTrackers[netType].startMonitoring(context, mHandler);
@@ -514,9 +532,13 @@ public class ConnectivityService extends IConnectivityManager.Stub {
                 continue;
             }
             mCurrentLinkProperties[netType] = null;
+<<<<<<< HEAD
             if (mNetTrackers[netType] != null && mNetConfigs[netType].isDefault()) {
                 mNetTrackers[netType].reconnect();
             }
+=======
+            if (mNetConfigs[netType].isDefault()) mNetTrackers[netType].reconnect();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         IBinder b = ServiceManager.getService(Context.NETWORKMANAGEMENT_SERVICE);
@@ -546,6 +568,7 @@ public class ConnectivityService extends IConnectivityManager.Stub {
 
         loadGlobalProxy();
     }
+<<<<<<< HEAD
 private NetworkStateTracker makeWimaxStateTracker() {
         //Initialize Wimax
         DexClassLoader wimaxClassLoader;
@@ -621,6 +644,9 @@ private NetworkStateTracker makeWimaxStateTracker() {
 
         return wimaxStateTracker;
     }
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Sets the preferred network.
      * @param preference the new preference
@@ -1597,7 +1623,10 @@ private NetworkStateTracker makeWimaxStateTracker() {
                 if (checkType == prevNetType) continue;
                 if (mNetConfigs[checkType] == null) continue;
                 if (!mNetConfigs[checkType].isDefault()) continue;
+<<<<<<< HEAD
                 if (mNetTrackers[checkType] == null) continue;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 // Enabling the isAvailable() optimization caused mobile to not get
 // selected if it was in the middle of error handling. Specifically

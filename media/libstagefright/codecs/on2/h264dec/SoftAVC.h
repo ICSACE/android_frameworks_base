@@ -88,8 +88,11 @@ private:
     };
     OutputPortSettingChange mOutputPortSettingsChange;
 
+<<<<<<< HEAD
     bool mSignalledError;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void initPorts();
     status_t initDecoder();
     void updatePortDefinitions();

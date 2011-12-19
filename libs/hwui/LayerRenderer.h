@@ -17,8 +17,11 @@
 #ifndef ANDROID_HWUI_LAYER_RENDERER_H
 #define ANDROID_HWUI_LAYER_RENDERER_H
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "OpenGLRenderer.h"
 #include "Layer.h"
 
@@ -44,6 +47,7 @@ namespace uirenderer {
 
 class LayerRenderer: public OpenGLRenderer {
 public:
+<<<<<<< HEAD
     ANDROID_API LayerRenderer(Layer* layer);
     virtual ~LayerRenderer();
 
@@ -62,6 +66,29 @@ public:
     ANDROID_API static void destroyLayer(Layer* layer);
     ANDROID_API static void destroyLayerDeferred(Layer* layer);
     ANDROID_API static bool copyLayer(Layer* layer, SkBitmap* bitmap);
+=======
+    LayerRenderer(Layer* layer): mLayer(layer) {
+    }
+
+    ~LayerRenderer() {
+    }
+
+    void prepareDirty(float left, float top, float right, float bottom, bool opaque);
+    void finish();
+
+    bool hasLayer();
+    Region* getRegion();
+    GLint getTargetFbo();
+
+    static Layer* createTextureLayer(bool isOpaque);
+    static Layer* createLayer(uint32_t width, uint32_t height, bool isOpaque = false);
+    static bool resizeLayer(Layer* layer, uint32_t width, uint32_t height);
+    static void updateTextureLayer(Layer* layer, uint32_t width, uint32_t height,
+            bool isOpaque, GLenum renderTarget, float* transform);
+    static void destroyLayer(Layer* layer);
+    static void destroyLayerDeferred(Layer* layer);
+    static bool copyLayer(Layer* layer, SkBitmap* bitmap);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 private:
     void generateMesh();

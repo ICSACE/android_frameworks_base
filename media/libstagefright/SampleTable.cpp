@@ -627,6 +627,7 @@ status_t SampleTable::findSyncSampleNear(
 
         ++left;
     }
+<<<<<<< HEAD
 
     if (left == mNumSyncSamples) {
         if (flags == kFlagAfter) {
@@ -635,11 +636,24 @@ status_t SampleTable::findSyncSampleNear(
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (left > 0) {
         --left;
     }
 
+<<<<<<< HEAD
     uint32_t x = mSyncSamples[left];
+=======
+    uint32_t x;
+    if (mDataSource->readAt(
+                mSyncSampleOffset + 8 + left * 4, &x, 4) != 4) {
+        return ERROR_IO;
+    }
+
+    x = ntohl(x);
+    --x;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     if (left + 1 < mNumSyncSamples) {
         uint32_t y = mSyncSamples[left + 1];
@@ -680,7 +694,17 @@ status_t SampleTable::findSyncSampleNear(
             if (x > start_sample_index) {
                 CHECK(left > 0);
 
+<<<<<<< HEAD
                 x = mSyncSamples[left - 1];
+=======
+                if (mDataSource->readAt(
+                            mSyncSampleOffset + 8 + (left - 1) * 4, &x, 4) != 4) {
+                    return ERROR_IO;
+                }
+
+                x = ntohl(x);
+                --x;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 CHECK(x <= start_sample_index);
             }

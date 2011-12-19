@@ -37,6 +37,10 @@ struct NuPlayerDriver : public MediaPlayerInterface {
 
     virtual status_t setDataSource(const sp<IStreamSource> &source);
 
+<<<<<<< HEAD
+=======
+    virtual status_t setVideoSurface(const sp<Surface> &surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual status_t setVideoSurfaceTexture(
             const sp<ISurfaceTexture> &surfaceTexture);
     virtual status_t prepare();
@@ -66,7 +70,10 @@ struct NuPlayerDriver : public MediaPlayerInterface {
     void notifyPosition(int64_t positionUs);
     void notifySeekComplete();
     void notifyFrameStats(int64_t numFramesTotal, int64_t numFramesDropped);
+<<<<<<< HEAD
     void notifyListener(int msg, int ext1 = 0, int ext2 = 0);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 protected:
     virtual ~NuPlayerDriver();
@@ -95,7 +102,10 @@ private:
     };
 
     State mState;
+<<<<<<< HEAD
     bool mAtEOS;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     int64_t mStartupSeekTimeUs;
 

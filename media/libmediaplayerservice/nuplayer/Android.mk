@@ -8,7 +8,10 @@ LOCAL_SRC_FILES:=                       \
         NuPlayerDriver.cpp              \
         NuPlayerRenderer.cpp            \
         NuPlayerStreamListener.cpp      \
+<<<<<<< HEAD
         RTSPSource.cpp                  \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         StreamingSource.cpp             \
 
 LOCAL_C_INCLUDES := \
@@ -16,7 +19,10 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/frameworks/base/media/libstagefright/include             \
         $(TOP)/frameworks/base/media/libstagefright/mpeg2ts             \
         $(TOP)/frameworks/base/media/libstagefright/httplive            \
+<<<<<<< HEAD
         $(TOP)/frameworks/base/media/libstagefright/rtsp                \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 LOCAL_MODULE:= libstagefright_nuplayer
 

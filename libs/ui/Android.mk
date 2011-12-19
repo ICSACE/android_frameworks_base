@@ -63,6 +63,13 @@ LOCAL_SHARED_LIBRARIES := \
 	libskia \
 	libbinder
 
+<<<<<<< HEAD
+=======
+ifdef BOARD_EGL_GRALLOC_USAGE_FILTER
+  LOCAL_CFLAGS += -DBOARD_EGL_GRALLOC_USAGE_FILTER=$(BOARD_EGL_GRALLOC_USAGE_FILTER)
+endif
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 LOCAL_C_INCLUDES := \
     external/skia/include/core
 

@@ -26,13 +26,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Vibrator;
+<<<<<<< HEAD
 import android.text.TextUtils;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 import com.android.internal.R;
 
@@ -67,6 +73,7 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     private static final long DELAY_INCREMENT2 = 12; // increment per wave while not tracking
     private static final long WAVE_DELAY = WAVE_DURATION / WAVE_COUNT; // initial propagation delay
 
+<<<<<<< HEAD
     /**
      * The scale by which to multiply the unlock handle width to compute the radius
      * in which it can be grabbed when accessibility is disabled.
@@ -79,6 +86,8 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
      */
     private static final float GRAB_HANDLE_RADIUS_SCALE_ACCESSIBILITY_ENABLED = 1.0f;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private Vibrator mVibrator;
     private OnTriggerListener mOnTriggerListener;
     private ArrayList<DrawableHolder> mDrawables = new ArrayList<DrawableHolder>(3);
@@ -466,6 +475,7 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     };
 
     @Override
+<<<<<<< HEAD
     public boolean onHoverEvent(MotionEvent event) {
         if (AccessibilityManager.getInstance(mContext).isTouchExplorationEnabled()) {
             final int action = event.getAction();
@@ -487,6 +497,8 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     }
 
     @Override
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean onTouchEvent(MotionEvent event) {
         final int action = event.getAction();
         mMouseX = event.getX();
@@ -496,12 +508,29 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
             case MotionEvent.ACTION_DOWN:
                 removeCallbacks(mLockTimerActions);
                 mFingerDown = true;
+<<<<<<< HEAD
                 tryTransitionToStartAttemptState(event);
+=======
+                setGrabbedState(OnTriggerListener.CENTER_HANDLE);
+                {
+                    float x = mMouseX - mUnlockHalo.getX();
+                    float y = mMouseY - mUnlockHalo.getY();
+                    float dist = (float) Math.hypot(x, y);
+                    if (dist < mUnlockHalo.getWidth()*0.5f) {
+                        if (mLockState == STATE_READY) {
+                            mLockState = STATE_START_ATTEMPT;
+                        }
+                    }
+                }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 handled = true;
                 break;
 
             case MotionEvent.ACTION_MOVE:
+<<<<<<< HEAD
                 tryTransitionToStartAttemptState(event);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 handled = true;
                 break;
 
@@ -529,6 +558,7 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     }
 
     /**
+<<<<<<< HEAD
      * Tries to transition to start attempt state.
      *
      * @param event A motion event.
@@ -570,6 +600,8 @@ public class WaveView extends View implements ValueAnimator.AnimatorUpdateListen
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Triggers haptic feedback.
      */
     private synchronized void vibrate(long duration) {

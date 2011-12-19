@@ -69,6 +69,15 @@ status_t StagefrightPlayer::setDataSource(const sp<IStreamSource> &source) {
     return mPlayer->setDataSource(source);
 }
 
+<<<<<<< HEAD
+=======
+status_t StagefrightPlayer::setVideoSurface(const sp<Surface> &surface) {
+    LOGV("setVideoSurface");
+
+    return mPlayer->setSurface(surface);
+}
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 status_t StagefrightPlayer::setVideoSurfaceTexture(
         const sp<ISurfaceTexture> &surfaceTexture) {
     LOGV("setVideoSurfaceTexture");

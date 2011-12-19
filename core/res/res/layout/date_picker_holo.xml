@@ -23,8 +23,13 @@
      depending on the date format selected by the user.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+=======
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     android:layout_gravity="center_horizontal"
     android:orientation="horizontal"
     android:gravity="center">
@@ -32,6 +37,10 @@
     <LinearLayout android:id="@+id/pickers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center">
@@ -39,10 +48,17 @@
         <!-- Month -->
         <NumberPicker
             android:id="@+id/month"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dip"
             android:layout_marginRight="16dip"
+=======
+            android:layout_width="48dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dip"
+            android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:focusable="true"
             android:focusableInTouchMode="true"
             />
@@ -50,10 +66,17 @@
         <!-- Day -->
         <NumberPicker
             android:id="@+id/day"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dip"
             android:layout_marginRight="16dip"
+=======
+            android:layout_width="48dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dip"
+            android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:focusable="true"
             android:focusableInTouchMode="true"
             />
@@ -61,10 +84,17 @@
         <!-- Year -->
         <NumberPicker
             android:id="@+id/year"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dip"
             android:layout_marginRight="16dip"
+=======
+            android:layout_width="48dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dip"
+            android:layout_marginRight="22dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:focusable="true"
             android:focusableInTouchMode="true"
             />

@@ -22,7 +22,11 @@ LOCAL_STATIC_LIBRARIES := \
 	libcutils
 
 ifeq ($(HOST_OS),linux)
+<<<<<<< HEAD
 LOCAL_LDLIBS += -ldl -lpthread
+=======
+LOCAL_LDLIBS += -lpthread
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 endif
 
 LOCAL_MODULE := obbtool

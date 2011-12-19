@@ -468,6 +468,7 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['sample', 'communication', 'new'],
     path: 'samples/BluetoothHDP/index.html',
     title: {
@@ -478,6 +479,8 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     tags: ['sample', 'accountsync'],
     path: 'samples/BusinessCard/index.html',
     title: {
@@ -508,6 +511,7 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['sample', 'new'],
     path: 'samples/training/device-management-policy/index.html',
     title: {
@@ -518,6 +522,8 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     tags: ['sample'],
     path: 'samples/Home/index.html',
     title: {
@@ -558,6 +564,7 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['sample', 'new'],
     path: 'samples/training/ads-and-ux/index.html',
     title: {
@@ -568,6 +575,8 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     tags: ['sample', 'ui', 'bestpractice', 'layout'],
     path: 'samples/MultiResolution/index.html',
     title: {
@@ -578,6 +587,7 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['sample', 'new', 'bestpractices'],
     path: 'samples/newsreader/index.html',
     title: {
@@ -588,6 +598,8 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     tags: ['sample', 'data'],
     path: 'samples/NFCDemo/index.html',
     title: {
@@ -748,6 +760,7 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['sample', 'communication', 'new'],
     path: 'samples/ToyVpn/index.html',
     title: {
@@ -758,6 +771,8 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     tags: ['sample', 'newfeature'],
     path: 'samples/USB/index.html',
     title: {
@@ -883,7 +898,11 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['tutorial', 'gl'],
+=======
+    tags: ['tutorial', 'gl', 'new'],
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     path: 'tutorials/opengl/opengl-es10.html',
     title: {
       en: 'OpenGL ES 1.0'
@@ -893,7 +912,11 @@ var ANDROID_RESOURCES = [
     }
   },
   {
+<<<<<<< HEAD
     tags: ['tutorial', 'gl'],
+=======
+    tags: ['tutorial', 'gl', 'new'],
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     path: 'tutorials/opengl/opengl-es20.html',
     title: {
       en: 'OpenGL ES 2.0'

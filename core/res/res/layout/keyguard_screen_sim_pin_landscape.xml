@@ -91,16 +91,23 @@
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip">
 
+<<<<<<< HEAD
         <Button android:id="@+id/emergencyCallButton"
             android:text="@android:string/lockscreen_emergency_call"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+=======
+        <Button android:id="@+id/ok"
+            android:text="@android:string/ok"
+            android:layout_alignParentBottom="true"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:layout_marginBottom="8dip"
             android:layout_marginRight="8dip"
             android:textSize="18sp"
+<<<<<<< HEAD
             android:drawableLeft="@drawable/ic_emergency"
             android:drawablePadding="4dip"
         />
@@ -108,12 +115,25 @@
         <Button android:id="@+id/ok"
             android:text="@android:string/ok"
             android:layout_alignParentBottom="true"
+=======
+            />
+
+        <Button android:id="@+id/emergencyCallButton"
+            android:text="@android:string/lockscreen_emergency_call"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:layout_marginBottom="8dip"
             android:layout_marginLeft="8dip"
             android:textSize="18sp"
+<<<<<<< HEAD
+=======
+            android:drawableLeft="@drawable/ic_emergency"
+            android:drawablePadding="4dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         />
     </LinearLayout>
 

@@ -44,14 +44,21 @@
 
 // If no access units are received within 5 secs, assume that the rtp
 // stream has ended and signal end of stream.
+<<<<<<< HEAD
 static int64_t kAccessUnitTimeoutUs = 10000000ll;
+=======
+static int64_t kAccessUnitTimeoutUs = 5000000ll;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 // If no access units arrive for the first 10 secs after starting the
 // stream, assume none ever will and signal EOS or switch transports.
 static int64_t kStartupTimeoutUs = 10000000ll;
 
+<<<<<<< HEAD
 static int64_t kDefaultKeepAliveTimeoutUs = 60000000ll;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 namespace android {
 
 static void MakeUserAgentString(AString *s) {
@@ -96,6 +103,7 @@ static bool GetAttribute(const char *s, const char *key, AString *value) {
 }
 
 struct MyHandler : public AHandler {
+<<<<<<< HEAD
     enum {
         kWhatConnected                  = 'conn',
         kWhatDisconnected               = 'disc',
@@ -114,6 +122,14 @@ struct MyHandler : public AHandler {
         : mNotify(notify),
           mUIDValid(uidValid),
           mUID(uid),
+=======
+    MyHandler(
+            const char *url, const sp<ALooper> &looper,
+            bool uidValid = false, uid_t uid = 0)
+        : mUIDValid(uidValid),
+          mUID(uid),
+          mLooper(looper),
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
           mNetLooper(new ALooper),
           mConn(new ARTSPConnection(mUIDValid, mUID)),
           mRTPConn(new ARTPConnection),
@@ -132,9 +148,13 @@ struct MyHandler : public AHandler {
           mTryFakeRTCP(false),
           mReceivedFirstRTCPPacket(false),
           mReceivedFirstRTPPacket(false),
+<<<<<<< HEAD
           mSeekable(false),
           mKeepAliveTimeoutUs(kDefaultKeepAliveTimeoutUs),
           mKeepAliveGeneration(0) {
+=======
+          mSeekable(false) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mNetLooper->setName("rtsp net");
         mNetLooper->start(false /* runOnCallingThread */,
                           false /* canCallJava */,
@@ -161,9 +181,18 @@ struct MyHandler : public AHandler {
         mSessionHost = host;
     }
 
+<<<<<<< HEAD
     void connect() {
         looper()->registerHandler(mConn);
         (1 ? mNetLooper : looper())->registerHandler(mRTPConn);
+=======
+    void connect(const sp<AMessage> &doneMsg) {
+        mDoneMsg = doneMsg;
+
+        mLooper->registerHandler(this);
+        mLooper->registerHandler(mConn);
+        (1 ? mNetLooper : mLooper)->registerHandler(mRTPConn);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         sp<AMessage> notify = new AMessage('biny', id());
         mConn->observeBinaryData(notify);
@@ -172,6 +201,7 @@ struct MyHandler : public AHandler {
         mConn->connect(mOriginalSessionURL.c_str(), reply);
     }
 
+<<<<<<< HEAD
     void disconnect() {
         (new AMessage('abor', id()))->post();
     }
@@ -182,6 +212,35 @@ struct MyHandler : public AHandler {
         msg->post();
     }
 
+=======
+    void disconnect(const sp<AMessage> &doneMsg) {
+        mDoneMsg = doneMsg;
+
+        (new AMessage('abor', id()))->post();
+    }
+
+    void seek(int64_t timeUs, const sp<AMessage> &doneMsg) {
+        sp<AMessage> msg = new AMessage('seek', id());
+        msg->setInt64("time", timeUs);
+        msg->setMessage("doneMsg", doneMsg);
+        msg->post();
+    }
+
+    int64_t getNormalPlayTimeUs() {
+        int64_t maxTimeUs = 0;
+        for (size_t i = 0; i < mTracks.size(); ++i) {
+            int64_t timeUs = mTracks.editItemAt(i).mPacketSource
+                ->getNormalPlayTimeUs();
+
+            if (i == 0 || timeUs > maxTimeUs) {
+                maxTimeUs = timeUs;
+            }
+        }
+
+        return maxTimeUs;
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static void addRR(const sp<ABuffer> &buf) {
         uint8_t *ptr = buf->data() + buf->size();
         ptr[0] = 0x80 | 0;
@@ -375,8 +434,11 @@ struct MyHandler : public AHandler {
 
             case 'disc':
             {
+<<<<<<< HEAD
                 ++mKeepAliveGeneration;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 int32_t reconnect;
                 if (msg->findInt32("reconnect", &reconnect) && reconnect) {
                     sp<AMessage> reply = new AMessage('conn', id());
@@ -463,6 +525,7 @@ struct MyHandler : public AHandler {
                                 mBaseURL = tmp;
                             }
 
+<<<<<<< HEAD
                             if (mSessionDesc->countTracks() < 2) {
                                 // There's no actual tracks in this session.
                                 // The first "track" is merely session meta
@@ -474,6 +537,10 @@ struct MyHandler : public AHandler {
                             } else {
                                 setupTrack(1);
                             }
+=======
+                            CHECK_GT(mSessionDesc->countTracks(), 1u);
+                            setupTrack(1);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         }
                     }
                 }
@@ -517,6 +584,7 @@ struct MyHandler : public AHandler {
                         CHECK_GE(i, 0);
 
                         mSessionID = response->mHeaders.valueAt(i);
+<<<<<<< HEAD
 
                         mKeepAliveTimeoutUs = kDefaultKeepAliveTimeoutUs;
                         AString timeoutStr;
@@ -545,6 +613,8 @@ struct MyHandler : public AHandler {
                             }
                         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         i = mSessionID.find(";");
                         if (i >= 0) {
                             // Remove options, i.e. ";timeout=90"
@@ -598,9 +668,12 @@ struct MyHandler : public AHandler {
                 if (index < mSessionDesc->countTracks()) {
                     setupTrack(index);
                 } else if (mSetupTracksSuccessful) {
+<<<<<<< HEAD
                     ++mKeepAliveGeneration;
                     postKeepAlive();
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     AString request = "PLAY ";
                     request.append(mSessionURL);
                     request.append(" RTSP/1.0\r\n");
@@ -652,6 +725,7 @@ struct MyHandler : public AHandler {
                 break;
             }
 
+<<<<<<< HEAD
             case 'aliv':
             {
                 int32_t generation;
@@ -697,14 +771,20 @@ struct MyHandler : public AHandler {
                 break;
             }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case 'abor':
             {
                 for (size_t i = 0; i < mTracks.size(); ++i) {
                     TrackInfo *info = &mTracks.editItemAt(i);
 
+<<<<<<< HEAD
                     if (!mFirstAccessUnit) {
                         postQueueEOS(i, ERROR_END_OF_STREAM);
                     }
+=======
+                    info->mPacketSource->signalEOS(ERROR_END_OF_STREAM);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                     if (!info->mUsingInterleavedTCP) {
                         mRTPConn->removeStream(info->mRTPSocket, info->mRTCPSocket);
@@ -775,10 +855,18 @@ struct MyHandler : public AHandler {
 
             case 'quit':
             {
+<<<<<<< HEAD
                 sp<AMessage> msg = mNotify->dup();
                 msg->setInt32("what", kWhatDisconnected);
                 msg->setInt32("result", UNKNOWN_ERROR);
                 msg->post();
+=======
+                if (mDoneMsg != NULL) {
+                    mDoneMsg->setInt32("result", UNKNOWN_ERROR);
+                    mDoneMsg->post();
+                    mDoneMsg = NULL;
+                }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             }
 
@@ -792,6 +880,7 @@ struct MyHandler : public AHandler {
                 }
 
                 if (mNumAccessUnitsReceived == 0) {
+<<<<<<< HEAD
 #if 1
                     LOGI("stream ended? aborting.");
                     (new AMessage('abor', id()))->post();
@@ -799,6 +888,11 @@ struct MyHandler : public AHandler {
 #else
                     LOGI("haven't seen an AU in a looong time.");
 #endif
+=======
+                    LOGI("stream ended? aborting.");
+                    (new AMessage('abor', id()))->post();
+                    break;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
 
                 mNumAccessUnitsReceived = 0;
@@ -883,12 +977,26 @@ struct MyHandler : public AHandler {
 
             case 'seek':
             {
+<<<<<<< HEAD
                 if (!mSeekable) {
                     LOGW("This is a live stream, ignoring seek request.");
 
                     sp<AMessage> msg = mNotify->dup();
                     msg->setInt32("what", kWhatSeekDone);
                     msg->post();
+=======
+                sp<AMessage> doneMsg;
+                CHECK(msg->findMessage("doneMsg", &doneMsg));
+
+                if (mSeekPending) {
+                    doneMsg->post();
+                    break;
+                }
+
+                if (!mSeekable) {
+                    LOGW("This is a live stream, ignoring seek request.");
+                    doneMsg->post();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     break;
                 }
 
@@ -914,6 +1022,10 @@ struct MyHandler : public AHandler {
 
                 sp<AMessage> reply = new AMessage('see1', id());
                 reply->setInt64("time", timeUs);
+<<<<<<< HEAD
+=======
+                reply->setMessage("doneMsg", doneMsg);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mConn->sendRequest(request.c_str(), reply);
                 break;
             }
@@ -924,8 +1036,12 @@ struct MyHandler : public AHandler {
                 for (size_t i = 0; i < mTracks.size(); ++i) {
                     TrackInfo *info = &mTracks.editItemAt(i);
 
+<<<<<<< HEAD
                     postQueueSeekDiscontinuity(i);
 
+=======
+                    info->mPacketSource->flushQueue();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     info->mRTPAnchor = 0;
                     info->mNTPAnchorUs = -1;
                 }
@@ -949,7 +1065,15 @@ struct MyHandler : public AHandler {
 
                 request.append("\r\n");
 
+<<<<<<< HEAD
                 sp<AMessage> reply = new AMessage('see2', id());
+=======
+                sp<AMessage> doneMsg;
+                CHECK(msg->findMessage("doneMsg", &doneMsg));
+
+                sp<AMessage> reply = new AMessage('see2', id());
+                reply->setMessage("doneMsg", doneMsg);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mConn->sendRequest(request.c_str(), reply);
                 break;
             }
@@ -994,9 +1118,16 @@ struct MyHandler : public AHandler {
 
                 mSeekPending = false;
 
+<<<<<<< HEAD
                 sp<AMessage> msg = mNotify->dup();
                 msg->setInt32("what", kWhatSeekDone);
                 msg->post();
+=======
+                sp<AMessage> doneMsg;
+                CHECK(msg->findMessage("doneMsg", &doneMsg));
+
+                doneMsg->post();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             }
 
@@ -1047,12 +1178,15 @@ struct MyHandler : public AHandler {
         }
     }
 
+<<<<<<< HEAD
     void postKeepAlive() {
         sp<AMessage> msg = new AMessage('aliv', id());
         msg->setInt32("generation", mKeepAliveGeneration);
         msg->post((mKeepAliveTimeoutUs * 9) / 10);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void postAccessUnitTimeoutCheck() {
         if (mCheckPending) {
             return;
@@ -1100,8 +1234,11 @@ struct MyHandler : public AHandler {
         float npt1, npt2;
         if (!ASessionDescription::parseNTPRange(val.c_str(), &npt1, &npt2)) {
             // This is a live stream and therefore not seekable.
+<<<<<<< HEAD
 
             LOGI("This is a live stream");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return;
         }
 
@@ -1142,6 +1279,7 @@ struct MyHandler : public AHandler {
 
             LOGV("track #%d: rtpTime=%u <=> npt=%.2f", n, rtpTime, npt1);
 
+<<<<<<< HEAD
             info->mNormalPlayTimeRTP = rtpTime;
             info->mNormalPlayTimeUs = (int64_t)(npt1 * 1E6);
 
@@ -1150,6 +1288,10 @@ struct MyHandler : public AHandler {
                         trackIndex,
                         info->mNormalPlayTimeRTP, info->mNormalPlayTimeUs);
             }
+=======
+            info->mPacketSource->setNormalPlayTimeMapping(
+                    rtpTime, (int64_t)(npt1 * 1E6));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             ++n;
         }
@@ -1157,6 +1299,7 @@ struct MyHandler : public AHandler {
         mSeekable = true;
     }
 
+<<<<<<< HEAD
     sp<MetaData> getTrackFormat(size_t index, int32_t *timeScale) {
         CHECK_GE(index, 0u);
         CHECK_LT(index, mTracks.size());
@@ -1166,6 +1309,13 @@ struct MyHandler : public AHandler {
         *timeScale = info.mTimeScale;
 
         return info.mPacketSource->getFormat();
+=======
+    sp<APacketSource> getPacketSource(size_t index) {
+        CHECK_GE(index, 0u);
+        CHECK_LT(index, mTracks.size());
+
+        return mTracks.editItemAt(index).mPacketSource;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     size_t countTracks() const {
@@ -1185,9 +1335,12 @@ private:
         int64_t mNTPAnchorUs;
         int32_t mTimeScale;
 
+<<<<<<< HEAD
         uint32_t mNormalPlayTimeRTP;
         int64_t mNormalPlayTimeUs;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         sp<APacketSource> mPacketSource;
 
         // Stores packets temporarily while no notion of time
@@ -1195,9 +1348,15 @@ private:
         List<sp<ABuffer> > mPackets;
     };
 
+<<<<<<< HEAD
     sp<AMessage> mNotify;
     bool mUIDValid;
     uid_t mUID;
+=======
+    bool mUIDValid;
+    uid_t mUID;
+    sp<ALooper> mLooper;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<ALooper> mNetLooper;
     sp<ARTSPConnection> mConn;
     sp<ARTPConnection> mRTPConn;
@@ -1223,11 +1382,19 @@ private:
     bool mReceivedFirstRTCPPacket;
     bool mReceivedFirstRTPPacket;
     bool mSeekable;
+<<<<<<< HEAD
     int64_t mKeepAliveTimeoutUs;
     int32_t mKeepAliveGeneration;
 
     Vector<TrackInfo> mTracks;
 
+=======
+
+    Vector<TrackInfo> mTracks;
+
+    sp<AMessage> mDoneMsg;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     void setupTrack(size_t index) {
         sp<APacketSource> source =
             new APacketSource(mSessionDesc, index);
@@ -1257,8 +1424,11 @@ private:
         info->mNewSegment = true;
         info->mRTPAnchor = 0;
         info->mNTPAnchorUs = -1;
+<<<<<<< HEAD
         info->mNormalPlayTimeRTP = 0;
         info->mNormalPlayTimeUs = 0ll;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         unsigned long PT;
         AString formatDesc;
@@ -1384,6 +1554,7 @@ private:
         LOGV("onAccessUnitComplete track %d", trackIndex);
 
         if (mFirstAccessUnit) {
+<<<<<<< HEAD
             sp<AMessage> msg = mNotify->dup();
             msg->setInt32("what", kWhatConnected);
             msg->post();
@@ -1397,6 +1568,11 @@ private:
                             info->mNormalPlayTimeRTP, info->mNormalPlayTimeUs);
                 }
             }
+=======
+            mDoneMsg->setInt32("result", OK);
+            mDoneMsg->post();
+            mDoneMsg = NULL;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             mFirstAccessUnit = false;
         }
@@ -1414,12 +1590,20 @@ private:
             track->mPackets.erase(track->mPackets.begin());
 
             if (addMediaTimestamp(trackIndex, track, accessUnit)) {
+<<<<<<< HEAD
                 postQueueAccessUnit(trackIndex, accessUnit);
+=======
+                track->mPacketSource->queueAccessUnit(accessUnit);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
         if (addMediaTimestamp(trackIndex, track, accessUnit)) {
+<<<<<<< HEAD
             postQueueAccessUnit(trackIndex, accessUnit);
+=======
+            track->mPacketSource->queueAccessUnit(accessUnit);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -1455,6 +1639,7 @@ private:
         return true;
     }
 
+<<<<<<< HEAD
     void postQueueAccessUnit(
             size_t trackIndex, const sp<ABuffer> &accessUnit) {
         sp<AMessage> msg = mNotify->dup();
@@ -1488,6 +1673,8 @@ private:
         msg->setInt64("nptUs", nptUs);
         msg->post();
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     DISALLOW_EVIL_CONSTRUCTORS(MyHandler);
 };

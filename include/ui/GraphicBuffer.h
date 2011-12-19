@@ -63,7 +63,10 @@ public:
         USAGE_HW_RENDER         = GRALLOC_USAGE_HW_RENDER,
         USAGE_HW_2D             = GRALLOC_USAGE_HW_2D,
         USAGE_HW_COMPOSER       = GRALLOC_USAGE_HW_COMPOSER,
+<<<<<<< HEAD
         USAGE_HW_VIDEO_ENCODER  = GRALLOC_USAGE_HW_VIDEO_ENCODER,
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         USAGE_HW_MASK           = GRALLOC_USAGE_HW_MASK
     };
 

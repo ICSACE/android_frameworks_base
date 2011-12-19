@@ -89,6 +89,7 @@ public class BandwidthTest extends InstrumentationTestCase {
      * Ensure that downloading on wifi reports reasonable stats.
      */
     @LargeTest
+<<<<<<< HEAD
     public void testWifiDownload() throws Exception {
         assertTrue("Could not connect to wifi!", setDeviceWifiAndAirplaneMode(mSsid));
         downloadFile();
@@ -110,6 +111,10 @@ public class BandwidthTest extends InstrumentationTestCase {
      * data usage stats to instrumentation out.
      */
     protected void downloadFile() throws Exception {
+=======
+    public void testWifiDownload() {
+        assertTrue(setDeviceWifiAndAirplaneMode(mSsid));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         NetworkStats pre_test_stats = fetchDataFromProc(mUid);
         String ts = Long.toString(System.currentTimeMillis());
 
@@ -139,6 +144,7 @@ public class BandwidthTest extends InstrumentationTestCase {
     }
 
     /**
+<<<<<<< HEAD
      * Ensure that uploading on wifi reports reasonable stats.
      */
     @LargeTest
@@ -161,6 +167,13 @@ public class BandwidthTest extends InstrumentationTestCase {
      * only include upload stats.
      */
     protected void uploadFile() throws Exception {
+=======
+     * Ensure that downloading on wifi reports reasonable stats.
+     */
+    @LargeTest
+    public void testWifiUpload() {
+        assertTrue(setDeviceWifiAndAirplaneMode(mSsid));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Download a file from the server.
         String ts = Long.toString(System.currentTimeMillis());
         String targetUrl = BandwidthTestUtil.buildDownloadUrl(
@@ -192,6 +205,7 @@ public class BandwidthTest extends InstrumentationTestCase {
     }
 
     /**
+<<<<<<< HEAD
      * We want to make sure that if we use wifi and the  Download Manager to download stuff,
      * accounting still goes to the app making the call and that the numbers still make sense.
      */
@@ -216,6 +230,14 @@ public class BandwidthTest extends InstrumentationTestCase {
      * the stats to instrumentation out.
      */
     protected void downloadFileUsingDownloadManager() throws Exception {
+=======
+     * We want to make sure that if we use the Download Manager to download stuff,
+     * accounting still goes to the app making the call and that the numbers still make sense.
+     */
+    @LargeTest
+    public void testWifiDownloadWithDownloadManager() {
+        assertTrue(setDeviceWifiAndAirplaneMode(mSsid));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // If we are using the download manager, then the data that is written to /proc/uid_stat/
         // is accounted against download manager's uid, since it uses pre-ICS API.
         int downloadManagerUid = mConnectionUtil.downloadManagerUid();
@@ -249,7 +271,10 @@ public class BandwidthTest extends InstrumentationTestCase {
 
     /**
      * Fetch network data from /proc/uid_stat/uid
+<<<<<<< HEAD
      *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * @return populated {@link NetworkStats}
      */
     public NetworkStats fetchDataFromProc(int uid) {
@@ -265,8 +290,12 @@ public class BandwidthTest extends InstrumentationTestCase {
     }
 
     /**
+<<<<<<< HEAD
      * Turn on Airplane mode and connect to the wifi.
      *
+=======
+     * Turn on Airplane mode and connect to the wifi
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * @param ssid of the wifi to connect to
      * @return true if we successfully connected to a given network.
      */
@@ -275,6 +304,7 @@ public class BandwidthTest extends InstrumentationTestCase {
         assertTrue(mConnectionUtil.connectToWifi(ssid));
         assertTrue(mConnectionUtil.waitForWifiState(WifiManager.WIFI_STATE_ENABLED,
                 ConnectionUtil.LONG_TIMEOUT));
+<<<<<<< HEAD
         assertTrue(mConnectionUtil.waitForNetworkState(ConnectivityManager.TYPE_WIFI,
                 State.CONNECTED, ConnectionUtil.LONG_TIMEOUT));
         return mConnectionUtil.hasData();
@@ -289,11 +319,18 @@ public class BandwidthTest extends InstrumentationTestCase {
         assertTrue("Not connected to mobile", mConnectionUtil.isConnectedToMobile());
         assertFalse("Still connected to wifi.", mConnectionUtil.isConnectedToWifi());
         return mConnectionUtil.hasData();
+=======
+        return mConnectionUtil.waitForNetworkState(ConnectivityManager.TYPE_WIFI, State.CONNECTED,
+                ConnectionUtil.LONG_TIMEOUT);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
      * Output the {@link NetworkStats} to Instrumentation out.
+<<<<<<< HEAD
      *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * @param label to attach to this given stats.
      * @param stats {@link NetworkStats} to add.
      * @param results {@link Bundle} to be added to.
@@ -350,4 +387,8 @@ public class BandwidthTest extends InstrumentationTestCase {
         }
         return true;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

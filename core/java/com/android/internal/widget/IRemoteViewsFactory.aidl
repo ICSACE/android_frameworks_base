@@ -22,7 +22,10 @@ import android.widget.RemoteViews;
 /** {@hide} */
 interface IRemoteViewsFactory {
     void onDataSetChanged();
+<<<<<<< HEAD
     oneway void onDataSetChangedAsync();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     oneway void onDestroy(in Intent intent);
     int getCount();
     RemoteViews getViewAt(int position);

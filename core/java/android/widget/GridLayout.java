@@ -867,6 +867,7 @@ public class GridLayout extends ViewGroup {
             if (firstPass) {
                 measureChildWithMargins2(c, widthSpec, heightSpec, lp.width, lp.height);
             } else {
+<<<<<<< HEAD
                 boolean horizontal = (orientation == HORIZONTAL);
                 Spec spec = horizontal ? lp.columnSpec : lp.rowSpec;
                 if (spec.alignment == FILL) {
@@ -879,6 +880,18 @@ public class GridLayout extends ViewGroup {
                         measureChildWithMargins2(c, widthSpec, heightSpec, viewSize, lp.height);
                     } else {
                         measureChildWithMargins2(c, widthSpec, heightSpec, lp.width, viewSize);
+=======
+                Spec spec = (orientation == HORIZONTAL) ? lp.columnSpec : lp.rowSpec;
+                if (spec.alignment == FILL) {
+                    Interval span = spec.span;
+                    Axis axis = (orientation == HORIZONTAL) ? horizontalAxis : verticalAxis;
+                    int[] locations = axis.getLocations();
+                    int size = locations[span.max] - locations[span.min];
+                    if (orientation == HORIZONTAL) {
+                        measureChildWithMargins2(c, widthSpec, heightSpec, size, lp.height);
+                    } else {
+                        measureChildWithMargins2(c, widthSpec, heightSpec, lp.width, size);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                 }
             }

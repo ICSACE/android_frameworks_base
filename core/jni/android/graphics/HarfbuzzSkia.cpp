@@ -211,7 +211,26 @@ const HB_FontClass harfbuzzSkiaClass = {
 
 HB_Error harfbuzzSkiaGetTable(void* voidface, const HB_Tag tag, HB_Byte* buffer, HB_UInt* len)
 {
+<<<<<<< HEAD
     return HB_Err_Invalid_Argument;
+=======
+    FontData* data = reinterpret_cast<FontData*>(voidface);
+    SkTypeface* typeface = data->typeFace;
+
+    const size_t tableSize = SkFontHost::GetTableSize(typeface->uniqueID(), tag);
+    if (!tableSize)
+        return HB_Err_Invalid_Argument;
+    // If Harfbuzz specified a NULL buffer then it's asking for the size of the table.
+    if (!buffer) {
+        *len = tableSize;
+        return HB_Err_Ok;
+    }
+
+    if (*len < tableSize)
+        return HB_Err_Invalid_Argument;
+    SkFontHost::GetTableData(typeface->uniqueID(), tag, 0, tableSize, buffer);
+    return HB_Err_Ok;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 }  // namespace android

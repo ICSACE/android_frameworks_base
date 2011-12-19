@@ -699,10 +699,15 @@ public abstract class DataConnection extends StateMachine {
                     break;
 
                 case EVENT_DISCONNECT:
+<<<<<<< HEAD
                     if (DBG) {
                         log("DcDefaultState deferring msg.what=EVENT_DISCONNECT" + mRefCount);
                     }
                     deferMessage(msg);
+=======
+                    if (DBG) log("DcDefaultState: msg.what=EVENT_DISCONNECT");
+                    notifyDisconnectCompleted((DisconnectParams) msg.obj);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     break;
 
                 case EVENT_RIL_CONNECTED:
@@ -809,12 +814,15 @@ public abstract class DataConnection extends StateMachine {
                     retVal = HANDLED;
                     break;
 
+<<<<<<< HEAD
                 case EVENT_DISCONNECT:
                     if (DBG) log("DcInactiveState: msg.what=EVENT_DISCONNECT");
                     notifyDisconnectCompleted((DisconnectParams)msg.obj);
                     retVal = HANDLED;
                     break;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 default:
                     if (VDBG) {
                         log("DcInactiveState nothandled msg.what=0x" +
@@ -839,6 +847,16 @@ public abstract class DataConnection extends StateMachine {
             ConnectionParams cp;
 
             switch (msg.what) {
+<<<<<<< HEAD
+=======
+                case EVENT_DISCONNECT:
+                    if (DBG) log("DcActivatingState deferring msg.what=EVENT_DISCONNECT"
+                            + mRefCount);
+                    deferMessage(msg);
+                    retVal = HANDLED;
+                    break;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 case EVENT_CONNECT:
                     if (DBG) log("DcActivatingState deferring msg.what=EVENT_CONNECT refCount = "
                             + mRefCount);

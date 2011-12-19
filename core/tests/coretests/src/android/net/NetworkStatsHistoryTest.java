@@ -256,10 +256,13 @@ public class NetworkStatsHistoryTest extends AndroidTestCase {
         stats.recordData(TEST_START, TEST_START + DAY_IN_MILLIS, 24L, 24L);
         assertEquals(24, stats.size());
 
+<<<<<<< HEAD
         // try removing invalid data; should be no change
         stats.removeBucketsBefore(0 - DAY_IN_MILLIS);
         assertEquals(24, stats.size());
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // try removing far before buckets; should be no change
         stats.removeBucketsBefore(TEST_START - YEAR_IN_MILLIS);
         assertEquals(24, stats.size());

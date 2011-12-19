@@ -750,6 +750,7 @@ void AudioSystem::AudioPolicyServiceClient::binderDied(const wp<IBinder>& who) {
     LOGW("AudioPolicyService server died!");
 }
 
+<<<<<<< HEAD
 #ifdef USES_AUDIO_LEGACY
 extern "C" uint32_t _ZN7android11AudioSystem8popCountEj(uint32_t u)
 {
@@ -810,5 +811,7 @@ extern "C" bool _ZN7android11AudioSystem15isLowVisibilityENS0_11stream_typeE(aud
 
 #endif // AUDIO_LEGACY
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }; // namespace android
 

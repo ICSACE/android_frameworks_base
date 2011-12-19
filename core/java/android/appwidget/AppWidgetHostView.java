@@ -26,7 +26,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+<<<<<<< HEAD
 import android.graphics.Rect;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -42,8 +45,13 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.RemoteViews;
+<<<<<<< HEAD
 import android.widget.RemoteViewsAdapter.RemoteAdapterConnectionCallback;
 import android.widget.TextView;
+=======
+import android.widget.TextView;
+import android.widget.RemoteViewsAdapter.RemoteAdapterConnectionCallback;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 /**
  * Provides the glue to show AppWidget views. This class offers automatic animation
@@ -107,9 +115,13 @@ public class AppWidgetHostView extends FrameLayout {
     }
 
     /**
+<<<<<<< HEAD
      * Set the AppWidget that will be displayed by this view. This method also adds default padding
      * to widgets, as described in {@link #getDefaultPaddingForWidget(Context, ComponentName, Rect)}
      * and can be overridden in order to add custom padding.
+=======
+     * Set the AppWidget that will be displayed by this view.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public void setAppWidget(int appWidgetId, AppWidgetProviderInfo info) {
         mAppWidgetId = appWidgetId;
@@ -119,16 +131,31 @@ public class AppWidgetHostView extends FrameLayout {
         // a widget, eg. for some widgets in safe mode.
         if (info != null) {
             // We add padding to the AppWidgetHostView if necessary
+<<<<<<< HEAD
             Rect padding = getDefaultPaddingForWidget(mContext, info.provider, null);
+=======
+            Padding padding = getPaddingForWidget(info.provider);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             setPadding(padding.left, padding.top, padding.right, padding.bottom);
         }
     }
 
+<<<<<<< HEAD
+=======
+    private static class Padding {
+        int left = 0;
+        int right = 0;
+        int top = 0;
+        int bottom = 0;
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * As of ICE_CREAM_SANDWICH we are automatically adding padding to widgets targeting
      * ICE_CREAM_SANDWICH and higher. The new widget design guidelines strongly recommend
      * that widget developers do not add extra padding to their widgets. This will help
      * achieve consistency among widgets.
+<<<<<<< HEAD
      *
      * Note: this method is only needed by developers of AppWidgetHosts. The method is provided in
      * order for the AppWidgetHost to account for the automatic padding when computing the number
@@ -170,6 +197,34 @@ public class AppWidgetHostView extends FrameLayout {
                     R.dimen.default_app_widget_padding_bottom);
         }
         return padding;
+=======
+     */
+    private Padding getPaddingForWidget(ComponentName component) {
+        PackageManager packageManager = mContext.getPackageManager();
+        Padding p = new Padding();
+        ApplicationInfo appInfo;
+
+        try {
+            appInfo = packageManager.getApplicationInfo(component.getPackageName(), 0);
+        } catch (Exception e) {
+            // if we can't find the package, return 0 padding
+            return p;
+        }
+
+        if (appInfo.targetSdkVersion >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            Resources r = getResources();
+            p.left = r.getDimensionPixelSize(com.android.internal.
+                    R.dimen.default_app_widget_padding_left);
+            p.right = r.getDimensionPixelSize(com.android.internal.
+                    R.dimen.default_app_widget_padding_right);
+            p.top = r.getDimensionPixelSize(com.android.internal.
+                    R.dimen.default_app_widget_padding_top);
+            p.bottom = r.getDimensionPixelSize(com.android.internal.
+                    R.dimen.default_app_widget_padding_bottom);
+        }
+
+        return p;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public int getAppWidgetId() {

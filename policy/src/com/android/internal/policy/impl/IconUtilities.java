@@ -38,8 +38,11 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.util.Log;
+<<<<<<< HEAD
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.content.res.Resources;
 import android.content.Context;
 
@@ -76,6 +79,7 @@ final class IconUtilities {
         mIconTextureWidth = mIconTextureHeight = mIconWidth + (int)(blurPx*2);
 
         mBlurPaint.setMaskFilter(new BlurMaskFilter(blurPx, BlurMaskFilter.Blur.NORMAL));
+<<<<<<< HEAD
 
         TypedValue value = new TypedValue();
         mGlowColorPressedPaint.setColor(context.getTheme().resolveAttribute(
@@ -83,6 +87,11 @@ final class IconUtilities {
         mGlowColorPressedPaint.setMaskFilter(TableMaskFilter.CreateClipTable(0, 30));
         mGlowColorFocusedPaint.setColor(context.getTheme().resolveAttribute(
                 android.R.attr.colorFocusedHighlight, value, true) ? value.data : 0xffff8e00);
+=======
+        mGlowColorPressedPaint.setColor(0xffffc300);
+        mGlowColorPressedPaint.setMaskFilter(TableMaskFilter.CreateClipTable(0, 30));
+        mGlowColorFocusedPaint.setColor(0xffff8e00);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mGlowColorFocusedPaint.setMaskFilter(TableMaskFilter.CreateClipTable(0, 30));
 
         ColorMatrix cm = new ColorMatrix();

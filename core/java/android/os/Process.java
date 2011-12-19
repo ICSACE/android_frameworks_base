@@ -101,7 +101,11 @@ public class Process {
      * Defines the UID/GID for the NFC service process.
      * @hide
      */
+<<<<<<< HEAD
     public static final int NFC_UID = 1027;
+=======
+    public static final int NFC_UID = 1025;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * Defines the GID for the group that allows write access to the internal media storage.

@@ -116,23 +116,40 @@
             android:orientation="horizontal"
             android:gravity="center"
             >
+<<<<<<< HEAD
             <include layout="@layout/signal_cluster_view" 
                 android:id="@+id/signal_cluster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             <ImageView
                 android:id="@+id/bluetooth"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
                 android:paddingLeft="4dip"
                 android:visibility="gone"
                 />
+=======
+                android:visibility="gone"
+                />
+            <include layout="@layout/signal_cluster_view" 
+                android:id="@+id/signal_cluster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             <ImageView
                 android:id="@+id/battery"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
                 android:paddingLeft="4dip"
+=======
+                android:paddingLeft="6dip"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 />
         </LinearLayout>
     </LinearLayout>

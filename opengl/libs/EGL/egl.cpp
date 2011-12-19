@@ -212,11 +212,19 @@ egl_connection_t* validate_display_config(EGLDisplay dpy, EGLConfig config,
 
 EGLImageKHR egl_get_image_for_current_context(EGLImageKHR image)
 {
+<<<<<<< HEAD
+=======
+    ImageRef _i(image);
+    if (!_i.get())
+        return EGL_NO_IMAGE_KHR;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     EGLContext context = egl_tls_t::getContext();
     if (context == EGL_NO_CONTEXT || image == EGL_NO_IMAGE_KHR)
         return EGL_NO_IMAGE_KHR;
 
     egl_context_t const * const c = get_context(context);
+<<<<<<< HEAD
     if (c == NULL) // this should never happen, by construction
         return EGL_NO_IMAGE_KHR;
 
@@ -226,6 +234,9 @@ EGLImageKHR egl_get_image_for_current_context(EGLImageKHR image)
 
     ImageRef _i(display, image);
     if (!_i.get())
+=======
+    if (c == NULL) // this should never happen
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return EGL_NO_IMAGE_KHR;
 
     // here we don't validate the context because if it's been marked for

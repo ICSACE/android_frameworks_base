@@ -384,6 +384,7 @@ public final class InputMethodManager {
         }
     }
     
+<<<<<<< HEAD
     private static class ControlledInputConnectionWrapper extends IInputConnectionWrapper {
         private final InputMethodManager mParentInputMethodManager;
 
@@ -391,11 +392,20 @@ public final class InputMethodManager {
                 final InputMethodManager inputMethodManager) {
             super(mainLooper, conn);
             mParentInputMethodManager = inputMethodManager;
+=======
+    class ControlledInputConnectionWrapper extends IInputConnectionWrapper {
+        public ControlledInputConnectionWrapper(Looper mainLooper, InputConnection conn) {
+            super(mainLooper, conn);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         @Override
         public boolean isActive() {
+<<<<<<< HEAD
             return mParentInputMethodManager.mActive;
+=======
+            return mActive;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
     
@@ -443,7 +453,11 @@ public final class InputMethodManager {
         mMainLooper = looper;
         mH = new H(looper);
         mIInputContext = new ControlledInputConnectionWrapper(looper,
+<<<<<<< HEAD
                 mDummyInputConnection, this);
+=======
+                mDummyInputConnection);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         
         if (mInstance == null) {
             mInstance = this;
@@ -1020,7 +1034,11 @@ public final class InputMethodManager {
                 mCursorCandStart = -1;
                 mCursorCandEnd = -1;
                 mCursorRect.setEmpty();
+<<<<<<< HEAD
                 servedContext = new ControlledInputConnectionWrapper(vh.getLooper(), ic, this);
+=======
+                servedContext = new ControlledInputConnectionWrapper(vh.getLooper(), ic);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 servedContext = null;
             }

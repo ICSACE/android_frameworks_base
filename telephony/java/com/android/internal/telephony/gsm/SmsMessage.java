@@ -16,6 +16,7 @@
 
 package com.android.internal.telephony.gsm;
 
+<<<<<<< HEAD
 import android.telephony.PhoneNumberUtils;
 import android.text.format.Time;
 import android.util.Log;
@@ -23,15 +24,30 @@ import android.util.Log;
 import com.android.internal.telephony.EncodeException;
 import com.android.internal.telephony.GsmAlphabet;
 import com.android.internal.telephony.IccUtils;
+=======
+import android.os.Parcel;
+import android.telephony.PhoneNumberUtils;
+import android.text.format.Time;
+import android.util.Log;
+import com.android.internal.telephony.IccUtils;
+import com.android.internal.telephony.EncodeException;
+import com.android.internal.telephony.GsmAlphabet;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.telephony.SmsHeader;
 import com.android.internal.telephony.SmsMessageBase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 
+<<<<<<< HEAD
 import static android.telephony.SmsMessage.ENCODING_16BIT;
 import static android.telephony.SmsMessage.ENCODING_7BIT;
 import static android.telephony.SmsMessage.ENCODING_8BIT;
+=======
+import static android.telephony.SmsMessage.ENCODING_7BIT;
+import static android.telephony.SmsMessage.ENCODING_8BIT;
+import static android.telephony.SmsMessage.ENCODING_16BIT;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import static android.telephony.SmsMessage.ENCODING_KSC5601;
 import static android.telephony.SmsMessage.ENCODING_UNKNOWN;
 import static android.telephony.SmsMessage.MAX_USER_DATA_BYTES;
@@ -240,6 +256,7 @@ public class SmsMessage extends SmsMessageBase {
             return null;
         }
 
+<<<<<<< HEAD
         if (encoding == ENCODING_UNKNOWN) {
             // Find the best encoding to use
             TextEncodingDetails ted = calculateLength(message, false);
@@ -268,15 +285,26 @@ public class SmsMessage extends SmsMessageBase {
             }
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         SubmitPdu ret = new SubmitPdu();
         // MTI = SMS-SUBMIT, UDHI = header != null
         byte mtiByte = (byte)(0x01 | (header != null ? 0x40 : 0x00));
         ByteArrayOutputStream bo = getSubmitPduHead(
                 scAddress, destinationAddress, mtiByte,
                 statusReportRequested, ret);
+<<<<<<< HEAD
 
         // User Data (and length)
         byte[] userData;
+=======
+        // User Data (and length)
+        byte[] userData;
+        if (encoding == ENCODING_UNKNOWN) {
+            // First, try encoding it with the GSM alphabet
+            encoding = ENCODING_7BIT;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         try {
             if (encoding == ENCODING_7BIT) {
                 userData = GsmAlphabet.stringToGsm7BitPackedWithHeader(message, header,
@@ -308,7 +336,10 @@ public class SmsMessage extends SmsMessageBase {
         if (encoding == ENCODING_7BIT) {
             if ((0xff & userData[0]) > MAX_USER_DATA_SEPTETS) {
                 // Message too long
+<<<<<<< HEAD
                 Log.e(LOG_TAG, "Message too long (" + (0xff & userData[0]) + " septets)");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return null;
             }
             // TP-Data-Coding-Scheme
@@ -323,7 +354,10 @@ public class SmsMessage extends SmsMessageBase {
         } else { // assume UCS-2
             if ((0xff & userData[0]) > MAX_USER_DATA_BYTES) {
                 // Message too long
+<<<<<<< HEAD
                 Log.e(LOG_TAG, "Message too long (" + (0xff & userData[0]) + " bytes)");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return null;
             }
             // TP-Data-Coding-Scheme
@@ -796,6 +830,7 @@ public class SmsMessage extends SmsMessageBase {
         return protocolIdentifier;
     }
 
+<<<<<<< HEAD
     /**
      * Returns the TP-Data-Coding-Scheme byte, for acknowledgement of SMS-PP download messages.
      * @return the TP-DCS field of the SMS header
@@ -804,6 +839,8 @@ public class SmsMessage extends SmsMessageBase {
         return dataCodingScheme;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /** {@inheritDoc} */
     @Override
     public boolean isReplace() {
@@ -1164,6 +1201,7 @@ public class SmsMessage extends SmsMessageBase {
         return messageClass;
     }
 
+<<<<<<< HEAD
     /**
      * Returns true if this is a (U)SIM data download type SM.
      * See 3GPP TS 31.111 section 9.1 and TS 23.040 section 9.2.3.9.
@@ -1174,4 +1212,6 @@ public class SmsMessage extends SmsMessageBase {
         return messageClass == MessageClass.CLASS_2 &&
                 (protocolIdentifier == 0x7f || protocolIdentifier == 0x7c);
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
+<<<<<<< HEAD
 import static android.os.BatteryManager.BATTERY_STATUS_FULL;
 import static android.os.BatteryManager.BATTERY_STATUS_UNKNOWN;
 import static android.os.BatteryManager.BATTERY_HEALTH_UNKNOWN;
@@ -29,6 +30,13 @@ import static android.os.BatteryManager.EXTRA_PLUGGED;
 import static android.os.BatteryManager.EXTRA_LEVEL;
 import static android.os.BatteryManager.EXTRA_HEALTH;
 import android.media.AudioManager;
+=======
+import static android.os.BatteryManager.BATTERY_STATUS_CHARGING;
+import static android.os.BatteryManager.BATTERY_STATUS_FULL;
+import static android.os.BatteryManager.BATTERY_STATUS_UNKNOWN;
+import android.media.AudioManager;
+import android.media.IRemoteControlClient;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.Message;
@@ -75,7 +83,13 @@ public class KeyguardUpdateMonitor {
 
     private boolean mDeviceProvisioned;
 
+<<<<<<< HEAD
     private BatteryStatus mBatteryStatus;
+=======
+    private int mBatteryLevel;
+
+    private int mBatteryStatus;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private CharSequence mTelephonyPlmn;
     private CharSequence mTelephonySpn;
@@ -110,6 +124,7 @@ public class KeyguardUpdateMonitor {
      * the intent and provide a {@link SimCard.State} result.
      */
     private static class SimArgs {
+<<<<<<< HEAD
         public final IccCard.State simState;
 
         SimArgs(IccCard.State state) {
@@ -118,6 +133,12 @@ public class KeyguardUpdateMonitor {
 
         static SimArgs fromIntent(Intent intent) {
             IccCard.State state;
+=======
+
+        public final IccCard.State simState;
+
+        private SimArgs(Intent intent) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (!TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(intent.getAction())) {
                 throw new IllegalArgumentException("only handles intent ACTION_SIM_STATE_CHANGED");
             }
@@ -128,16 +149,26 @@ public class KeyguardUpdateMonitor {
 
                 if (IccCard.INTENT_VALUE_ABSENT_ON_PERM_DISABLED.equals(
                         absentReason)) {
+<<<<<<< HEAD
                     state = IccCard.State.PERM_DISABLED;
                 } else {
                     state = IccCard.State.ABSENT;
                 }
             } else if (IccCard.INTENT_VALUE_ICC_READY.equals(stateExtra)) {
                 state = IccCard.State.READY;
+=======
+                    this.simState = IccCard.State.PERM_DISABLED;
+                } else {
+                    this.simState = IccCard.State.ABSENT;
+                }
+            } else if (IccCard.INTENT_VALUE_ICC_READY.equals(stateExtra)) {
+                this.simState = IccCard.State.READY;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (IccCard.INTENT_VALUE_ICC_LOCKED.equals(stateExtra)) {
                 final String lockedReason = intent
                         .getStringExtra(IccCard.INTENT_KEY_LOCKED_REASON);
                 if (IccCard.INTENT_VALUE_LOCKED_ON_PIN.equals(lockedReason)) {
+<<<<<<< HEAD
                     state = IccCard.State.PIN_REQUIRED;
                 } else if (IccCard.INTENT_VALUE_LOCKED_ON_PUK.equals(lockedReason)) {
                     state = IccCard.State.PUK_REQUIRED;
@@ -150,6 +181,19 @@ public class KeyguardUpdateMonitor {
                 state = IccCard.State.UNKNOWN;
             }
             return new SimArgs(state);
+=======
+                    this.simState = IccCard.State.PIN_REQUIRED;
+                } else if (IccCard.INTENT_VALUE_LOCKED_ON_PUK.equals(lockedReason)) {
+                    this.simState = IccCard.State.PUK_REQUIRED;
+                } else {
+                    this.simState = IccCard.State.UNKNOWN;
+                }
+            } else if (IccCard.INTENT_VALUE_LOCKED_NETWORK.equals(stateExtra)) {
+                this.simState = IccCard.State.NETWORK_LOCKED;
+            } else {
+                this.simState = IccCard.State.UNKNOWN;
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         public String toString() {
@@ -157,6 +201,7 @@ public class KeyguardUpdateMonitor {
         }
     }
 
+<<<<<<< HEAD
     private static class BatteryStatus {
         public final int status;
         public final int level;
@@ -171,6 +216,8 @@ public class KeyguardUpdateMonitor {
 
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public KeyguardUpdateMonitor(Context context) {
         mContext = context;
 
@@ -182,7 +229,11 @@ public class KeyguardUpdateMonitor {
                         handleTimeUpdate();
                         break;
                     case MSG_BATTERY_UPDATE:
+<<<<<<< HEAD
                         handleBatteryUpdate((BatteryStatus) msg.obj);
+=======
+                        handleBatteryUpdate(msg.arg1,  msg.arg2);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         break;
                     case MSG_CARRIER_INFO_UPDATE:
                         handleCarrierInfoUpdate();
@@ -246,7 +297,12 @@ public class KeyguardUpdateMonitor {
 
         // take a guess to start
         mSimState = IccCard.State.READY;
+<<<<<<< HEAD
         mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0);
+=======
+        mBatteryStatus = BATTERY_STATUS_UNKNOWN;
+        mBatteryLevel = 100;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mTelephonyPlmn = getDefaultPlmn();
 
@@ -275,6 +331,7 @@ public class KeyguardUpdateMonitor {
                     mTelephonySpn = getTelephonySpnFrom(intent);
                     mHandler.sendMessage(mHandler.obtainMessage(MSG_CARRIER_INFO_UPDATE));
                 } else if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+<<<<<<< HEAD
                     final int status = intent.getIntExtra(EXTRA_STATUS, BATTERY_STATUS_UNKNOWN);
                     final int plugged = intent.getIntExtra(EXTRA_PLUGGED, 0);
                     final int level = intent.getIntExtra(EXTRA_LEVEL, 0);
@@ -285,6 +342,20 @@ public class KeyguardUpdateMonitor {
                 } else if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
                     mHandler.sendMessage(mHandler.obtainMessage(
                             MSG_SIM_STATE_CHANGE, SimArgs.fromIntent(intent)));
+=======
+                    final int pluggedInStatus = intent
+                            .getIntExtra("status", BATTERY_STATUS_UNKNOWN);
+                    int batteryLevel = intent.getIntExtra("level", 0);
+                    final Message msg = mHandler.obtainMessage(
+                            MSG_BATTERY_UPDATE,
+                            pluggedInStatus,
+                            batteryLevel);
+                    mHandler.sendMessage(msg);
+                } else if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
+                    mHandler.sendMessage(mHandler.obtainMessage(
+                            MSG_SIM_STATE_CHANGE,
+                            new SimArgs(intent)));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } else if (AudioManager.RINGER_MODE_CHANGED_ACTION.equals(action)) {
                     mHandler.sendMessage(mHandler.obtainMessage(MSG_RINGER_MODE_CHANGED,
                             intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1), 0));
@@ -342,6 +413,7 @@ public class KeyguardUpdateMonitor {
     /**
      * Handle {@link #MSG_BATTERY_UPDATE}
      */
+<<<<<<< HEAD
     private void handleBatteryUpdate(BatteryStatus batteryStatus) {
         if (DEBUG) Log.d(TAG, "handleBatteryUpdate");
         final boolean batteryUpdateInteresting =
@@ -352,6 +424,17 @@ public class KeyguardUpdateMonitor {
                 // TODO: pass BatteryStatus object to onRefreshBatteryInfo() instead...
                 mInfoCallbacks.get(i).onRefreshBatteryInfo(
                     shouldShowBatteryInfo(),isPluggedIn(batteryStatus), batteryStatus.level);
+=======
+    private void handleBatteryUpdate(int batteryStatus, int batteryLevel) {
+        if (DEBUG) Log.d(TAG, "handleBatteryUpdate");
+        if (isBatteryUpdateInteresting(batteryStatus, batteryLevel)) {
+            mBatteryStatus = batteryStatus;
+            mBatteryLevel = batteryLevel;
+            final boolean pluggedIn = isPluggedIn(batteryStatus);;
+            for (int i = 0; i < mInfoCallbacks.size(); i++) {
+                mInfoCallbacks.get(i).onRefreshBatteryInfo(
+                        shouldShowBatteryInfo(), pluggedIn, batteryLevel);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -395,6 +478,7 @@ public class KeyguardUpdateMonitor {
     }
 
     /**
+<<<<<<< HEAD
      * @param pluggedIn state from {@link android.os.BatteryManager#EXTRA_PLUGGED}
      * @return Whether the device is considered "plugged in."
      */
@@ -412,10 +496,27 @@ public class KeyguardUpdateMonitor {
 
         // change in plug state is always interesting
         if (wasPluggedIn != nowPluggedIn || stateChangedWhilePluggedIn) {
+=======
+     * @param status One of the statuses of {@link android.os.BatteryManager}
+     * @return Whether the status maps to a status for being plugged in.
+     */
+    private boolean isPluggedIn(int status) {
+        return status == BATTERY_STATUS_CHARGING || status == BATTERY_STATUS_FULL;
+    }
+
+    private boolean isBatteryUpdateInteresting(int batteryStatus, int batteryLevel) {
+        // change in plug is always interesting
+        final boolean isPluggedIn = isPluggedIn(batteryStatus);
+        final boolean wasPluggedIn = isPluggedIn(mBatteryStatus);
+        final boolean stateChangedWhilePluggedIn =
+            wasPluggedIn == true && isPluggedIn == true && (mBatteryStatus != batteryStatus);
+        if (wasPluggedIn != isPluggedIn || stateChangedWhilePluggedIn) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
 
         // change in battery level while plugged in
+<<<<<<< HEAD
         if (nowPluggedIn && old.level != current.level) {
             return true;
         }
@@ -423,12 +524,28 @@ public class KeyguardUpdateMonitor {
         // change where battery needs charging
         if (!nowPluggedIn && isBatteryLow(current) && current.level != old.level) {
             return true;
+=======
+        if (isPluggedIn && mBatteryLevel != batteryLevel) {
+            return true;
+        }
+
+        if (!isPluggedIn) {
+            // not plugged in and below threshold
+            if (isBatteryLow(batteryLevel) && batteryLevel != mBatteryLevel) {
+                return true;
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         return false;
     }
 
+<<<<<<< HEAD
     private static boolean isBatteryLow(BatteryStatus status) {
         return status.level < LOW_BATTERY_THRESHOLD;
+=======
+    private boolean isBatteryLow(int batteryLevel) {
+        return batteryLevel < LOW_BATTERY_THRESHOLD;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -537,8 +654,13 @@ public class KeyguardUpdateMonitor {
         if (!mInfoCallbacks.contains(callback)) {
             mInfoCallbacks.add(callback);
             // Notify listener of the current state
+<<<<<<< HEAD
             callback.onRefreshBatteryInfo(shouldShowBatteryInfo(),isPluggedIn(mBatteryStatus),
                     mBatteryStatus.level);
+=======
+            callback.onRefreshBatteryInfo(shouldShowBatteryInfo(), isPluggedIn(mBatteryStatus),
+                    mBatteryLevel);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             callback.onTimeChanged();
             callback.onRingerModeChanged(mRingMode);
             callback.onPhoneStateChanged(mPhoneState);
@@ -575,6 +697,7 @@ public class KeyguardUpdateMonitor {
     }
 
     /**
+<<<<<<< HEAD
      * Report that the user successfully entered the SIM PIN or PUK/SIM PIN so we
      * have the information earlier than waiting for the intent
      * broadcast from the telephony code.
@@ -585,6 +708,14 @@ public class KeyguardUpdateMonitor {
     public void reportSimUnlocked() {
         mSimState = IccCard.State.READY;
         handleSimStateChange(new SimArgs(mSimState));
+=======
+     * Report that the user succesfully entered the sim pin or puk so we
+     * have the information earlier than waiting for the intent
+     * broadcast from the telephony code.
+     */
+    public void reportSimUnlocked() {
+        mSimState = IccCard.State.READY;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public boolean isKeyguardBypassEnabled() {
@@ -596,6 +727,7 @@ public class KeyguardUpdateMonitor {
     }
 
     public boolean isDeviceCharged() {
+<<<<<<< HEAD
         return mBatteryStatus.status == BATTERY_STATUS_FULL
                 || mBatteryStatus.level >= 100; // in case particular device doesn't flag it
     }
@@ -606,6 +738,18 @@ public class KeyguardUpdateMonitor {
 
     public boolean shouldShowBatteryInfo() {
         return isPluggedIn(mBatteryStatus) || isBatteryLow(mBatteryStatus);
+=======
+        return mBatteryStatus == BatteryManager.BATTERY_STATUS_FULL
+                || mBatteryLevel >= 100; // in case a particular device doesn't flag it
+    }
+
+    public int getBatteryLevel() {
+        return mBatteryLevel;
+    }
+
+    public boolean shouldShowBatteryInfo() {
+        return isPluggedIn(mBatteryStatus) || isBatteryLow(mBatteryLevel);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public CharSequence getTelephonyPlmn() {

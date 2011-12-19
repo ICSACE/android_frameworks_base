@@ -118,10 +118,13 @@ public final class BluetoothInputDevice implements BluetoothProfile {
         }
     }
 
+<<<<<<< HEAD
     /*package*/ void close() {
         mServiceListener = null;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Initiate connection to a profile of the remote bluetooth device.
      *

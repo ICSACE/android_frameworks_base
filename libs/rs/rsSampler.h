@@ -27,6 +27,7 @@ namespace renderscript {
 const static uint32_t RS_MAX_SAMPLER_SLOT = 16;
 
 class SamplerState;
+<<<<<<< HEAD
 /*****************************************************************************
  * CAUTION
  *
@@ -37,6 +38,25 @@ class SamplerState;
  *****************************************************************************/
 class Sampler : public ObjectBase {
 public:
+=======
+
+class Sampler : public ObjectBase {
+public:
+    static ObjectBaseRef<Sampler> getSampler(Context *,
+                                             RsSamplerValue magFilter,
+                                             RsSamplerValue minFilter,
+                                             RsSamplerValue wrapS,
+                                             RsSamplerValue wrapT,
+                                             RsSamplerValue wrapR,
+                                             float aniso = 1.0f);
+    void bindToContext(SamplerState *, uint32_t slot);
+    void unbindFromContext(SamplerState *);
+
+    virtual void serialize(OStream *stream) const;
+    virtual RsA3DClassID getClassId() const { return RS_A3D_CLASS_ID_SAMPLER; }
+    static Sampler *createFromStream(Context *rsc, IStream *stream);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     struct Hal {
         mutable void *drv;
 
@@ -52,6 +72,7 @@ public:
     };
     Hal mHal;
 
+<<<<<<< HEAD
     static ObjectBaseRef<Sampler> getSampler(Context *,
                                              RsSamplerValue magFilter,
                                              RsSamplerValue minFilter,
@@ -66,6 +87,8 @@ public:
     virtual RsA3DClassID getClassId() const { return RS_A3D_CLASS_ID_SAMPLER; }
     static Sampler *createFromStream(Context *rsc, IStream *stream);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 protected:
     int32_t mBoundSlot;
 

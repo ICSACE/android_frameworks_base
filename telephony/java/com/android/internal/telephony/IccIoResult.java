@@ -21,8 +21,13 @@ package com.android.internal.telephony;
  */
 public class
 IccIoResult {
+<<<<<<< HEAD
     public int sw1;
     public int sw2;
+=======
+    int sw1;
+    int sw2;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public byte[] payload;
 

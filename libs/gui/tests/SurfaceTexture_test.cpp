@@ -334,7 +334,11 @@ protected:
 
 class SurfaceTextureGLTest : public GLTest {
 protected:
+<<<<<<< HEAD
     enum { TEX_ID = 123 };
+=======
+    static const GLint TEX_ID = 123;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     virtual void SetUp() {
         GLTest::SetUp();
@@ -396,8 +400,12 @@ protected:
             1.0f, 1.0f,
         };
 
+<<<<<<< HEAD
         glVertexAttribPointer(mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0,
                 triangleVertices);
+=======
+        glVertexAttribPointer(mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
         glEnableVertexAttribArray(mPositionHandle);
         ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
@@ -411,6 +419,7 @@ protected:
         // XXX: These calls are not needed for GL_TEXTURE_EXTERNAL_OES as
         // they're setting the defautls for that target, but when hacking things
         // to use GL_TEXTURE_2D they are needed to achieve the same behavior.
+<<<<<<< HEAD
         glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER,
                 GL_LINEAR);
         ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
@@ -422,6 +431,15 @@ protected:
         ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
         glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T,
                 GL_CLAMP_TO_EDGE);
+=======
+        glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
+        glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
+        glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
+        glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ASSERT_EQ(GLenum(GL_NO_ERROR), glGetError());
 
         GLfloat texMatrix[16];
@@ -536,6 +554,7 @@ void fillRGBA8Buffer(uint8_t* buf, int w, int h, int stride) {
     }
 }
 
+<<<<<<< HEAD
 void fillRGBA8BufferSolid(uint8_t* buf, int w, int h, int stride, uint8_t r,
         uint8_t g, uint8_t b, uint8_t a) {
     const size_t PIXEL_SIZE = 4;
@@ -550,6 +569,8 @@ void fillRGBA8BufferSolid(uint8_t* buf, int w, int h, int stride, uint8_t r,
     }
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 TEST_F(SurfaceTextureGLTest, TexturingFromCpuFilledYV12BufferNpot) {
     const int texWidth = 64;
     const int texHeight = 66;
@@ -659,8 +680,13 @@ TEST_F(SurfaceTextureGLTest, TexturingFromCpuFilledYV12BufferWithCrop) {
 
     for (int i = 0; i < 5; i++) {
         const android_native_rect_t& crop(crops[i]);
+<<<<<<< HEAD
         SCOPED_TRACE(String8::format("rect{ l: %d t: %d r: %d b: %d }",
                 crop.left, crop.top, crop.right, crop.bottom).string());
+=======
+        SCOPED_TRACE(String8::format("rect{ l: %d t: %d r: %d b: %d }", crop.left,
+                crop.top, crop.right, crop.bottom).string());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         ASSERT_EQ(NO_ERROR, native_window_set_crop(mANW.get(), &crop));
 
@@ -669,15 +695,23 @@ TEST_F(SurfaceTextureGLTest, TexturingFromCpuFilledYV12BufferWithCrop) {
         ASSERT_TRUE(anb != NULL);
 
         sp<GraphicBuffer> buf(new GraphicBuffer(anb, false));
+<<<<<<< HEAD
         ASSERT_EQ(NO_ERROR, mANW->lockBuffer(mANW.get(),
                 buf->getNativeBuffer()));
+=======
+        ASSERT_EQ(NO_ERROR, mANW->lockBuffer(mANW.get(), buf->getNativeBuffer()));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         uint8_t* img = NULL;
         buf->lock(GRALLOC_USAGE_SW_WRITE_OFTEN, (void**)(&img));
         fillYV12BufferRect(img, texWidth, texHeight, buf->getStride(), crop);
         buf->unlock();
+<<<<<<< HEAD
         ASSERT_EQ(NO_ERROR, mANW->queueBuffer(mANW.get(),
                 buf->getNativeBuffer()));
+=======
+        ASSERT_EQ(NO_ERROR, mANW->queueBuffer(mANW.get(), buf->getNativeBuffer()));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mST->updateTexImage();
 
@@ -729,8 +763,12 @@ TEST_F(SurfaceTextureGLTest, TexturingFromCpuFilledYV12BuffersRepeatedly) {
 
     class ProducerThread : public Thread {
     public:
+<<<<<<< HEAD
         ProducerThread(const sp<ANativeWindow>& anw,
                 const TestPixel* testPixels):
+=======
+        ProducerThread(const sp<ANativeWindow>& anw, const TestPixel* testPixels):
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mANW(anw),
                 mTestPixels(testPixels) {
         }
@@ -962,6 +1000,7 @@ TEST_F(SurfaceTextureGLTest, TexturingFromCpuFilledRGBABufferPow2) {
     EXPECT_TRUE(checkPixel( 3, 52,  35, 231,  35,  35));
 }
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLTest, AbandonUnblocksDequeueBuffer) {
     class ProducerThread : public Thread {
     public:
@@ -1117,18 +1156,32 @@ protected:
 };
 
 TEST_F(SurfaceTextureGLToGLTest, TexturingFromGLFilledRGBABufferPow2) {
+=======
+TEST_F(SurfaceTextureGLTest, TexturingFromGLFilledRGBABufferPow2) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     const int texWidth = 64;
     const int texHeight = 64;
 
     mST->setDefaultBufferSize(texWidth, texHeight);
 
     // Do the producer side of things
+<<<<<<< HEAD
     EXPECT_TRUE(eglMakeCurrent(mEglDisplay, mProducerEglSurface,
             mProducerEglSurface, mProducerEglContext));
     ASSERT_EQ(EGL_SUCCESS, eglGetError());
 
     // This is needed to ensure we pick up a buffer of the correct size.
     eglSwapBuffers(mEglDisplay, mProducerEglSurface);
+=======
+    EGLSurface stcEglSurface = eglCreateWindowSurface(mEglDisplay, mGlConfig,
+            mANW.get(), NULL);
+    ASSERT_EQ(EGL_SUCCESS, eglGetError());
+    ASSERT_NE(EGL_NO_SURFACE, stcEglSurface);
+
+    EXPECT_TRUE(eglMakeCurrent(mEglDisplay, stcEglSurface, stcEglSurface,
+            mEglContext));
+    ASSERT_EQ(EGL_SUCCESS, eglGetError());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     glClearColor(0.6, 0.6, 0.6, 0.6);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -1146,7 +1199,11 @@ TEST_F(SurfaceTextureGLToGLTest, TexturingFromGLFilledRGBABufferPow2) {
     glClearColor(0.0, 0.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
+<<<<<<< HEAD
     eglSwapBuffers(mEglDisplay, mProducerEglSurface);
+=======
+    eglSwapBuffers(mEglDisplay, stcEglSurface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // Do the consumer side of things
     EXPECT_TRUE(eglMakeCurrent(mEglDisplay, mEglSurface, mEglSurface,
@@ -1155,9 +1212,18 @@ TEST_F(SurfaceTextureGLToGLTest, TexturingFromGLFilledRGBABufferPow2) {
 
     glDisable(GL_SCISSOR_TEST);
 
+<<<<<<< HEAD
     mST->updateTexImage(); // Skip the first frame, which was empty
     mST->updateTexImage();
 
+=======
+    mST->updateTexImage();
+
+    // We must wait until updateTexImage has been called to destroy the
+    // EGLSurface because we're in synchronous mode.
+    eglDestroySurface(mEglDisplay, stcEglSurface);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     glClearColor(0.2, 0.2, 0.2, 0.2);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -1187,6 +1253,7 @@ TEST_F(SurfaceTextureGLToGLTest, TexturingFromGLFilledRGBABufferPow2) {
     EXPECT_TRUE(checkPixel( 3, 52, 153, 153, 153, 153));
 }
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLToGLTest, EglDestroySurfaceUnrefsBuffers) {
     sp<GraphicBuffer> buffers[3];
 
@@ -1317,6 +1384,92 @@ TEST_F(SurfaceTextureGLToGLTest, EglSurfaceDefaultsToSynchronousMode) {
  * SurfaceTexture.  Additionally it supports interlocking the producer and
  * consumer threads so that a specific sequence of calls can be
  * deterministically created by the test.
+=======
+TEST_F(SurfaceTextureGLTest, AbandonUnblocksDequeueBuffer) {
+    class ProducerThread : public Thread {
+    public:
+        ProducerThread(const sp<ANativeWindow>& anw):
+                mANW(anw),
+                mDequeueError(NO_ERROR) {
+        }
+
+        virtual ~ProducerThread() {
+        }
+
+        virtual bool threadLoop() {
+            Mutex::Autolock lock(mMutex);
+            ANativeWindowBuffer* anb;
+
+            // Frame 1
+            if (mANW->dequeueBuffer(mANW.get(), &anb) != NO_ERROR) {
+                return false;
+            }
+            if (anb == NULL) {
+                return false;
+            }
+            if (mANW->queueBuffer(mANW.get(), anb)
+                    != NO_ERROR) {
+                return false;
+            }
+
+            // Frame 2
+            if (mANW->dequeueBuffer(mANW.get(), &anb) != NO_ERROR) {
+                return false;
+            }
+            if (anb == NULL) {
+                return false;
+            }
+            if (mANW->queueBuffer(mANW.get(), anb)
+                    != NO_ERROR) {
+                return false;
+            }
+
+            // Frame 3 - error expected
+            mDequeueError = mANW->dequeueBuffer(mANW.get(), &anb);
+            return false;
+        }
+
+        status_t getDequeueError() {
+            Mutex::Autolock lock(mMutex);
+            return mDequeueError;
+        }
+
+    private:
+        sp<ANativeWindow> mANW;
+        status_t mDequeueError;
+        Mutex mMutex;
+    };
+
+    sp<FrameWaiter> fw(new FrameWaiter);
+    mST->setFrameAvailableListener(fw);
+    ASSERT_EQ(OK, mST->setSynchronousMode(true));
+    ASSERT_EQ(OK, mST->setBufferCountServer(2));
+
+    sp<Thread> pt(new ProducerThread(mANW));
+    pt->run();
+
+    fw->waitForFrame();
+    fw->waitForFrame();
+
+    // Sleep for 100ms to allow the producer thread's dequeueBuffer call to
+    // block waiting for a buffer to become available.
+    usleep(100000);
+
+    mST->abandon();
+
+    pt->requestExitAndWait();
+    ASSERT_EQ(NO_INIT,
+            reinterpret_cast<ProducerThread*>(pt.get())->getDequeueError());
+}
+
+/*
+ * This test is for testing GL -> GL texture streaming via SurfaceTexture.  It
+ * contains functionality to create a producer thread that will perform GL
+ * rendering to an ANativeWindow that feeds frames to a SurfaceTexture.
+ * Additionally it supports interlocking the producer and consumer threads so
+ * that a specific sequence of calls can be deterministically created by the
+ * test.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  *
  * The intended usage is as follows:
  *
@@ -1339,7 +1492,11 @@ TEST_F(SurfaceTextureGLToGLTest, EglSurfaceDefaultsToSynchronousMode) {
  * }
  *
  */
+<<<<<<< HEAD
 class SurfaceTextureGLThreadToGLTest : public SurfaceTextureGLToGLTest {
+=======
+class SurfaceTextureGLToGLTest : public SurfaceTextureGLTest {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 protected:
 
     // ProducerThread is an abstract base class to simplify the creation of
@@ -1440,8 +1597,35 @@ protected:
         Condition mFrameFinishCondition;
     };
 
+<<<<<<< HEAD
     virtual void SetUp() {
         SurfaceTextureGLToGLTest::SetUp();
+=======
+    SurfaceTextureGLToGLTest():
+            mProducerEglSurface(EGL_NO_SURFACE),
+            mProducerEglContext(EGL_NO_CONTEXT) {
+    }
+
+    virtual void SetUp() {
+        SurfaceTextureGLTest::SetUp();
+
+        EGLConfig myConfig = {0};
+        EGLint numConfigs = 0;
+        EXPECT_TRUE(eglChooseConfig(mEglDisplay, getConfigAttribs(), &myConfig,
+                1, &numConfigs));
+        ASSERT_EQ(EGL_SUCCESS, eglGetError());
+
+        mProducerEglSurface = eglCreateWindowSurface(mEglDisplay, myConfig,
+                mANW.get(), NULL);
+        ASSERT_EQ(EGL_SUCCESS, eglGetError());
+        ASSERT_NE(EGL_NO_SURFACE, mProducerEglSurface);
+
+        mProducerEglContext = eglCreateContext(mEglDisplay, myConfig,
+                EGL_NO_CONTEXT, getContextAttribs());
+        ASSERT_EQ(EGL_SUCCESS, eglGetError());
+        ASSERT_NE(EGL_NO_CONTEXT, mProducerEglContext);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mFC = new FrameCondition();
         mST->setFrameAvailableListener(mFC);
     }
@@ -1450,9 +1634,21 @@ protected:
         if (mProducerThread != NULL) {
             mProducerThread->requestExitAndWait();
         }
+<<<<<<< HEAD
         mProducerThread.clear();
         mFC.clear();
         SurfaceTextureGLToGLTest::TearDown();
+=======
+        if (mProducerEglContext != EGL_NO_CONTEXT) {
+            eglDestroyContext(mEglDisplay, mProducerEglContext);
+        }
+        if (mProducerEglSurface != EGL_NO_SURFACE) {
+            eglDestroySurface(mEglDisplay, mProducerEglSurface);
+        }
+        mProducerThread.clear();
+        mFC.clear();
+        SurfaceTextureGLTest::TearDown();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     void runProducerThread(const sp<ProducerThread> producerThread) {
@@ -1463,12 +1659,21 @@ protected:
         producerThread->run();
     }
 
+<<<<<<< HEAD
+=======
+    EGLSurface mProducerEglSurface;
+    EGLContext mProducerEglContext;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<ProducerThread> mProducerThread;
     sp<FrameCondition> mFC;
 };
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLThreadToGLTest,
         UpdateTexImageBeforeFrameFinishedCompletes) {
+=======
+TEST_F(SurfaceTextureGLToGLTest, UpdateTexImageBeforeFrameFinishedCompletes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     class PT : public ProducerThread {
         virtual void render() {
             glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
@@ -1486,8 +1691,12 @@ TEST_F(SurfaceTextureGLThreadToGLTest,
     // TODO: Add frame verification once RGB TEX_EXTERNAL_OES is supported!
 }
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLThreadToGLTest,
         UpdateTexImageAfterFrameFinishedCompletes) {
+=======
+TEST_F(SurfaceTextureGLToGLTest, UpdateTexImageAfterFrameFinishedCompletes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     class PT : public ProducerThread {
         virtual void render() {
             glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
@@ -1505,8 +1714,12 @@ TEST_F(SurfaceTextureGLThreadToGLTest,
     // TODO: Add frame verification once RGB TEX_EXTERNAL_OES is supported!
 }
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLThreadToGLTest,
         RepeatedUpdateTexImageBeforeFrameFinishedCompletes) {
+=======
+TEST_F(SurfaceTextureGLToGLTest, RepeatedUpdateTexImageBeforeFrameFinishedCompletes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     enum { NUM_ITERATIONS = 1024 };
 
     class PT : public ProducerThread {
@@ -1534,8 +1747,12 @@ TEST_F(SurfaceTextureGLThreadToGLTest,
     }
 }
 
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLThreadToGLTest,
         RepeatedUpdateTexImageAfterFrameFinishedCompletes) {
+=======
+TEST_F(SurfaceTextureGLToGLTest, RepeatedUpdateTexImageAfterFrameFinishedCompletes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     enum { NUM_ITERATIONS = 1024 };
 
     class PT : public ProducerThread {
@@ -1564,8 +1781,12 @@ TEST_F(SurfaceTextureGLThreadToGLTest,
 }
 
 // XXX: This test is disabled because it is currently hanging on some devices.
+<<<<<<< HEAD
 TEST_F(SurfaceTextureGLThreadToGLTest,
         DISABLED_RepeatedSwapBuffersWhileDequeueStalledCompletes) {
+=======
+TEST_F(SurfaceTextureGLToGLTest, DISABLED_RepeatedSwapBuffersWhileDequeueStalledCompletes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     enum { NUM_ITERATIONS = 64 };
 
     class PT : public ProducerThread {
@@ -1630,6 +1851,7 @@ TEST_F(SurfaceTextureGLThreadToGLTest,
     }
 }
 
+<<<<<<< HEAD
 class SurfaceTextureFBOTest : public SurfaceTextureGLTest {
 protected:
 
@@ -1727,4 +1949,6 @@ TEST_F(SurfaceTextureFBOTest, BlitFromCpuFilledBufferToFbo) {
     EXPECT_TRUE(checkPixel( 24, 39, 0, 255, 0, 255));
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 } // namespace android

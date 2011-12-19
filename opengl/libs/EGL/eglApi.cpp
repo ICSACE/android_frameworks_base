@@ -49,7 +49,26 @@ using namespace android;
 
 // ----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 #define EGL_VERSION_HW_ANDROID  0x3143
+=======
+static char const * const sVendorString     = "Android";
+static char const * const sVersionString    = "1.4 Android META-EGL";
+static char const * const sClientApiString  = "OpenGL ES";
+static char const * const sExtensionString  =
+        "EGL_KHR_image "
+        "EGL_KHR_image_base "
+        "EGL_KHR_image_pixmap "
+        "EGL_KHR_gl_texture_2D_image "
+        "EGL_KHR_gl_texture_cubemap_image "
+        "EGL_KHR_gl_renderbuffer_image "
+        "EGL_KHR_fence_sync "
+        "EGL_ANDROID_image_native_buffer "
+        "EGL_ANDROID_swap_rectangle "
+        "EGL_ANDROID_get_render_buffer "
+        "EGL_NV_system_time "
+        ;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 struct extention_map_t {
     const char* name;
@@ -65,10 +84,20 @@ static const extention_map_t sExtentionMap[] = {
             (__eglMustCastToProperFunctionPointerType)&eglCreateImageKHR },
     { "eglDestroyImageKHR",
             (__eglMustCastToProperFunctionPointerType)&eglDestroyImageKHR },
+<<<<<<< HEAD
+=======
+    { "eglSetSwapRectangleANDROID",
+            (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID },
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     { "eglGetSystemTimeFrequencyNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeFrequencyNV },
     { "eglGetSystemTimeNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeNV },
+<<<<<<< HEAD
+=======
+    { "eglGetRenderBufferANDROID", 
+            (__eglMustCastToProperFunctionPointerType)&eglGetRenderBufferANDROID }, 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 };
 
 // accesses protected by sExtensionMapMutex
@@ -372,11 +401,14 @@ EGLSurface eglCreateWindowSurface(  EGLDisplay dpy, EGLConfig config,
             }
         }
 
+<<<<<<< HEAD
         // the EGL spec requires that a new EGLSurface default to swap interval
         // 1, so explicitly set that on the window here.
         ANativeWindow* anw = reinterpret_cast<ANativeWindow*>(window);
         anw->setSwapInterval(anw, 1);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         EGLSurface surface = cnx->egl.eglCreateWindowSurface(
                 iDpy, iConfig, window, attrib_list);
         if (surface != EGL_NO_SURFACE) {
@@ -440,7 +472,11 @@ EGLBoolean eglDestroySurface(EGLDisplay dpy, EGLSurface surface)
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -461,7 +497,11 @@ EGLBoolean eglQuerySurface( EGLDisplay dpy, EGLSurface surface,
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -530,7 +570,11 @@ EGLBoolean eglDestroyContext(EGLDisplay dpy, EGLContext ctx)
     if (!dp)
         return EGL_FALSE;
 
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get())
         return setError(EGL_BAD_CONTEXT, EGL_FALSE);
     
@@ -581,9 +625,15 @@ EGLBoolean eglMakeCurrent(  EGLDisplay dpy, EGLSurface draw,
     }
 
     // get a reference to the object passed in
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
     SurfaceRef _d(dp, draw);
     SurfaceRef _r(dp, read);
+=======
+    ContextRef _c(ctx);
+    SurfaceRef _d(draw);
+    SurfaceRef _r(read);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // validate the context (if not EGL_NO_CONTEXT)
     if ((ctx != EGL_NO_CONTEXT) && !_c.get()) {
@@ -685,7 +735,11 @@ EGLBoolean eglQueryContext( EGLDisplay dpy, EGLContext ctx,
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get()) return setError(EGL_BAD_CONTEXT, EGL_FALSE);
 
     egl_context_t * const c = get_context(ctx);
@@ -847,17 +901,23 @@ __eglMustCastToProperFunctionPointerType eglGetProcAddress(const char *procname)
         return  NULL;
     }
 
+<<<<<<< HEAD
     // The EGL_ANDROID_blob_cache extension should not be exposed to
     // applications.  It is used internally by the Android EGL layer.
     if (!strcmp(procname, "eglSetBlobCacheFuncsANDROID")) {
         return NULL;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     __eglMustCastToProperFunctionPointerType addr;
     addr = findProcAddress(procname, sExtentionMap, NELEM(sExtentionMap));
     if (addr) return addr;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // this protects accesses to sGLExtentionMap and sGLExtentionSlot
     pthread_mutex_lock(&sExtensionMapMutex);
 
@@ -933,12 +993,21 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, EGLSurface draw)
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, draw);
+=======
+    SurfaceRef _s(draw);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
     egl_surface_t const * const s = get_surface(draw);
+<<<<<<< HEAD
     return s->cnx->egl.eglSwapBuffers(dp->disp[s->impl].dpy, s->surface);
+=======
+    s->cnx->egl.eglSwapBuffers(dp->disp[s->impl].dpy, s->surface);
+    return EGL_TRUE;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 EGLBoolean eglCopyBuffers(  EGLDisplay dpy, EGLSurface surface,
@@ -949,7 +1018,11 @@ EGLBoolean eglCopyBuffers(  EGLDisplay dpy, EGLSurface surface,
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -967,6 +1040,7 @@ const char* eglQueryString(EGLDisplay dpy, EGLint name)
 
     switch (name) {
         case EGL_VENDOR:
+<<<<<<< HEAD
             return dp->getVendorString();
         case EGL_VERSION:
             return dp->getVersionString();
@@ -980,6 +1054,15 @@ const char* eglQueryString(EGLDisplay dpy, EGLint name)
             }
             return dp->disp[IMPL_SOFTWARE].queryString.version;
         }
+=======
+            return sVendorString;
+        case EGL_VERSION:
+            return sVersionString;
+        case EGL_EXTENSIONS:
+            return sExtensionString;
+        case EGL_CLIENT_APIS:
+            return sClientApiString;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
     return setError(EGL_BAD_PARAMETER, (const char *)0);
 }
@@ -997,7 +1080,11 @@ EGLBoolean eglSurfaceAttrib(
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -1017,7 +1104,11 @@ EGLBoolean eglBindTexImage(
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -1037,7 +1128,11 @@ EGLBoolean eglReleaseTexImage(
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -1196,7 +1291,11 @@ EGLBoolean eglLockSurfaceKHR(EGLDisplay dpy, EGLSurface surface,
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -1215,7 +1314,11 @@ EGLBoolean eglUnlockSurfaceKHR(EGLDisplay dpy, EGLSurface surface)
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SurfaceRef _s(dp, surface);
+=======
+    SurfaceRef _s(surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_SURFACE, EGL_FALSE);
 
@@ -1236,7 +1339,11 @@ EGLImageKHR eglCreateImageKHR(EGLDisplay dpy, EGLContext ctx, EGLenum target,
     if (!dp) return EGL_NO_IMAGE_KHR;
 
     if (ctx != EGL_NO_CONTEXT) {
+<<<<<<< HEAD
         ContextRef _c(dp, ctx);
+=======
+        ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (!_c.get())
             return setError(EGL_BAD_CONTEXT, EGL_NO_IMAGE_KHR);
         egl_context_t * const c = get_context(ctx);
@@ -1305,7 +1412,11 @@ EGLBoolean eglDestroyImageKHR(EGLDisplay dpy, EGLImageKHR img)
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     ImageRef _i(dp, img);
+=======
+    ImageRef _i(img);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_i.get()) return setError(EGL_BAD_PARAMETER, EGL_FALSE);
 
     egl_image_t* image = get_image(img);
@@ -1344,7 +1455,11 @@ EGLSyncKHR eglCreateSyncKHR(EGLDisplay dpy, EGLenum type, const EGLint *attrib_l
     if (!dp) return EGL_NO_SYNC_KHR;
 
     EGLContext ctx = eglGetCurrentContext();
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get())
         return setError(EGL_BAD_CONTEXT, EGL_NO_SYNC_KHR);
 
@@ -1367,12 +1482,20 @@ EGLBoolean eglDestroySyncKHR(EGLDisplay dpy, EGLSyncKHR sync)
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SyncRef _s(dp, sync);
+=======
+    SyncRef _s(sync);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get()) return setError(EGL_BAD_PARAMETER, EGL_FALSE);
     egl_sync_t* syncObject = get_sync(sync);
 
     EGLContext ctx = syncObject->context;
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get())
         return setError(EGL_BAD_CONTEXT, EGL_FALSE);
 
@@ -1394,12 +1517,20 @@ EGLint eglClientWaitSyncKHR(EGLDisplay dpy, EGLSyncKHR sync, EGLint flags, EGLTi
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SyncRef _s(dp, sync);
+=======
+    SyncRef _s(sync);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get()) return setError(EGL_BAD_PARAMETER, EGL_FALSE);
     egl_sync_t* syncObject = get_sync(sync);
 
     EGLContext ctx = syncObject->context;
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get())
         return setError(EGL_BAD_CONTEXT, EGL_FALSE);
 
@@ -1419,13 +1550,21 @@ EGLBoolean eglGetSyncAttribKHR(EGLDisplay dpy, EGLSyncKHR sync, EGLint attribute
     egl_display_t const * const dp = validate_display(dpy);
     if (!dp) return EGL_FALSE;
 
+<<<<<<< HEAD
     SyncRef _s(dp, sync);
+=======
+    SyncRef _s(sync);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_s.get())
         return setError(EGL_BAD_PARAMETER, EGL_FALSE);
 
     egl_sync_t* syncObject = get_sync(sync);
     EGLContext ctx = syncObject->context;
+<<<<<<< HEAD
     ContextRef _c(dp, ctx);
+=======
+    ContextRef _c(ctx);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (!_c.get())
         return setError(EGL_BAD_CONTEXT, EGL_FALSE);
 
@@ -1442,7 +1581,29 @@ EGLBoolean eglGetSyncAttribKHR(EGLDisplay dpy, EGLSyncKHR sync, EGLint attribute
 // ANDROID extensions
 // ----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 /* ANDROID extensions entry-point go here */
+=======
+EGLBoolean eglSetSwapRectangleANDROID(EGLDisplay dpy, EGLSurface draw,
+        EGLint left, EGLint top, EGLint width, EGLint height)
+{
+    clearError();
+
+    egl_display_t const * const dp = validate_display(dpy);
+    if (!dp) return EGL_FALSE;
+
+    SurfaceRef _s(draw);
+    if (!_s.get())
+        return setError(EGL_BAD_SURFACE, EGL_FALSE);
+
+    egl_surface_t const * const s = get_surface(draw);
+    if (s->cnx->egl.eglSetSwapRectangleANDROID) {
+        return s->cnx->egl.eglSetSwapRectangleANDROID(
+                dp->disp[s->impl].dpy, s->surface, left, top, width, height);
+    }
+    return setError(EGL_BAD_DISPLAY, NULL);
+}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 // ----------------------------------------------------------------------------
 // NVIDIA extensions
@@ -1486,3 +1647,23 @@ EGLuint64NV eglGetSystemTimeNV()
 
     return setErrorQuiet(EGL_BAD_DISPLAY, 0);
 }
+<<<<<<< HEAD
+=======
+
+EGLClientBuffer eglGetRenderBufferANDROID(EGLDisplay dpy, EGLSurface draw)
+{
+    clearError();
+    egl_display_t const * const dp = validate_display(dpy);
+    if (!dp) return EGL_FALSE;
+
+    SurfaceRef _s(draw);
+    if (!_s.get()) return setError(EGL_BAD_SURFACE, (EGLClientBuffer*)0);
+
+    egl_surface_t const * const s = get_surface(draw);
+    if (s->cnx->egl.eglGetRenderBufferANDROID) {
+        return s->cnx->egl.eglGetRenderBufferANDROID(
+                dp->disp[s->impl].dpy, s->surface);
+    }
+    return setError(EGL_BAD_DISPLAY, (EGLClientBuffer*)0);
+}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

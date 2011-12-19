@@ -210,11 +210,18 @@ public class RenderScript {
         validate();
         rsnElementGetNativeData(mContext, id, elementData);
     }
+<<<<<<< HEAD
     native void rsnElementGetSubElements(int con, int id,
                                          int[] IDs, String[] names, int[] arraySizes);
     synchronized void nElementGetSubElements(int id, int[] IDs, String[] names, int[] arraySizes) {
         validate();
         rsnElementGetSubElements(mContext, id, IDs, names, arraySizes);
+=======
+    native void rsnElementGetSubElements(int con, int id, int[] IDs, String[] names);
+    synchronized void nElementGetSubElements(int id, int[] IDs, String[] names) {
+        validate();
+        rsnElementGetSubElements(mContext, id, IDs, names);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     native int rsnTypeCreate(int con, int eid, int x, int y, int z, boolean mips, boolean faces);

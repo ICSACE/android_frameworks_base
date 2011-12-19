@@ -39,7 +39,10 @@ ifeq ($(USE_OPENGL_RENDERER),true)
 		external/skia/include/utils
 
 	LOCAL_CFLAGS += -DUSE_OPENGL_RENDERER
+<<<<<<< HEAD
 	LOCAL_CFLAGS += -fvisibility=hidden
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 	LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 	LOCAL_SHARED_LIBRARIES := libcutils libutils libGLESv2 libskia libui
 	LOCAL_MODULE := libhwui

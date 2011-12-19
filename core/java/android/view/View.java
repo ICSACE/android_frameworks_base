@@ -1487,8 +1487,12 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
             | AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
             | AccessibilityEvent.TYPE_VIEW_HOVER_ENTER
             | AccessibilityEvent.TYPE_VIEW_HOVER_EXIT
+<<<<<<< HEAD
             | AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED
             | AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED;
+=======
+            | AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * Temporary Rect currently for use in setBackground().  This will probably
@@ -1549,7 +1553,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     int mID = NO_ID;
 
     /**
+<<<<<<< HEAD
      * The stable ID of this view for accessibility purposes.
+=======
+     * The stable ID of this view for accessibility porposes.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     int mAccessibilityViewId = NO_ID;
 
@@ -2318,6 +2326,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     private int mBackgroundResource;
     private boolean mBackgroundSizeChanged;
 
+<<<<<<< HEAD
     static class ListenerInfo {
         /**
          * Listener used to dispatch focus change events.
@@ -2371,6 +2380,57 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     }
 
     ListenerInfo mListenerInfo;
+=======
+    /**
+     * Listener used to dispatch focus change events.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */
+    protected OnFocusChangeListener mOnFocusChangeListener;
+
+    /**
+     * Listeners for layout change events.
+     */
+    private ArrayList<OnLayoutChangeListener> mOnLayoutChangeListeners;
+
+    /**
+     * Listeners for attach events.
+     */
+    private CopyOnWriteArrayList<OnAttachStateChangeListener> mOnAttachStateChangeListeners;
+
+    /**
+     * Listener used to dispatch click events.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */
+    protected OnClickListener mOnClickListener;
+
+    /**
+     * Listener used to dispatch long click events.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */
+    protected OnLongClickListener mOnLongClickListener;
+
+    /**
+     * Listener used to build the context menu.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */
+    protected OnCreateContextMenuListener mOnCreateContextMenuListener;
+
+    private OnKeyListener mOnKeyListener;
+
+    private OnTouchListener mOnTouchListener;
+
+    private OnHoverListener mOnHoverListener;
+
+    private OnGenericMotionListener mOnGenericMotionListener;
+
+    private OnDragListener mOnDragListener;
+
+    private OnSystemUiVisibilityChangeListener mOnSystemUiVisibilityChangeListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /**
      * The application environment this view lives in.
@@ -3351,6 +3411,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         return mVerticalScrollbarPosition;
     }
 
+<<<<<<< HEAD
     ListenerInfo getListenerInfo() {
         if (mListenerInfo != null) {
             return mListenerInfo;
@@ -3359,13 +3420,19 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         return mListenerInfo;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Register a callback to be invoked when focus of this view changed.
      *
      * @param l The callback that will run.
      */
     public void setOnFocusChangeListener(OnFocusChangeListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnFocusChangeListener = l;
+=======
+        mOnFocusChangeListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3375,12 +3442,20 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param listener The listener that will be called when layout bounds change.
      */
     public void addOnLayoutChangeListener(OnLayoutChangeListener listener) {
+<<<<<<< HEAD
         ListenerInfo li = getListenerInfo();
         if (li.mOnLayoutChangeListeners == null) {
             li.mOnLayoutChangeListeners = new ArrayList<OnLayoutChangeListener>();
         }
         if (!li.mOnLayoutChangeListeners.contains(listener)) {
             li.mOnLayoutChangeListeners.add(listener);
+=======
+        if (mOnLayoutChangeListeners == null) {
+            mOnLayoutChangeListeners = new ArrayList<OnLayoutChangeListener>();
+        }
+        if (!mOnLayoutChangeListeners.contains(listener)) {
+            mOnLayoutChangeListeners.add(listener);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -3390,11 +3465,18 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param listener The listener for layout bounds change.
      */
     public void removeOnLayoutChangeListener(OnLayoutChangeListener listener) {
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li == null || li.mOnLayoutChangeListeners == null) {
             return;
         }
         li.mOnLayoutChangeListeners.remove(listener);
+=======
+        if (mOnLayoutChangeListeners == null) {
+            return;
+        }
+        mOnLayoutChangeListeners.remove(listener);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3408,12 +3490,19 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @see #removeOnAttachStateChangeListener(OnAttachStateChangeListener)
      */
     public void addOnAttachStateChangeListener(OnAttachStateChangeListener listener) {
+<<<<<<< HEAD
         ListenerInfo li = getListenerInfo();
         if (li.mOnAttachStateChangeListeners == null) {
             li.mOnAttachStateChangeListeners
                     = new CopyOnWriteArrayList<OnAttachStateChangeListener>();
         }
         li.mOnAttachStateChangeListeners.add(listener);
+=======
+        if (mOnAttachStateChangeListeners == null) {
+            mOnAttachStateChangeListeners = new CopyOnWriteArrayList<OnAttachStateChangeListener>();
+        }
+        mOnAttachStateChangeListeners.add(listener);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3424,11 +3513,18 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @see #addOnAttachStateChangeListener(OnAttachStateChangeListener)
      */
     public void removeOnAttachStateChangeListener(OnAttachStateChangeListener listener) {
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li == null || li.mOnAttachStateChangeListeners == null) {
             return;
         }
         li.mOnAttachStateChangeListeners.remove(listener);
+=======
+        if (mOnAttachStateChangeListeners == null) {
+            return;
+        }
+        mOnAttachStateChangeListeners.remove(listener);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3437,8 +3533,12 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @return The callback, or null if one is not registered.
      */
     public OnFocusChangeListener getOnFocusChangeListener() {
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         return li != null ? li.mOnFocusChangeListener : null;
+=======
+        return mOnFocusChangeListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3453,6 +3553,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         if (!isClickable()) {
             setClickable(true);
         }
+<<<<<<< HEAD
         getListenerInfo().mOnClickListener = l;
     }
 
@@ -3463,6 +3564,9 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     public boolean hasOnClickListeners() {
         ListenerInfo li = mListenerInfo;
         return (li != null && li.mOnClickListener != null);
+=======
+        mOnClickListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3477,7 +3581,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         if (!isLongClickable()) {
             setLongClickable(true);
         }
+<<<<<<< HEAD
         getListenerInfo().mOnLongClickListener = l;
+=======
+        mOnLongClickListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3491,6 +3599,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         if (!isLongClickable()) {
             setLongClickable(true);
         }
+<<<<<<< HEAD
         getListenerInfo().mOnCreateContextMenuListener = l;
     }
 
@@ -3498,6 +3607,13 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * Call this view's OnClickListener, if it is defined.  Performs all normal
      * actions associated with clicking: reporting accessibility event, playing
      * a sound, etc.
+=======
+        mOnCreateContextMenuListener = l;
+    }
+
+    /**
+     * Call this view's OnClickListener, if it is defined.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @return True there was an assigned OnClickListener that was called, false
      *         otherwise is returned.
@@ -3505,10 +3621,16 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     public boolean performClick() {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
 
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnClickListener != null) {
             playSoundEffect(SoundEffectConstants.CLICK);
             li.mOnClickListener.onClick(this);
+=======
+        if (mOnClickListener != null) {
+            playSoundEffect(SoundEffectConstants.CLICK);
+            mOnClickListener.onClick(this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
 
@@ -3516,6 +3638,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     }
 
     /**
+<<<<<<< HEAD
      * Directly call any attached OnClickListener.  Unlike {@link #performClick()},
      * this only calls the listener, and does not do any associated clicking
      * actions like reporting an accessibility event.
@@ -3533,6 +3656,8 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Call this view's OnLongClickListener, if it is defined. Invokes the context menu if the
      * OnLongClickListener did not consume the event.
      *
@@ -3542,9 +3667,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
 
         boolean handled = false;
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnLongClickListener != null) {
             handled = li.mOnLongClickListener.onLongClick(View.this);
+=======
+        if (mOnLongClickListener != null) {
+            handled = mOnLongClickListener.onLongClick(View.this);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         if (!handled) {
             handled = showContextMenu();
@@ -3612,7 +3742,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l the key listener to attach to this view
      */
     public void setOnKeyListener(OnKeyListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnKeyListener = l;
+=======
+        mOnKeyListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3620,7 +3754,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l the touch listener to attach to this view
      */
     public void setOnTouchListener(OnTouchListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnTouchListener = l;
+=======
+        mOnTouchListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3628,7 +3766,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l the generic motion listener to attach to this view
      */
     public void setOnGenericMotionListener(OnGenericMotionListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnGenericMotionListener = l;
+=======
+        mOnGenericMotionListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3636,7 +3778,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l the hover listener to attach to this view
      */
     public void setOnHoverListener(OnHoverListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnHoverListener = l;
+=======
+        mOnHoverListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3647,7 +3793,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l An implementation of {@link android.view.View.OnDragListener}.
      */
     public void setOnDragListener(OnDragListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnDragListener = l;
+=======
+        mOnDragListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -3853,9 +4003,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         }
 
         invalidate(true);
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnFocusChangeListener != null) {
             li.mOnFocusChangeListener.onFocusChange(this, gainFocus);
+=======
+        if (mOnFocusChangeListener != null) {
+            mOnFocusChangeListener.onFocusChange(this, gainFocus);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         if (mAttachInfo != null) {
@@ -4172,12 +4327,19 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         bounds.offset(locationOnScreen[0], locationOnScreen[1]);
         info.setBoundsInScreen(bounds);
 
+<<<<<<< HEAD
         if ((mPrivateFlags & IS_ROOT_NAMESPACE) == 0) {
             ViewParent parent = getParent();
             if (parent instanceof View) {
                 View parentView = (View) parent;
                 info.setParent(parentView);
             }
+=======
+        ViewParent parent = getParent();
+        if (parent instanceof View) {
+            View parentView = (View) parent;
+            info.setParent(parentView);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         info.setPackageName(mContext.getPackageName());
@@ -4271,7 +4433,10 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      *
      * @attr ref android.R.styleable#View_contentDescription
      */
+<<<<<<< HEAD
     @RemotableViewMethod
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void setContentDescription(CharSequence contentDescription) {
         mContentDescription = contentDescription;
     }
@@ -5491,9 +5656,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
 
         // Give any attached key listener a first crack at the event.
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnKeyListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
                 && li.mOnKeyListener.onKey(this, event.getKeyCode(), event)) {
+=======
+        if (mOnKeyListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
+                && mOnKeyListener.onKey(this, event.getKeyCode(), event)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
 
@@ -5532,9 +5702,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
 
         if (onFilterTouchEventForSecurity(event)) {
             //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
             ListenerInfo li = mListenerInfo;
             if (li != null && li.mOnTouchListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
                     && li.mOnTouchListener.onTouch(this, event)) {
+=======
+            if (mOnTouchListener != null && (mViewFlags & ENABLED_MASK) == ENABLED &&
+                    mOnTouchListener.onTouch(this, event)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return true;
             }
 
@@ -5626,10 +5801,15 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
 
     private boolean dispatchGenericMotionEventInternal(MotionEvent event) {
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnGenericMotionListener != null
                 && (mViewFlags & ENABLED_MASK) == ENABLED
                 && li.mOnGenericMotionListener.onGenericMotion(this, event)) {
+=======
+        if (mOnGenericMotionListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
+                && mOnGenericMotionListener.onGenericMotion(this, event)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
 
@@ -5655,10 +5835,15 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      */
     protected boolean dispatchHoverEvent(MotionEvent event) {
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnHoverListener != null
                 && (mViewFlags & ENABLED_MASK) == ENABLED
                 && li.mOnHoverListener.onHover(this, event)) {
+=======
+        if (mOnHoverListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
+                && mOnHoverListener.onHover(this, event)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
 
@@ -5942,8 +6127,12 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
                 mAttachInfo.mKeepScreenOn = true;
             }
             mAttachInfo.mSystemUiVisibility |= mSystemUiVisibility;
+<<<<<<< HEAD
             ListenerInfo li = mListenerInfo;
             if (li != null && li.mOnSystemUiVisibilityChangeListener != null) {
+=======
+            if (mOnSystemUiVisibilityChangeListener != null) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mAttachInfo.mHasSystemUiListeners = true;
             }
         }
@@ -6177,9 +6366,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         ((MenuBuilder)menu).setCurrentMenuInfo(menuInfo);
 
         onCreateContextMenu(menu);
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnCreateContextMenuListener != null) {
             li.mOnCreateContextMenuListener.onCreateContextMenu(menu, this, menuInfo);
+=======
+        if (mOnCreateContextMenuListener != null) {
+            mOnCreateContextMenuListener.onCreateContextMenu(menu, this, menuInfo);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         // Clear the extra information so subsequent items that aren't mine don't
@@ -8059,9 +8253,15 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     /**
      * If some part of this view is not clipped by any of its parents, then
      * return that area in r in global (root) coordinates. To convert r to local
+<<<<<<< HEAD
      * coordinates (without taking possible View rotations into account), offset
      * it by -globalOffset (e.g. r.offset(-globalOffset.x, -globalOffset.y)).
      * If the view is completely clipped or translated out, return false.
+=======
+     * coordinates, offset it by -globalOffset (e.g. r.offset(-globalOffset.x,
+     * -globalOffset.y)) If the view is completely clipped or translated out,
+     * return false.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @param r If true is returned, r holds the global coordinates of the
      *        visible portion of this view.
@@ -9783,9 +9983,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         performCollectViewAttributes(visibility);
         onAttachedToWindow();
 
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         final CopyOnWriteArrayList<OnAttachStateChangeListener> listeners =
                 li != null ? li.mOnAttachStateChangeListeners : null;
+=======
+        final CopyOnWriteArrayList<OnAttachStateChangeListener> listeners =
+                mOnAttachStateChangeListeners;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (listeners != null && listeners.size() > 0) {
             // NOTE: because of the use of CopyOnWriteArrayList, we *must* use an iterator to
             // perform the dispatching. The iterator is a safe guard against listeners that
@@ -9817,9 +10022,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
 
         onDetachedFromWindow();
 
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         final CopyOnWriteArrayList<OnAttachStateChangeListener> listeners =
                 li != null ? li.mOnAttachStateChangeListeners : null;
+=======
+        final CopyOnWriteArrayList<OnAttachStateChangeListener> listeners =
+                mOnAttachStateChangeListeners;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (listeners != null && listeners.size() > 0) {
             // NOTE: because of the use of CopyOnWriteArrayList, we *must* use an iterator to
             // perform the dispatching. The iterator is a safe guard against listeners that
@@ -10073,7 +10283,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         switch (mLayerType) {
             case LAYER_TYPE_HARDWARE:
                 destroyLayer();
+<<<<<<< HEAD
                 // fall through - non-accelerated views may use software layer mechanism instead
+=======
+                // fall through - unaccelerated views may use software layer mechanism instead
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case LAYER_TYPE_SOFTWARE:
                 destroyDrawingCache();
                 break;
@@ -10140,11 +10354,15 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
 
         switch (mLayerType) {
             case LAYER_TYPE_HARDWARE:
+<<<<<<< HEAD
                 if (mAttachInfo.mHardwareRenderer != null &&
                         mAttachInfo.mHardwareRenderer.isEnabled() &&
                         mAttachInfo.mHardwareRenderer.validate()) {
                     getHardwareLayer();
                 }
+=======
+                getHardwareLayer();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             case LAYER_TYPE_SOFTWARE:
                 buildDrawingCache(true);
@@ -10181,6 +10399,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
                 mLocalDirtyRect.setEmpty();
             }
 
+<<<<<<< HEAD
             // The layer is not valid if the underlying GPU resources cannot be allocated
             if (!mHardwareLayer.isValid()) {
                 return null;
@@ -10195,6 +10414,10 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
                 return null;
             }
 
+=======
+            HardwareCanvas currentCanvas = mAttachInfo.mHardwareCanvas;
+            final HardwareCanvas canvas = mHardwareLayer.start(currentCanvas);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mAttachInfo.mHardwareCanvas = canvas;
             try {
                 canvas.setViewport(width, height);
@@ -10239,16 +10462,20 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
         if (mHardwareLayer != null) {
             mHardwareLayer.destroy();
             mHardwareLayer = null;
+<<<<<<< HEAD
 
             invalidate(true);
             invalidateParentCaches();
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
         return false;
     }
 
     /**
+<<<<<<< HEAD
      * Destroys all hardware rendering resources. This method is invoked
      * when the system needs to reclaim resources. Upon execution of this
      * method, you should free any OpenGL resources created by the view.
@@ -10264,6 +10491,8 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * <p>Enables or disables the drawing cache. When the drawing cache is enabled, the next call
      * to {@link #getDrawingCache()} or {@link #buildDrawingCache()} will draw the view in a
      * bitmap. Calling {@link #draw(android.graphics.Canvas)} will not draw from the cache when
@@ -11278,10 +11507,16 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
             onLayout(changed, l, t, r, b);
             mPrivateFlags &= ~LAYOUT_REQUIRED;
 
+<<<<<<< HEAD
             ListenerInfo li = mListenerInfo;
             if (li != null && li.mOnLayoutChangeListeners != null) {
                 ArrayList<OnLayoutChangeListener> listenersCopy =
                         (ArrayList<OnLayoutChangeListener>)li.mOnLayoutChangeListeners.clone();
+=======
+            if (mOnLayoutChangeListeners != null) {
+                ArrayList<OnLayoutChangeListener> listenersCopy =
+                        (ArrayList<OnLayoutChangeListener>) mOnLayoutChangeListeners.clone();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 int numListeners = listenersCopy.size();
                 for (int i = 0; i < numListeners; ++i) {
                     listenersCopy.get(i).onLayoutChange(this, l, t, r, b, oldL, oldT, oldR, oldB);
@@ -11426,12 +11661,17 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      *        {@link SystemClock#uptimeMillis} timebase.
      */
     public void scheduleDrawable(Drawable who, Runnable what, long when) {
+<<<<<<< HEAD
         if (verifyDrawable(who) && what != null) {
             if (mAttachInfo != null) {
                 mAttachInfo.mHandler.postAtTime(what, who, when);
             } else {
                 ViewRootImpl.getRunQueue().postDelayed(what, when - SystemClock.uptimeMillis());
             }
+=======
+        if (verifyDrawable(who) && what != null && mAttachInfo != null) {
+            mAttachInfo.mHandler.postAtTime(what, who, when);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -11442,12 +11682,17 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param what the action to cancel
      */
     public void unscheduleDrawable(Drawable who, Runnable what) {
+<<<<<<< HEAD
         if (verifyDrawable(who) && what != null) {
             if (mAttachInfo != null) {
                 mAttachInfo.mHandler.removeCallbacks(what, who);
             } else {
                 ViewRootImpl.getRunQueue().removeCallbacks(what);
             }
+=======
+        if (verifyDrawable(who) && what != null && mAttachInfo != null) {
+            mAttachInfo.mHandler.removeCallbacks(what, who);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -12152,6 +12397,7 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param location an array of two integers in which to hold the coordinates
      */
     public void getLocationInWindow(int[] location) {
+<<<<<<< HEAD
         // When the view is not attached to a window, this method does not make sense
         if (mAttachInfo == null) return;
 
@@ -12183,17 +12429,46 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
             position[0] += view.mLeft;
             position[1] += view.mTop;
 
+=======
+        if (location == null || location.length < 2) {
+            throw new IllegalArgumentException("location must be an array of "
+                    + "two integers");
+        }
+
+        location[0] = mLeft;
+        location[1] = mTop;
+        if (mTransformationInfo != null) {
+            location[0] += (int) (mTransformationInfo.mTranslationX + 0.5f);
+            location[1] += (int) (mTransformationInfo.mTranslationY + 0.5f);
+        }
+
+        ViewParent viewParent = mParent;
+        while (viewParent instanceof View) {
+            final View view = (View)viewParent;
+            location[0] += view.mLeft - view.mScrollX;
+            location[1] += view.mTop - view.mScrollY;
+            if (view.mTransformationInfo != null) {
+                location[0] += (int) (view.mTransformationInfo.mTranslationX + 0.5f);
+                location[1] += (int) (view.mTransformationInfo.mTranslationY + 0.5f);
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             viewParent = view.mParent;
         }
 
         if (viewParent instanceof ViewRootImpl) {
             // *cough*
+<<<<<<< HEAD
             final ViewRootImpl vr = (ViewRootImpl) viewParent;
             position[1] -= vr.mCurScrollY;
         }
 
         location[0] = (int) (position[0] + 0.5f);
         location[1] = (int) (position[1] + 0.5f);
+=======
+            final ViewRootImpl vr = (ViewRootImpl)viewParent;
+            location[1] -= vr.mCurScrollY;
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -13172,7 +13447,11 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * @param l  The {@link OnSystemUiVisibilityChangeListener} to receive callbacks.
      */
     public void setOnSystemUiVisibilityChangeListener(OnSystemUiVisibilityChangeListener l) {
+<<<<<<< HEAD
         getListenerInfo().mOnSystemUiVisibilityChangeListener = l;
+=======
+        mOnSystemUiVisibilityChangeListener = l;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mParent != null && mAttachInfo != null && !mAttachInfo.mRecomputeGlobalAttributes) {
             mParent.recomputeViewAttributes(this);
         }
@@ -13183,9 +13462,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      * the view hierarchy.
      */
     public void dispatchSystemUiVisibilityChanged(int visibility) {
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnSystemUiVisibilityChangeListener != null) {
             li.mOnSystemUiVisibilityChangeListener.onSystemUiVisibilityChange(
+=======
+        if (mOnSystemUiVisibilityChangeListener != null) {
+            mOnSystemUiVisibilityChangeListener.onSystemUiVisibilityChange(
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     visibility & PUBLIC_STATUS_BAR_VISIBILITY_MASK);
         }
     }
@@ -13457,9 +13741,14 @@ public class View implements Drawable.Callback, Drawable.Callback2, KeyEvent.Cal
      */
     public boolean dispatchDragEvent(DragEvent event) {
         //noinspection SimplifiableIfStatement
+<<<<<<< HEAD
         ListenerInfo li = mListenerInfo;
         if (li != null && li.mOnDragListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
                 && li.mOnDragListener.onDrag(this, event)) {
+=======
+        if (mOnDragListener != null && (mViewFlags & ENABLED_MASK) == ENABLED
+                && mOnDragListener.onDrag(this, event)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return true;
         }
         return onDragEvent(event);

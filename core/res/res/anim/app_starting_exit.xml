@@ -18,8 +18,12 @@
 */
 -->
 
+<<<<<<< HEAD
 <set xmlns:android="http://schemas.android.com/apk/res/android"
         android:detachWallpaper="true" android:interpolator="@interpolator/decelerate_quad">
+=======
+<set xmlns:android="http://schemas.android.com/apk/res/android" android:interpolator="@interpolator/decelerate_quad">
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 	<alpha android:fromAlpha="1.0" android:toAlpha="0.0" android:duration="160" />
 </set>
 

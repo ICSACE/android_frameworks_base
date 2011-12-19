@@ -31,8 +31,11 @@
 #include <utils/RefBase.h>
 #include <utils/Vector.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "Debug.h"
 #include "Extensions.h"
 #include "Matrix.h"
@@ -59,12 +62,20 @@ class DisplayList;
  */
 class OpenGLRenderer {
 public:
+<<<<<<< HEAD
     ANDROID_API OpenGLRenderer();
+=======
+    OpenGLRenderer();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual ~OpenGLRenderer();
 
     virtual void setViewport(int width, int height);
 
+<<<<<<< HEAD
     ANDROID_API void prepare(bool opaque);
+=======
+    void prepare(bool opaque);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual void prepareDirty(float left, float top, float right, float bottom, bool opaque);
     virtual void finish();
 
@@ -74,7 +85,11 @@ public:
 
     virtual bool callDrawGLFunction(Functor *functor, Rect& dirty);
 
+<<<<<<< HEAD
     ANDROID_API int getSaveCount() const;
+=======
+    int getSaveCount() const;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual int save(int flags);
     virtual void restore();
     virtual void restoreToCount(int saveCount);
@@ -89,12 +104,21 @@ public:
     virtual void scale(float sx, float sy);
     virtual void skew(float sx, float sy);
 
+<<<<<<< HEAD
     ANDROID_API void getMatrix(SkMatrix* matrix);
     virtual void setMatrix(SkMatrix* matrix);
     virtual void concatMatrix(SkMatrix* matrix);
 
     ANDROID_API const Rect& getClipBounds();
     ANDROID_API bool quickReject(float left, float top, float right, float bottom);
+=======
+    void getMatrix(SkMatrix* matrix);
+    virtual void setMatrix(SkMatrix* matrix);
+    virtual void concatMatrix(SkMatrix* matrix);
+
+    const Rect& getClipBounds();
+    bool quickReject(float left, float top, float right, float bottom);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual bool clipRect(float left, float top, float right, float bottom, SkRegion::Op op);
 
     virtual bool drawDisplayList(DisplayList* displayList, uint32_t width, uint32_t height,

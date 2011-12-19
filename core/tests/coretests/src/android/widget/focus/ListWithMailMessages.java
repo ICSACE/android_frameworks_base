@@ -120,6 +120,10 @@ public class ListWithMailMessages extends ListActivity {
         }
 
         final String mimeType = "text/html";
+<<<<<<< HEAD
+=======
+        final String encoding = "utf-8";
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 
         @Override
@@ -136,7 +140,11 @@ public class ListWithMailMessages extends ListActivity {
             subject.setText(message.getSubject());
 
             WebView body = (WebView) messageUi.findViewById(R.id.body);
+<<<<<<< HEAD
             body.loadData(message.getBody(), mimeType, null);
+=======
+            body.loadData(message.getBody(), mimeType, encoding);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 //            body.setText(message.getBody());
             body.setFocusable(message.isFocusable());
 

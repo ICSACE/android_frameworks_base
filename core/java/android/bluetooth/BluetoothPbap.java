@@ -69,7 +69,11 @@ public class BluetoothPbap {
 
     private IBluetoothPbap mService;
     private final Context mContext;
+<<<<<<< HEAD
     private ServiceListener mServiceListener;
+=======
+    private final ServiceListener mServiceListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /** There was an error trying to obtain the state */
     public static final int STATE_ERROR        = -1;
@@ -138,7 +142,10 @@ public class BluetoothPbap {
             mContext.unbindService(mConnection);
             mConnection = null;
         }
+<<<<<<< HEAD
         mServiceListener = null;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

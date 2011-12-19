@@ -219,9 +219,13 @@ void NuPlayer::Renderer::signalAudioSinkChanged() {
 
 bool NuPlayer::Renderer::onDrainAudioQueue() {
     uint32_t numFramesPlayed;
+<<<<<<< HEAD
     if (mAudioSink->getPosition(&numFramesPlayed) != OK) {
         return false;
     }
+=======
+    CHECK_EQ(mAudioSink->getPosition(&numFramesPlayed), (status_t)OK);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     ssize_t numFramesAvailableToWrite =
         mAudioSink->frameCount() - (mNumFramesWritten - numFramesPlayed);
@@ -628,16 +632,23 @@ void NuPlayer::Renderer::onPause() {
         mAudioSink->pause();
     }
 
+<<<<<<< HEAD
     LOGV("now paused audio queue has %d entries, video has %d entries",
          mAudioQueue.size(), mVideoQueue.size());
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mPaused = true;
 }
 
 void NuPlayer::Renderer::onResume() {
+<<<<<<< HEAD
     if (!mPaused) {
         return;
     }
+=======
+    CHECK(mPaused);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     if (mHasAudio) {
         mAudioSink->start();

@@ -16,6 +16,10 @@
 
 package android.view;
 
+<<<<<<< HEAD
+=======
+import android.util.DisplayMetrics;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.internal.view.BaseIWindow;
 
 import android.content.Context;
@@ -81,6 +85,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SurfaceView extends View {
     static private final String TAG = "SurfaceView";
     static private final boolean DEBUG = false;
+<<<<<<< HEAD
+=======
+    static private final boolean localLOGV = DEBUG ? true : false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     final ArrayList<SurfaceHolder.Callback> mCallbacks
             = new ArrayList<SurfaceHolder.Callback>();
@@ -88,8 +96,12 @@ public class SurfaceView extends View {
     final int[] mLocation = new int[2];
     
     final ReentrantLock mSurfaceLock = new ReentrantLock();
+<<<<<<< HEAD
     final Surface mSurface = new Surface();       // Current surface in use
     final Surface mNewSurface = new Surface();    // New surface we are switching to
+=======
+    final Surface mSurface = new Surface();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     boolean mDrawingStopped = true;
 
     final WindowManager.LayoutParams mLayout
@@ -144,7 +156,12 @@ public class SurfaceView extends View {
     int mRequestedFormat = PixelFormat.RGB_565;
 
     boolean mHaveFrame = false;
+<<<<<<< HEAD
     boolean mSurfaceCreated = false;
+=======
+    boolean mDestroyReportNeeded = false;
+    boolean mNewSurfaceNeeded = false;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     long mLastLockTime = 0;
     
     boolean mVisible = false;
@@ -234,6 +251,49 @@ public class SurfaceView extends View {
         updateWindow(false, false);
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * This method is not intended for general use. It was created
+     * temporarily to improve performance of 3D layers in Launcher
+     * and should be removed and fixed properly.
+     * 
+     * Do not call this method. Ever.
+     * 
+     * @hide
+     */
+    protected void showSurface() {
+        if (mSession != null) {
+            updateWindow(true, false);
+        }
+    }
+
+    /**
+     * This method is not intended for general use. It was created
+     * temporarily to improve performance of 3D layers in Launcher
+     * and should be removed and fixed properly.
+     * 
+     * Do not call this method. Ever.
+     * 
+     * @hide
+     */
+    protected void hideSurface() {
+        if (mSession != null && mWindow != null) {
+            mSurfaceLock.lock();
+            try {
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                mLayout.x = metrics.widthPixels * 3;
+                mSession.relayout(mWindow, mWindow.mSeq, mLayout, mWidth, mHeight, VISIBLE, false,
+                        mWinFrame, mContentInsets, mVisibleInsets, mConfiguration, mSurface);
+            } catch (RemoteException e) {
+                // Ignore
+            } finally {
+                mSurfaceLock.unlock();
+            }
+        }
+    }
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @Override
     protected void onDetachedFromWindow() {
         if (mGlobalListenersAdded) {
@@ -402,13 +462,22 @@ public class SurfaceView extends View {
         final boolean creating = mWindow == null;
         final boolean formatChanged = mFormat != mRequestedFormat;
         final boolean sizeChanged = mWidth != myWidth || mHeight != myHeight;
+<<<<<<< HEAD
         final boolean visibleChanged = mVisible != mRequestedVisible;
+=======
+        final boolean visibleChanged = mVisible != mRequestedVisible
+                || mNewSurfaceNeeded;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (force || creating || formatChanged || sizeChanged || visibleChanged
             || mLeft != mLocation[0] || mTop != mLocation[1]
             || mUpdateWindowNeeded || mReportDrawNeeded || redrawNeeded) {
 
+<<<<<<< HEAD
             if (DEBUG) Log.i(TAG, "Changes: creating=" + creating
+=======
+            if (localLOGV) Log.i(TAG, "Changes: creating=" + creating
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     + " format=" + formatChanged + " size=" + sizeChanged
                     + " visible=" + visibleChanged
                     + " left=" + (mLeft != mLocation[0])
@@ -453,11 +522,23 @@ public class SurfaceView extends View {
                             mVisible ? VISIBLE : GONE, mContentInsets);
                 }
                 
+<<<<<<< HEAD
                 boolean realSizeChanged;
                 boolean reportDrawNeeded;
 
                 int relayoutResult;
 
+=======
+                if (visibleChanged && (!visible || mNewSurfaceNeeded)) {
+                    reportSurfaceDestroyed();
+                }
+
+                mNewSurfaceNeeded = false;
+                
+                boolean realSizeChanged;
+                boolean reportDrawNeeded;
+                
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mSurfaceLock.lock();
                 try {
                     mUpdateWindowNeeded = false;
@@ -465,6 +546,7 @@ public class SurfaceView extends View {
                     mReportDrawNeeded = false;
                     mDrawingStopped = !visible;
     
+<<<<<<< HEAD
                     if (DEBUG) Log.i(TAG, "Cur surface: " + mSurface);
 
                     relayoutResult = mSession.relayout(
@@ -480,6 +562,19 @@ public class SurfaceView extends View {
                     if (DEBUG) Log.i(TAG, "New surface: " + mNewSurface
                             + ", vis=" + visible + ", frame=" + mWinFrame);
 
+=======
+                    final int relayoutResult = mSession.relayout(
+                        mWindow, mWindow.mSeq, mLayout, mWidth, mHeight,
+                            visible ? VISIBLE : GONE, false, mWinFrame, mContentInsets,
+                            mVisibleInsets, mConfiguration, mSurface);
+                    if ((relayoutResult&WindowManagerImpl.RELAYOUT_FIRST_TIME) != 0) {
+                        mReportDrawNeeded = true;
+                    }
+                    
+                    if (localLOGV) Log.i(TAG, "New surface: " + mSurface
+                            + ", vis=" + visible + ", frame=" + mWinFrame);
+                    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     mSurfaceFrame.left = 0;
                     mSurfaceFrame.top = 0;
                     if (mTranslator == null) {
@@ -504,6 +599,7 @@ public class SurfaceView extends View {
                 try {
                     redrawNeeded |= creating | reportDrawNeeded;
 
+<<<<<<< HEAD
                     SurfaceHolder.Callback callbacks[] = null;
 
                     final boolean surfaceChanged =
@@ -529,26 +625,45 @@ public class SurfaceView extends View {
                             if (callbacks == null) {
                                 callbacks = getSurfaceCallbacks();
                             }
+=======
+                    if (visible) {
+                        mDestroyReportNeeded = true;
+
+                        SurfaceHolder.Callback callbacks[];
+                        synchronized (mCallbacks) {
+                            callbacks = new SurfaceHolder.Callback[mCallbacks.size()];
+                            mCallbacks.toArray(callbacks);
+                        }
+
+                        if (visibleChanged) {
+                            mIsCreating = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             for (SurfaceHolder.Callback c : callbacks) {
                                 c.surfaceCreated(mSurfaceHolder);
                             }
                         }
                         if (creating || formatChanged || sizeChanged
                                 || visibleChanged || realSizeChanged) {
+<<<<<<< HEAD
                             if (DEBUG) Log.i(TAG, "surfaceChanged -- format=" + mFormat
                                     + " w=" + myWidth + " h=" + myHeight);
                             if (callbacks == null) {
                                 callbacks = getSurfaceCallbacks();
                             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             for (SurfaceHolder.Callback c : callbacks) {
                                 c.surfaceChanged(mSurfaceHolder, mFormat, myWidth, myHeight);
                             }
                         }
                         if (redrawNeeded) {
+<<<<<<< HEAD
                             if (DEBUG) Log.i(TAG, "surfaceRedrawNeeded");
                             if (callbacks == null) {
                                 callbacks = getSurfaceCallbacks();
                             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             for (SurfaceHolder.Callback c : callbacks) {
                                 if (c instanceof SurfaceHolder.Callback2) {
                                     ((SurfaceHolder.Callback2)c).surfaceRedrawNeeded(
@@ -556,10 +671,16 @@ public class SurfaceView extends View {
                                 }
                             }
                         }
+<<<<<<< HEAD
+=======
+                    } else {
+                        mSurface.release();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                 } finally {
                     mIsCreating = false;
                     if (redrawNeeded) {
+<<<<<<< HEAD
                         if (DEBUG) Log.i(TAG, "finishedDrawing");
                         mSession.finishDrawing(mWindow);
                     }
@@ -568,12 +689,21 @@ public class SurfaceView extends View {
             } catch (RemoteException ex) {
             }
             if (DEBUG) Log.v(
+=======
+                        mSession.finishDrawing(mWindow);
+                    }
+                }
+            } catch (RemoteException ex) {
+            }
+            if (localLOGV) Log.v(
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 TAG, "Layout: x=" + mLayout.x + " y=" + mLayout.y +
                 " w=" + mLayout.width + " h=" + mLayout.height +
                 ", frame=" + mSurfaceFrame);
         }
     }
 
+<<<<<<< HEAD
     private SurfaceHolder.Callback[] getSurfaceCallbacks() {
         SurfaceHolder.Callback callbacks[];
         synchronized (mCallbacks) {
@@ -584,6 +714,25 @@ public class SurfaceView extends View {
     }
 
     void handleGetNewSurface() {
+=======
+    private void reportSurfaceDestroyed() {
+        if (mDestroyReportNeeded) {
+            mDestroyReportNeeded = false;
+            SurfaceHolder.Callback callbacks[];
+            synchronized (mCallbacks) {
+                callbacks = new SurfaceHolder.Callback[mCallbacks.size()];
+                mCallbacks.toArray(callbacks);
+            }            
+            for (SurfaceHolder.Callback c : callbacks) {
+                c.surfaceDestroyed(mSurfaceHolder);
+            }
+        }
+        super.onDetachedFromWindow();
+    }
+
+    void handleGetNewSurface() {
+        mNewSurfaceNeeded = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         updateWindow(false, false);
     }
 
@@ -609,7 +758,11 @@ public class SurfaceView extends View {
                 Rect visibleInsets, boolean reportDraw, Configuration newConfig) {
             SurfaceView surfaceView = mSurfaceView.get();
             if (surfaceView != null) {
+<<<<<<< HEAD
                 if (DEBUG) Log.v(
+=======
+                if (localLOGV) Log.v(
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         "SurfaceView", surfaceView + " got resized: w=" +
                                 w + " h=" + h + ", cur w=" + mCurWidth + " h=" + mCurHeight);
                 surfaceView.mSurfaceLock.lock();
@@ -727,7 +880,11 @@ public class SurfaceView extends View {
         private final Canvas internalLockCanvas(Rect dirty) {
             mSurfaceLock.lock();
 
+<<<<<<< HEAD
             if (DEBUG) Log.i(TAG, "Locking canvas... stopped="
+=======
+            if (localLOGV) Log.i(TAG, "Locking canvas... stopped="
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     + mDrawingStopped + ", win=" + mWindow);
 
             Canvas c = null;
@@ -747,7 +904,11 @@ public class SurfaceView extends View {
                 }
             }
 
+<<<<<<< HEAD
             if (DEBUG) Log.i(TAG, "Returned canvas: " + c);
+=======
+            if (localLOGV) Log.i(TAG, "Returned canvas: " + c);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (c != null) {
                 mLastLockTime = SystemClock.uptimeMillis();
                 return c;

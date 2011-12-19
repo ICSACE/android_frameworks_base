@@ -91,14 +91,23 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
 
         mCallBack = callBack;
 
+<<<<<<< HEAD
         Context themeContext = getContext();
         setButton(BUTTON_POSITIVE, themeContext.getText(R.string.date_time_set), this);
         setButton(BUTTON_NEGATIVE, themeContext.getText(R.string.cancel), (OnClickListener) null);
+=======
+        setButton(BUTTON_POSITIVE, context.getText(R.string.date_time_set), this);
+        setButton(BUTTON_NEGATIVE, context.getText(R.string.cancel), (OnClickListener) null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         setIcon(0);
         setTitle(R.string.date_picker_dialog_title);
 
         LayoutInflater inflater =
+<<<<<<< HEAD
                 (LayoutInflater) themeContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+=======
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         View view = inflater.inflate(R.layout.date_picker_dialog, null);
         setView(view);
         mDatePicker = (DatePicker) view.findViewById(R.id.datePicker);

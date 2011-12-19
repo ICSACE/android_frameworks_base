@@ -697,11 +697,14 @@ public class HorizontalScrollView extends FrameLayout {
     }
 
     @Override
+<<<<<<< HEAD
     public boolean shouldDelayChildPressedState() {
         return true;
     }
 
     @Override
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     protected void onOverScrolled(int scrollX, int scrollY,
             boolean clampedX, boolean clampedY) {
         // Treat animating scrolls differently; see #computeScroll() for why.

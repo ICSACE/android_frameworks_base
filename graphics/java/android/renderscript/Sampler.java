@@ -47,6 +47,7 @@ public class Sampler extends BaseObj {
         }
     }
 
+<<<<<<< HEAD
     Value mMin;
     Value mMag;
     Value mWrapS;
@@ -54,11 +55,14 @@ public class Sampler extends BaseObj {
     Value mWrapR;
     float mAniso;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     Sampler(int id, RenderScript rs) {
         super(id, rs);
     }
 
     /**
+<<<<<<< HEAD
      * @hide
      * @return minification setting for the sampler
      */
@@ -99,6 +103,8 @@ public class Sampler extends BaseObj {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Retrieve a sampler with min and mag set to nearest and wrap modes set to
      * clamp.
      *
@@ -288,6 +294,7 @@ public class Sampler extends BaseObj {
 
         public Sampler create() {
             mRS.validate();
+<<<<<<< HEAD
             int id = mRS.nSamplerCreate(mMag.mID, mMin.mID, 
                                         mWrapS.mID, mWrapT.mID, mWrapR.mID, mAniso);
             Sampler sampler = new Sampler(id, mRS);
@@ -298,6 +305,10 @@ public class Sampler extends BaseObj {
             sampler.mWrapR = mWrapR;
             sampler.mAniso = mAniso;
             return sampler;
+=======
+            int id = mRS.nSamplerCreate(mMag.mID, mMin.mID, mWrapS.mID, mWrapT.mID, mWrapR.mID, mAniso);
+            return new Sampler(id, mRS);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

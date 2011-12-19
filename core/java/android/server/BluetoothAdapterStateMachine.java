@@ -175,8 +175,13 @@ final class BluetoothAdapterStateMachine extends StateMachine {
             switch(message.what) {
                 case USER_TURN_ON:
                     // starts turning on BT module, broadcast this out
+<<<<<<< HEAD
                     broadcastState(BluetoothAdapter.STATE_TURNING_ON);
                     transitionTo(mWarmUp);
+=======
+                    transitionTo(mWarmUp);
+                    broadcastState(BluetoothAdapter.STATE_TURNING_ON);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if (prepareBluetooth()) {
                         // this is user request, save the setting
                         if ((Boolean) message.obj) {
@@ -198,8 +203,13 @@ final class BluetoothAdapterStateMachine extends StateMachine {
                 case AIRPLANE_MODE_OFF:
                     if (getBluetoothPersistedSetting()) {
                         // starts turning on BT module, broadcast this out
+<<<<<<< HEAD
                         broadcastState(BluetoothAdapter.STATE_TURNING_ON);
                         transitionTo(mWarmUp);
+=======
+                        transitionTo(mWarmUp);
+                        broadcastState(BluetoothAdapter.STATE_TURNING_ON);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         if (prepareBluetooth()) {
                             // We will continue turn the BT on all the way to the BluetoothOn state
                             deferMessage(obtainMessage(TURN_ON_CONTINUE));
@@ -349,7 +359,10 @@ final class BluetoothAdapterStateMachine extends StateMachine {
             boolean retValue = HANDLED;
             switch(message.what) {
                 case USER_TURN_ON:
+<<<<<<< HEAD
                     broadcastState(BluetoothAdapter.STATE_TURNING_ON);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if ((Boolean) message.obj) {
                         persistSwitchSetting(true);
                     }
@@ -358,6 +371,10 @@ final class BluetoothAdapterStateMachine extends StateMachine {
                 case TURN_ON_CONTINUE:
                     mBluetoothService.switchConnectable(true);
                     transitionTo(mSwitching);
+<<<<<<< HEAD
+=======
+                    broadcastState(BluetoothAdapter.STATE_TURNING_ON);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     break;
                 case AIRPLANE_MODE_ON:
                 case TURN_COLD:
@@ -367,9 +384,15 @@ final class BluetoothAdapterStateMachine extends StateMachine {
                     break;
                 case AIRPLANE_MODE_OFF:
                     if (getBluetoothPersistedSetting()) {
+<<<<<<< HEAD
                         broadcastState(BluetoothAdapter.STATE_TURNING_ON);
                         transitionTo(mSwitching);
                         mBluetoothService.switchConnectable(true);
+=======
+                        transitionTo(mSwitching);
+                        mBluetoothService.switchConnectable(true);
+                        broadcastState(BluetoothAdapter.STATE_TURNING_ON);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                     break;
                 case PER_PROCESS_TURN_ON:
@@ -515,8 +538,13 @@ final class BluetoothAdapterStateMachine extends StateMachine {
                     }
                     //$FALL-THROUGH$ to AIRPLANE_MODE_ON
                 case AIRPLANE_MODE_ON:
+<<<<<<< HEAD
                     broadcastState(BluetoothAdapter.STATE_TURNING_OFF);
                     transitionTo(mSwitching);
+=======
+                    transitionTo(mSwitching);
+                    broadcastState(BluetoothAdapter.STATE_TURNING_OFF);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if (mBluetoothService.getAdapterConnectionState() !=
                         BluetoothAdapter.STATE_DISCONNECTED) {
                         mBluetoothService.disconnectDevices();

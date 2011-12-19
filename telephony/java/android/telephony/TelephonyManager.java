@@ -60,6 +60,7 @@ public class TelephonyManager {
 
     /** @hide */
     public TelephonyManager(Context context) {
+<<<<<<< HEAD
         if (sContext == null) {
             Context appContext = context.getApplicationContext();
             if (appContext != null) {
@@ -70,6 +71,18 @@ public class TelephonyManager {
 
             sRegistry = ITelephonyRegistry.Stub.asInterface(ServiceManager.getService(
                     "telephony.registry"));
+=======
+        context = context.getApplicationContext();
+        if (sContext == null) {
+            sContext = context;
+
+            sRegistry = ITelephonyRegistry.Stub.asInterface(ServiceManager.getService(
+                    "telephony.registry"));
+        } else if (sContext != context) {
+            Log.e(TAG, "Hidden constructor called more than once per process!");
+            Log.e(TAG, "Original: " + sContext.getPackageName() + ", new: " +
+                    context.getPackageName());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

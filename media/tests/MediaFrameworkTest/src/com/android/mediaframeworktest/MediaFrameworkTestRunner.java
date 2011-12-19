@@ -39,7 +39,10 @@ import com.android.mediaframeworktest.functional.videoeditor.VideoEditorExportTe
 import com.android.mediaframeworktest.functional.videoeditor.VideoEditorPreviewTest;
 import junit.framework.TestSuite;
 
+<<<<<<< HEAD
 import android.os.Bundle;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.test.InstrumentationTestRunner;
 import android.test.InstrumentationTestSuite;
 
@@ -55,7 +58,10 @@ import android.test.InstrumentationTestSuite;
 
 public class MediaFrameworkTestRunner extends InstrumentationTestRunner {
 
+<<<<<<< HEAD
     public static int mMinCameraFps = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     @Override
     public TestSuite getAllTests() {
@@ -89,6 +95,7 @@ public class MediaFrameworkTestRunner extends InstrumentationTestRunner {
     public ClassLoader getLoader() {
         return MediaFrameworkTestRunner.class.getClassLoader();
     }
+<<<<<<< HEAD
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -101,4 +108,6 @@ public class MediaFrameworkTestRunner extends InstrumentationTestRunner {
             mMinCameraFps = Integer.parseInt(minCameraFps);
         }
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

@@ -41,10 +41,12 @@
 namespace android {
 
 static char const * kSleepFileName = "/sys/power/wait_for_fb_sleep";
-static char const * kWakeFileName = "/sys/power/wait_for_fb_wake";
+static char const * kWakeFileName  = "/sys/power/wait_for_fb_wake";
 static char const * const kOldSleepFileName = "/sys/android_power/wait_for_fb_sleep";
 static char const * const kOldWakeFileName = "/sys/android_power/wait_for_fb_wake";
 
+// This dir exists if the framebuffer console is present, either built into
+// the kernel or loaded as a module.
 static char const * const kFbconSysDir = "/sys/class/graphics/fbcon";
 // ----------------------------------------------------------------------------
 

@@ -45,7 +45,10 @@ import android.graphics.Canvas;
 import android.net.IConnectivityManager;
 import android.net.Proxy;
 import android.net.ProxyProperties;
+<<<<<<< HEAD
 import android.opengl.GLUtils;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Debug;
@@ -175,11 +178,19 @@ public final class ActivityThread {
     // These can be accessed by multiple threads; mPackages is the lock.
     // XXX For now we keep around information about all packages we have
     // seen, not removing entries from this map.
+<<<<<<< HEAD
     // NOTE: The activity and window managers need to call in to
     // ActivityThread to do things like update resource configurations,
     // which means this lock gets held while the activity and window managers
     // holds their own lock.  Thus you MUST NEVER call back into the activity manager
     // or window manager or anything that depends on them while holding this lock.
+=======
+    // NOTE: The activity manager in its process needs to call in to
+    // ActivityThread to do things like update resource configurations,
+    // which means this lock gets held while the activity manager holds its
+    // own lock.  Thus you MUST NEVER call back into the activity manager
+    // or anything that depends on it while holding this lock.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     final HashMap<String, WeakReference<LoadedApk>> mPackages
             = new HashMap<String, WeakReference<LoadedApk>>();
     final HashMap<String, WeakReference<LoadedApk>> mResourcePackages
@@ -2734,9 +2745,14 @@ public final class ActivityThread {
         CharSequence description;
     }
 
+<<<<<<< HEAD
     private static final class ProviderRefCount {
         public int count;
 
+=======
+    private class ProviderRefCount {
+        public int count;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ProviderRefCount(int pCount) {
             count = pCount;
         }
@@ -2771,9 +2787,13 @@ public final class ActivityThread {
             if (info != null) {
                 try {
                     // First create a thumbnail for the activity...
+<<<<<<< HEAD
                     // For now, don't create the thumbnail here; we are
                     // doing that by doing a screen snapshot.
                     info.thumbnail = null; //createThumbnailBitmap(r);
+=======
+                    info.thumbnail = createThumbnailBitmap(r);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     info.description = r.activity.onCreateDescription();
                 } catch (Exception e) {
                     if (!mInstrumentation.onException(r.activity, e)) {
@@ -3716,6 +3736,7 @@ public final class ActivityThread {
         }
     }
 
+<<<<<<< HEAD
     private void setupGraphicsSupport(LoadedApk info) {
         try {
             int uid = Process.myUid();
@@ -3734,6 +3755,8 @@ public final class ActivityThread {
         }
     }    
     
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private void handleBindApplication(AppBindData data) {
         mBoundApplication = data;
         mConfiguration = new Configuration(data.config);
@@ -3757,7 +3780,11 @@ public final class ActivityThread {
                 HardwareRenderer.disable(false);
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mProfiler.profileFd != null) {
             mProfiler.startProfiling();
         }
@@ -3793,8 +3820,11 @@ public final class ActivityThread {
 
         data.info = getPackageInfoNoCheck(data.appInfo, data.compatInfo);
 
+<<<<<<< HEAD
         setupGraphicsSupport(data.info);        
         
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         /**
          * For system applications on userdebug/eng builds, log stack
          * traces of disk and network access to dropbox for analysis.
@@ -3854,6 +3884,7 @@ public final class ActivityThread {
          * Initialize the default http proxy in this process for the reasons we set the time zone.
          */
         IBinder b = ServiceManager.getService(Context.CONNECTIVITY_SERVICE);
+<<<<<<< HEAD
         if (b != null) {
             // In pre-boot mode (doing initial launch to collect password), not
             // all system is up.  This includes the connectivity service, so don't
@@ -3864,6 +3895,13 @@ public final class ActivityThread {
                 Proxy.setHttpProxySystemProperty(proxyProperties);
             } catch (RemoteException e) {}
         }
+=======
+        IConnectivityManager service = IConnectivityManager.Stub.asInterface(b);
+        try {
+            ProxyProperties proxyProperties = service.getProxy();
+            Proxy.setHttpProxySystemProperty(proxyProperties);
+        } catch (RemoteException e) {}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (data.instrumentationName != null) {
             ContextImpl appContext = new ContextImpl();
@@ -3989,6 +4027,7 @@ public final class ActivityThread {
             buf.append(": ");
             buf.append(cpi.name);
             Log.i(TAG, buf.toString());
+<<<<<<< HEAD
             IContentProvider cp = installProvider(context, null, cpi,
                     false /*noisy*/, true /*noReleaseNeeded*/);
             if (cp != null) {
@@ -3997,6 +4036,18 @@ public final class ActivityThread {
                 cph.provider = cp;
                 cph.noReleaseNeeded = true;
                 results.add(cph);
+=======
+            IContentProvider cp = installProvider(context, null, cpi, false);
+            if (cp != null) {
+                IActivityManager.ContentProviderHolder cph =
+                    new IActivityManager.ContentProviderHolder(cpi);
+                cph.provider = cp;
+                results.add(cph);
+                // Don't ever unload this provider from the process.
+                synchronized(mProviderMap) {
+                    mProviderRefCountMap.put(cp.asBinder(), new ProviderRefCount(10000));
+                }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
@@ -4007,6 +4058,7 @@ public final class ActivityThread {
         }
     }
 
+<<<<<<< HEAD
     public final IContentProvider acquireProvider(Context c, String name) {
         IContentProvider provider = acquireExistingProvider(c, name);
         if (provider != null) {
@@ -4023,6 +4075,28 @@ public final class ActivityThread {
         try {
             holder = ActivityManagerNative.getDefault().getContentProvider(
                     getApplicationThread(), name);
+=======
+    private IContentProvider getExistingProvider(Context context, String name) {
+        synchronized(mProviderMap) {
+            final ProviderClientRecord pr = mProviderMap.get(name);
+            if (pr != null) {
+                return pr.mProvider;
+            }
+            return null;
+        }
+    }
+
+    private IContentProvider getProvider(Context context, String name) {
+        IContentProvider existing = getExistingProvider(context, name);
+        if (existing != null) {
+            return existing;
+        }
+
+        IActivityManager.ContentProviderHolder holder = null;
+        try {
+            holder = ActivityManagerNative.getDefault().getContentProvider(
+                getApplicationThread(), name);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } catch (RemoteException ex) {
         }
         if (holder == null) {
@@ -4030,6 +4104,7 @@ public final class ActivityThread {
             return null;
         }
 
+<<<<<<< HEAD
         // Install provider will increment the reference count for us, and break
         // any ties in the race.
         provider = installProvider(c, holder.provider, holder.info,
@@ -4045,10 +4120,41 @@ public final class ActivityThread {
             } catch (RemoteException ex) {
             }
         }
+=======
+        IContentProvider prov = installProvider(context, holder.provider,
+                holder.info, true);
+        //Slog.i(TAG, "noReleaseNeeded=" + holder.noReleaseNeeded);
+        if (holder.noReleaseNeeded || holder.provider == null) {
+            // We are not going to release the provider if it is an external
+            // provider that doesn't care about being released, or if it is
+            // a local provider running in this process.
+            //Slog.i(TAG, "*** NO RELEASE NEEDED");
+            synchronized(mProviderMap) {
+                mProviderRefCountMap.put(prov.asBinder(), new ProviderRefCount(10000));
+            }
+        }
+        return prov;
+    }
+
+    public final IContentProvider acquireProvider(Context c, String name) {
+        IContentProvider provider = getProvider(c, name);
+        if(provider == null)
+            return null;
+        IBinder jBinder = provider.asBinder();
+        synchronized(mProviderMap) {
+            ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
+            if(prc == null) {
+                mProviderRefCountMap.put(jBinder, new ProviderRefCount(1));
+            } else {
+                prc.count++;
+            } //end else
+        } //end synchronized
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return provider;
     }
 
     public final IContentProvider acquireExistingProvider(Context c, String name) {
+<<<<<<< HEAD
         synchronized (mProviderMap) {
             ProviderClientRecord pr = mProviderMap.get(name);
             if (pr == null) {
@@ -4075,12 +4181,28 @@ public final class ActivityThread {
             }
             return provider;
         }
+=======
+        IContentProvider provider = getExistingProvider(c, name);
+        if(provider == null)
+            return null;
+        IBinder jBinder = provider.asBinder();
+        synchronized(mProviderMap) {
+            ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
+            if(prc == null) {
+                mProviderRefCountMap.put(jBinder, new ProviderRefCount(1));
+            } else {
+                prc.count++;
+            } //end else
+        } //end synchronized
+        return provider;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public final boolean releaseProvider(IContentProvider provider) {
         if(provider == null) {
             return false;
         }
+<<<<<<< HEAD
 
         IBinder jBinder = provider.asBinder();
         synchronized (mProviderMap) {
@@ -4107,10 +4229,33 @@ public final class ActivityThread {
             }
             return true;
         }
+=======
+        IBinder jBinder = provider.asBinder();
+        synchronized(mProviderMap) {
+            ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
+            if(prc == null) {
+                if(localLOGV) Slog.v(TAG, "releaseProvider::Weird shouldn't be here");
+                return false;
+            } else {
+                prc.count--;
+                if(prc.count == 0) {
+                    // Schedule the actual remove asynchronously, since we
+                    // don't know the context this will be called in.
+                    // TODO: it would be nice to post a delayed message, so
+                    // if we come back and need the same provider quickly
+                    // we will still have it available.
+                    Message msg = mH.obtainMessage(H.REMOVE_PROVIDER, provider);
+                    mH.sendMessage(msg);
+                } //end if
+            } //end else
+        } //end synchronized
+        return true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     final void completeRemoveProvider(IContentProvider provider) {
         IBinder jBinder = provider.asBinder();
+<<<<<<< HEAD
         String remoteProviderName = null;
         synchronized(mProviderMap) {
             ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
@@ -4161,6 +4306,63 @@ public final class ActivityThread {
             }
         }
     }
+=======
+        String name = null;
+        synchronized(mProviderMap) {
+            ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
+            if(prc != null && prc.count == 0) {
+                mProviderRefCountMap.remove(jBinder);
+                //invoke removeProvider to dereference provider
+                name = removeProviderLocked(provider);
+            }
+        }
+        
+        if (name != null) {
+            try {
+                if(localLOGV) Slog.v(TAG, "removeProvider::Invoking " +
+                        "ActivityManagerNative.removeContentProvider(" + name);
+                ActivityManagerNative.getDefault().removeContentProvider(
+                        getApplicationThread(), name);
+            } catch (RemoteException e) {
+                //do nothing content provider object is dead any way
+            } //end catch
+        }
+    }
+    
+    public final String removeProviderLocked(IContentProvider provider) {
+        if (provider == null) {
+            return null;
+        }
+        IBinder providerBinder = provider.asBinder();
+
+        String name = null;
+        
+        // remove the provider from mProviderMap
+        Iterator<ProviderClientRecord> iter = mProviderMap.values().iterator();
+        while (iter.hasNext()) {
+            ProviderClientRecord pr = iter.next();
+            IBinder myBinder = pr.mProvider.asBinder();
+            if (myBinder == providerBinder) {
+                //find if its published by this process itself
+                if(pr.mLocalProvider != null) {
+                    if(localLOGV) Slog.i(TAG, "removeProvider::found local provider returning");
+                    return name;
+                }
+                if(localLOGV) Slog.v(TAG, "removeProvider::Not local provider Unlinking " +
+                        "death recipient");
+                //content provider is in another process
+                myBinder.unlinkToDeath(pr, 0);
+                iter.remove();
+                //invoke remove only once for the very first name seen
+                if(name == null) {
+                    name = pr.mName;
+                }
+            } //end if myBinder
+        }  //end while iter
+        
+        return name;
+    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     final void removeDeadProvider(String name, IContentProvider provider) {
         synchronized(mProviderMap) {
@@ -4175,6 +4377,7 @@ public final class ActivityThread {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Installs the provider.
      *
@@ -4192,6 +4395,10 @@ public final class ActivityThread {
     private IContentProvider installProvider(Context context,
             IContentProvider provider, ProviderInfo info,
             boolean noisy, boolean noReleaseNeeded) {
+=======
+    private IContentProvider installProvider(Context context,
+            IContentProvider provider, ProviderInfo info, boolean noisy) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ContentProvider localProvider = null;
         if (provider == null) {
             if (noisy) {
@@ -4249,6 +4456,7 @@ public final class ActivityThread {
         }
 
         synchronized (mProviderMap) {
+<<<<<<< HEAD
             // There is a possibility that this thread raced with another thread to
             // add the provider.  If we find another thread got there first then we
             // just get out of the way and return the original provider.
@@ -4312,6 +4520,26 @@ public final class ActivityThread {
                 }
             }
         }
+=======
+            // Cache the pointer for the remote provider.
+            String names[] = PATTERN_SEMICOLON.split(info.authority);
+            for (int i=0; i<names.length; i++) {
+                ProviderClientRecord pr = new ProviderClientRecord(names[i], provider,
+                        localProvider);
+                try {
+                    provider.asBinder().linkToDeath(pr, 0);
+                    mProviderMap.put(names[i], pr);
+                } catch (RemoteException e) {
+                    return null;
+                }
+            }
+            if (localProvider != null) {
+                mLocalProviders.put(provider.asBinder(),
+                        new ProviderClientRecord(null, provider, localProvider));
+            }
+        }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return provider;
     }
 

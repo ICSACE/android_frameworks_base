@@ -28,7 +28,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -78,7 +81,10 @@ import java.lang.ref.WeakReference;
  */
 public class Dialog implements DialogInterface, Window.Callback,
         KeyEvent.Callback, OnCreateContextMenuListener {
+<<<<<<< HEAD
     private static final String TAG = "Dialog";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private Activity mOwnerActivity;
     
     final Context mContext;
@@ -112,8 +118,11 @@ public class Dialog implements DialogInterface, Window.Callback,
 
     private Handler mListenersHandler;
 
+<<<<<<< HEAD
     private ActionMode mActionMode;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private final Runnable mDismissAction = new Runnable() {
         public void run() {
             dismissDialog();
@@ -302,16 +311,24 @@ public class Dialog implements DialogInterface, Window.Callback,
         if (Thread.currentThread() != mUiThread) {
             mHandler.post(mDismissAction);
         } else {
+<<<<<<< HEAD
             mHandler.removeCallbacks(mDismissAction);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mDismissAction.run();
         }
     }
 
+<<<<<<< HEAD
     void dismissDialog() {
+=======
+    private void dismissDialog() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mDecor == null || !mShowing) {
             return;
         }
 
+<<<<<<< HEAD
         if (mWindow.isDestroyed()) {
             Log.e(TAG, "Tried to dismissDialog() but the Dialog's window was already destroyed!");
             return;
@@ -323,6 +340,11 @@ public class Dialog implements DialogInterface, Window.Callback,
             if (mActionMode != null) {
                 mActionMode.finish();
             }
+=======
+        try {
+            mWindowManager.removeView(mDecor);
+        } finally {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mDecor = null;
             mWindow.closeAllPanels();
             onStop();
@@ -965,6 +987,7 @@ public class Dialog implements DialogInterface, Window.Callback,
         return null;
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritDoc}
      *
@@ -985,6 +1008,12 @@ public class Dialog implements DialogInterface, Window.Callback,
         if (mode == mActionMode) {
             mActionMode = null;
         }
+=======
+    public void onActionModeStarted(ActionMode mode) {
+    }
+
+    public void onActionModeFinished(ActionMode mode) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

@@ -67,12 +67,17 @@ GammaFontRenderer::GammaFontRenderer() {
     const float whiteGamma = 1.0f / gamma;
 
     for (uint32_t i = 0; i <= 255; i++) {
+<<<<<<< HEAD
         mGammaTable[i] = i;
+=======
+        mDefault[i] = i;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         const float v = i / 255.0f;
         const float black = pow(v, blackGamma);
         const float white = pow(v, whiteGamma);
 
+<<<<<<< HEAD
         mGammaTable[256 + i] = uint8_t((float)::floor(black * 255.0f + 0.5f));
         mGammaTable[512 + i] = uint8_t((float)::floor(white * 255.0f + 0.5f));
     }
@@ -124,6 +129,16 @@ FontRenderer* GammaFontRenderer::getRenderer(Gamma gamma) {
     }
     mRenderersUsageCount[gamma]++;
     return renderer;
+=======
+        mBlackGamma[i] = uint8_t((float)::floor(black * 255.0f + 0.5f));
+        mWhiteGamma[i] = uint8_t((float)::floor(white * 255.0f + 0.5f));
+    }
+
+    // Configure the font renderers
+    mDefaultRenderer.setGammaTable(&mDefault[0]);
+    mBlackGammaRenderer.setGammaTable(&mBlackGamma[0]);
+    mWhiteGammaRenderer.setGammaTable(&mWhiteGamma[0]);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 FontRenderer& GammaFontRenderer::getFontRenderer(const SkPaint* paint) {
@@ -135,12 +150,21 @@ FontRenderer& GammaFontRenderer::getFontRenderer(const SkPaint* paint) {
         const int luminance = (r * 2 + g * 5 + b) >> 3;
 
         if (luminance <= mBlackThreshold) {
+<<<<<<< HEAD
             return *getRenderer(kGammaBlack);
         } else if (luminance >= mWhiteThreshold) {
             return *getRenderer(kGammaWhite);
         }
     }
     return *getRenderer(kGammaDefault);
+=======
+            return mBlackGammaRenderer;
+        } else if (luminance >= mWhiteThreshold) {
+            return mWhiteGammaRenderer;
+        }
+    }
+    return mDefaultRenderer;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 }; // namespace uirenderer

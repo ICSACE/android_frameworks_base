@@ -125,10 +125,13 @@ public class GLES11Ext {
     public static final int GL_TEXTURE_MAX_ANISOTROPY_EXT                           = 0x84FE;
     public static final int GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT                       = 0x84FF;
     public static final int GL_BGRA                                                 = 0x80E1;
+<<<<<<< HEAD
     public static final int GL_TEXTURE_EXTERNAL_OES                                 = 0x8D65;
     public static final int GL_SAMPLER_EXTERNAL_OES                                 = 0x8D66;
     public static final int GL_TEXTURE_BINDING_EXTERNAL_OES                         = 0x8D67;
     public static final int GL_REQUIRED_TEXTURE_IMAGE_UNITS_OES                     = 0x8D68;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     native private static void _nativeClassInit();
     static {

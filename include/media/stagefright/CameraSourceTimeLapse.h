@@ -57,6 +57,13 @@ private:
     int32_t mVideoWidth;
     int32_t mVideoHeight;
 
+<<<<<<< HEAD
+=======
+    // Time between capture of two frames during time lapse recording
+    // Negative value indicates that timelapse is disabled.
+    int64_t mTimeBetweenTimeLapseFrameCaptureUs;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Time between two frames in final video (1/frameRate)
     int64_t mTimeBetweenTimeLapseVideoFramesUs;
 

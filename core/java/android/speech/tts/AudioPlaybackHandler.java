@@ -118,6 +118,7 @@ class AudioPlaybackHandler {
         if (current != null && TextUtils.equals(callingApp, current.getCallingApp())) {
             stop(current);
         }
+<<<<<<< HEAD
 
         final MessageParams lastSynthesis = mLastSynthesisRequest;
 
@@ -125,11 +126,14 @@ class AudioPlaybackHandler {
                 TextUtils.equals(callingApp, lastSynthesis.getCallingApp())) {
             stop(lastSynthesis);
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     synchronized public void removeAllItems() {
         if (DBG_THREADING) Log.d(TAG, "Removing all items");
         removeAllMessages();
+<<<<<<< HEAD
 
         final MessageParams current = getCurrentParams();
         final MessageParams lastSynthesis = mLastSynthesisRequest;
@@ -138,6 +142,9 @@ class AudioPlaybackHandler {
         if (lastSynthesis != null && lastSynthesis != current) {
             stop(lastSynthesis);
         }
+=======
+        stop(getCurrentParams());
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -326,11 +333,18 @@ class AudioPlaybackHandler {
     private void handleSilence(MessageParams msg) {
         if (DBG) Log.d(TAG, "handleSilence()");
         SilenceMessageParams params = (SilenceMessageParams) msg;
+<<<<<<< HEAD
         params.getDispatcher().dispatchOnStart();
         if (params.getSilenceDurationMs() > 0) {
             params.getConditionVariable().block(params.getSilenceDurationMs());
         }
         params.getDispatcher().dispatchOnDone();
+=======
+        if (params.getSilenceDurationMs() > 0) {
+            params.getConditionVariable().block(params.getSilenceDurationMs());
+        }
+        params.getDispatcher().dispatchUtteranceCompleted();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (DBG) Log.d(TAG, "handleSilence() done.");
     }
 
@@ -338,12 +352,19 @@ class AudioPlaybackHandler {
     private void handleAudio(MessageParams msg) {
         if (DBG) Log.d(TAG, "handleAudio()");
         AudioMessageParams params = (AudioMessageParams) msg;
+<<<<<<< HEAD
         params.getDispatcher().dispatchOnStart();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Note that the BlockingMediaPlayer spawns a separate thread.
         //
         // TODO: This can be avoided.
         params.getPlayer().startAndWait();
+<<<<<<< HEAD
         params.getDispatcher().dispatchOnDone();
+=======
+        params.getDispatcher().dispatchUtteranceCompleted();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (DBG) Log.d(TAG, "handleAudio() done.");
     }
 
@@ -364,7 +385,11 @@ class AudioPlaybackHandler {
         // extra trouble to clean the data to prevent the AudioTrack resources
         // from being leaked.
         if (mLastSynthesisRequest != null) {
+<<<<<<< HEAD
             Log.e(TAG, "Error : Missing call to done() for request : " +
+=======
+            Log.w(TAG, "Error : Missing call to done() for request : " +
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     mLastSynthesisRequest);
             handleSynthesisDone(mLastSynthesisRequest);
         }
@@ -377,7 +402,10 @@ class AudioPlaybackHandler {
         if (DBG) Log.d(TAG, "Created audio track [" + audioTrack.hashCode() + "]");
 
         param.setAudioTrack(audioTrack);
+<<<<<<< HEAD
         msg.getDispatcher().dispatchOnStart();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     // More data available to be flushed to the audio track.
@@ -428,8 +456,11 @@ class AudioPlaybackHandler {
         final AudioTrack audioTrack = params.getAudioTrack();
 
         if (audioTrack == null) {
+<<<<<<< HEAD
             // There was already a call to handleSynthesisDone for
             // this token.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             return;
         }
 
@@ -458,11 +489,15 @@ class AudioPlaybackHandler {
             audioTrack.release();
             params.setAudioTrack(null);
         }
+<<<<<<< HEAD
         if (params.isError()) {
             params.getDispatcher().dispatchOnError();
         } else {
             params.getDispatcher().dispatchOnDone();
         }
+=======
+        params.getDispatcher().dispatchUtteranceCompleted();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mLastSynthesisRequest = null;
         params.mLogger.onWriteData();
     }

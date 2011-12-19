@@ -32,12 +32,15 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_MODULE:= libgui
 
+<<<<<<< HEAD
 ifeq ($(TARGET_BOARD_PLATFORM), tegra)
 ifneq ($(BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER), true)
 	LOCAL_CFLAGS += -DALLOW_DEQUEUE_CURRENT_BUFFER
 endif
 endif
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 include $(BUILD_SHARED_LIBRARY)
 
 ifeq (,$(ONE_SHOT_MAKEFILE))

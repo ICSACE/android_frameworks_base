@@ -26,8 +26,11 @@
 #include <SkTDArray.h>
 #include <SkTSearch.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "DisplayListLogBuffer.h"
 #include "OpenGLRenderer.h"
 #include "utils/Functor.h"
@@ -60,7 +63,11 @@ class DisplayListRenderer;
 class DisplayList {
 public:
     DisplayList(const DisplayListRenderer& recorder);
+<<<<<<< HEAD
     ANDROID_API ~DisplayList();
+=======
+    ~DisplayList();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // IMPORTANT: Update the intialization of OP_NAMES in the .cpp file
     //            when modifying this file
@@ -109,13 +116,21 @@ public:
 
     void initFromDisplayListRenderer(const DisplayListRenderer& recorder, bool reusing = false);
 
+<<<<<<< HEAD
     ANDROID_API size_t getSize();
+=======
+    size_t getSize();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     bool replay(OpenGLRenderer& renderer, Rect& dirty, uint32_t level = 0);
 
     void output(OpenGLRenderer& renderer, uint32_t level = 0);
 
+<<<<<<< HEAD
     ANDROID_API static void outputLogBuffer(int fd);
+=======
+    static void outputLogBuffer(int fd);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     void setRenderable(bool renderable) {
         mIsRenderable = renderable;
@@ -232,6 +247,7 @@ private:
  */
 class DisplayListRenderer: public OpenGLRenderer {
 public:
+<<<<<<< HEAD
     ANDROID_API DisplayListRenderer();
     virtual ~DisplayListRenderer();
 
@@ -302,6 +318,77 @@ public:
     virtual void setupShadow(float radius, float dx, float dy, int color);
 
     ANDROID_API void reset();
+=======
+    DisplayListRenderer();
+    ~DisplayListRenderer();
+
+    DisplayList* getDisplayList(DisplayList* displayList);
+
+    void setViewport(int width, int height);
+    void prepareDirty(float left, float top, float right, float bottom, bool opaque);
+    void finish();
+
+    bool callDrawGLFunction(Functor *functor, Rect& dirty);
+
+    void interrupt();
+    void resume();
+
+    int save(int flags);
+    void restore();
+    void restoreToCount(int saveCount);
+
+    int saveLayer(float left, float top, float right, float bottom,
+            SkPaint* p, int flags);
+    int saveLayerAlpha(float left, float top, float right, float bottom,
+                int alpha, int flags);
+
+    void translate(float dx, float dy);
+    void rotate(float degrees);
+    void scale(float sx, float sy);
+    void skew(float sx, float sy);
+
+    void setMatrix(SkMatrix* matrix);
+    void concatMatrix(SkMatrix* matrix);
+
+    bool clipRect(float left, float top, float right, float bottom, SkRegion::Op op);
+
+    bool drawDisplayList(DisplayList* displayList, uint32_t width, uint32_t height,
+            Rect& dirty, uint32_t level = 0);
+    void drawLayer(Layer* layer, float x, float y, SkPaint* paint);
+    void drawBitmap(SkBitmap* bitmap, float left, float top, SkPaint* paint);
+    void drawBitmap(SkBitmap* bitmap, SkMatrix* matrix, SkPaint* paint);
+    void drawBitmap(SkBitmap* bitmap, float srcLeft, float srcTop,
+            float srcRight, float srcBottom, float dstLeft, float dstTop,
+            float dstRight, float dstBottom, SkPaint* paint);
+    void drawBitmapMesh(SkBitmap* bitmap, int meshWidth, int meshHeight,
+            float* vertices, int* colors, SkPaint* paint);
+    void drawPatch(SkBitmap* bitmap, const int32_t* xDivs, const int32_t* yDivs,
+            const uint32_t* colors, uint32_t width, uint32_t height, int8_t numColors,
+            float left, float top, float right, float bottom, SkPaint* paint);
+    void drawColor(int color, SkXfermode::Mode mode);
+    void drawRect(float left, float top, float right, float bottom, SkPaint* paint);
+    void drawRoundRect(float left, float top, float right, float bottom,
+            float rx, float ry, SkPaint* paint);
+    void drawCircle(float x, float y, float radius, SkPaint* paint);
+    void drawOval(float left, float top, float right, float bottom, SkPaint* paint);
+    void drawArc(float left, float top, float right, float bottom,
+            float startAngle, float sweepAngle, bool useCenter, SkPaint* paint);
+    void drawPath(SkPath* path, SkPaint* paint);
+    void drawLines(float* points, int count, SkPaint* paint);
+    void drawPoints(float* points, int count, SkPaint* paint);
+    void drawText(const char* text, int bytesCount, int count, float x, float y, SkPaint* paint);
+
+    void resetShader();
+    void setupShader(SkiaShader* shader);
+
+    void resetColorFilter();
+    void setupColorFilter(SkiaColorFilter* filter);
+
+    void resetShadow();
+    void setupShadow(float radius, float dx, float dy, int color);
+
+    void reset();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     const SkWriter32& writeStream() const {
         return mWriter;

@@ -273,6 +273,7 @@ abstract class ValueParser {
      */
     static String retrieveAlphaId(ComprehensionTlv ctlv) throws ResultException {
 
+<<<<<<< HEAD
         if (ctlv != null) {
             byte[] rawValue = ctlv.getRawValue();
             int valueIndex = ctlv.getValueIndex();
@@ -290,6 +291,20 @@ abstract class ValueParser {
         } else {
             return CatService.STK_DEFAULT;
         }
+=======
+        byte[] rawValue = ctlv.getRawValue();
+        int valueIndex = ctlv.getValueIndex();
+        int length = ctlv.getLength();
+        if (length != 0) {
+            try {
+                return IccUtils.adnStringFieldToString(rawValue, valueIndex,
+                        length);
+            } catch (IndexOutOfBoundsException e) {
+                throw new ResultException(ResultCode.CMD_DATA_NOT_UNDERSTOOD);
+            }
+        }
+        return null;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

@@ -82,9 +82,13 @@ class DockObserver extends UEventObserver {
                         // Don't force screen on when undocking from the desk dock.
                         // The change in power state will do this anyway.
                         // FIXME - we should be configurable.
+<<<<<<< HEAD
                         if ((mPreviousDockState != Intent.EXTRA_DOCK_STATE_DESK
                                 && mPreviousDockState != Intent.EXTRA_DOCK_STATE_LE_DESK
                                 && mPreviousDockState != Intent.EXTRA_DOCK_STATE_HE_DESK) ||
+=======
+                        if (mPreviousDockState != Intent.EXTRA_DOCK_STATE_DESK ||
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                                 mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED) {
                             mPowerManager.userActivityWithForce(SystemClock.uptimeMillis(),
                                     false, true);

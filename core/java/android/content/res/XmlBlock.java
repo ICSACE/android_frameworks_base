@@ -484,7 +484,11 @@ final class XmlBlock {
 
     private final AssetManager mAssets;
     private final int mNative;
+<<<<<<< HEAD
     /*package*/ final StringBlock mStrings;
+=======
+    private final StringBlock mStrings;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private boolean mOpen = true;
     private int mOpenCount = 1;
 
@@ -494,9 +498,15 @@ final class XmlBlock {
     private static final native int nativeGetStringBlock(int obj);
 
     private static final native int nativeCreateParseState(int obj);
+<<<<<<< HEAD
     /*package*/ static final native int nativeNext(int state);
     private static final native int nativeGetNamespace(int state);
     /*package*/ static final native int nativeGetName(int state);
+=======
+    private static final native int nativeNext(int state);
+    private static final native int nativeGetNamespace(int state);
+    private static final native int nativeGetName(int state);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final native int nativeGetText(int state);
     private static final native int nativeGetLineNumber(int state);
     private static final native int nativeGetAttributeCount(int state);

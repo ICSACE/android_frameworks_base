@@ -145,12 +145,16 @@ final class ActivityStack {
      * running) activities.  It contains HistoryRecord objects.
      */
     final ArrayList<ActivityRecord> mHistory = new ArrayList<ActivityRecord>();
+<<<<<<< HEAD
 
     /**
      * Used for validating app tokens with window manager.
      */
     final ArrayList<IBinder> mValidateAppTokens = new ArrayList<IBinder>();
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * List of running activities, sorted by recent usage.
      * The first entry in the list is the least recently used.
@@ -299,11 +303,19 @@ final class ActivityStack {
                     }
                 } break;
                 case PAUSE_TIMEOUT_MSG: {
+<<<<<<< HEAD
                     ActivityRecord r = (ActivityRecord)msg.obj;
                     // We don't at this point know if the activity is fullscreen,
                     // so we need to be conservative and assume it isn't.
                     Slog.w(TAG, "Activity pause timeout for " + r);
                     activityPaused(r != null ? r.appToken : null, true);
+=======
+                    IBinder token = (IBinder)msg.obj;
+                    // We don't at this point know if the activity is fullscreen,
+                    // so we need to be conservative and assume it isn't.
+                    Slog.w(TAG, "Activity pause timeout for " + token);
+                    activityPaused(token, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } break;
                 case IDLE_TIMEOUT_MSG: {
                     if (mService.mDidDexOpt) {
@@ -315,6 +327,7 @@ final class ActivityStack {
                     }
                     // We don't at this point know if the activity is fullscreen,
                     // so we need to be conservative and assume it isn't.
+<<<<<<< HEAD
                     ActivityRecord r = (ActivityRecord)msg.obj;
                     Slog.w(TAG, "Activity idle timeout for " + r);
                     activityIdleInternal(r != null ? r.appToken : null, true, null);
@@ -329,6 +342,22 @@ final class ActivityStack {
                 case IDLE_NOW_MSG: {
                     ActivityRecord r = (ActivityRecord)msg.obj;
                     activityIdleInternal(r != null ? r.appToken : null, false, null);
+=======
+                    IBinder token = (IBinder)msg.obj;
+                    Slog.w(TAG, "Activity idle timeout for " + token);
+                    activityIdleInternal(token, true, null);
+                } break;
+                case DESTROY_TIMEOUT_MSG: {
+                    IBinder token = (IBinder)msg.obj;
+                    // We don't at this point know if the activity is fullscreen,
+                    // so we need to be conservative and assume it isn't.
+                    Slog.w(TAG, "Activity destroy timeout for " + token);
+                    activityDestroyed(token);
+                } break;
+                case IDLE_NOW_MSG: {
+                    IBinder token = (IBinder)msg.obj;
+                    activityIdleInternal(token, false, null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } break;
                 case LAUNCH_TIMEOUT_MSG: {
                     if (mService.mDidDexOpt) {
@@ -402,7 +431,11 @@ final class ActivityStack {
         while (i >= 0) {
             ActivityRecord r = mHistory.get(i);
             // Note: the taskId check depends on real taskId fields being non-zero
+<<<<<<< HEAD
             if (!r.finishing && (token != r.appToken) && (taskId != r.task.taskId)) {
+=======
+            if (!r.finishing && (token != r) && (taskId != r.task.taskId)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return r;
             }
             i--;
@@ -411,6 +444,7 @@ final class ActivityStack {
     }
 
     final int indexOfTokenLocked(IBinder token) {
+<<<<<<< HEAD
         return mHistory.indexOf(ActivityRecord.forToken(token));
     }
 
@@ -422,6 +456,25 @@ final class ActivityStack {
         ActivityRecord r = ActivityRecord.forToken(token);
         if (mHistory.contains(r)) {
             return r;
+=======
+        try {
+            ActivityRecord r = (ActivityRecord)token;
+            return mHistory.indexOf(r);
+        } catch (ClassCastException e) {
+            Slog.w(TAG, "Bad activity token: " + token, e);
+            return -1;
+        }
+    }
+
+    final ActivityRecord isInStackLocked(IBinder token) {
+        try {
+            ActivityRecord r = (ActivityRecord)token;
+            if (mHistory.contains(r)) {
+                return r;
+            }
+        } catch (ClassCastException e) {
+            Slog.w(TAG, "Bad activity token: " + token, e);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         return null;
     }
@@ -516,7 +569,11 @@ final class ActivityStack {
             throws RemoteException {
 
         r.startFreezingScreenLocked(app, 0);
+<<<<<<< HEAD
         mService.mWindowManager.setAppVisibility(r.appToken, true);
+=======
+        mService.mWindowManager.setAppVisibility(r, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // Have the window manager re-evaluate the orientation of
         // the screen based on the new activity order.  Note that
@@ -527,8 +584,13 @@ final class ActivityStack {
         if (checkConfig) {
             Configuration config = mService.mWindowManager.updateOrientationFromAppTokens(
                     mService.mConfiguration,
+<<<<<<< HEAD
                     r.mayFreezeScreenLocked(app) ? r.appToken : null);
             mService.updateConfigurationLocked(config, r, false, false);
+=======
+                    r.mayFreezeScreenLocked(app) ? r : null);
+            mService.updateConfigurationLocked(config, r, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         r.app = app;
@@ -589,9 +651,14 @@ final class ActivityStack {
                     profileFd = null;
                 }
             }
+<<<<<<< HEAD
             app.thread.scheduleLaunchActivity(new Intent(r.intent), r.appToken,
                     System.identityHashCode(r), r.info,
                     new Configuration(mService.mConfiguration),
+=======
+            app.thread.scheduleLaunchActivity(new Intent(r.intent), r,
+                    System.identityHashCode(r), r.info, mService.mConfiguration,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     r.compat, r.icicle, results, newIntents, !andResume,
                     mService.isNextTransitionForward(), profileFile, profileFd,
                     profileAutoStop);
@@ -624,7 +691,11 @@ final class ActivityStack {
                       + r.intent.getComponent().flattenToShortString()
                       + ", giving up", e);
                 mService.appDiedLocked(app, app.pid, app.thread);
+<<<<<<< HEAD
                 requestFinishActivityLocked(r.appToken, Activity.RESULT_CANCELED, null,
+=======
+                requestFinishActivityLocked(r, Activity.RESULT_CANCELED, null,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         "2nd-crash");
                 return false;
             }
@@ -821,7 +892,11 @@ final class ActivityStack {
         }
 
         if (w > 0) {
+<<<<<<< HEAD
             return mService.mWindowManager.screenshotApplications(who.appToken, w, h);
+=======
+            return mService.mWindowManager.screenshotApplications(who, w, h);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         return null;
     }
@@ -856,8 +931,13 @@ final class ActivityStack {
                 EventLog.writeEvent(EventLogTags.AM_PAUSE_ACTIVITY,
                         System.identityHashCode(prev),
                         prev.shortComponentName);
+<<<<<<< HEAD
                 prev.app.thread.schedulePauseActivity(prev.appToken, prev.finishing,
                         userLeaving, prev.configChangeFlags);
+=======
+                prev.app.thread.schedulePauseActivity(prev, prev.finishing, userLeaving,
+                        prev.configChangeFlags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (mMainStack) {
                     mService.updateUsageStats(prev, false);
                 }
@@ -947,6 +1027,7 @@ final class ActivityStack {
         r.state = ActivityState.STOPPED;
         if (!r.finishing) {
             if (r.configDestroy) {
+<<<<<<< HEAD
                 destroyActivityLocked(r, true, false, "stop-config");
                 resumeTopActivityLocked(null);
             } else {
@@ -965,6 +1046,10 @@ final class ActivityStack {
                     mService.mPreviousProcess = r.app;
                     mService.mPreviousProcessVisibleTime = r.lastVisibleTime;
                 }
+=======
+                destroyActivityLocked(r, true, false);
+                resumeTopActivityLocked(null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -992,7 +1077,11 @@ final class ActivityStack {
                     // instance right now, we need to first completely stop
                     // the current instance before starting the new one.
                     if (DEBUG_PAUSE) Slog.v(TAG, "Destroying after pause: " + prev);
+<<<<<<< HEAD
                     destroyActivityLocked(prev, true, false, "pause-config");
+=======
+                    destroyActivityLocked(prev, true, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 } else {
                     mStoppingActivities.add(prev);
                     if (mStoppingActivities.size() > 3) {
@@ -1145,7 +1234,11 @@ final class ActivityStack {
                     if (!r.visible) {
                         if (DEBUG_VISBILITY) Slog.v(
                                 TAG, "Starting and making visible: " + r);
+<<<<<<< HEAD
                         mService.mWindowManager.setAppVisibility(r.appToken, true);
+=======
+                        mService.mWindowManager.setAppVisibility(r, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                     if (r != starting) {
                         startSpecificActivityLocked(r, false, false);
@@ -1169,10 +1262,17 @@ final class ActivityStack {
                     if (DEBUG_VISBILITY) Slog.v(
                             TAG, "Making visible and scheduling visibility: " + r);
                     try {
+<<<<<<< HEAD
                         mService.mWindowManager.setAppVisibility(r.appToken, true);
                         r.sleeping = false;
                         r.app.pendingUiClean = true;
                         r.app.thread.scheduleWindowVisibility(r.appToken, true);
+=======
+                        mService.mWindowManager.setAppVisibility(r, true);
+                        r.sleeping = false;
+                        r.app.pendingUiClean = true;
+                        r.app.thread.scheduleWindowVisibility(r, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         r.stopFreezingScreenLocked(false);
                     } catch (Exception e) {
                         // Just skip on any failure; we'll make it
@@ -1211,13 +1311,21 @@ final class ActivityStack {
                                 TAG, "Making invisible: " + r);
                         r.visible = false;
                         try {
+<<<<<<< HEAD
                             mService.mWindowManager.setAppVisibility(r.appToken, false);
+=======
+                            mService.mWindowManager.setAppVisibility(r, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             if ((r.state == ActivityState.STOPPING
                                     || r.state == ActivityState.STOPPED)
                                     && r.app != null && r.app.thread != null) {
                                 if (DEBUG_VISBILITY) Slog.v(
                                         TAG, "Scheduling invisibility: " + r);
+<<<<<<< HEAD
                                 r.app.thread.scheduleWindowVisibility(r.appToken, false);
+=======
+                                r.app.thread.scheduleWindowVisibility(r, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             }
                         } catch (Exception e) {
                             // Just skip on any failure; we'll make it
@@ -1367,7 +1475,11 @@ final class ActivityStack {
                 // previous should actually be hidden depending on whether the
                 // new one is found to be full-screen or not.
                 if (prev.finishing) {
+<<<<<<< HEAD
                     mService.mWindowManager.setAppVisibility(prev.appToken, false);
+=======
+                    mService.mWindowManager.setAppVisibility(prev, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     if (DEBUG_SWITCH) Slog.v(TAG, "Not waiting for visible to hide: "
                             + prev + ", waitingVisible="
                             + (prev != null ? prev.waitingVisible : null)
@@ -1407,8 +1519,13 @@ final class ActivityStack {
                             ? WindowManagerPolicy.TRANSIT_ACTIVITY_CLOSE
                             : WindowManagerPolicy.TRANSIT_TASK_CLOSE, false);
                 }
+<<<<<<< HEAD
                 mService.mWindowManager.setAppWillBeHidden(prev.appToken);
                 mService.mWindowManager.setAppVisibility(prev.appToken, false);
+=======
+                mService.mWindowManager.setAppWillBeHidden(prev);
+                mService.mWindowManager.setAppVisibility(prev, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 if (DEBUG_TRANSITION) Slog.v(TAG,
                         "Prepare open transition: prev=" + prev);
@@ -1422,8 +1539,13 @@ final class ActivityStack {
                 }
             }
             if (false) {
+<<<<<<< HEAD
                 mService.mWindowManager.setAppWillBeHidden(prev.appToken);
                 mService.mWindowManager.setAppVisibility(prev.appToken, false);
+=======
+                mService.mWindowManager.setAppWillBeHidden(prev);
+                mService.mWindowManager.setAppVisibility(prev, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } else if (mHistory.size() > 1) {
             if (DEBUG_TRANSITION) Slog.v(TAG,
@@ -1441,7 +1563,11 @@ final class ActivityStack {
             if (DEBUG_SWITCH) Slog.v(TAG, "Resume running: " + next);
 
             // This activity is now becoming visible.
+<<<<<<< HEAD
             mService.mWindowManager.setAppVisibility(next.appToken, true);
+=======
+            mService.mWindowManager.setAppVisibility(next, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             ActivityRecord lastResumedActivity = mResumedActivity;
             ActivityState lastState = next.state;
@@ -1465,11 +1591,19 @@ final class ActivityStack {
                 synchronized (mService) {
                     Configuration config = mService.mWindowManager.updateOrientationFromAppTokens(
                             mService.mConfiguration,
+<<<<<<< HEAD
                             next.mayFreezeScreenLocked(next.app) ? next.appToken : null);
                     if (config != null) {
                         next.frozenBeforeDestroy = true;
                     }
                     updated = mService.updateConfigurationLocked(config, next, false, false);
+=======
+                            next.mayFreezeScreenLocked(next.app) ? next : null);
+                    if (config != null) {
+                        next.frozenBeforeDestroy = true;
+                    }
+                    updated = mService.updateConfigurationLocked(config, next, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
             if (!updated) {
@@ -1504,12 +1638,20 @@ final class ActivityStack {
                         if (DEBUG_RESULTS) Slog.v(
                                 TAG, "Delivering results to " + next
                                 + ": " + a);
+<<<<<<< HEAD
                         next.app.thread.scheduleSendResult(next.appToken, a);
+=======
+                        next.app.thread.scheduleSendResult(next, a);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     }
                 }
 
                 if (next.newIntents != null) {
+<<<<<<< HEAD
                     next.app.thread.scheduleNewIntent(next.newIntents, next.appToken);
+=======
+                    next.app.thread.scheduleNewIntent(next.newIntents, next);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
 
                 EventLog.writeEvent(EventLogTags.AM_RESUME_ACTIVITY,
@@ -1519,7 +1661,11 @@ final class ActivityStack {
                 next.sleeping = false;
                 showAskCompatModeDialogLocked(next);
                 next.app.pendingUiClean = true;
+<<<<<<< HEAD
                 next.app.thread.scheduleResumeActivity(next.appToken,
+=======
+                next.app.thread.scheduleResumeActivity(next,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         mService.isNextTransitionForward());
                 
                 checkReadyForSleepLocked();
@@ -1536,7 +1682,11 @@ final class ActivityStack {
                 } else {
                     if (SHOW_APP_STARTING_PREVIEW && mMainStack) {
                         mService.mWindowManager.setAppStartingWindow(
+<<<<<<< HEAD
                                 next.appToken, next.packageName, next.theme,
+=======
+                                next, next.packageName, next.theme,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                                 mService.compatibilityInfoForPackageLocked(
                                         next.info.applicationInfo),
                                 next.nonLocalizedLabel,
@@ -1557,7 +1707,11 @@ final class ActivityStack {
                 // If any exception gets thrown, toss away this
                 // activity and try the next one.
                 Slog.w(TAG, "Exception thrown during resume of " + next, e);
+<<<<<<< HEAD
                 requestFinishActivityLocked(next.appToken, Activity.RESULT_CANCELED, null,
+=======
+                requestFinishActivityLocked(next, Activity.RESULT_CANCELED, null,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         "resume-exception");
                 return true;
             }
@@ -1575,7 +1729,11 @@ final class ActivityStack {
             } else {
                 if (SHOW_APP_STARTING_PREVIEW) {
                     mService.mWindowManager.setAppStartingWindow(
+<<<<<<< HEAD
                             next.appToken, next.packageName, next.theme,
+=======
+                            next, next.packageName, next.theme,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             mService.compatibilityInfoForPackageLocked(
                                     next.info.applicationInfo),
                             next.nonLocalizedLabel,
@@ -1618,10 +1776,17 @@ final class ActivityStack {
                         }
                         mHistory.add(addPos, r);
                         r.putInHistory();
+<<<<<<< HEAD
                         mService.mWindowManager.addAppToken(addPos, r.appToken, r.task.taskId,
                                 r.info.screenOrientation, r.fullscreen);
                         if (VALIDATE_TOKENS) {
                             validateAppTokensLocked();
+=======
+                        mService.mWindowManager.addAppToken(addPos, r, r.task.taskId,
+                                r.info.screenOrientation, r.fullscreen);
+                        if (VALIDATE_TOKENS) {
+                            mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         }
                         return;
                     }
@@ -1685,7 +1850,11 @@ final class ActivityStack {
                 mNoAnimActivities.remove(r);
             }
             mService.mWindowManager.addAppToken(
+<<<<<<< HEAD
                     addPos, r.appToken, r.task.taskId, r.info.screenOrientation, r.fullscreen);
+=======
+                    addPos, r, r.task.taskId, r.info.screenOrientation, r.fullscreen);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             boolean doShow = true;
             if (newTask) {
                 // Even though this activity is starting fresh, we still need
@@ -1713,20 +1882,35 @@ final class ActivityStack {
                     else if (prev.nowVisible) prev = null;
                 }
                 mService.mWindowManager.setAppStartingWindow(
+<<<<<<< HEAD
                         r.appToken, r.packageName, r.theme,
                         mService.compatibilityInfoForPackageLocked(
                                 r.info.applicationInfo), r.nonLocalizedLabel,
                         r.labelRes, r.icon, r.windowFlags,
                         prev != null ? prev.appToken : null, showStartingIcon);
+=======
+                        r, r.packageName, r.theme,
+                        mService.compatibilityInfoForPackageLocked(
+                                r.info.applicationInfo), r.nonLocalizedLabel,
+                        r.labelRes, r.icon, r.windowFlags, prev, showStartingIcon);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } else {
             // If this is the first activity, don't do any fancy animations,
             // because there is nothing for it to animate on top of.
+<<<<<<< HEAD
             mService.mWindowManager.addAppToken(addPos, r.appToken, r.task.taskId,
                     r.info.screenOrientation, r.fullscreen);
         }
         if (VALIDATE_TOKENS) {
             validateAppTokensLocked();
+=======
+            mService.mWindowManager.addAppToken(addPos, r, r.task.taskId,
+                    r.info.screenOrientation, r.fullscreen);
+        }
+        if (VALIDATE_TOKENS) {
+            mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         if (doResume) {
@@ -1734,6 +1918,7 @@ final class ActivityStack {
         }
     }
 
+<<<<<<< HEAD
     final void validateAppTokensLocked() {
         mValidateAppTokens.clear();
         mValidateAppTokens.ensureCapacity(mHistory.size());
@@ -1743,6 +1928,8 @@ final class ActivityStack {
         mService.mWindowManager.validateAppTokens(mValidateAppTokens);
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * Perform a reset of the given task, if needed as part of launching it.
      * Returns the new HistoryRecord at the top of the task.
@@ -1844,7 +2031,11 @@ final class ActivityStack {
                             if (DEBUG_TASKS) Slog.v(TAG, "Start pushing activity " + target
                                     + " out to new task " + target.task);
                         }
+<<<<<<< HEAD
                         mService.mWindowManager.setAppGroupId(target.appToken, task.taskId);
+=======
+                        mService.mWindowManager.setAppGroupId(target, task.taskId);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         if (replyChainEnd < 0) {
                             replyChainEnd = targetI;
                         }
@@ -1867,11 +2058,19 @@ final class ActivityStack {
                             }
                             mHistory.remove(srcPos);
                             mHistory.add(dstPos, p);
+<<<<<<< HEAD
                             mService.mWindowManager.moveAppToken(dstPos, p.appToken);
                             mService.mWindowManager.setAppGroupId(p.appToken, p.task.taskId);
                             dstPos++;
                             if (VALIDATE_TOKENS) {
                                 validateAppTokensLocked();
+=======
+                            mService.mWindowManager.moveAppToken(dstPos, p);
+                            mService.mWindowManager.setAppGroupId(p, p.task.taskId);
+                            dstPos++;
+                            if (VALIDATE_TOKENS) {
+                                mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                             }
                             i++;
                         }
@@ -1932,9 +2131,14 @@ final class ActivityStack {
                     // should be left as-is.
                     replyChainEnd = -1;
                 }
+<<<<<<< HEAD
 
             } else if (target.resultTo != null && (below == null
                     || below.task == target.task)) {
+=======
+                
+            } else if (target.resultTo != null) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 // If this activity is sending a reply to a previous
                 // activity, we can't do anything with it now until
                 // we reach the start of the reply chain.
@@ -1964,8 +2168,11 @@ final class ActivityStack {
                         replyChainEnd = targetI;
                     }
                     ActivityRecord p = null;
+<<<<<<< HEAD
                     if (DEBUG_TASKS) Slog.v(TAG, "Finishing task at index "
                             + targetI + " to " + replyChainEnd);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     for (int srcPos=targetI; srcPos<=replyChainEnd; srcPos++) {
                         p = mHistory.get(srcPos);
                         if (p.finishing) {
@@ -1984,8 +2191,11 @@ final class ActivityStack {
                     if (replyChainEnd < 0) {
                         replyChainEnd = targetI;
                     }
+<<<<<<< HEAD
                     if (DEBUG_TASKS) Slog.v(TAG, "Reparenting task at index "
                             + targetI + " to " + replyChainEnd);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     for (int srcPos=replyChainEnd; srcPos>=targetI; srcPos--) {
                         ActivityRecord p = mHistory.get(srcPos);
                         if (p.finishing) {
@@ -2007,12 +2217,20 @@ final class ActivityStack {
                         p.setTask(task, null, false);
                         mHistory.add(lastReparentPos, p);
                         if (DEBUG_TASKS) Slog.v(TAG, "Pulling activity " + p
+<<<<<<< HEAD
                                 + " from " + srcPos + " to " + lastReparentPos
                                 + " in to resetting task " + task);
                         mService.mWindowManager.moveAppToken(lastReparentPos, p.appToken);
                         mService.mWindowManager.setAppGroupId(p.appToken, p.task.taskId);
                         if (VALIDATE_TOKENS) {
                             validateAppTokensLocked();
+=======
+                                + " in to resetting task " + task);
+                        mService.mWindowManager.moveAppToken(lastReparentPos, p);
+                        mService.mWindowManager.setAppGroupId(p, p.task.taskId);
+                        if (VALIDATE_TOKENS) {
+                            mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         }
                     }
                     replyChainEnd = -1;
@@ -2037,11 +2255,14 @@ final class ActivityStack {
                         }
                     }
                 }
+<<<<<<< HEAD
 
             } else if (below != null && below.task != target.task) {
                 // We hit the botton of a task; the reply chain can't
                 // pass through it.
                 replyChainEnd = -1;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             
             target = below;
@@ -2110,7 +2331,11 @@ final class ActivityStack {
                 if (ret.launchMode == ActivityInfo.LAUNCH_MULTIPLE
                         && (launchFlags&Intent.FLAG_ACTIVITY_SINGLE_TOP) == 0) {
                     if (!ret.finishing) {
+<<<<<<< HEAD
                         int index = indexOfTokenLocked(ret.appToken);
+=======
+                        int index = indexOfTokenLocked(ret);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         if (index >= 0) {
                             finishActivityLocked(ret, index, Activity.RESULT_CANCELED,
                                     null, "clear");
@@ -2937,7 +3162,11 @@ final class ActivityStack {
                 mConfigWillChange = false;
                 if (DEBUG_CONFIGURATION) Slog.v(TAG,
                         "Updating to new configuration after starting activity.");
+<<<<<<< HEAD
                 mService.updateConfigurationLocked(config, null, false, false);
+=======
+                mService.updateConfigurationLocked(config, null, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             
             Binder.restoreCallingIdentity(origId);
@@ -3036,7 +3265,11 @@ final class ActivityStack {
                         return res;
                     }
 
+<<<<<<< HEAD
                     resultTo = outActivity[0] != null ? outActivity[0].appToken : null;
+=======
+                    resultTo = outActivity[0];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         } finally {
@@ -3094,7 +3327,11 @@ final class ActivityStack {
                 ArrayList<ResultInfo> list = new ArrayList<ResultInfo>();
                 list.add(new ResultInfo(resultWho, requestCode,
                         resultCode, data));
+<<<<<<< HEAD
                 r.app.thread.scheduleSendResult(r.appToken, list);
+=======
+                r.app.thread.scheduleSendResult(r, list);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return;
             } catch (Exception e) {
                 Slog.w(TAG, "Exception thrown sending result to " + r, e);
@@ -3109,7 +3346,11 @@ final class ActivityStack {
         if ((r.intent.getFlags()&Intent.FLAG_ACTIVITY_NO_HISTORY) != 0
                 || (r.info.flags&ActivityInfo.FLAG_NO_HISTORY) != 0) {
             if (!r.finishing) {
+<<<<<<< HEAD
                 requestFinishActivityLocked(r.appToken, Activity.RESULT_CANCELED, null,
+=======
+                requestFinishActivityLocked(r, Activity.RESULT_CANCELED, null,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         "no-history");
             }
         } else if (r.app != null && r.app.thread != null) {
@@ -3127,9 +3368,15 @@ final class ActivityStack {
                 if (DEBUG_VISBILITY) Slog.v(
                         TAG, "Stopping visible=" + r.visible + " for " + r);
                 if (!r.visible) {
+<<<<<<< HEAD
                     mService.mWindowManager.setAppVisibility(r.appToken, false);
                 }
                 r.app.thread.scheduleStopActivity(r.appToken, r.visible, r.configChangeFlags);
+=======
+                    mService.mWindowManager.setAppVisibility(r, false);
+                }
+                r.app.thread.scheduleStopActivity(r, r.visible, r.configChangeFlags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (mService.isSleeping()) {
                     r.setSleeping(true);
                 }
@@ -3143,7 +3390,11 @@ final class ActivityStack {
                 if (DEBUG_STATES) Slog.v(TAG, "Stop failed; moving to STOPPED: " + r);
                 r.state = ActivityState.STOPPED;
                 if (r.configDestroy) {
+<<<<<<< HEAD
                     destroyActivityLocked(r, true, false, "stop-except");
+=======
+                    destroyActivityLocked(r, true, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         }
@@ -3174,7 +3425,11 @@ final class ActivityStack {
                     // normal flow and hide it once we determine that it is
                     // hidden by the activities in front of it.
                     if (localLOGV) Slog.v(TAG, "Before stopping, can hide: " + s);
+<<<<<<< HEAD
                     mService.mWindowManager.setAppVisibility(s.appToken, false);
+=======
+                    mService.mWindowManager.setAppVisibility(s, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
             if ((!s.waitingVisible || mService.isSleeping()) && remove) {
@@ -3215,6 +3470,7 @@ final class ActivityStack {
         boolean enableScreen = false;
 
         synchronized (mService) {
+<<<<<<< HEAD
             ActivityRecord r = ActivityRecord.forToken(token);
             if (r != null) {
                 mHandler.removeMessages(IDLE_TIMEOUT_MSG, r);
@@ -3223,6 +3479,16 @@ final class ActivityStack {
             // Get the activity record.
             int index = indexOfActivityLocked(r);
             if (index >= 0) {
+=======
+            if (token != null) {
+                mHandler.removeMessages(IDLE_TIMEOUT_MSG, token);
+            }
+
+            // Get the activity record.
+            int index = indexOfTokenLocked(token);
+            if (index >= 0) {
+                ActivityRecord r = mHistory.get(index);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 res = r;
 
                 if (fromTimeout) {
@@ -3318,7 +3584,11 @@ final class ActivityStack {
         for (i=0; i<NF; i++) {
             ActivityRecord r = (ActivityRecord)finishes.get(i);
             synchronized (mService) {
+<<<<<<< HEAD
                 destroyActivityLocked(r, true, false, "finish-idle");
+=======
+                destroyActivityLocked(r, true, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
 
@@ -3442,7 +3712,11 @@ final class ActivityStack {
                     : WindowManagerPolicy.TRANSIT_ACTIVITY_CLOSE, false);
     
             // Tell window manager to prepare for this one to be removed.
+<<<<<<< HEAD
             mService.mWindowManager.setAppVisibility(r.appToken, false);
+=======
+            mService.mWindowManager.setAppVisibility(r, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 
             if (mPausingActivity == null) {
                 if (DEBUG_PAUSE) Slog.v(TAG, "Finish needs to pause: " + r);
@@ -3469,7 +3743,11 @@ final class ActivityStack {
 
     private final ActivityRecord finishCurrentActivityLocked(ActivityRecord r,
             int mode) {
+<<<<<<< HEAD
         final int index = indexOfActivityLocked(r);
+=======
+        final int index = indexOfTokenLocked(r);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (index < 0) {
             return null;
         }
@@ -3517,7 +3795,11 @@ final class ActivityStack {
                 || prevState == ActivityState.INITIALIZING) {
             // If this activity is already stopped, we can just finish
             // it right now.
+<<<<<<< HEAD
             return destroyActivityLocked(r, true, true, "finish-imm") ? null : r;
+=======
+            return destroyActivityLocked(r, true, true) ? null : r;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } else {
             // Need to go through the full pause cycle to get this
             // activity into the stopped state and then finish it.
@@ -3599,9 +3881,15 @@ final class ActivityStack {
             if (DEBUG_STATES) Slog.v(TAG, "Moving to DESTROYED: " + r
                     + " (removed from history)");
             r.state = ActivityState.DESTROYED;
+<<<<<<< HEAD
             mService.mWindowManager.removeAppToken(r.appToken);
             if (VALIDATE_TOKENS) {
                 validateAppTokensLocked();
+=======
+            mService.mWindowManager.removeAppToken(r);
+            if (VALIDATE_TOKENS) {
+                mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             cleanUpActivityServicesLocked(r);
             r.removeUriPermissionsLocked();
@@ -3623,7 +3911,11 @@ final class ActivityStack {
         }
     }
     
+<<<<<<< HEAD
     final void destroyActivitiesLocked(ProcessRecord owner, boolean oomAdj, String reason) {
+=======
+    final void destroyActivitiesLocked(ProcessRecord owner, boolean oomAdj) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         for (int i=mHistory.size()-1; i>=0; i--) {
             ActivityRecord r = mHistory.get(i);
             if (owner != null && r.app != owner) {
@@ -3634,7 +3926,11 @@ final class ActivityStack {
             if (r.app != null && r.haveState && !r.visible && r.stopped && !r.finishing
                     && r.state != ActivityState.DESTROYING
                     && r.state != ActivityState.DESTROYED) {
+<<<<<<< HEAD
                 destroyActivityLocked(r, true, oomAdj, "trim");
+=======
+                destroyActivityLocked(r, true, oomAdj);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         }
     }
@@ -3646,13 +3942,21 @@ final class ActivityStack {
      * but then create a new client-side object for this same HistoryRecord.
      */
     final boolean destroyActivityLocked(ActivityRecord r,
+<<<<<<< HEAD
             boolean removeFromApp, boolean oomAdj, String reason) {
+=======
+            boolean removeFromApp, boolean oomAdj) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (DEBUG_SWITCH) Slog.v(
             TAG, "Removing activity: token=" + r
               + ", app=" + (r.app != null ? r.app.processName : "(null)"));
         EventLog.writeEvent(EventLogTags.AM_DESTROY_ACTIVITY,
                 System.identityHashCode(r),
+<<<<<<< HEAD
                 r.task.taskId, r.shortComponentName, reason);
+=======
+                r.task.taskId, r.shortComponentName);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         boolean removedFromHistory = false;
         
@@ -3682,7 +3986,11 @@ final class ActivityStack {
             
             try {
                 if (DEBUG_SWITCH) Slog.i(TAG, "Destroying: " + r);
+<<<<<<< HEAD
                 r.app.thread.scheduleDestroyActivity(r.appToken, r.finishing,
+=======
+                r.app.thread.scheduleDestroyActivity(r, r.finishing,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         r.configChangeFlags);
             } catch (Exception e) {
                 // We can just ignore exceptions here...  if the process
@@ -3741,6 +4049,7 @@ final class ActivityStack {
 
     final void activityDestroyed(IBinder token) {
         synchronized (mService) {
+<<<<<<< HEAD
             ActivityRecord r = ActivityRecord.forToken(token);
             if (r != null) {
                 mHandler.removeMessages(DESTROY_TIMEOUT_MSG, r);
@@ -3748,6 +4057,13 @@ final class ActivityStack {
             
             int index = indexOfActivityLocked(r);
             if (index >= 0) {
+=======
+            mHandler.removeMessages(DESTROY_TIMEOUT_MSG, token);
+            
+            int index = indexOfTokenLocked(token);
+            if (index >= 0) {
+                ActivityRecord r = mHistory.get(index);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (r.state == ActivityState.DESTROYING) {
                     final long origId = Binder.clearCallingIdentity();
                     removeActivityFromHistoryLocked(r);
@@ -3812,7 +4128,11 @@ final class ActivityStack {
             return;
         }
 
+<<<<<<< HEAD
         ArrayList<IBinder> moved = new ArrayList<IBinder>();
+=======
+        ArrayList moved = new ArrayList();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // Applying the affinities may have removed entries from the history,
         // so get the size again.
@@ -3834,7 +4154,11 @@ final class ActivityStack {
                 }
                 mHistory.remove(pos);
                 mHistory.add(top, r);
+<<<<<<< HEAD
                 moved.add(0, r.appToken);
+=======
+                moved.add(0, r);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 top--;
             }
             pos--;
@@ -3857,7 +4181,11 @@ final class ActivityStack {
         
         mService.mWindowManager.moveAppTokensToTop(moved);
         if (VALIDATE_TOKENS) {
+<<<<<<< HEAD
             validateAppTokensLocked();
+=======
+            mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         finishTaskMoveLocked(task);
@@ -3904,7 +4232,11 @@ final class ActivityStack {
             }
         }
 
+<<<<<<< HEAD
         ArrayList<IBinder> moved = new ArrayList<IBinder>();
+=======
+        ArrayList moved = new ArrayList();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         if (DEBUG_TRANSITION) Slog.v(TAG,
                 "Prepare to back transition: task=" + task);
@@ -3929,7 +4261,11 @@ final class ActivityStack {
                 }
                 mHistory.remove(pos);
                 mHistory.add(bottom, r);
+<<<<<<< HEAD
                 moved.add(r.appToken);
+=======
+                moved.add(r);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 bottom++;
             }
             pos++;
@@ -3949,7 +4285,11 @@ final class ActivityStack {
         }
         mService.mWindowManager.moveAppTokensToBottom(moved);
         if (VALIDATE_TOKENS) {
+<<<<<<< HEAD
             validateAppTokensLocked();
+=======
+            mService.mWindowManager.validateAppTokens(mHistory);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         finishTaskMoveLocked(task);
@@ -4141,7 +4481,11 @@ final class ActivityStack {
             if (r.app == null || r.app.thread == null) {
                 if (DEBUG_SWITCH || DEBUG_CONFIGURATION) Slog.v(TAG,
                         "Switch is destroying non-running " + r);
+<<<<<<< HEAD
                 destroyActivityLocked(r, true, false, "config");
+=======
+                destroyActivityLocked(r, true, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else if (r.state == ActivityState.PAUSING) {
                 // A little annoying: we are waiting for this activity to
                 // finish pausing.  Let's not do anything now, but just
@@ -4179,7 +4523,11 @@ final class ActivityStack {
         if (r.app != null && r.app.thread != null) {
             try {
                 if (DEBUG_CONFIGURATION) Slog.v(TAG, "Sending new config to " + r);
+<<<<<<< HEAD
                 r.app.thread.scheduleActivityConfigurationChanged(r.appToken);
+=======
+                r.app.thread.scheduleActivityConfigurationChanged(r);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } catch (RemoteException e) {
                 // If process died, whatever.
             }
@@ -4209,8 +4557,13 @@ final class ActivityStack {
         try {
             if (DEBUG_SWITCH) Slog.i(TAG, "Switch is restarting resumed " + r);
             r.forceNewConfig = false;
+<<<<<<< HEAD
             r.app.thread.scheduleRelaunchActivity(r.appToken, results, newIntents,
                     changes, !andResume, new Configuration(mService.mConfiguration));
+=======
+            r.app.thread.scheduleRelaunchActivity(r, results, newIntents,
+                    changes, !andResume, mService.mConfiguration);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // Note: don't need to call pauseIfSleepingLocked() here, because
             // the caller will only pass in 'andResume' if this activity is
             // currently resumed, which implies we aren't sleeping.

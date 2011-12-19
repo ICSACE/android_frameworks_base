@@ -16,7 +16,10 @@
 
 #define LOG_TAG "SurfaceTextureClient"
 //#define LOG_NDEBUG 0
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <gui/SurfaceTextureClient.h>
 #include <surfaceflinger/ISurfaceComposer.h>
 #include <surfaceflinger/SurfaceComposerClient.h>
@@ -36,12 +39,15 @@ SurfaceTextureClient::SurfaceTextureClient() {
     SurfaceTextureClient::init();
 }
 
+<<<<<<< HEAD
 SurfaceTextureClient::~SurfaceTextureClient() {
     if (mConnectedToCpu) {
         SurfaceTextureClient::disconnect(NATIVE_WINDOW_API_CPU);
     }
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 void SurfaceTextureClient::init() {
     // Initialize the ANativeWindow function pointers.
     ANativeWindow::setSwapInterval  = hook_setSwapInterval;

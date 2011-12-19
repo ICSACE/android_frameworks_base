@@ -403,7 +403,10 @@ class CommandParamsFactory extends Handler {
         input.ucs2 = (cmdDet.commandQualifier & 0x02) != 0;
         input.yesNo = (cmdDet.commandQualifier & 0x04) != 0;
         input.helpAvailable = (cmdDet.commandQualifier & 0x80) != 0;
+<<<<<<< HEAD
         input.echo = true;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mCmdParams = new GetInputParams(cmdDet, input);
 
@@ -626,7 +629,15 @@ class CommandParamsFactory extends Handler {
 
         ComprehensionTlv ctlv = searchForTag(ComprehensionTlvTag.ALPHA_ID,
                 ctlvs);
+<<<<<<< HEAD
         textMsg.text = ValueParser.retrieveAlphaId(ctlv);
+=======
+        if (ctlv != null) {
+            textMsg.text = ValueParser.retrieveAlphaId(ctlv);
+        } else {
+            throw new ResultException(ResultCode.REQUIRED_VALUES_MISSING);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         ctlv = searchForTag(ComprehensionTlvTag.ICON_ID, ctlvs);
         if (ctlv != null) {
@@ -711,8 +722,14 @@ class CommandParamsFactory extends Handler {
 
         // parse alpha identifier.
         ctlv = searchForTag(ComprehensionTlvTag.ALPHA_ID, ctlvs);
+<<<<<<< HEAD
         confirmMsg.text = ValueParser.retrieveAlphaId(ctlv);
 
+=======
+        if (ctlv != null) {
+            confirmMsg.text = ValueParser.retrieveAlphaId(ctlv);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // parse icon identifier
         ctlv = searchForTag(ComprehensionTlvTag.ICON_ID, ctlvs);
         if (ctlv != null) {
@@ -837,7 +854,13 @@ class CommandParamsFactory extends Handler {
 
         // get confirmation message string.
         ctlv = searchForNextTag(ComprehensionTlvTag.ALPHA_ID, iter);
+<<<<<<< HEAD
         confirmMsg.text = ValueParser.retrieveAlphaId(ctlv);
+=======
+        if (ctlv != null) {
+            confirmMsg.text = ValueParser.retrieveAlphaId(ctlv);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         ctlv = searchForTag(ComprehensionTlvTag.ICON_ID, ctlvs);
         if (ctlv != null) {

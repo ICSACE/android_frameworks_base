@@ -533,7 +533,10 @@ public final class BluetoothAdapter {
      * @hide
      */
     public ParcelUuid[] getUuids() {
+<<<<<<< HEAD
         if (getState() != STATE_ON) return null;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         try {
             return mService.getUuids();
         } catch (RemoteException e) {Log.e(TAG, "", e);}
@@ -1180,6 +1183,7 @@ public final class BluetoothAdapter {
      * @param proxy Profile proxy object
      */
     public void closeProfileProxy(int profile, BluetoothProfile proxy) {
+<<<<<<< HEAD
         if (proxy == null) return;
 
         switch (profile) {
@@ -1203,6 +1207,13 @@ public final class BluetoothAdapter {
                 BluetoothHealth health = (BluetoothHealth)proxy;
                 health.close();
                 break;
+=======
+        if (profile == BluetoothProfile.HEADSET) {
+            BluetoothHeadset headset = (BluetoothHeadset)proxy;
+            if (headset != null) {
+                headset.close();
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

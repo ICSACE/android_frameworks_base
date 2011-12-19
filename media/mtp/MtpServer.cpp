@@ -1053,6 +1053,7 @@ MtpResponseCode MtpServer::doDeleteObject() {
     int result = mDatabase->getObjectFilePath(handle, filePath, fileLength, format);
     if (result == MTP_RESPONSE_OK) {
         LOGV("deleting %s", (const char *)filePath);
+<<<<<<< HEAD
         result = mDatabase->deleteFile(handle);
         // Don't delete the actual files unless the database deletion is allowed
         if (result == MTP_RESPONSE_OK) {
@@ -1061,6 +1062,13 @@ MtpResponseCode MtpServer::doDeleteObject() {
     }
 
     return result;
+=======
+        deletePath((const char *)filePath);
+        return mDatabase->deleteFile(handle);
+    } else {
+        return result;
+    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 MtpResponseCode MtpServer::doGetObjectPropDesc() {

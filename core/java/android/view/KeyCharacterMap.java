@@ -20,6 +20,10 @@ import android.text.method.MetaKeyKeyListener;
 import android.util.AndroidRuntimeException;
 import android.util.SparseIntArray;
 import android.os.RemoteException;
+<<<<<<< HEAD
+=======
+import android.os.ServiceManager;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.SparseArray;
 
 import java.lang.Character;
@@ -139,7 +143,11 @@ public class KeyCharacterMap {
     private final int mDeviceId;
     private int mPtr;
 
+<<<<<<< HEAD
     private static native int nativeLoad(String file);
+=======
+    private static native int nativeLoad(int id);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static native void nativeDispose(int ptr);
 
     private static native char nativeGetCharacter(int ptr, int keyCode, int metaState);
@@ -177,6 +185,7 @@ public class KeyCharacterMap {
         synchronized (sInstances) {
             KeyCharacterMap map = sInstances.get(deviceId);
             if (map == null) {
+<<<<<<< HEAD
                 String kcm = null;
                 if (deviceId != VIRTUAL_KEYBOARD) {
                     InputDevice device = InputDevice.getDevice(deviceId);
@@ -188,6 +197,9 @@ public class KeyCharacterMap {
                     kcm = "/system/usr/keychars/Virtual.kcm";
                 }
                 int ptr = nativeLoad(kcm); // might throw
+=======
+                int ptr = nativeLoad(deviceId); // might throw
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 map = new KeyCharacterMap(deviceId, ptr);
                 sInstances.put(deviceId, map);
             }

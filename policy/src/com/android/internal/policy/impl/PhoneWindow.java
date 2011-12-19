@@ -1816,6 +1816,7 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
 
         @Override
         public boolean dispatchKeyShortcutEvent(KeyEvent ev) {
+<<<<<<< HEAD
             // If the panel is already prepared, then perform the shortcut using it.
             boolean handled;
             if (mPreparedPanel != null) {
@@ -1827,10 +1828,23 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
                     }
                     return true;
                 }
+=======
+            // Perform the shortcut (mPreparedPanel can be null since
+            // global shortcuts (such as search) don't rely on a
+            // prepared panel or menu).
+            boolean handled = performPanelShortcut(mPreparedPanel, ev.getKeyCode(), ev,
+                    Menu.FLAG_PERFORM_NO_CLOSE);
+            if (handled) {
+                if (mPreparedPanel != null) {
+                    mPreparedPanel.isHandled = true;
+                }
+                return true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             // Shortcut not handled by the panel.  Dispatch to the view hierarchy.
             final Callback cb = getCallback();
+<<<<<<< HEAD
             handled = cb != null && !isDestroyed() && mFeatureId < 0
                     ? cb.dispatchKeyShortcutEvent(ev) : super.dispatchKeyShortcutEvent(ev);
             if (handled) {
@@ -1852,6 +1866,10 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
                 }
             }
             return false;
+=======
+            return cb != null && !isDestroyed() && mFeatureId < 0 ? cb.dispatchKeyShortcutEvent(ev)
+                    : super.dispatchKeyShortcutEvent(ev);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         @Override
@@ -2582,8 +2600,11 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
 
         if (targetPreHoneycomb || (targetPreIcs && targetHcNeedsOptions && noActionBar)) {
             addFlags(WindowManager.LayoutParams.FLAG_NEEDS_MENU_KEY);
+<<<<<<< HEAD
         } else {
             clearFlags(WindowManager.LayoutParams.FLAG_NEEDS_MENU_KEY);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         
         if (mAlwaysReadCloseOnTouchAttr || getContext().getApplicationInfo().targetSdkVersion

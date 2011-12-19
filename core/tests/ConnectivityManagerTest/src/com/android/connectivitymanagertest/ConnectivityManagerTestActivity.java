@@ -62,8 +62,11 @@ public class ConnectivityManagerTestActivity extends Activity {
     public static final int WIFI_SCAN_TIMEOUT = 50 * 1000;
     public static final int SHORT_TIMEOUT = 5 * 1000;
     public static final long LONG_TIMEOUT = 50 * 1000;
+<<<<<<< HEAD
     // 2 minutes timer between wifi stop and start
     public static final long  WIFI_STOP_START_INTERVAL = 2 * 60 * 1000;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public static final int SUCCESS = 0;  // for Wifi tethering state change
     public static final int FAILURE = 1;
     public static final int INIT = -1;
@@ -249,8 +252,11 @@ public class ConnectivityManagerTestActivity extends Activity {
         sleep(SHORT_TIMEOUT);
         removeConfiguredNetworksAndDisableWifi();
         mWifiRegexs = mCM.getTetherableWifiRegexs();
+<<<<<<< HEAD
         // after wifi is shutdown, wait for 2 minute to enable wifi
         sleep(WIFI_STOP_START_INTERVAL);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      }
 
     public List<WifiConfiguration> loadNetworkConfigurations() throws Exception {

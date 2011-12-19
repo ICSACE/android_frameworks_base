@@ -4320,6 +4320,7 @@ bool InputDispatcher::InputState::trackKey(const KeyEntry* entry,
             mKeyMementos.removeAt(index);
             return true;
         }
+<<<<<<< HEAD
         /* FIXME: We can't just drop the key up event because that prevents creating
          * popup windows that are automatically shown when a key is held and then
          * dismissed when the key is released.  The problem is that the popup will
@@ -4329,14 +4330,19 @@ bool InputDispatcher::InputState::trackKey(const KeyEntry* entry,
          *
          * So for now, allow inconsistent key up events to be dispatched.
          *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #if DEBUG_OUTBOUND_EVENT_DETAILS
         LOGD("Dropping inconsistent key up event: deviceId=%d, source=%08x, "
                 "keyCode=%d, scanCode=%d",
                 entry->deviceId, entry->source, entry->keyCode, entry->scanCode);
 #endif
         return false;
+<<<<<<< HEAD
         */
         return true;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     case AKEY_EVENT_ACTION_DOWN: {

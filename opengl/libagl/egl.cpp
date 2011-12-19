@@ -49,11 +49,14 @@
 #undef NELEM
 #define NELEM(x) (sizeof(x)/sizeof(*(x)))
 
+<<<<<<< HEAD
 
 EGLBoolean EGLAPI eglSetSwapRectangleANDROID(EGLDisplay dpy, EGLSurface draw,
         EGLint left, EGLint top, EGLint width, EGLint height);
 
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 // ----------------------------------------------------------------------------
 namespace android {
 // ----------------------------------------------------------------------------
@@ -165,6 +168,10 @@ struct egl_surface_t
     virtual     EGLint      getSwapBehavior() const;
     virtual     EGLBoolean  swapBuffers();
     virtual     EGLBoolean  setSwapRectangle(EGLint l, EGLint t, EGLint w, EGLint h);
+<<<<<<< HEAD
+=======
+    virtual     EGLClientBuffer getRenderBuffer() const;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 protected:
     GGLSurface              depth;
 };
@@ -191,6 +198,10 @@ bool egl_surface_t::isValid() const {
 EGLBoolean egl_surface_t::swapBuffers() {
     return EGL_FALSE;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 EGLint egl_surface_t::getHorizontalResolution() const {
     return (0 * EGL_DISPLAY_SCALING) * (1.0f / 25.4f);
 }
@@ -208,6 +219,12 @@ EGLBoolean egl_surface_t::setSwapRectangle(
 {
     return EGL_FALSE;
 }
+<<<<<<< HEAD
+=======
+EGLClientBuffer egl_surface_t::getRenderBuffer() const {
+    return 0;
+}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 // ----------------------------------------------------------------------------
 
@@ -233,6 +250,10 @@ struct egl_window_surface_v2_t : public egl_surface_t
     virtual     EGLint      getRefreshRate() const;
     virtual     EGLint      getSwapBehavior() const;
     virtual     EGLBoolean  setSwapRectangle(EGLint l, EGLint t, EGLint w, EGLint h);
+<<<<<<< HEAD
+=======
+    virtual     EGLClientBuffer  getRenderBuffer() const;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     
 private:
     status_t lock(ANativeWindowBuffer* buf, int usage, void** vaddr);
@@ -571,6 +592,14 @@ EGLBoolean egl_window_surface_v2_t::setSwapRectangle(
     return EGL_TRUE;
 }
 
+<<<<<<< HEAD
+=======
+EGLClientBuffer egl_window_surface_v2_t::getRenderBuffer() const
+{
+    return buffer;
+}
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 EGLBoolean egl_window_surface_v2_t::bindDrawSurface(ogles_context_t* gl)
 {
     GGLSurface buffer;
@@ -800,6 +829,10 @@ static char const * const gExtensionsString =
         // "KHR_image_pixmap "
         "EGL_ANDROID_image_native_buffer "
         "EGL_ANDROID_swap_rectangle "
+<<<<<<< HEAD
+=======
+	"EGL_ANDROID_get_render_buffer "
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         ;
 
 // ----------------------------------------------------------------------------
@@ -852,6 +885,11 @@ static const extention_map_t gExtentionMap[] = {
             (__eglMustCastToProperFunctionPointerType)&eglDestroyImageKHR }, 
     { "eglSetSwapRectangleANDROID", 
             (__eglMustCastToProperFunctionPointerType)&eglSetSwapRectangleANDROID }, 
+<<<<<<< HEAD
+=======
+    { "eglGetRenderBufferANDROID", 
+            (__eglMustCastToProperFunctionPointerType)&eglGetRenderBufferANDROID }, 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 };
 
 /*
@@ -1688,9 +1726,17 @@ EGLBoolean eglMakeCurrent(  EGLDisplay dpy, EGLSurface draw,
     EGLContext current_ctx = EGL_NO_CONTEXT;
 
     if ((read == EGL_NO_SURFACE && draw == EGL_NO_SURFACE) && (ctx != EGL_NO_CONTEXT))
+<<<<<<< HEAD
         return setError(EGL_BAD_MATCH, EGL_FALSE);
 
     if ((read != EGL_NO_SURFACE || draw != EGL_NO_SURFACE) && (ctx == EGL_NO_CONTEXT))
+=======
+	LOGI("EGL_BAD_MATCH: #1");
+        return setError(EGL_BAD_MATCH, EGL_FALSE);
+
+    if ((read != EGL_NO_SURFACE || draw != EGL_NO_SURFACE) && (ctx == EGL_NO_CONTEXT))
+	LOGI("EGL_BAD_MATCH: #2");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return setError(EGL_BAD_MATCH, EGL_FALSE);
 
     if (ctx == EGL_NO_CONTEXT) {
@@ -2077,3 +2123,23 @@ EGLBoolean eglSetSwapRectangleANDROID(EGLDisplay dpy, EGLSurface draw,
 
     return EGL_TRUE;
 }
+<<<<<<< HEAD
+=======
+
+EGLClientBuffer eglGetRenderBufferANDROID(EGLDisplay dpy, EGLSurface draw)
+{
+    if (egl_display_t::is_valid(dpy) == EGL_FALSE)
+        LOGI("EGL_BAD_DISPLAY_HERE4");
+
+        return setError(EGL_BAD_DISPLAY, (EGLClientBuffer)0);
+
+    egl_surface_t* d = static_cast<egl_surface_t*>(draw);
+    if (d->dpy != dpy)
+        LOGI("EGL_BAD_DISPLAY_HERE3");
+
+        return setError(EGL_BAD_DISPLAY, (EGLClientBuffer)0);
+
+    // post the surface
+   return d->getRenderBuffer();
+}
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

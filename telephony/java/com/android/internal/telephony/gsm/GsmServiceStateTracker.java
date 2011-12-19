@@ -270,9 +270,12 @@ final class GsmServiceStateTracker extends ServiceStateTracker {
                 break;
 
             case EVENT_SIM_READY:
+<<<<<<< HEAD
                 // Set the network type, in case the radio does not restore it.
                 cm.setCurrentPreferredNetworkType();
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 // The SIM is now ready i.e if it was locked
                 // it has been unlocked. At this stage, the radio is already
                 // powered on.

@@ -482,7 +482,10 @@ public class Vpn extends INetworkManagementEventObserver.Stub {
                 if (state.exists()) {
                     throw new IllegalStateException("Cannot delete the state");
                 }
+<<<<<<< HEAD
                 new File("/data/misc/vpn/abort").delete();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 // Check if we need to restart any of the daemons.
                 boolean restart = false;

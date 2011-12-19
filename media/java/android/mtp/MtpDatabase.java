@@ -38,7 +38,10 @@ import android.view.WindowManager;
 
 import java.io.File;
 import java.util.HashMap;
+<<<<<<< HEAD
 import java.util.Locale;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 /**
  * {@hide}
@@ -51,6 +54,7 @@ public class MtpDatabase {
     private final IContentProvider mMediaProvider;
     private final String mVolumeName;
     private final Uri mObjectsUri;
+<<<<<<< HEAD
     // path to primary storage
     private final String mMediaStoragePath;
     // if not null, restrict all queries to these subdirectories
@@ -60,6 +64,9 @@ public class MtpDatabase {
     // where arguments for restricting queries to files in mSubDirectories
     private String[] mSubDirectoriesWhereArgs;
 
+=======
+    private final String mMediaStoragePath; // path to primary storage
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private final HashMap<String, MtpStorage> mStorageMap = new HashMap<String, MtpStorage>();
 
     // cached property groups for single properties
@@ -120,8 +127,12 @@ public class MtpDatabase {
         System.loadLibrary("media_jni");
     }
 
+<<<<<<< HEAD
     public MtpDatabase(Context context, String volumeName, String storagePath,
             String[] subDirectories) {
+=======
+    public MtpDatabase(Context context, String volumeName, String storagePath) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         native_setup();
 
         mContext = context;
@@ -130,6 +141,7 @@ public class MtpDatabase {
         mMediaStoragePath = storagePath;
         mObjectsUri = Files.getMtpObjectsUri(volumeName);
         mMediaScanner = new MediaScanner(context);
+<<<<<<< HEAD
 
         mSubDirectories = subDirectories;
         if (subDirectories != null) {
@@ -169,6 +181,8 @@ public class MtpDatabase {
                 }
             }
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         initDeviceProperties(context);
     }
 
@@ -224,6 +238,7 @@ public class MtpDatabase {
         }
     }
 
+<<<<<<< HEAD
     // check to see if the path is contained in one of our storage subdirectories
     // returns true if we have no special subdirectories
     private boolean inStorageSubDirectory(String path) {
@@ -262,6 +277,11 @@ public class MtpDatabase {
         if (!inStorageSubDirectory(path)) return -1;
 
         // make sure the object does not exist
+=======
+    private int beginSendObject(String path, int format, int parent,
+                         int storageId, long size, long modified) {
+        // first make sure the object does not exist
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (path != null) {
             Cursor c = null;
             try {
@@ -338,15 +358,19 @@ public class MtpDatabase {
     }
 
     private Cursor createObjectQuery(int storageID, int format, int parent) throws RemoteException {
+<<<<<<< HEAD
         String where;
         String[] whereArgs;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (storageID == 0xFFFFFFFF) {
             // query all stores
             if (format == 0) {
                 // query all formats
                 if (parent == 0) {
                     // query all objects
+<<<<<<< HEAD
                     where = null;
                     whereArgs = null;
                 } else {
@@ -357,10 +381,21 @@ public class MtpDatabase {
                     where = PARENT_WHERE;
                     whereArgs = new String[] { Integer.toString(parent) };
                 }
+=======
+                    return mMediaProvider.query(mObjectsUri, ID_PROJECTION, null, null, null);
+                }
+                if (parent == 0xFFFFFFFF) {
+                    // all objects in root of store
+                    parent = 0;
+                }
+                return mMediaProvider.query(mObjectsUri, ID_PROJECTION, PARENT_WHERE,
+                        new String[] { Integer.toString(parent) }, null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 // query specific format
                 if (parent == 0) {
                     // query all objects
+<<<<<<< HEAD
                     where = FORMAT_WHERE;
                     whereArgs = new String[] { Integer.toString(format) };
                 } else {
@@ -372,6 +407,17 @@ public class MtpDatabase {
                     whereArgs = new String[] { Integer.toString(format),
                                                Integer.toString(parent) };
                 }
+=======
+                    return mMediaProvider.query(mObjectsUri, ID_PROJECTION, FORMAT_WHERE,
+                            new String[] { Integer.toString(format) }, null);
+                }
+                if (parent == 0xFFFFFFFF) {
+                    // all objects in root of store
+                    parent = 0;
+                }
+                return mMediaProvider.query(mObjectsUri, ID_PROJECTION, FORMAT_PARENT_WHERE,
+                        new String[] { Integer.toString(format), Integer.toString(parent) }, null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } else {
             // query specific store
@@ -379,6 +425,7 @@ public class MtpDatabase {
                 // query all formats
                 if (parent == 0) {
                     // query all objects
+<<<<<<< HEAD
                     where = STORAGE_WHERE;
                     whereArgs = new String[] { Integer.toString(storageID) };
                 } else {
@@ -390,10 +437,23 @@ public class MtpDatabase {
                     whereArgs = new String[] { Integer.toString(storageID),
                                                Integer.toString(parent) };
                 }
+=======
+                    return mMediaProvider.query(mObjectsUri, ID_PROJECTION, STORAGE_WHERE,
+                            new String[] { Integer.toString(storageID) }, null);
+                }
+                if (parent == 0xFFFFFFFF) {
+                    // all objects in root of store
+                    parent = 0;
+                }
+                return mMediaProvider.query(mObjectsUri, ID_PROJECTION, STORAGE_PARENT_WHERE,
+                        new String[] { Integer.toString(storageID), Integer.toString(parent) },
+                        null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 // query specific format
                 if (parent == 0) {
                     // query all objects
+<<<<<<< HEAD
                     where = STORAGE_FORMAT_WHERE;
                     whereArgs = new String[] {  Integer.toString(storageID),
                                                 Integer.toString(format) };
@@ -434,6 +494,23 @@ public class MtpDatabase {
         }
 
         return mMediaProvider.query(mObjectsUri, ID_PROJECTION, where, whereArgs, null);
+=======
+                    return mMediaProvider.query(mObjectsUri, ID_PROJECTION, STORAGE_FORMAT_WHERE,
+                            new String[] {  Integer.toString(storageID), Integer.toString(format) },
+                            null);
+                }
+                if (parent == 0xFFFFFFFF) {
+                    // all objects in root of store
+                    parent = 0;
+                }
+                return mMediaProvider.query(mObjectsUri, ID_PROJECTION, STORAGE_FORMAT_PARENT_WHERE,
+                        new String[] { Integer.toString(storageID),
+                                       Integer.toString(format),
+                                       Integer.toString(parent) },
+                        null);
+            }
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private int[] getObjectList(int storageID, int format, int parent) {
@@ -715,11 +792,14 @@ public class MtpDatabase {
             return MtpConstants.RESPONSE_INVALID_OBJECT_HANDLE;
         }
 
+<<<<<<< HEAD
         // do not allow renaming any of the special subdirectories
         if (isStorageSubDirectory(path)) {
             return MtpConstants.RESPONSE_OBJECT_WRITE_PROTECTED;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // now rename the file.  make sure this succeeds before updating database
         File oldFile = new File(path);
         int lastSlash = path.lastIndexOf('/');
@@ -901,11 +981,14 @@ public class MtpDatabase {
                 return MtpConstants.RESPONSE_GENERAL_ERROR;
             }
 
+<<<<<<< HEAD
             // do not allow deleting any of the special subdirectories
             if (isStorageSubDirectory(path)) {
                 return MtpConstants.RESPONSE_OBJECT_WRITE_PROTECTED;
             }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (format == MtpConstants.FORMAT_ASSOCIATION) {
                 // recursive case - delete all children first
                 Uri uri = Files.getMtpObjectsUri(mVolumeName);

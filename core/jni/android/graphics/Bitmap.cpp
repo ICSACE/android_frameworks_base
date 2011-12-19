@@ -579,7 +579,10 @@ static void Bitmap_copyPixelsFromBuffer(JNIEnv* env, jobject,
         android::AutoBufferPointer abp(env, jbuffer, JNI_FALSE);
         // the java side has already checked that buffer is large enough
         memcpy(dst, abp.pointer(), bitmap->getSize());
+<<<<<<< HEAD
         bitmap->notifyPixelsChanged();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 }
 

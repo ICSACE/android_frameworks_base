@@ -36,8 +36,12 @@ import java.lang.reflect.Modifier;
  *
  * While the LoaderManager API was introduced in
  * {@link android.os.Build.VERSION_CODES#HONEYCOMB}, a version of the API
+<<<<<<< HEAD
  * at is also available for use on older platforms through
  * {@link android.support.v4.app.FragmentActivity}.  See the blog post
+=======
+ * is also available for use on older platforms.  See the blog post
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <a href="http://android-developers.blogspot.com/2011/03/fragments-for-all.html">
  * Fragments For All</a> for more details.
  *
@@ -419,10 +423,13 @@ class LoaderManagerImpl extends LoaderManager {
                 info.destroy();
                 mInactiveLoaders.remove(mId);
             }
+<<<<<<< HEAD
 
             if (mActivity != null && !hasRunningLoaders()) {
                 mActivity.mFragments.startPendingDeferredFragments();
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         void callOnLoadFinished(Loader<Object> loader, Object data) {
@@ -682,9 +689,12 @@ class LoaderManagerImpl extends LoaderManager {
             mInactiveLoaders.removeAt(idx);
             info.destroy();
         }
+<<<<<<< HEAD
         if (mActivity != null && !hasRunningLoaders()) {
             mActivity.mFragments.startPendingDeferredFragments();
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -828,6 +838,7 @@ class LoaderManagerImpl extends LoaderManager {
             }
         }
     }
+<<<<<<< HEAD
 
     public boolean hasRunningLoaders() {
         boolean loadersRunning = false;
@@ -838,4 +849,6 @@ class LoaderManagerImpl extends LoaderManager {
         }
         return loadersRunning;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

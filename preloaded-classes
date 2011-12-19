@@ -18,12 +18,16 @@ android.accounts.IAccountManagerResponse
 android.accounts.IAccountManagerResponse$Stub
 android.animation.Animator
 android.animation.Animator$AnimatorListener
+<<<<<<< HEAD
 android.animation.AnimatorInflater
 android.animation.AnimatorListenerAdapter
 android.animation.AnimatorSet
 android.animation.AnimatorSet$AnimatorSetListener
 android.animation.AnimatorSet$Builder
 android.animation.AnimatorSet$Node
+=======
+android.animation.AnimatorListenerAdapter
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.animation.FloatEvaluator
 android.animation.FloatKeyframeSet
 android.animation.IntEvaluator
@@ -62,7 +66,10 @@ android.app.ActivityThread$CreateServiceData
 android.app.ActivityThread$GcIdler
 android.app.ActivityThread$H
 android.app.ActivityThread$Idler
+<<<<<<< HEAD
 android.app.ActivityThread$Profiler
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.app.ActivityThread$ProviderClientRecord
 android.app.ActivityThread$ProviderRefCount
 android.app.ActivityThread$ReceiverData
@@ -77,8 +84,11 @@ android.app.ApplicationLoaders
 android.app.ApplicationPackageManager
 android.app.ApplicationPackageManager$ResourceName
 android.app.ApplicationThreadNative
+<<<<<<< HEAD
 android.app.BackStackRecord
 android.app.BackStackRecord$Op
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.app.ContextImpl
 android.app.ContextImpl$1
 android.app.ContextImpl$10
@@ -119,6 +129,7 @@ android.app.ContextImpl$StaticServiceFetcher
 android.app.Dialog
 android.app.Dialog$1
 android.app.Dialog$ListenersHandler
+<<<<<<< HEAD
 android.app.DialogFragment
 android.app.Fragment
 android.app.FragmentManager
@@ -128,6 +139,11 @@ android.app.FragmentManagerImpl$1
 android.app.FragmentManagerImpl$2
 android.app.FragmentManagerImpl$3
 android.app.FragmentTransaction
+=======
+android.app.FragmentManager
+android.app.FragmentManagerImpl
+android.app.FragmentManagerImpl$1
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.app.IActivityManager
 android.app.IActivityManager$ContentProviderHolder
 android.app.IActivityManager$ContentProviderHolder$1
@@ -148,10 +164,13 @@ android.app.Instrumentation
 android.app.IntentReceiverLeaked
 android.app.IntentService
 android.app.IntentService$ServiceHandler
+<<<<<<< HEAD
 android.app.ListActivity
 android.app.ListActivity$1
 android.app.ListActivity$2
 android.app.ListFragment
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.app.LoadedApk
 android.app.LoadedApk$ReceiverDispatcher
 android.app.LoadedApk$ReceiverDispatcher$Args
@@ -346,7 +365,10 @@ android.emoji.EmojiFactory
 android.graphics.AvoidXfermode
 android.graphics.Bitmap
 android.graphics.Bitmap$1
+<<<<<<< HEAD
 android.graphics.Bitmap$2
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.graphics.Bitmap$BitmapFinalizer
 android.graphics.Bitmap$Config
 android.graphics.BitmapFactory
@@ -738,7 +760,10 @@ android.text.style.LineHeightSpan
 android.text.style.MetricAffectingSpan
 android.text.style.ParagraphStyle
 android.text.style.ReplacementSpan
+<<<<<<< HEAD
 android.text.style.SpellCheckSpan
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.text.style.StyleSpan
 android.text.style.SuggestionSpan
 android.text.style.UpdateAppearance
@@ -890,7 +915,10 @@ android.view.View$OnLongClickListener
 android.view.View$OnTouchListener
 android.view.View$PerformClick
 android.view.View$ScrollabilityCache
+<<<<<<< HEAD
 android.view.View$TransformationInfo
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.view.View$UnsetPressedState
 android.view.ViewConfiguration
 android.view.ViewGroup
@@ -955,7 +983,10 @@ android.view.inputmethod.EditorInfo$1
 android.view.inputmethod.ExtractedText
 android.view.inputmethod.ExtractedText$1
 android.view.inputmethod.InputConnection
+<<<<<<< HEAD
 android.view.inputmethod.InputConnectionWrapper
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.view.inputmethod.InputMethodManager
 android.view.inputmethod.InputMethodManager$1
 android.view.inputmethod.InputMethodManager$ControlledInputConnectionWrapper
@@ -968,16 +999,24 @@ android.webkit.WebViewCore
 android.widget.AbsListView
 android.widget.AbsListView$1
 android.widget.AbsListView$2
+<<<<<<< HEAD
 android.widget.AbsListView$3
 android.widget.AbsListView$AdapterDataSetObserver
 android.widget.AbsListView$CheckForTap
 android.widget.AbsListView$FlingRunnable
 android.widget.AbsListView$FlingRunnable$1
+=======
+android.widget.AbsListView$AdapterDataSetObserver
+android.widget.AbsListView$CheckForTap
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.widget.AbsListView$LayoutParams
 android.widget.AbsListView$OnScrollListener
 android.widget.AbsListView$PerformClick
 android.widget.AbsListView$RecycleBin
+<<<<<<< HEAD
 android.widget.AbsListView$RecyclerListener
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.widget.AbsListView$SavedState
 android.widget.AbsListView$SavedState$1
 android.widget.AbsListView$SelectionBoundsAdjuster
@@ -1001,6 +1040,7 @@ android.widget.CheckBox
 android.widget.Checkable
 android.widget.CheckedTextView
 android.widget.CompoundButton
+<<<<<<< HEAD
 android.widget.CompoundButton$OnCheckedChangeListener
 android.widget.CursorAdapter
 android.widget.CursorFilter$CursorFilterClient
@@ -1014,6 +1054,15 @@ android.widget.FastScroller$ScrollFade
 android.widget.Filter
 android.widget.Filter$FilterListener
 android.widget.Filter$FilterResults
+=======
+android.widget.CursorAdapter
+android.widget.CursorFilter$CursorFilterClient
+android.widget.EdgeGlow
+android.widget.EditText
+android.widget.ExpandableListView
+android.widget.Filter
+android.widget.Filter$FilterListener
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.widget.Filter$ResultsHandler
 android.widget.Filterable
 android.widget.FrameLayout
@@ -1062,6 +1111,7 @@ android.widget.SearchView
 android.widget.Spinner
 android.widget.SpinnerAdapter
 android.widget.StackView
+<<<<<<< HEAD
 android.widget.Switch
 android.widget.TabHost
 android.widget.TabHost$ContentStrategy
@@ -1079,13 +1129,23 @@ android.widget.TableLayout
 android.widget.TableRow
 android.widget.TextView
 android.widget.TextView$2
+=======
+android.widget.TabHost
+android.widget.TabWidget
+android.widget.TableLayout
+android.widget.TableRow
+android.widget.TextView
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.widget.TextView$3
 android.widget.TextView$Blink
 android.widget.TextView$BufferType
 android.widget.TextView$ChangeWatcher
 android.widget.TextView$CharWrapper
 android.widget.TextView$Drawables
+<<<<<<< HEAD
 android.widget.TextView$EasyEditSpanController
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 android.widget.TextView$InputContentType
 android.widget.TextView$InputMethodState
 android.widget.TextView$OnEditorActionListener

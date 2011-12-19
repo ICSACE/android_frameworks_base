@@ -37,6 +37,7 @@ Program::Program(Context *rsc, const char * shaderText, uint32_t shaderLength,
         }
     }
 
+<<<<<<< HEAD
     mTextures = new ObjectBaseRef<Allocation>[mHal.state.texturesCount];
     mSamplers = new ObjectBaseRef<Sampler>[mHal.state.texturesCount];
     mInputElements = new ObjectBaseRef<Element>[mHal.state.inputElementsCount];
@@ -52,18 +53,33 @@ Program::Program(Context *rsc, const char * shaderText, uint32_t shaderLength,
 
     // Will initialize everything
     freeChildren();
+=======
+    mHal.state.textures = new ObjectBaseRef<Allocation>[mHal.state.texturesCount];
+    mHal.state.samplers = new ObjectBaseRef<Sampler>[mHal.state.texturesCount];
+    mHal.state.textureTargets = new RsTextureTarget[mHal.state.texturesCount];
+    mHal.state.inputElements = new ObjectBaseRef<Element>[mHal.state.inputElementsCount];
+    mHal.state.constantTypes = new ObjectBaseRef<Type>[mHal.state.constantsCount];
+    mHal.state.constants = new ObjectBaseRef<Allocation>[mHal.state.constantsCount];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     uint32_t input = 0;
     uint32_t constant = 0;
     uint32_t texture = 0;
     for (uint32_t ct=0; ct < paramLength; ct+=2) {
         if (params[ct] == RS_PROGRAM_PARAM_INPUT) {
+<<<<<<< HEAD
             mInputElements[input].set(reinterpret_cast<Element *>(params[ct+1]));
             mHal.state.inputElements[input++] = reinterpret_cast<Element *>(params[ct+1]);
         }
         if (params[ct] == RS_PROGRAM_PARAM_CONSTANT) {
             mConstantTypes[constant].set(reinterpret_cast<Type *>(params[ct+1]));
             mHal.state.constantTypes[constant++] = reinterpret_cast<Type *>(params[ct+1]);
+=======
+            mHal.state.inputElements[input++].set(reinterpret_cast<Element *>(params[ct+1]));
+        }
+        if (params[ct] == RS_PROGRAM_PARAM_CONSTANT) {
+            mHal.state.constantTypes[constant++].set(reinterpret_cast<Type *>(params[ct+1]));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         if (params[ct] == RS_PROGRAM_PARAM_TEXTURE_TYPE) {
             mHal.state.textureTargets[texture++] = (RsTextureTarget)params[ct+1];
@@ -83,12 +99,15 @@ Program::Program(Context *rsc, const char * shaderText, uint32_t shaderLength,
 Program::~Program() {
     freeChildren();
 
+<<<<<<< HEAD
     delete[] mTextures;
     delete[] mSamplers;
     delete[] mInputElements;
     delete[] mConstantTypes;
     delete[] mConstants;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     delete[] mHal.state.textures;
     delete[] mHal.state.samplers;
     delete[] mHal.state.textureTargets;
@@ -127,12 +146,15 @@ void Program::initMemberVars() {
     mHal.state.constantsCount = 0;
     mHal.state.texturesCount = 0;
 
+<<<<<<< HEAD
     mTextures = NULL;
     mSamplers = NULL;
     mInputElements = NULL;
     mConstantTypes = NULL;
     mConstants = NULL;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mIsInternal = false;
 }
 
@@ -144,13 +166,18 @@ void Program::bindAllocation(Context *rsc, Allocation *alloc, uint32_t slot) {
             rsc->setError(RS_ERROR_BAD_SHADER, "Cannot bind allocation");
             return;
         }
+<<<<<<< HEAD
         if (alloc->getType() != mConstantTypes[slot].get()) {
+=======
+        if (alloc->getType() != mHal.state.constantTypes[slot].get()) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             LOGE("Attempt to bind alloc at slot %u, on shader id %u, but types mismatch",
                  slot, (uint32_t)this);
             rsc->setError(RS_ERROR_BAD_SHADER, "Cannot bind allocation");
             return;
         }
     }
+<<<<<<< HEAD
     if (mConstants[slot].get() == alloc) {
         return;
     }
@@ -159,6 +186,15 @@ void Program::bindAllocation(Context *rsc, Allocation *alloc, uint32_t slot) {
     }
     mConstants[slot].set(alloc);
     mHal.state.constants[slot] = alloc;
+=======
+    if (mHal.state.constants[slot].get() == alloc) {
+        return;
+    }
+    if (mHal.state.constants[slot].get()) {
+        mHal.state.constants[slot].get()->removeProgramToDirty(this);
+    }
+    mHal.state.constants[slot].set(alloc);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (alloc) {
         alloc->addProgramToDirty(this);
     }
@@ -178,9 +214,13 @@ void Program::bindTexture(Context *rsc, uint32_t slot, Allocation *a) {
         return;
     }
 
+<<<<<<< HEAD
     mTextures[slot].set(a);
     mHal.state.textures[slot] = a;
 
+=======
+    mHal.state.textures[slot].set(a);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mDirty = true;
 }
 
@@ -191,8 +231,12 @@ void Program::bindSampler(Context *rsc, uint32_t slot, Sampler *s) {
         return;
     }
 
+<<<<<<< HEAD
     mSamplers[slot].set(s);
     mHal.state.samplers[slot] = s;
+=======
+    mHal.state.samplers[slot].set(s);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mDirty = true;
 }
 

@@ -315,6 +315,7 @@ class GLES20Canvas extends HardwareCanvas {
 
     private static native void nFlushCaches(int level);
 
+<<<<<<< HEAD
     /**
      * Release all resources associated with the underlying caches. This should
      * only be called after a full flushCaches().
@@ -336,6 +337,8 @@ class GLES20Canvas extends HardwareCanvas {
 
     private static native void nInitCaches();
     
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ///////////////////////////////////////////////////////////////////////////
     // Display list
     ///////////////////////////////////////////////////////////////////////////
@@ -737,6 +740,7 @@ class GLES20Canvas extends HardwareCanvas {
         // Shaders are ignored when drawing bitmaps
         int modifiers = paint != null ? setupModifiers(bitmap, paint) : MODIFIER_NONE;
         final int nativePaint = paint == null ? 0 : paint.mNativePaint;
+<<<<<<< HEAD
 
         float left, top, right, bottom;
         if (src == null) {
@@ -752,6 +756,10 @@ class GLES20Canvas extends HardwareCanvas {
 
         nDrawBitmap(mRenderer, bitmap.mNativeBitmap, bitmap.mBuffer, left, top, right, bottom,
                 dst.left, dst.top, dst.right, dst.bottom, nativePaint);
+=======
+        nDrawBitmap(mRenderer, bitmap.mNativeBitmap, bitmap.mBuffer, src.left, src.top, src.right,
+                src.bottom, dst.left, dst.top, dst.right, dst.bottom, nativePaint);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (modifiers != MODIFIER_NONE) nResetModifiers(mRenderer, modifiers);
     }
 

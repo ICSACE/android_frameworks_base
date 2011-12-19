@@ -58,6 +58,7 @@ public class Loader<D> {
     boolean mReset = true;
     boolean mContentChanged = false;
 
+<<<<<<< HEAD
     /**
      * An implementation of a ContentObserver that takes care of connecting
      * it to the Loader to have the loader re-load its data when the observer
@@ -65,6 +66,8 @@ public class Loader<D> {
      * it is used for you by {@link CursorLoader} to take care of executing
      * an update when the cursor's backing data changes.
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public final class ForceLoadContentObserver extends ContentObserver {
         public ForceLoadContentObserver() {
             super(new Handler());
@@ -81,6 +84,7 @@ public class Loader<D> {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Interface that is implemented to discover when a Loader has finished
      * loading its data.  You do not normally need to implement this yourself;
@@ -89,6 +93,8 @@ public class Loader<D> {
      * be reported to its client.  This interface should only be used if a
      * Loader is not being used in conjunction with LoaderManager.
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public interface OnLoadCompleteListener<D> {
         /**
          * Called on the thread that created the Loader when the load is complete.
@@ -198,12 +204,15 @@ public class Loader<D> {
     }
 
     /**
+<<<<<<< HEAD
      * This function will normally be called for you automatically by
      * {@link android.app.LoaderManager} when the associated fragment/activity
      * is being started.  When using a Loader with {@link android.app.LoaderManager},
      * you <em>must not</em> call this method yourself, or you will conflict
      * with its management of the Loader.
      *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Starts an asynchronous load of the Loader's data. When the result
      * is ready the callbacks will be called on the process's main thread.
      * If a previous load has been completed and is still valid
@@ -253,6 +262,7 @@ public class Loader<D> {
     }
 
     /**
+<<<<<<< HEAD
      * This function will normally be called for you automatically by
      * {@link android.app.LoaderManager} when the associated fragment/activity
      * is being stopped.  When using a Loader with {@link android.app.LoaderManager},
@@ -260,6 +270,9 @@ public class Loader<D> {
      * with its management of the Loader.
      *
      * <p>Stops delivery of updates until the next time {@link #startLoading()} is called.
+=======
+     * Stops delivery of updates until the next time {@link #startLoading()} is called.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Implementations should <em>not</em> invalidate their data at this point --
      * clients are still free to use the last data the loader reported.  They will,
      * however, typically stop reporting new data if the data changes; they can
@@ -287,12 +300,15 @@ public class Loader<D> {
     }
 
     /**
+<<<<<<< HEAD
      * This function will normally be called for you automatically by
      * {@link android.app.LoaderManager} when restarting a Loader.  When using
      * a Loader with {@link android.app.LoaderManager},
      * you <em>must not</em> call this method yourself, or you will conflict
      * with its management of the Loader.
      *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Tell the Loader that it is being abandoned.  This is called prior
      * to {@link #reset} to have it retain its current data but not report
      * any new data.
@@ -315,12 +331,15 @@ public class Loader<D> {
     }
     
     /**
+<<<<<<< HEAD
      * This function will normally be called for you automatically by
      * {@link android.app.LoaderManager} when destroying a Loader.  When using
      * a Loader with {@link android.app.LoaderManager},
      * you <em>must not</em> call this method yourself, or you will conflict
      * with its management of the Loader.
      *
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Resets the state of the Loader.  The Loader should at this point free
      * all of its resources, since it may never be called again; however, its
      * {@link #startLoading()} may later be called at which point it must be

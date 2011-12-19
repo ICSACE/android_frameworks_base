@@ -138,7 +138,11 @@ void RsdMeshObj::renderPrimitiveRange(const Context *rsc, uint32_t primIndex,
     }
 
     for (uint32_t ct=0; ct < mRSMesh->mHal.state.vertexBuffersCount; ct++) {
+<<<<<<< HEAD
         const Allocation *alloc = mRSMesh->mHal.state.vertexBuffers[ct];
+=======
+        const Allocation *alloc = mRSMesh->mHal.state.vertexBuffers[ct].get();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         DrvAllocation *drv = (DrvAllocation *)alloc->mHal.drv;
         if (drv->uploadDeferred) {
             rsdAllocationSyncAll(rsc, alloc, RS_ALLOCATION_USAGE_SCRIPT);
@@ -148,7 +152,11 @@ void RsdMeshObj::renderPrimitiveRange(const Context *rsc, uint32_t primIndex,
     // update attributes with either buffer information or data ptr based on their current state
     for (uint32_t ct=0; ct < mAttribCount; ct++) {
         uint32_t allocIndex = mAttribAllocationIndex[ct];
+<<<<<<< HEAD
         Allocation *alloc = mRSMesh->mHal.state.vertexBuffers[allocIndex];
+=======
+        Allocation *alloc = mRSMesh->mHal.state.vertexBuffers[allocIndex].get();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         DrvAllocation *drvAlloc = (DrvAllocation *)alloc->mHal.drv;
 
         if (drvAlloc->bufferID) {
@@ -163,7 +171,12 @@ void RsdMeshObj::renderPrimitiveRange(const Context *rsc, uint32_t primIndex,
     RsdVertexArray va(mAttribs, mAttribCount);
     va.setup(rsc);
 
+<<<<<<< HEAD
     const Allocation *idxAlloc = mRSMesh->mHal.state.indexBuffers[primIndex];
+=======
+    Mesh::Primitive_t *prim = mRSMesh->mHal.state.primitives[primIndex];
+    const Allocation *idxAlloc = prim->mIndexBuffer.get();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     if (idxAlloc) {
         DrvAllocation *drvAlloc = (DrvAllocation *)idxAlloc->mHal.drv;
         if (drvAlloc->uploadDeferred) {
@@ -189,7 +202,11 @@ void RsdMeshObj::renderPrimitiveRange(const Context *rsc, uint32_t primIndex,
 void RsdMeshObj::updateGLPrimitives() {
     mGLPrimitives = new uint32_t[mRSMesh->mHal.state.primitivesCount];
     for (uint32_t i = 0; i < mRSMesh->mHal.state.primitivesCount; i ++) {
+<<<<<<< HEAD
         switch (mRSMesh->mHal.state.primitives[i]) {
+=======
+        switch (mRSMesh->mHal.state.primitives[i]->mPrimitive) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case RS_PRIMITIVE_POINT:          mGLPrimitives[i] = GL_POINTS; break;
             case RS_PRIMITIVE_LINE:           mGLPrimitives[i] = GL_LINES; break;
             case RS_PRIMITIVE_LINE_STRIP:     mGLPrimitives[i] = GL_LINE_STRIP; break;

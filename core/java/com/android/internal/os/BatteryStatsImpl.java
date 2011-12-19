@@ -1275,7 +1275,11 @@ public final class BatteryStatsImpl extends BatteryStats {
             // record changes to the battery level.
             if (mHistoryLastWritten.batteryLevel == mHistoryCur.batteryLevel &&
                     (dataSize >= MAX_MAX_HISTORY_BUFFER
+<<<<<<< HEAD
                             || ((mHistoryLastWritten.states^mHistoryCur.states)
+=======
+                            || ((mHistoryEnd.states^mHistoryCur.states)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                                     & HistoryItem.MOST_INTERESTING_STATES) == 0)) {
                 return;
             }

@@ -138,7 +138,10 @@ public class KeyguardViewManager implements KeyguardWindowController {
                 lp.privateFlags |=
                         WindowManager.LayoutParams.PRIVATE_FLAG_FORCE_HARDWARE_ACCELERATED;
             }
+<<<<<<< HEAD
             lp.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_SET_NEEDS_MENU_KEY;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             lp.setTitle("Keyguard");
             mWindowLayoutParams = lp;
 

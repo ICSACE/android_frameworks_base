@@ -19,11 +19,18 @@
 #include <utils/Log.h>
 
 #include "include/AMRExtractor.h"
+<<<<<<< HEAD
+=======
+#include "include/AVIExtractor.h"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "include/MP3Extractor.h"
 #include "include/MPEG4Extractor.h"
 #include "include/WAVExtractor.h"
 #include "include/OggExtractor.h"
+<<<<<<< HEAD
 #include "include/MPEG2PSExtractor.h"
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "include/MPEG2TSExtractor.h"
 #include "include/DRMExtractor.h"
 #include "include/WVMExtractor.h"
@@ -109,12 +116,20 @@ sp<MediaExtractor> MediaExtractor::Create(
         ret = new MatroskaExtractor(source);
     } else if (!strcasecmp(mime, MEDIA_MIMETYPE_CONTAINER_MPEG2TS)) {
         ret = new MPEG2TSExtractor(source);
+<<<<<<< HEAD
+=======
+    } else if (!strcasecmp(mime, MEDIA_MIMETYPE_CONTAINER_AVI)) {
+        ret = new AVIExtractor(source);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     } else if (!strcasecmp(mime, MEDIA_MIMETYPE_CONTAINER_WVM)) {
         ret = new WVMExtractor(source);
     } else if (!strcasecmp(mime, MEDIA_MIMETYPE_AUDIO_AAC_ADTS)) {
         ret = new AACExtractor(source);
+<<<<<<< HEAD
     } else if (!strcasecmp(mime, MEDIA_MIMETYPE_CONTAINER_MPEG2PS)) {
         ret = new MPEG2PSExtractor(source);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     if (ret != NULL) {

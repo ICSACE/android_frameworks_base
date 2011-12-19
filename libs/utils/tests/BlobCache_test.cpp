@@ -14,6 +14,7 @@
  ** limitations under the License.
  */
 
+<<<<<<< HEAD
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -21,6 +22,11 @@
 
 #include <utils/BlobCache.h>
 #include <utils/Errors.h>
+=======
+#include <gtest/gtest.h>
+
+#include <utils/BlobCache.h>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 namespace android {
 
@@ -258,6 +264,7 @@ TEST_F(BlobCacheTest, ExceedingTotalLimitHalvesCacheSize) {
     ASSERT_EQ(maxEntries/2 + 1, numCached);
 }
 
+<<<<<<< HEAD
 class BlobCacheFlattenTest : public BlobCacheTest {
 protected:
     virtual void SetUp() {
@@ -418,4 +425,6 @@ TEST_F(BlobCacheFlattenTest, UnflattenCatchesBufferTooSmall) {
     ASSERT_EQ(size_t(0), mBC2->get("abcd", 4, buf, 4));
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 } // namespace android

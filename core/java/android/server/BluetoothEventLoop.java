@@ -784,12 +784,19 @@ class BluetoothEventLoop {
                 // machine.  We don't handle AVCTP signals currently. We only send
                 // intents for AVDTP state changes. We need to handle both of them in
                 // some cases. For now, just don't move to incoming state in this case.
+<<<<<<< HEAD
                 mBluetoothService.notifyIncomingA2dpConnection(address, false);
+=======
+                mBluetoothService.notifyIncomingA2dpConnection(address);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 Log.i(TAG, "" + authorized +
                       "Incoming A2DP / AVRCP connection from " + address);
                 mA2dp.allowIncomingConnect(device, authorized);
+<<<<<<< HEAD
                 mBluetoothService.notifyIncomingA2dpConnection(address, true);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } else if (BluetoothUuid.isInputDevice(uuid)) {
             // We can have more than 1 input device connected.

@@ -47,8 +47,12 @@
         </receiver>
 
         <activity android:name=".usb.UsbStorageActivity"
+<<<<<<< HEAD
                   android:label="@*android:string/usb_storage_activity_title"
                   android:excludeFromRecents="true">
+=======
+                android:excludeFromRecents="true">
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         </activity>
         <activity android:name="com.android.internal.app.ExternalMediaFormatActivity"
                 android:theme="@*android:style/Theme.Dialog.Alert"
@@ -115,7 +119,11 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
+<<<<<<< HEAD
 <!--                <category android:name="android.intent.category.DREAM" />-->
+=======
+                <category android:name="android.intent.category.DREAM" />
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             </intent-filter>
         </activity>
     </application>

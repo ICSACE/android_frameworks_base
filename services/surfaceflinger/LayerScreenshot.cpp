@@ -27,7 +27,10 @@
 #include "SurfaceFlinger.h"
 #include "DisplayHardware/DisplayHardware.h"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 namespace android {
 // ---------------------------------------------------------------------------
 
@@ -46,6 +49,7 @@ LayerScreenshot::~LayerScreenshot()
     }
 }
 
+<<<<<<< HEAD
 status_t LayerScreenshot::captureLocked() {
     GLfloat u, v;
     status_t result = mFlinger->renderScreenToTextureLocked(0, &mTextureName, &u, &v);
@@ -56,12 +60,15 @@ status_t LayerScreenshot::captureLocked() {
     return NO_ERROR;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 status_t LayerScreenshot::capture() {
     GLfloat u, v;
     status_t result = mFlinger->renderScreenToTexture(0, &mTextureName, &u, &v);
     if (result != NO_ERROR) {
         return result;
     }
+<<<<<<< HEAD
     initTexture(u, v);
     return NO_ERROR;
 }
@@ -70,10 +77,18 @@ void LayerScreenshot::initTexture(GLfloat u, GLfloat v) {
     glBindTexture(GL_TEXTURE_2D, mTextureName);
     glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+=======
+
+    glBindTexture(GL_TEXTURE_2D, mTextureName);
+    glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     mTexCoords[0] = 0;         mTexCoords[1] = v;
     mTexCoords[2] = 0;         mTexCoords[3] = 0;
     mTexCoords[4] = u;         mTexCoords[5] = 0;
     mTexCoords[6] = u;         mTexCoords[7] = v;
+<<<<<<< HEAD
 }
 
 void LayerScreenshot::initStates(uint32_t w, uint32_t h, uint32_t flags) {
@@ -104,6 +119,10 @@ uint32_t LayerScreenshot::doTransaction(uint32_t flags)
         }
     }
     return LayerBaseClient::doTransaction(flags);
+=======
+
+    return NO_ERROR;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }
 
 void LayerScreenshot::onDraw(const Region& clip) const

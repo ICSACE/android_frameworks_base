@@ -585,8 +585,11 @@ sp<ABuffer> ElementaryStreamQueue::dequeueAccessUnitMPEGAudio() {
         return NULL;
     }
 
+<<<<<<< HEAD
     unsigned layer = 4 - ((header >> 17) & 3);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<ABuffer> accessUnit = new ABuffer(frameSize);
     memcpy(accessUnit->data(), data, frameSize);
 
@@ -603,6 +606,7 @@ sp<ABuffer> ElementaryStreamQueue::dequeueAccessUnitMPEGAudio() {
 
     if (mFormat == NULL) {
         mFormat = new MetaData;
+<<<<<<< HEAD
 
         switch (layer) {
             case 1:
@@ -621,6 +625,9 @@ sp<ABuffer> ElementaryStreamQueue::dequeueAccessUnitMPEGAudio() {
                 TRESPASS();
         }
 
+=======
+        mFormat->setCString(kKeyMIMEType, MEDIA_MIMETYPE_AUDIO_MPEG);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mFormat->setInt32(kKeySampleRate, samplingRate);
         mFormat->setInt32(kKeyChannelCount, numChannels);
     }

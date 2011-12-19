@@ -234,7 +234,10 @@ public interface IActivityManager extends IInterface {
     public void getMemoryInfo(ActivityManager.MemoryInfo outInfo) throws RemoteException;
     
     public void killBackgroundProcesses(final String packageName) throws RemoteException;
+<<<<<<< HEAD
     public void killAllBackgroundProcesses() throws RemoteException;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void forceStopPackage(final String packageName) throws RemoteException;
     
     // Note: probably don't want to allow applications access to these.
@@ -606,5 +609,8 @@ public interface IActivityManager extends IInterface {
     int GET_PROCESS_PSS_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+136;
     int SHOW_BOOT_MESSAGE_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+137;
     int DISMISS_KEYGUARD_ON_NEXT_ACTIVITY_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+138;
+<<<<<<< HEAD
     int KILL_ALL_BACKGROUND_PROCESSES_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+139;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

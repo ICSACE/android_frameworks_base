@@ -63,8 +63,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+<<<<<<< HEAD
 import libcore.io.IoUtils;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 /**
  * Holds information about dynamic settings.
  */
@@ -1000,8 +1003,13 @@ final class Settings {
                 FileUtils.sync(fstr);
                 str.close();
                 journal.commit();
+<<<<<<< HEAD
             } catch (Exception e) {
                 IoUtils.closeQuietly(str);
+=======
+            }
+            catch (Exception  e) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 journal.rollback();
             }
 

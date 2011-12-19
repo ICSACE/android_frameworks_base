@@ -73,8 +73,11 @@ public class TabletTicker
     private StatusBarNotification[] mQueue = new StatusBarNotification[QUEUE_LENGTH];
     private int mQueuePos;
 
+<<<<<<< HEAD
     private final int mLargeIconHeight;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private TabletStatusBar mBar;
 
     private LayoutTransition mLayoutTransition;
@@ -83,9 +86,12 @@ public class TabletTicker
     public TabletTicker(TabletStatusBar bar) {
         mBar = bar;
         mContext = bar.getContext();
+<<<<<<< HEAD
         final Resources res = mContext.getResources();
         mLargeIconHeight = res.getDimensionPixelSize(
                 android.R.dimen.notification_large_icon_height);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     public void add(IBinder key, StatusBarNotification notification) {
@@ -214,6 +220,11 @@ public class TabletTicker
         final Resources res = mContext.getResources();
         final FrameLayout view = new FrameLayout(mContext);
         final int width = res.getDimensionPixelSize(R.dimen.notification_ticker_width);
+<<<<<<< HEAD
+=======
+        final int height = res.getDimensionPixelSize(
+                android.R.dimen.notification_large_icon_height);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         int windowFlags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                     | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                     | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
@@ -222,7 +233,11 @@ public class TabletTicker
         } else {
             windowFlags |= WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
         }
+<<<<<<< HEAD
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(width, mLargeIconHeight,
+=======
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(width, height,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 WindowManager.LayoutParams.TYPE_STATUS_BAR_PANEL, windowFlags,
                 PixelFormat.TRANSLUCENT);
         lp.gravity = Gravity.BOTTOM | Gravity.RIGHT;
@@ -300,6 +315,7 @@ public class TabletTicker
         if (n.largeIcon != null) {
             largeIcon.setImageBitmap(n.largeIcon);
             largeIcon.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
             final ViewGroup.LayoutParams lp = largeIcon.getLayoutParams();
             final int statusBarHeight = mBar.getStatusBarHeight();
             if (n.largeIcon.getHeight() <= statusBarHeight) {
@@ -310,6 +326,8 @@ public class TabletTicker
                 lp.height = mLargeIconHeight;
             }
             largeIcon.setLayoutParams(lp);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         if (CLICKABLE_TICKER) {

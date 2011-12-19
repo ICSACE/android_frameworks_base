@@ -151,6 +151,7 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
         }
     };
 
+<<<<<<< HEAD
     private Runnable mReleaseCursorRunnable = new Runnable() {
         public void run() {
             if (mSuggestionsAdapter != null && mSuggestionsAdapter instanceof SuggestionsAdapter) {
@@ -159,6 +160,8 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
         }
     };
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // For voice searching
     private final Intent mVoiceWebSearchIntent;
     private final Intent mVoiceAppSearchIntent;
@@ -728,8 +731,12 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
 
     private void updateSubmitButton(boolean hasText) {
         int visibility = GONE;
+<<<<<<< HEAD
         if (mSubmitButtonEnabled && isSubmitAreaEnabled() && hasFocus()
                 && (hasText || !mVoiceButtonEnabled)) {
+=======
+        if (isSubmitAreaEnabled() && hasFocus() && (hasText || !mVoiceButtonEnabled)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             visibility = VISIBLE;
         }
         mSubmitButton.setVisibility(visibility);
@@ -768,7 +775,10 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
     @Override
     protected void onDetachedFromWindow() {
         removeCallbacks(mUpdateDrawableStateRunnable);
+<<<<<<< HEAD
         post(mReleaseCursorRunnable);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         super.onDetachedFromWindow();
     }
 
@@ -1038,9 +1048,13 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
             }
         }
         mQueryTextView.setInputType(inputType);
+<<<<<<< HEAD
         if (mSuggestionsAdapter != null) {
             mSuggestionsAdapter.changeCursor(null);
         }
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // attach the suggestions adapter, if suggestions are available
         // The existence of a suggestions authority is the proxy for "suggestions available here"
         if (mSearchable.getSuggestAuthority() != null) {
@@ -1083,7 +1097,13 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
         CharSequence text = mQueryTextView.getText();
         mUserQuery = text;
         boolean hasText = !TextUtils.isEmpty(text);
+<<<<<<< HEAD
         updateSubmitButton(hasText);
+=======
+        if (isSubmitButtonEnabled()) {
+            updateSubmitButton(hasText);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         updateVoiceButton(!hasText);
         updateCloseButton();
         updateSubmitArea();
@@ -1187,6 +1207,10 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
     public void onActionViewCollapsed() {
         clearFocus();
         updateViewsVisibility(true);
+<<<<<<< HEAD
+=======
+        mQueryTextView.setText("");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mQueryTextView.setImeOptions(mCollapsedImeOptions);
         mExpandedInActionView = false;
     }
@@ -1196,12 +1220,18 @@ public class SearchView extends LinearLayout implements CollapsibleActionView {
      */
     @Override
     public void onActionViewExpanded() {
+<<<<<<< HEAD
         if (mExpandedInActionView) return;
 
         mExpandedInActionView = true;
         mCollapsedImeOptions = mQueryTextView.getImeOptions();
         mQueryTextView.setImeOptions(mCollapsedImeOptions | EditorInfo.IME_FLAG_NO_FULLSCREEN);
         mQueryTextView.setText("");
+=======
+        mExpandedInActionView = true;
+        mCollapsedImeOptions = mQueryTextView.getImeOptions();
+        mQueryTextView.setImeOptions(mCollapsedImeOptions | EditorInfo.IME_FLAG_NO_FULLSCREEN);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         setIconified(false);
     }
 

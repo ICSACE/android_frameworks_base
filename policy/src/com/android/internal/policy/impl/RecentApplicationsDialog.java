@@ -71,6 +71,11 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
         }
     };
 
+<<<<<<< HEAD
+=======
+    private int mHeldModifiers;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public RecentApplicationsDialog(Context context) {
         super(context, com.android.internal.R.style.Theme_Dialog_RecentApplications);
 
@@ -122,6 +127,20 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
         }
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Sets the modifier keys that are being held to keep the dialog open, or 0 if none.
+     * Used to make the recent apps dialog automatically dismiss itself when the modifiers
+     * all go up.
+     * @param heldModifiers The held key modifiers, such as {@link KeyEvent#META_ALT_ON}.
+     * Should exclude shift.
+     */
+    public void setHeldModifiers(int heldModifiers) {
+        mHeldModifiers = heldModifiers;
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_TAB) {
@@ -161,6 +180,7 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
         return super.onKeyDown(keyCode, event);
     }
 
+<<<<<<< HEAD
     /**
      * Dismiss the dialog and switch to the selected application.
      */
@@ -182,6 +202,32 @@ public class RecentApplicationsDialog extends Dialog implements OnClickListener 
             switchTo(tag);
         }
         dismiss();
+=======
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (mHeldModifiers != 0 && (event.getModifiers() & mHeldModifiers) == 0) {
+            final int numIcons = mIcons.length;
+            RecentTag tag = null;
+            for (int i = 0; i < numIcons; i++) {
+                if (mIcons[i].getVisibility() != View.VISIBLE) {
+                    break;
+                }
+                if (i == 0 || mIcons[i].hasFocus()) {
+                    tag = (RecentTag) mIcons[i].getTag();
+                    if (mIcons[i].hasFocus()) {
+                        break;
+                    }
+                }
+            }
+            if (tag != null) {
+                switchTo(tag);
+            }
+            dismiss();
+            return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**

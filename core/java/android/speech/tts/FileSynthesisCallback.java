@@ -16,10 +16,17 @@
 package android.speech.tts;
 
 import android.media.AudioFormat;
+<<<<<<< HEAD
 import android.os.FileUtils;
 import android.util.Log;
 
 import java.io.File;
+=======
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -63,7 +70,11 @@ class FileSynthesisCallback extends AbstractSynthesisCallback {
      * Must be called while holding the monitor on {@link #mStateLock}.
      */
     private void cleanUp() {
+<<<<<<< HEAD
         closeFileAndWidenPermissions();
+=======
+        closeFile();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mFile != null) {
             mFileName.delete();
         }
@@ -72,7 +83,11 @@ class FileSynthesisCallback extends AbstractSynthesisCallback {
     /**
      * Must be called while holding the monitor on {@link #mStateLock}.
      */
+<<<<<<< HEAD
     private void closeFileAndWidenPermissions() {
+=======
+    private void closeFile() {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         try {
             if (mFile != null) {
                 mFile.close();
@@ -81,6 +96,7 @@ class FileSynthesisCallback extends AbstractSynthesisCallback {
         } catch (IOException ex) {
             Log.e(TAG, "Failed to close " + mFileName + ": " + ex);
         }
+<<<<<<< HEAD
 
         try {
             // Make the written file readable and writeable by everyone.
@@ -93,6 +109,8 @@ class FileSynthesisCallback extends AbstractSynthesisCallback {
         } catch (SecurityException se) {
             Log.e(TAG, "Security exception setting rw permissions on : " + mFileName);
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     @Override
@@ -180,7 +198,11 @@ class FileSynthesisCallback extends AbstractSynthesisCallback {
                 int dataLength = (int) (mFile.length() - WAV_HEADER_LENGTH);
                 mFile.write(
                         makeWavHeader(mSampleRateInHz, mAudioFormat, mChannelCount, dataLength));
+<<<<<<< HEAD
                 closeFileAndWidenPermissions();
+=======
+                closeFile();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 mDone = true;
                 return TextToSpeech.SUCCESS;
             } catch (IOException ex) {

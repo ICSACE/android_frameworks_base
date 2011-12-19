@@ -35,6 +35,10 @@ import dalvik.system.VMDebug;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.Collections;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -116,6 +120,7 @@ public final class StrictMode {
     private static final boolean IS_ENG_BUILD = "eng".equals(Build.TYPE);
 
     /**
+<<<<<<< HEAD
      * Boolean system property to disable strict mode checks outright.
      * Set this to 'true' to force disable; 'false' has no effect on other
      * enable/disable policy.
@@ -124,6 +129,8 @@ public final class StrictMode {
     public static final String DISABLE_PROPERTY = "persist.sys.strictmode.disable";
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * The boolean system property to control screen flashes on violations.
      *
      * @hide
@@ -899,6 +906,7 @@ public final class StrictMode {
      * @hide
      */
     public static boolean conditionallyEnableDebugLogging() {
+<<<<<<< HEAD
         boolean doFlashes = SystemProperties.getBoolean(VISUAL_PROPERTY, false)
                 && !amTheSystemServerProcess();
         final boolean suppress = SystemProperties.getBoolean(DISABLE_PROPERTY, false);
@@ -906,10 +914,19 @@ public final class StrictMode {
         // For debug builds, log event loop stalls to dropbox for analysis.
         // Similar logic also appears in ActivityThread.java for system apps.
         if (!doFlashes && (IS_USER_BUILD || suppress)) {
+=======
+        boolean doFlashes = !amTheSystemServerProcess() &&
+                SystemProperties.getBoolean(VISUAL_PROPERTY, IS_ENG_BUILD);
+
+        // For debug builds, log event loop stalls to dropbox for analysis.
+        // Similar logic also appears in ActivityThread.java for system apps.
+        if (IS_USER_BUILD && !doFlashes) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             setCloseGuardEnabled(false);
             return false;
         }
 
+<<<<<<< HEAD
         // Eng builds have flashes on all the time.  The suppression property
         // overrides this, so we force the behavior only after the short-circuit
         // check above.
@@ -918,12 +935,20 @@ public final class StrictMode {
         }
 
         // Thread policy controls BlockGuard.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         int threadPolicyMask = StrictMode.DETECT_DISK_WRITE |
                 StrictMode.DETECT_DISK_READ |
                 StrictMode.DETECT_NETWORK;
 
         if (!IS_USER_BUILD) {
             threadPolicyMask |= StrictMode.PENALTY_DROPBOX;
+<<<<<<< HEAD
+=======
+            if (IS_ENG_BUILD) {
+                threadPolicyMask |= StrictMode.PENALTY_LOG;
+            }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         if (doFlashes) {
             threadPolicyMask |= StrictMode.PENALTY_FLASH;
@@ -931,8 +956,11 @@ public final class StrictMode {
 
         StrictMode.setThreadPolicyMask(threadPolicyMask);
 
+<<<<<<< HEAD
         // VM Policy controls CloseGuard, detection of Activity leaks,
         // and instance counting.
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (IS_USER_BUILD) {
             setCloseGuardEnabled(false);
         } else {

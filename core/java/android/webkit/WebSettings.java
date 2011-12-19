@@ -42,6 +42,7 @@ public class WebSettings {
      * SINGLE_COLUMN moves all content into one column that is the width of the
      * view.
      * NARROW_COLUMNS makes all columns no wider than the screen if possible.
+<<<<<<< HEAD
      */
     // XXX: These must match LayoutAlgorithm in Settings.h in WebCore.
     public enum LayoutAlgorithm {
@@ -50,6 +51,14 @@ public class WebSettings {
          * @deprecated This algorithm is now obsolete.
          */
         @Deprecated
+=======
+     * @deprecated This enum is now obsolete.
+     */
+    // XXX: These must match LayoutAlgorithm in Settings.h in WebCore.
+    @Deprecated
+    public enum LayoutAlgorithm {
+        NORMAL,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         SINGLE_COLUMN,
         NARROW_COLUMNS
     }
@@ -779,7 +788,11 @@ public class WebSettings {
     public void setDoubleTapZoom(int doubleTapZoom) {
         if (mDoubleTapZoom != doubleTapZoom) {
             mDoubleTapZoom = doubleTapZoom;
+<<<<<<< HEAD
             mWebView.updateDoubleTapZoom(doubleTapZoom);
+=======
+            mWebView.updateDoubleTapZoom();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -801,7 +814,11 @@ public class WebSettings {
     public void setDefaultZoom(ZoomDensity zoom) {
         if (mDefaultZoom != zoom) {
             mDefaultZoom = zoom;
+<<<<<<< HEAD
             mWebView.adjustDefaultZoomDensity(zoom.value);
+=======
+            mWebView.updateDefaultZoomDensity(zoom.value);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -938,7 +955,13 @@ public class WebSettings {
      * WebView.
      * @param l A LayoutAlgorithm enum specifying the algorithm to use.
      * @see WebSettings.LayoutAlgorithm
+<<<<<<< HEAD
      */
+=======
+     * @deprecated This method is now obsolete.
+     */
+    @Deprecated
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public synchronized void setLayoutAlgorithm(LayoutAlgorithm l) {
         // XXX: This will only be affective if libwebcore was built with
         // ANDROID_LAYOUT defined.
@@ -953,7 +976,13 @@ public class WebSettings {
      * @return LayoutAlgorithm enum value describing the layout algorithm
      *         being used.
      * @see WebSettings.LayoutAlgorithm
+<<<<<<< HEAD
      */
+=======
+     * @deprecated This method is now obsolete.
+     */
+    @Deprecated
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public synchronized LayoutAlgorithm getLayoutAlgorithm() {
         return mLayoutAlgorithm;
     }

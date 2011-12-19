@@ -32,8 +32,13 @@ LOCAL_SHARED_LIBRARIES :=     		\
 	libdl
 
 LOCAL_STATIC_LIBRARIES := \
+<<<<<<< HEAD
         libstagefright_nuplayer                 \
         libstagefright_rtsp                     \
+=======
+        libstagefright_rtsp                     \
+        libstagefright_nuplayer                 \
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 LOCAL_C_INCLUDES :=                                                 \
 	$(JNI_H_INCLUDE)                                                \

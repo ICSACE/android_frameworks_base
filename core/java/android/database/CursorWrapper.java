@@ -25,6 +25,7 @@ import android.os.Bundle;
  * use for this class is to extend a cursor while overriding only a subset of its methods.
  */
 public class CursorWrapper implements Cursor {
+<<<<<<< HEAD
     /** @hide */
     protected final Cursor mCursor;
 
@@ -32,6 +33,11 @@ public class CursorWrapper implements Cursor {
      * Creates a cursor wrapper.
      * @param cursor The underlying cursor to wrap.
      */
+=======
+
+    private final Cursor mCursor;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public CursorWrapper(Cursor cursor) {
         mCursor = cursor;
     }

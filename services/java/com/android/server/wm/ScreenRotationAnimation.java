@@ -88,14 +88,21 @@ class ScreenRotationAnimation {
         try {
             try {
                 mSurface = new Surface(session, 0, "FreezeSurface",
+<<<<<<< HEAD
                         -1, mWidth, mHeight, PixelFormat.OPAQUE, Surface.FX_SURFACE_SCREENSHOT | Surface.HIDDEN);
+=======
+                        -1, mWidth, mHeight, PixelFormat.OPAQUE, Surface.FX_SURFACE_SCREENSHOT);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (mSurface == null || !mSurface.isValid()) {
                     // Screenshot failed, punt.
                     mSurface = null;
                     return;
                 }
                 mSurface.setLayer(FREEZE_LAYER + 1);
+<<<<<<< HEAD
                 mSurface.show();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } catch (Surface.OutOfResourcesException e) {
                 Slog.w(TAG, "Unable to allocate freeze surface", e);
             }

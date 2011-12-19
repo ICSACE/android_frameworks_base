@@ -98,7 +98,10 @@ static struct {
     jfieldID mName;
     jfieldID mSources;
     jfieldID mKeyboardType;
+<<<<<<< HEAD
     jfieldID mKeyCharacterMapFile;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 } gInputDeviceClassInfo;
 
 static struct {
@@ -1232,16 +1235,22 @@ static jobject android_server_InputManager_nativeGetInputDevice(JNIEnv* env,
         return NULL;
     }
 
+<<<<<<< HEAD
     jstring fileStr = env->NewStringUTF(deviceInfo.getKeyCharacterMapFile());
     if (!fileStr) {
         return NULL;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     env->SetIntField(deviceObj, gInputDeviceClassInfo.mId, deviceInfo.getId());
     env->SetObjectField(deviceObj, gInputDeviceClassInfo.mName, deviceNameObj);
     env->SetIntField(deviceObj, gInputDeviceClassInfo.mSources, deviceInfo.getSources());
     env->SetIntField(deviceObj, gInputDeviceClassInfo.mKeyboardType, deviceInfo.getKeyboardType());
+<<<<<<< HEAD
     env->SetObjectField(deviceObj, gInputDeviceClassInfo.mKeyCharacterMapFile, fileStr);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     const Vector<InputDeviceInfo::MotionRange>& ranges = deviceInfo.getMotionRanges();
     for (size_t i = 0; i < ranges.size(); i++) {
@@ -1523,9 +1532,12 @@ int register_android_server_InputManager(JNIEnv* env) {
     GET_FIELD_ID(gInputDeviceClassInfo.mKeyboardType, gInputDeviceClassInfo.clazz,
             "mKeyboardType", "I");
 
+<<<<<<< HEAD
     GET_FIELD_ID(gInputDeviceClassInfo.mKeyCharacterMapFile, gInputDeviceClassInfo.clazz,
             "mKeyCharacterMapFile", "Ljava/lang/String;");
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Configuration
 
     FIND_CLASS(clazz, "android/content/res/Configuration");

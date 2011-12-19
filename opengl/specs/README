@@ -9,5 +9,9 @@ for use by Android extensions.
 0x3140               EGL_ANDROID_image_native_buffer
 0x3141               (unused)
 0x3142               EGL_ANDROID_recordable
+<<<<<<< HEAD
 0x3143               EGL_VERSION_HW_ANDROID (internal use)
 0x3144 - 0x314F      (unused)
+=======
+0x3143 - 0x314F      (unused)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

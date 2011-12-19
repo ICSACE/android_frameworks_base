@@ -82,7 +82,11 @@ status_t MediaScannerClient::addStringTag(const char* name, const char* value)
             // save the strings for later so they can be used for native encoding detection
             mNames->push_back(name);
             mValues->push_back(value);
+<<<<<<< HEAD
             return OK;
+=======
+            return true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         // else fall through
     }

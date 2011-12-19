@@ -63,6 +63,14 @@ public final class ExpandedMenuView extends ListView implements ItemInvoker, Men
         setChildrenDrawingCacheEnabled(false);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    protected boolean recycleOnMeasure() {
+        return false;
+    }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean invokeItem(MenuItemImpl item) {
         return mMenu.performItemAction(item, 0);
     }

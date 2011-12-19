@@ -20,13 +20,20 @@
 #include <stdint.h>
 #include <sys/types.h>
 #include <utils/threads.h>
+<<<<<<< HEAD
 #include <cutils/compiler.h>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 namespace android {
 // ---------------------------------------------------------------------------
 
 template <typename TYPE>
+<<<<<<< HEAD
 class ANDROID_API Singleton
+=======
+class Singleton
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 {
 public:
     static TYPE& getInstance() {

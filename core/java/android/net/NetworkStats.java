@@ -16,11 +16,18 @@
 
 package android.net;
 
+<<<<<<< HEAD
 import static com.android.internal.util.Preconditions.checkNotNull;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+=======
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.SystemClock;
+import android.util.Log;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.SparseBooleanArray;
 
 import com.android.internal.util.Objects;
@@ -55,8 +62,11 @@ public class NetworkStats implements Parcelable {
     /** {@link #tag} value for total data across all tags. */
     public static final int TAG_NONE = 0;
 
+<<<<<<< HEAD
     // TODO: move fields to "mVariable" notation
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     /**
      * {@link SystemClock#elapsedRealtime()} timestamp when this data was
      * generated.
@@ -165,6 +175,7 @@ public class NetworkStats implements Parcelable {
         dest.writeLongArray(operations);
     }
 
+<<<<<<< HEAD
     @Override
     public NetworkStats clone() {
         final NetworkStats clone = new NetworkStats(elapsedRealtime, size);
@@ -176,6 +187,8 @@ public class NetworkStats implements Parcelable {
         return clone;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // @VisibleForTesting
     public NetworkStats addIfaceValues(
             String iface, long rxBytes, long rxPackets, long txBytes, long txPackets) {
@@ -309,6 +322,7 @@ public class NetworkStats implements Parcelable {
      */
     public int findIndex(String iface, int uid, int set, int tag) {
         for (int i = 0; i < size; i++) {
+<<<<<<< HEAD
             if (uid == this.uid[i] && set == this.set[i] && tag == this.tag[i]
                     && Objects.equal(iface, this.iface[i])) {
                 return i;
@@ -336,6 +350,10 @@ public class NetworkStats implements Parcelable {
 
             if (uid == this.uid[i] && set == this.set[i] && tag == this.tag[i]
                     && Objects.equal(iface, this.iface[i])) {
+=======
+            if (Objects.equal(iface, this.iface[i]) && uid == this.uid[i] && set == this.set[i]
+                    && tag == this.tag[i]) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 return i;
             }
         }
@@ -462,9 +480,30 @@ public class NetworkStats implements Parcelable {
      * Subtract the given {@link NetworkStats}, effectively leaving the delta
      * between two snapshots in time. Assumes that statistics rows collect over
      * time, and that none of them have disappeared.
+<<<<<<< HEAD
      */
     public NetworkStats subtract(NetworkStats value) throws NonMonotonicException {
         return subtract(value, false);
+=======
+     *
+     * @throws IllegalArgumentException when given {@link NetworkStats} is
+     *             non-monotonic.
+     */
+    public NetworkStats subtract(NetworkStats value) {
+        return subtract(value, true, false);
+    }
+
+    /**
+     * Subtract the given {@link NetworkStats}, effectively leaving the delta
+     * between two snapshots in time. Assumes that statistics rows collect over
+     * time, and that none of them have disappeared.
+     * <p>
+     * Instead of throwing when counters are non-monotonic, this variant clamps
+     * results to never be negative.
+     */
+    public NetworkStats subtractClamped(NetworkStats value) {
+        return subtract(value, false, true);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -472,6 +511,7 @@ public class NetworkStats implements Parcelable {
      * between two snapshots in time. Assumes that statistics rows collect over
      * time, and that none of them have disappeared.
      *
+<<<<<<< HEAD
      * @param clampNonMonotonic When non-monotonic stats are found, just clamp
      *            to 0 instead of throwing {@link NonMonotonicException}.
      */
@@ -480,6 +520,18 @@ public class NetworkStats implements Parcelable {
         final long deltaRealtime = this.elapsedRealtime - value.elapsedRealtime;
         if (deltaRealtime < 0) {
             throw new NonMonotonicException(this, value);
+=======
+     * @param enforceMonotonic Validate that incoming value is strictly
+     *            monotonic compared to this object.
+     * @param clampNegative Instead of throwing like {@code enforceMonotonic},
+     *            clamp resulting counters at 0 to prevent negative values.
+     */
+    private NetworkStats subtract(
+            NetworkStats value, boolean enforceMonotonic, boolean clampNegative) {
+        final long deltaRealtime = this.elapsedRealtime - value.elapsedRealtime;
+        if (enforceMonotonic && deltaRealtime < 0) {
+            throw new IllegalArgumentException("found non-monotonic realtime");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         // result will have our rows, and elapsed time between snapshots
@@ -492,7 +544,11 @@ public class NetworkStats implements Parcelable {
             entry.tag = tag[i];
 
             // find remote row that matches, and subtract
+<<<<<<< HEAD
             final int j = value.findIndexHinted(entry.iface, entry.uid, entry.set, entry.tag, i);
+=======
+            final int j = value.findIndex(entry.iface, entry.uid, entry.set, entry.tag);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (j == -1) {
                 // newly appearing row, return entire value
                 entry.rxBytes = rxBytes[i];
@@ -507,6 +563,7 @@ public class NetworkStats implements Parcelable {
                 entry.txBytes = txBytes[i] - value.txBytes[j];
                 entry.txPackets = txPackets[i] - value.txPackets[j];
                 entry.operations = operations[i] - value.operations[j];
+<<<<<<< HEAD
 
                 if (entry.rxBytes < 0 || entry.rxPackets < 0 || entry.txBytes < 0
                         || entry.txPackets < 0 || entry.operations < 0) {
@@ -519,6 +576,22 @@ public class NetworkStats implements Parcelable {
                     } else {
                         throw new NonMonotonicException(this, i, value, j);
                     }
+=======
+                if (enforceMonotonic
+                        && (entry.rxBytes < 0 || entry.rxPackets < 0 || entry.txBytes < 0
+                                || entry.txPackets < 0 || entry.operations < 0)) {
+                    Log.v(TAG, "lhs=" + this);
+                    Log.v(TAG, "rhs=" + value);
+                    throw new IllegalArgumentException(
+                            "found non-monotonic values at lhs[" + i + "] - rhs[" + j + "]");
+                }
+                if (clampNegative) {
+                    entry.rxBytes = Math.max(0, entry.rxBytes);
+                    entry.rxPackets = Math.max(0, entry.rxPackets);
+                    entry.txBytes = Math.max(0, entry.txBytes);
+                    entry.txPackets = Math.max(0, entry.txPackets);
+                    entry.operations = Math.max(0, entry.operations);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
 
@@ -584,6 +657,7 @@ public class NetworkStats implements Parcelable {
         return stats;
     }
 
+<<<<<<< HEAD
     /**
      * Return all rows except those attributed to the requested UID; doesn't
      * mutate the original structure.
@@ -602,13 +676,19 @@ public class NetworkStats implements Parcelable {
         return stats;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void dump(String prefix, PrintWriter pw) {
         pw.print(prefix);
         pw.print("NetworkStats: elapsedRealtime="); pw.println(elapsedRealtime);
         for (int i = 0; i < size; i++) {
             pw.print(prefix);
+<<<<<<< HEAD
             pw.print("  ["); pw.print(i); pw.print("]");
             pw.print(" iface="); pw.print(iface[i]);
+=======
+            pw.print("  iface="); pw.print(iface[i]);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             pw.print(" uid="); pw.print(uid[i]);
             pw.print(" set="); pw.print(setToString(set[i]));
             pw.print(" tag="); pw.print(tagToString(tag[i]));
@@ -664,6 +744,7 @@ public class NetworkStats implements Parcelable {
             return new NetworkStats[size];
         }
     };
+<<<<<<< HEAD
 
     public static class NonMonotonicException extends Exception {
         public final NetworkStats left;
@@ -683,4 +764,6 @@ public class NetworkStats implements Parcelable {
             this.rightIndex = rightIndex;
         }
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

@@ -38,6 +38,12 @@ struct MediaSource;
 struct NuCachedSource2;
 struct ISurfaceTexture;
 
+<<<<<<< HEAD
+=======
+struct ALooper;
+struct ARTSPController;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 class DrmManagerClinet;
 class DecryptHandle;
 
@@ -81,6 +87,10 @@ struct AwesomePlayer {
 
     bool isPlaying() const;
 
+<<<<<<< HEAD
+=======
+    status_t setSurface(const sp<Surface> &surface);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     status_t setSurfaceTexture(const sp<ISurfaceTexture> &surfaceTexture);
     void setAudioSink(const sp<MediaPlayerBase::AudioSink> &audioSink);
     status_t setLooping(bool shouldLoop);
@@ -153,6 +163,10 @@ private:
     bool mUIDValid;
     uid_t mUID;
 
+<<<<<<< HEAD
+=======
+    sp<Surface> mSurface;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<ANativeWindow> mNativeWindow;
     sp<MediaPlayerBase::AudioSink> mAudioSink;
 
@@ -228,6 +242,13 @@ private:
     sp<HTTPBase> mConnectingDataSource;
     sp<NuCachedSource2> mCachedSource;
 
+<<<<<<< HEAD
+=======
+    sp<ALooper> mLooper;
+    sp<ARTSPController> mRTSPController;
+    sp<ARTSPController> mConnectingRTSPController;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     DrmManagerClient *mDrmManagerClient;
     sp<DecryptHandle> mDecryptHandle;
 
@@ -250,7 +271,11 @@ private:
     void notifyVideoSize_l();
     void seekAudioIfNecessary_l();
 
+<<<<<<< HEAD
     void cancelPlayerEvents(bool keepNotifications = false);
+=======
+    void cancelPlayerEvents(bool keepBufferingGoing = false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     void setAudioSource(sp<MediaSource> source);
     status_t initAudioDecoder();
@@ -278,6 +303,12 @@ private:
 
     static bool ContinuePreparation(void *cookie);
 
+<<<<<<< HEAD
+=======
+    static void OnRTSPSeekDoneWrapper(void *cookie);
+    void onRTSPSeekDone();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     bool getBitrate(int64_t *bitrate);
 
     void finishSeekIfNecessary(int64_t videoTimeUs);

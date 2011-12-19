@@ -34,7 +34,10 @@ import android.widget.TextView;
  * The item view for each item in the ListView-based MenuViews.
  */
 public class ListMenuItemView extends LinearLayout implements MenuView.ItemView {
+<<<<<<< HEAD
     private static final String TAG = "ListMenuItemView";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private MenuItemImpl mItemData; 
     
     private ImageView mIconView;
@@ -122,16 +125,31 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
     }
 
     public void setCheckable(boolean checkable) {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (!checkable && mRadioButton == null && mCheckBox == null) {
             return;
         }
         
+<<<<<<< HEAD
+=======
+        if (mRadioButton == null) {
+            insertRadioButton();
+        }
+        if (mCheckBox == null) {
+            insertCheckBox();
+        }
+        
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // Depending on whether its exclusive check or not, the checkbox or
         // radio button will be the one in use (and the other will be otherCompoundButton)
         final CompoundButton compoundButton;
         final CompoundButton otherCompoundButton; 
 
         if (mItemData.isExclusiveCheckable()) {
+<<<<<<< HEAD
             if (mRadioButton == null) {
                 insertRadioButton();
             }
@@ -141,6 +159,11 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
             if (mCheckBox == null) {
                 insertCheckBox();
             }
+=======
+            compoundButton = mRadioButton;
+            otherCompoundButton = mCheckBox;
+        } else {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             compoundButton = mCheckBox;
             otherCompoundButton = mRadioButton;
         }
@@ -154,12 +177,21 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
             }
             
             // Make sure the other compound button isn't visible
+<<<<<<< HEAD
             if (otherCompoundButton != null && otherCompoundButton.getVisibility() != GONE) {
                 otherCompoundButton.setVisibility(GONE);
             }
         } else {
             if (mCheckBox != null) mCheckBox.setVisibility(GONE);
             if (mRadioButton != null) mRadioButton.setVisibility(GONE);
+=======
+            if (otherCompoundButton.getVisibility() != GONE) {
+                otherCompoundButton.setVisibility(GONE);
+            }
+        } else {
+            mCheckBox.setVisibility(GONE);
+            mRadioButton.setVisibility(GONE);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
     

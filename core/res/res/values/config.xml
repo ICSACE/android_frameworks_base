@@ -166,12 +166,15 @@
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
+<<<<<<< HEAD
          WiMAX interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wimax_regexs">
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
          should be empty. -->
     <string-array translatable="false" name="config_tether_bluetooth_regexs">
@@ -453,11 +456,14 @@
          If unlock screen is disabled, the puk should be unlocked through Emergency Dialer -->
     <bool name="config_enable_puk_unlock_screen">true</bool>
 
+<<<<<<< HEAD
     <!-- Enable emergency call when sim is locked or puk locked. Some countries/carriers do not
          allow emergency calls to be placed without the IMSI, which is locked in the SIM.
          If so, this should be set to 'false' in an overlay. -->
     <bool name="config_enable_emergency_call_while_sim_locked">true</bool>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
             1 - Recent apps dialog
@@ -729,6 +735,7 @@
     <!-- Default network policy warning threshold, in megabytes. -->
     <integer name="config_networkPolicyDefaultWarning">2048</integer>
 
+<<<<<<< HEAD
     <!-- Set and Unsets WiMAX -->
     <bool name="config_wimaxEnabled">false</bool>
     <!-- Location of the wimax framwork jar location -->
@@ -745,4 +752,6 @@
     <!-- Base "touch slop" value used by ViewConfiguration as a
          movement threshold where scrolling should begin. -->
     <dimen name="config_viewConfigurationTouchSlop">8dp</dimen>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </resources>

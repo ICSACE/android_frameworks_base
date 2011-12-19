@@ -63,6 +63,7 @@ public interface ViewParent {
     /**
      * All or part of a child is dirty and needs to be redrawn.
      *
+<<<<<<< HEAD
      * <p>The location array is an array of two int values which respectively
      * define the left and the top position of the dirty child.</p>
      *
@@ -73,6 +74,18 @@ public interface ViewParent {
      *
      * <p>When this method returns a non-null value, the location array must
      * have been updated with the left and top coordinates of this ViewParent.</p>
+=======
+     * The location array is an array of two int values which respectively
+     * define the left and the top position of the dirty child.
+     *
+     * This method must return the parent of this ViewParent if the specified
+     * rectangle must be invalidated in the parent. If the specified rectangle
+     * does not require invalidation in the parent or if the parent does not
+     * exist, this method must return null.
+     *
+     * When this method returns a non-null value, the location array must
+     * have been updated with the left and top coordinates of this ViewParent.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @param location An array of 2 ints containing the left and top
      *        coordinates of the child to invalidate
@@ -115,6 +128,7 @@ public interface ViewParent {
      */
     public void clearChildFocus(View child);
 
+<<<<<<< HEAD
     /**
      * Compute the visible part of a rectangular region defined in terms of a child view's
      * coordinates.
@@ -135,6 +149,8 @@ public interface ViewParent {
      * A <code>null</code> value is valid (in case you are not interested in this result)
      * @return true if the resulting rectangle is not empty, false otherwise
      */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public boolean getChildVisibleRect(View child, Rect r, android.graphics.Point offset);
 
     /**
@@ -163,11 +179,19 @@ public interface ViewParent {
 
     /**
      * Bring up a context menu for the specified view or its ancestors.
+<<<<<<< HEAD
      *
      * <p>In most cases, a subclass does not need to override this.  However, if
      * the subclass is added directly to the window manager (for example,
      * {@link ViewManager#addView(View, android.view.ViewGroup.LayoutParams)})
      * then it should override this and show the context menu.</p>
+=======
+     * <p>
+     * In most cases, a subclass does not need to override this.  However, if
+     * the subclass is added directly to the window manager (for example,
+     * {@link ViewManager#addView(View, android.view.ViewGroup.LayoutParams)})
+     * then it should override this and show the context menu.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * 
      * @param originalView The source view where the context menu was first invoked
      * @return true if a context menu was displayed
@@ -184,11 +208,19 @@ public interface ViewParent {
 
     /**
      * Start an action mode for the specified view.
+<<<<<<< HEAD
      *
      * <p>In most cases, a subclass does not need to override this. However, if the
      * subclass is added directly to the window manager (for example,
      * {@link ViewManager#addView(View, android.view.ViewGroup.LayoutParams)})
      * then it should override this and start the action mode.</p>
+=======
+     * <p>
+     * In most cases, a subclass does not need to override this. However, if the
+     * subclass is added directly to the window manager (for example,
+     * {@link ViewManager#addView(View, android.view.ViewGroup.LayoutParams)})
+     * then it should override this and start the action mode.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @param originalView The source view where the action mode was first invoked
      * @param callback The callback that will handle lifecycle events for the action mode
@@ -208,10 +240,17 @@ public interface ViewParent {
      * Called when a child does not want this parent and its ancestors to
      * intercept touch events with
      * {@link ViewGroup#onInterceptTouchEvent(MotionEvent)}.
+<<<<<<< HEAD
      *
      * <p>This parent should pass this call onto its parents. This parent must obey
      * this request for the duration of the touch (that is, only clear the flag
      * after this parent has received an up or a cancel.</p>
+=======
+     * <p>
+     * This parent should pass this call onto its parents. This parent must obey
+     * this request for the duration of the touch (that is, only clear the flag
+     * after this parent has received an up or a cancel.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * 
      * @param disallowIntercept True if the child does not want the parent to
      *            intercept touch events.
@@ -254,7 +293,11 @@ public interface ViewParent {
      *       the sending. The parent can optionally add a record for itself before
      *       dispatching the request to its parent. A parent can also choose not to
      *       respect the request for sending the event. The accessibility event is sent
+<<<<<<< HEAD
      *       by the topmost view in the view tree.</p>
+=======
+     *       by the topmost view in the view tree.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *
      * @param child The child which requests sending the event.
      * @param event The event to be sent.

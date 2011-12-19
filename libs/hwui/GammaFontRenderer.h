@@ -26,6 +26,7 @@ namespace uirenderer {
 
 struct GammaFontRenderer {
     GammaFontRenderer();
+<<<<<<< HEAD
     ~GammaFontRenderer();
 
     enum Gamma {
@@ -37,10 +38,13 @@ struct GammaFontRenderer {
 
     void clear();
     void flush();
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     FontRenderer& getFontRenderer(const SkPaint* paint);
 
     uint32_t getFontRendererCount() const {
+<<<<<<< HEAD
         return kGammaCount;
     }
 
@@ -58,11 +62,38 @@ private:
 
     uint32_t mRenderersUsageCount[kGammaCount];
     FontRenderer* mRenderers[kGammaCount];
+=======
+        return 3;
+    }
+
+    uint32_t getFontRendererSize(uint32_t fontRenderer) const {
+        switch (fontRenderer) {
+            case 0:
+                return mDefaultRenderer.getCacheHeight() * mDefaultRenderer.getCacheWidth();
+            case 1:
+                return mBlackGammaRenderer.getCacheHeight() * mBlackGammaRenderer.getCacheWidth();
+            case 2:
+                return mWhiteGammaRenderer.getCacheHeight() * mWhiteGammaRenderer.getCacheWidth();
+        }
+        return 0;
+    }
+
+private:
+    FontRenderer mDefaultRenderer;
+    FontRenderer mBlackGammaRenderer;
+    FontRenderer mWhiteGammaRenderer;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     int mBlackThreshold;
     int mWhiteThreshold;
 
+<<<<<<< HEAD
     uint8_t mGammaTable[256 * kGammaCount];
+=======
+    uint8_t mDefault[256];
+    uint8_t mBlackGamma[256];
+    uint8_t mWhiteGamma[256];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 };
 
 }; // namespace uirenderer

@@ -109,7 +109,11 @@ int create_persona_path(char path[PKG_PATH_MAX],
         uid_len = 0;
     } else {
         persona_prefix = SECONDARY_USER_PREFIX;
+<<<<<<< HEAD
         uid_len = snprintf(NULL, 0, "%d/", persona);
+=======
+        uid_len = snprintf(NULL, 0, "%d", persona);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     char *dst = path;
@@ -126,7 +130,11 @@ int create_persona_path(char path[PKG_PATH_MAX],
             LOGE("Error building user path");
             return -1;
         }
+<<<<<<< HEAD
         int ret = snprintf(dst, dst_size, "%d/", persona);
+=======
+        int ret = snprintf(dst, dst_size, "%d", persona);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (ret < 0 || (size_t) ret != uid_len) {
             LOGE("Error appending persona id to path");
             return -1;
@@ -135,6 +143,7 @@ int create_persona_path(char path[PKG_PATH_MAX],
     return 0;
 }
 
+<<<<<<< HEAD
 int create_move_path(char path[PKG_PATH_MAX],
     const char* pkgname,
     const char* leaf,
@@ -149,6 +158,8 @@ int create_move_path(char path[PKG_PATH_MAX],
     return 0;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 /**
  * Checks whether the package name is valid. Returns -1 on error and
  * 0 on success.

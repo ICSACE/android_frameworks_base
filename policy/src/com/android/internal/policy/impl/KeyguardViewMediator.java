@@ -830,6 +830,7 @@ public class KeyguardViewMediator implements KeyguardViewCallback,
      * action should be posted to a handler.
      *
      * @param keyCode The keycode of the key that woke the device
+<<<<<<< HEAD
      * @param isDocked True if the device is in the dock
      * @return Whether we poked the wake lock (and turned the screen on)
      */
@@ -837,6 +838,14 @@ public class KeyguardViewMediator implements KeyguardViewCallback,
         if (DEBUG) Log.d(TAG, "onWakeKeyWhenKeyguardShowing(" + keyCode + ")");
 
         if (isWakeKeyWhenKeyguardShowing(keyCode, isDocked)) {
+=======
+     * @return Whether we poked the wake lock (and turned the screen on)
+     */
+    public boolean onWakeKeyWhenKeyguardShowingTq(int keyCode) {
+        if (DEBUG) Log.d(TAG, "onWakeKeyWhenKeyguardShowing(" + keyCode + ")");
+
+        if (isWakeKeyWhenKeyguardShowing(keyCode)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // give the keyguard view manager a chance to adjust the state of the
             // keyguard based on the key that woke the device before poking
             // the wake lock
@@ -847,6 +856,7 @@ public class KeyguardViewMediator implements KeyguardViewCallback,
         }
     }
 
+<<<<<<< HEAD
     /**
      * When the keyguard is showing we ignore some keys that might otherwise typically
      * be considered wake keys.  We filter them out here.
@@ -863,6 +873,13 @@ public class KeyguardViewMediator implements KeyguardViewCallback,
                 return isDocked;
 
             // ignore media and camera keys
+=======
+    private boolean isWakeKeyWhenKeyguardShowing(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+            case KeyEvent.KEYCODE_VOLUME_MUTE:
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             case KeyEvent.KEYCODE_MUTE:
             case KeyEvent.KEYCODE_HEADSETHOOK:
             case KeyEvent.KEYCODE_MEDIA_PLAY:

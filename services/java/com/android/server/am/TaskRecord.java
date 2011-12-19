@@ -54,6 +54,7 @@ class TaskRecord extends ThumbnailHolder {
     
     void setIntent(Intent _intent, ActivityInfo info) {
         stringName = null;
+<<<<<<< HEAD
 
         if (info.targetActivity == null) {
             if (_intent != null) {
@@ -65,6 +66,10 @@ class TaskRecord extends ThumbnailHolder {
                     _intent.setSelector(null);
                 }
             }
+=======
+        
+        if (info.targetActivity == null) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             intent = _intent;
             realActivity = _intent != null ? _intent.getComponent() : null;
             origActivity = null;
@@ -74,7 +79,10 @@ class TaskRecord extends ThumbnailHolder {
             if (_intent != null) {
                 Intent targetIntent = new Intent(_intent);
                 targetIntent.setComponent(targetComponent);
+<<<<<<< HEAD
                 targetIntent.setSelector(null);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 intent = targetIntent;
                 realActivity = targetComponent;
                 origActivity = _intent.getComponent();

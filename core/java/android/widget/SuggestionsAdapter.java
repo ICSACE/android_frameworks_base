@@ -29,7 +29,13 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
+<<<<<<< HEAD
 import android.graphics.drawable.Drawable;
+=======
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -37,6 +43,10 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
+<<<<<<< HEAD
+=======
+import android.util.SparseArray;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +120,10 @@ class SuggestionsAdapter extends ResourceCursorAdapter implements OnClickListene
 
         mOutsideDrawablesCache = outsideDrawablesCache;
         
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // mStartSpinnerRunnable = new Runnable() {
         // public void run() {
         // // mSearchView.setWorking(true); // TODO:
@@ -181,10 +195,13 @@ class SuggestionsAdapter extends ResourceCursorAdapter implements OnClickListene
          * the results.
          */
         Cursor cursor = null;
+<<<<<<< HEAD
         if (mSearchView.getVisibility() != View.VISIBLE
                 || mSearchView.getWindowVisibility() != View.VISIBLE) {
             return null;
         }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         //mSearchView.getWindow().getDecorView().post(mStartSpinnerRunnable); // TODO:
         try {
             cursor = mSearchManager.getSuggestions(mSearchable, query, QUERY_LIMIT);

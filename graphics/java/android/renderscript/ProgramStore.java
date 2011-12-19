@@ -135,6 +135,7 @@ public class ProgramStore extends BaseObj {
         }
     }
 
+<<<<<<< HEAD
     DepthFunc mDepthFunc;
     boolean mDepthMask;
     boolean mColorMaskR;
@@ -144,12 +145,15 @@ public class ProgramStore extends BaseObj {
     BlendSrcFunc mBlendSrc;
     BlendDstFunc mBlendDst;
     boolean mDither;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     ProgramStore(int id, RenderScript rs) {
         super(id, rs);
     }
 
     /**
+<<<<<<< HEAD
     * @hide
     * @return depth function
     */
@@ -222,6 +226,8 @@ public class ProgramStore extends BaseObj {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     * Returns a pre-defined program store object with the following
     * characteristics:
     *  - incoming pixels are drawn if their depth value is less than
@@ -421,6 +427,7 @@ public class ProgramStore extends BaseObj {
             int id = mRS.nProgramStoreCreate(mColorMaskR, mColorMaskG, mColorMaskB, mColorMaskA,
                                              mDepthMask, mDither,
                                              mBlendSrc.mID, mBlendDst.mID, mDepthFunc.mID);
+<<<<<<< HEAD
             ProgramStore programStore = new ProgramStore(id, mRS);
             programStore.mDepthFunc = mDepthFunc;
             programStore.mDepthMask = mDepthMask;
@@ -432,6 +439,9 @@ public class ProgramStore extends BaseObj {
             programStore.mBlendDst = mBlendDst;
             programStore.mDither = mDither;
             return programStore;
+=======
+            return new ProgramStore(id, mRS);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 

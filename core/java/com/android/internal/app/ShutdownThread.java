@@ -147,9 +147,12 @@ public final class ShutdownThread extends Thread {
                                 return true;
                             }
                         });
+<<<<<<< HEAD
                 // Initialize to the first reason
                 String actions[] = context.getResources().getStringArray(com.android.internal.R.array.shutdown_reboot_actions);
                 mRebootReason = actions[0];
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             } else {
                 dialog = new AlertDialog.Builder(context)
                         .setIcon(android.R.drawable.ic_dialog_alert)

@@ -76,8 +76,12 @@ SoftAVC::SoftAVC(
       mPicId(0),
       mHeadersDecoded(false),
       mEOSStatus(INPUT_DATA_AVAILABLE),
+<<<<<<< HEAD
       mOutputPortSettingsChange(NONE),
       mSignalledError(false) {
+=======
+      mOutputPortSettingsChange(NONE) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     initPorts();
     CHECK_EQ(initDecoder(), (status_t)OK);
 }
@@ -288,7 +292,11 @@ OMX_ERRORTYPE SoftAVC::getConfig(
 }
 
 void SoftAVC::onQueueFilled(OMX_U32 portIndex) {
+<<<<<<< HEAD
     if (mSignalledError || mOutputPortSettingsChange != NONE) {
+=======
+    if (mOutputPortSettingsChange != NONE) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return;
     }
 
@@ -299,6 +307,10 @@ void SoftAVC::onQueueFilled(OMX_U32 portIndex) {
     List<BufferInfo *> &inQueue = getPortQueue(kInputPortIndex);
     List<BufferInfo *> &outQueue = getPortQueue(kOutputPortIndex);
     H264SwDecRet ret = H264SWDEC_PIC_RDY;
+<<<<<<< HEAD
+=======
+    status_t err = OK;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     bool portSettingsChanged = false;
     while ((mEOSStatus != INPUT_DATA_AVAILABLE || !inQueue.empty())
             && outQueue.size() == kNumOutputBuffers) {
@@ -372,12 +384,16 @@ void SoftAVC::onQueueFilled(OMX_U32 portIndex) {
                 inPicture.dataLen = 0;
                 if (ret < 0) {
                     LOGE("Decoder failed: %d", ret);
+<<<<<<< HEAD
 
                     notify(OMX_EventError, OMX_ErrorUndefined,
                            ERROR_MALFORMED, NULL);
 
                     mSignalledError = true;
                     return;
+=======
+                    err = ERROR_MALFORMED;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         }
@@ -405,6 +421,13 @@ void SoftAVC::onQueueFilled(OMX_U32 portIndex) {
             uint8_t *data = (uint8_t *) decodedPicture.pOutputPicture;
             drainOneOutputBuffer(picId, data);
         }
+<<<<<<< HEAD
+=======
+
+        if (err != OK) {
+            notify(OMX_EventError, OMX_ErrorUndefined, err, NULL);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 }
 

@@ -19,8 +19,11 @@
 
 #include <SkMatrix.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "Rect.h"
 
 namespace android {
@@ -30,7 +33,11 @@ namespace uirenderer {
 // Classes
 ///////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 class ANDROID_API Matrix4 {
+=======
+class Matrix4 {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 public:
     float data[16];
 

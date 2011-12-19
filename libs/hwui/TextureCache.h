@@ -98,6 +98,7 @@ public:
      */
     uint32_t getSize();
 
+<<<<<<< HEAD
     /**
      * Partially flushes the cache. The amount of memory freed by a flush
      * is defined by the flush rate.
@@ -109,6 +110,8 @@ public:
      */
     void setFlushRate(float flushRate);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 private:
     /**
      * Generates the texture from a bitmap into the specified texture structure.
@@ -130,8 +133,11 @@ private:
     uint32_t mMaxSize;
     GLint mMaxTextureSize;
 
+<<<<<<< HEAD
     float mFlushRate;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     bool mDebugEnabled;
 
     Vector<SkBitmap*> mGarbage;

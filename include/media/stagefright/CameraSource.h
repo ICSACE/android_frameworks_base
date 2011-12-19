@@ -153,9 +153,12 @@ protected:
     bool mStarted;
     int32_t mNumFramesEncoded;
 
+<<<<<<< HEAD
     // Time between capture of two frames.
     int64_t mTimeBetweenFrameCaptureUs;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     CameraSource(const sp<ICamera>& camera, const sp<ICameraRecordingProxy>& proxy,
                  int32_t cameraId,
                  Size videoSize, int32_t frameRate,

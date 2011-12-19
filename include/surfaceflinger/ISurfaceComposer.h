@@ -84,11 +84,15 @@ public:
         eOrientationUnchanged   = 4,
         eOrientationSwapMask    = 0x01
     };
+<<<<<<< HEAD
 
     enum {
         eSynchronous            = 0x01,
     };
 
+=======
+    
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     enum {
         eElectronBeamAnimationOn  = 0x01,
         eElectronBeamAnimationOff = 0x10
@@ -108,7 +112,11 @@ public:
 
     /* open/close transactions. requires ACCESS_SURFACE_FLINGER permission */
     virtual void setTransactionState(const Vector<ComposerState>& state,
+<<<<<<< HEAD
             int orientation, uint32_t flags) = 0;
+=======
+            int orientation) = 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     /* signal that we're done booting.
      * Requires ACCESS_SURFACE_FLINGER permission
@@ -147,6 +155,11 @@ public:
         GET_CBLK,
         SET_TRANSACTION_STATE,
         SET_ORIENTATION,
+<<<<<<< HEAD
+=======
+        FREEZE_DISPLAY,
+        UNFREEZE_DISPLAY,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         CAPTURE_SCREEN,
         TURN_ELECTRON_BEAM_OFF,
         TURN_ELECTRON_BEAM_ON,

@@ -813,6 +813,11 @@ class BrowserFrame extends Handler {
                                               boolean synchronous,
                                               String username,
                                               String password) {
+<<<<<<< HEAD
+=======
+        PerfChecker checker = new PerfChecker();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (mSettings.getCacheMode() != WebSettings.LOAD_DEFAULT) {
             cacheMode = mSettings.getCacheMode();
         }
@@ -870,6 +875,14 @@ class BrowserFrame extends Handler {
                 || headers.containsKey("If-None-Match") ? 
                         WebSettings.LOAD_NO_CACHE : cacheMode);
         // Set referrer to current URL?
+<<<<<<< HEAD
+=======
+        if (!loader.executeLoad()) {
+            checker.responseAlert("startLoadingResource fail");
+        }
+        checker.responseAlert("startLoadingResource succeed");
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return !synchronous ? loadListener : null;
     }
 
@@ -1404,6 +1417,7 @@ class BrowserFrame extends Handler {
     native void nativeSslClientCert(int handle,
                                     byte[] pkcs8EncodedPrivateKey,
                                     byte[][] asn1DerEncodedCertificateChain);
+<<<<<<< HEAD
 
     /**
      * Returns true when the contents of the frame is an RTL or vertical-rl
@@ -1417,4 +1431,6 @@ class BrowserFrame extends Handler {
     }
 
     private native boolean nativeGetShouldStartScrolledRight(int nativeBrowserFrame);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

@@ -63,7 +63,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // database gets upgraded properly. At a minimum, please confirm that 'upgradeVersion'
     // is properly propagated through your change.  Not doing so will result in a loss of user
     // settings.
+<<<<<<< HEAD
     private static final int DATABASE_VERSION = 74;
+=======
+    private static final int DATABASE_VERSION = 70;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     private Context mContext;
 
@@ -723,8 +727,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 57;
         }
 
+<<<<<<< HEAD
         /************* The following are Honeycomb changes ************/
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (upgradeVersion == 57) {
             /*
              * New settings to:
@@ -753,6 +760,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (upgradeVersion == 58) {
             /* Add default for new Auto Time Zone */
+<<<<<<< HEAD
             int autoTimeValue = getIntValueFromSystem(db, Settings.System.AUTO_TIME, 0);
             db.beginTransaction();
             SQLiteStatement stmt = null;
@@ -760,6 +768,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 stmt = db.compileStatement("INSERT INTO system(name,value)" + " VALUES(?,?);");
                 loadSetting(stmt, Settings.System.AUTO_TIME_ZONE,
                         autoTimeValue); // Sync timezone to NITZ if auto_time was enabled
+=======
+            db.beginTransaction();
+            SQLiteStatement stmt = null;
+            try {
+                stmt = db.compileStatement("INSERT INTO secure(name,value)"
+                        + " VALUES(?,?);");
+                loadBooleanSetting(stmt, Settings.System.AUTO_TIME_ZONE,
+                        R.bool.def_auto_time_zone); // Sync timezone to NITZ
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();
@@ -786,24 +803,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         if (upgradeVersion == 60) {
+<<<<<<< HEAD
             // Don't do this for upgrades from Gingerbread
             // Were only required for intra-Honeycomb upgrades for testing
             // upgradeScreenTimeout(db);
+=======
+            upgradeScreenTimeout(db);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             upgradeVersion = 61;
         }
 
         if (upgradeVersion == 61) {
+<<<<<<< HEAD
             // Don't do this for upgrades from Gingerbread
             // Were only required for intra-Honeycomb upgrades for testing
             // upgradeScreenTimeout(db);
+=======
+            upgradeScreenTimeout(db);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             upgradeVersion = 62;
         }
 
         // Change the default for screen auto-brightness mode
         if (upgradeVersion == 62) {
+<<<<<<< HEAD
             // Don't do this for upgrades from Gingerbread
             // Were only required for intra-Honeycomb upgrades for testing
             // upgradeAutoBrightness(db);
+=======
+            upgradeAutoBrightness(db);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             upgradeVersion = 63;
         }
 
@@ -847,8 +876,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 65;
         }
 
+<<<<<<< HEAD
         /************* The following are Ice Cream Sandwich changes ************/
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (upgradeVersion == 65) {
             /*
              * Animations are removed from Settings. Turned on by default
@@ -946,6 +978,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 70;
         }
 
+<<<<<<< HEAD
         if (upgradeVersion == 70) {
             // Update all built-in bookmarks.  Some of the package names have changed.
             loadBookmarks(db);
@@ -992,6 +1025,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 74;
         }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // *** Remember to update DATABASE_VERSION above!
 
         if (upgradeVersion != currentVersion) {
@@ -1097,6 +1132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+<<<<<<< HEAD
     private void upgradeVibrateSettingFromNone(SQLiteDatabase db) {
         int vibrateSetting = getIntValueFromSystem(db, Settings.System.VIBRATE_ON, 0);
         // If the ringer vibrate value is invalid, set it to the default
@@ -1119,6 +1155,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private void upgradeScreenTimeout(SQLiteDatabase db) {
         // Change screen timeout to current default
         db.beginTransaction();
@@ -1154,11 +1192,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Loads the default set of bookmarked shortcuts from an xml file.
      *
      * @param db The database to write the values into
+<<<<<<< HEAD
      */
     private void loadBookmarks(SQLiteDatabase db) {
         ContentValues values = new ContentValues();
 
         PackageManager packageManager = mContext.getPackageManager();
+=======
+     * @param startingIndex The zero-based position at which bookmarks in this file should begin
+     */
+    private int loadBookmarks(SQLiteDatabase db, int startingIndex) {
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        ContentValues values = new ContentValues();
+
+        PackageManager packageManager = mContext.getPackageManager();
+        int i = startingIndex;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         try {
             XmlResourceParser parser = mContext.getResources().getXml(R.xml.bookmarks);
             XmlUtils.beginDocument(parser, "bookmarks");
@@ -1181,11 +1232,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String pkg = parser.getAttributeValue(null, "package");
                 String cls = parser.getAttributeValue(null, "class");
                 String shortcutStr = parser.getAttributeValue(null, "shortcut");
+<<<<<<< HEAD
                 String category = parser.getAttributeValue(null, "category");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 int shortcutValue = shortcutStr.charAt(0);
                 if (TextUtils.isEmpty(shortcutStr)) {
                     Log.w(TAG, "Unable to get shortcut for: " + pkg + "/" + cls);
+<<<<<<< HEAD
                     continue;
                 }
 
@@ -1228,12 +1283,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.delete("bookmarks", "shortcut = ?",
                         new String[] { Integer.toString(shortcutValue) });
                 db.insert("bookmarks", null, values);
+=======
+                }
+
+                ActivityInfo info = null;                
+                ComponentName cn = new ComponentName(pkg, cls);
+                try {
+                    info = packageManager.getActivityInfo(cn, 0);
+                } catch (PackageManager.NameNotFoundException e) {
+                    String[] packages = packageManager.canonicalToCurrentPackageNames(
+                            new String[] { pkg });
+                    cn = new ComponentName(packages[0], cls);
+                    try {
+                        info = packageManager.getActivityInfo(cn, 0);
+                    } catch (PackageManager.NameNotFoundException e1) {
+                        Log.w(TAG, "Unable to add bookmark: " + pkg + "/" + cls, e);
+                    }
+                }
+                
+                if (info != null) {
+                    intent.setComponent(cn);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    values.put(Settings.Bookmarks.INTENT, intent.toUri(0));
+                    values.put(Settings.Bookmarks.TITLE,
+                            info.loadLabel(packageManager).toString());
+                    values.put(Settings.Bookmarks.SHORTCUT, shortcutValue);
+                    db.insert("bookmarks", null, values);
+                    i++;
+                }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         } catch (XmlPullParserException e) {
             Log.w(TAG, "Got execption parsing bookmarks.", e);
         } catch (IOException e) {
             Log.w(TAG, "Got execption parsing bookmarks.", e);
         }
+<<<<<<< HEAD
+=======
+
+        return i;
+    }
+
+    /**
+     * Loads the default set of bookmark packages.
+     *
+     * @param db The database to write the values into
+     */
+    private void loadBookmarks(SQLiteDatabase db) {
+        loadBookmarks(db, 0);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /**
@@ -1310,6 +1408,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             stmt = db.compileStatement("INSERT OR IGNORE INTO system(name,value)"
                     + " VALUES(?,?);");
     
+<<<<<<< HEAD
             // Vibrate on by default for ringer, on for notification
             int vibrate = 0;
             vibrate = AudioService.getValueForVibrateSetting(vibrate,
@@ -1317,6 +1416,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     AudioManager.VIBRATE_SETTING_ONLY_SILENT);
             vibrate |= AudioService.getValueForVibrateSetting(vibrate,
                     AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ONLY_SILENT);
+=======
+            // Vibrate off by default for ringer, on for notification
+            int vibrate = 0;
+            vibrate = AudioService.getValueForVibrateSetting(vibrate,
+                    AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_ON);
+            vibrate |= AudioService.getValueForVibrateSetting(vibrate,
+                    AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             loadSetting(stmt, Settings.System.VIBRATE_ON, vibrate);
         } finally {
             if (stmt != null) stmt.close();
@@ -1551,9 +1658,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             loadBooleanSetting(stmt, Settings.Secure.TOUCH_EXPLORATION_ENABLED,
                     R.bool.def_touch_exploration_enabled);
+<<<<<<< HEAD
 
             loadBooleanSetting(stmt, Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD,
                     R.bool.def_accessibility_speak_password);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         } finally {
             if (stmt != null) stmt.close();
         }
@@ -1591,6 +1701,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         loadSetting(stmt, key,
                 Float.toString(mContext.getResources().getFraction(resid, base, base)));
     }
+<<<<<<< HEAD
 
     private int getIntValueFromSystem(SQLiteDatabase db, String name, int defaultValue) {
         int value = defaultValue;
@@ -1607,4 +1718,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return value;
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

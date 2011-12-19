@@ -1677,7 +1677,11 @@ public class AccessibilityInjectorTest
                         }
                     });
                 }
+<<<<<<< HEAD
                 mWebView.loadData(html, "text/html", null);
+=======
+                mWebView.loadData(html, "text/html", "utf-8");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
         });
         synchronized (sTestLock) {

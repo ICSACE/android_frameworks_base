@@ -382,6 +382,7 @@ void DisplayList::output(OpenGLRenderer& renderer, uint32_t level) {
                 xDivs = getInts(xDivsCount);
                 yDivs = getInts(yDivsCount);
                 colors = getUInts(numColors);
+<<<<<<< HEAD
                 float left = getFloat();
                 float top = getFloat();
                 float right = getFloat();
@@ -389,6 +390,14 @@ void DisplayList::output(OpenGLRenderer& renderer, uint32_t level) {
                 SkPaint* paint = getPaint();
                 LOGD("%s%s %.2f, %.2f, %.2f, %.2f", (char*) indent, OP_NAMES[op],
                         left, top, right, bottom);
+=======
+                DISPLAY_LIST_LOGD("%s%s", (char*) indent, OP_NAMES[op]);
+                getFloat();
+                getFloat();
+                getFloat();
+                getFloat();
+                getPaint();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
             break;
             case DrawColor: {

@@ -30,6 +30,10 @@
 #include <binder/ProcessState.h>
 #include <media/IMediaPlayerService.h>
 #include <media/stagefright/foundation/ALooper.h>
+<<<<<<< HEAD
+=======
+#include "include/ARTSPController.h"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "include/LiveSession.h"
 #include "include/NuCachedSource2.h"
 #include <media/stagefright/AudioPlayer.h>
@@ -635,6 +639,10 @@ int main(int argc, char **argv) {
     gDisplayHistogram = false;
 
     sp<ALooper> looper;
+<<<<<<< HEAD
+=======
+    sp<ARTSPController> rtspController;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     sp<LiveSession> liveSession;
 
     int res;
@@ -946,6 +954,10 @@ int main(int argc, char **argv) {
         sp<DataSource> dataSource = DataSource::CreateFromURI(filename);
 
         if (strncasecmp(filename, "sine:", 5)
+<<<<<<< HEAD
+=======
+                && strncasecmp(filename, "rtsp://", 7)
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 && strncasecmp(filename, "httplive://", 11)
                 && dataSource == NULL) {
             fprintf(stderr, "Unable to create data source.\n");
@@ -981,7 +993,27 @@ int main(int argc, char **argv) {
         } else {
             sp<MediaExtractor> extractor;
 
+<<<<<<< HEAD
             if (!strncasecmp("httplive://", filename, 11)) {
+=======
+            if (!strncasecmp("rtsp://", filename, 7)) {
+                if (looper == NULL) {
+                    looper = new ALooper;
+                    looper->start();
+                }
+
+                rtspController = new ARTSPController(looper);
+                status_t err = rtspController->connect(filename);
+                if (err != OK) {
+                    fprintf(stderr, "could not connect to rtsp server.\n");
+                    return -1;
+                }
+
+                extractor = rtspController.get();
+
+                syncInfoPresent = false;
+            } else if (!strncasecmp("httplive://", filename, 11)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 String8 uri("http://");
                 uri.append(filename + 11);
 
@@ -1002,7 +1034,10 @@ int main(int argc, char **argv) {
                 syncInfoPresent = false;
             } else {
                 extractor = MediaExtractor::Create(dataSource);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (extractor == NULL) {
                     fprintf(stderr, "could not create extractor.\n");
                     return -1;
@@ -1098,6 +1133,16 @@ int main(int argc, char **argv) {
         } else {
             playSource(&client, mediaSource);
         }
+<<<<<<< HEAD
+=======
+
+        if (rtspController != NULL) {
+            rtspController->disconnect();
+            rtspController.clear();
+
+            sleep(3);
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     if ((useSurfaceAlloc || useSurfaceTexAlloc) && !audioOnly) {

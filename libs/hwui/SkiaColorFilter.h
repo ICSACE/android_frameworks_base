@@ -20,8 +20,11 @@
 #include <GLES2/gl2.h>
 #include <SkColorFilter.h>
 
+<<<<<<< HEAD
 #include <cutils/compiler.h>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include "ProgramCache.h"
 #include "Extensions.h"
 
@@ -47,7 +50,11 @@ struct SkiaColorFilter {
         kBlend,
     };
 
+<<<<<<< HEAD
     ANDROID_API SkiaColorFilter(SkColorFilter *skFilter, Type type, bool blend);
+=======
+    SkiaColorFilter(SkColorFilter *skFilter, Type type, bool blend);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual ~SkiaColorFilter();
 
     virtual void describe(ProgramDescription& description, const Extensions& extensions) = 0;
@@ -81,7 +88,11 @@ private:
  * A color filter that multiplies the source color with a matrix and adds a vector.
  */
 struct SkiaColorMatrixFilter: public SkiaColorFilter {
+<<<<<<< HEAD
     ANDROID_API SkiaColorMatrixFilter(SkColorFilter *skFilter, float* matrix, float* vector);
+=======
+    SkiaColorMatrixFilter(SkColorFilter *skFilter, float* matrix, float* vector);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     ~SkiaColorMatrixFilter();
 
     void describe(ProgramDescription& description, const Extensions& extensions);
@@ -97,7 +108,11 @@ private:
  * another fixed value. Ignores the alpha channel of both arguments.
  */
 struct SkiaLightingFilter: public SkiaColorFilter {
+<<<<<<< HEAD
     ANDROID_API SkiaLightingFilter(SkColorFilter *skFilter, int multiply, int add);
+=======
+    SkiaLightingFilter(SkColorFilter *skFilter, int multiply, int add);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     void describe(ProgramDescription& description, const Extensions& extensions);
     void setupProgram(Program* program);
@@ -112,7 +127,11 @@ private:
  * and PorterDuff blending mode.
  */
 struct SkiaBlendFilter: public SkiaColorFilter {
+<<<<<<< HEAD
     ANDROID_API SkiaBlendFilter(SkColorFilter *skFilter, int color, SkXfermode::Mode mode);
+=======
+    SkiaBlendFilter(SkColorFilter *skFilter, int color, SkXfermode::Mode mode);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     void describe(ProgramDescription& description, const Extensions& extensions);
     void setupProgram(Program* program);

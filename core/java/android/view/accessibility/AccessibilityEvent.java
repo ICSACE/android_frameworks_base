@@ -16,6 +16,10 @@
 
 package android.view.accessibility;
 
+<<<<<<< HEAD
+=======
+import android.accessibilityservice.IAccessibilityServiceConnection;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -219,6 +223,18 @@ import java.util.List;
  *   <li>{@link #isEnabled()} - Whether the source is enabled.</li>
  *   <li>{@link #getContentDescription()} - The content description of the source.</li>
  * </ul>
+<<<<<<< HEAD
+=======
+ * <em>Note:</em> This event type is not dispatched to descendants though
+ * {@link android.view.View#dispatchPopulateAccessibilityEvent(AccessibilityEvent)
+ * View.dispatchPopulateAccessibilityEvent(AccessibilityEvent)}, hence the event
+ * source {@link android.view.View} and the sub-tree rooted at it will not receive
+ * calls to {@link android.view.View#onPopulateAccessibilityEvent(AccessibilityEvent)
+ * View.onPopulateAccessibilityEvent(AccessibilityEvent)}. The preferred way to add
+ * text content to such events is by setting the
+ * {@link android.R.styleable#View_contentDescription contentDescription} of the source
+ * view.</br>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * </p>
  * <p>
  * <b>View scrolled</b> - represents the event of scrolling a view. If
@@ -589,6 +605,27 @@ public final class AccessibilityEvent extends AccessibilityRecord implements Par
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Sets the connection for interacting with the AccessibilityManagerService.
+     *
+     * @param connection The connection.
+     *
+     * @hide
+     */
+    @Override
+    public void setConnection(IAccessibilityServiceConnection connection) {
+        super.setConnection(connection);
+        List<AccessibilityRecord> records = mRecords;
+        final int recordCount = records.size();
+        for (int i = 0; i < recordCount; i++) {
+            AccessibilityRecord record = records.get(i);
+            record.setConnection(connection);
+        }
+    }
+
+    /**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Sets if this instance is sealed.
      *
      * @param sealed Whether is sealed.
@@ -802,19 +839,36 @@ public final class AccessibilityEvent extends AccessibilityRecord implements Par
      * @param parcel A parcel containing the state of a {@link AccessibilityEvent}.
      */
     public void initFromParcel(Parcel parcel) {
+<<<<<<< HEAD
         mSealed = (parcel.readInt() == 1);
         mEventType = parcel.readInt();
         mPackageName = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
         mEventTime = parcel.readLong();
         mConnectionId = parcel.readInt();
+=======
+        if (parcel.readInt() == 1) {
+            mConnection = IAccessibilityServiceConnection.Stub.asInterface(
+                    parcel.readStrongBinder());
+        }
+        setSealed(parcel.readInt() == 1);
+        mEventType = parcel.readInt();
+        mPackageName = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        mEventTime = parcel.readLong();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         readAccessibilityRecordFromParcel(this, parcel);
 
         // Read the records.
         final int recordCount = parcel.readInt();
         for (int i = 0; i < recordCount; i++) {
             AccessibilityRecord record = AccessibilityRecord.obtain();
+<<<<<<< HEAD
             readAccessibilityRecordFromParcel(record, parcel);
             record.mConnectionId = mConnectionId;
+=======
+            // Do this to write the connection only once.
+            record.setConnection(mConnection);
+            readAccessibilityRecordFromParcel(record, parcel);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mRecords.add(record);
         }
     }
@@ -852,11 +906,23 @@ public final class AccessibilityEvent extends AccessibilityRecord implements Par
      * {@inheritDoc}
      */
     public void writeToParcel(Parcel parcel, int flags) {
+<<<<<<< HEAD
+=======
+        if (mConnection == null) {
+            parcel.writeInt(0);
+        } else {
+            parcel.writeInt(1);
+            parcel.writeStrongBinder(mConnection.asBinder());
+        }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         parcel.writeInt(isSealed() ? 1 : 0);
         parcel.writeInt(mEventType);
         TextUtils.writeToParcel(mPackageName, parcel, 0);
         parcel.writeLong(mEventTime);
+<<<<<<< HEAD
         parcel.writeInt(mConnectionId);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         writeAccessibilityRecordToParcel(this, parcel, flags);
 
         // Write the records.

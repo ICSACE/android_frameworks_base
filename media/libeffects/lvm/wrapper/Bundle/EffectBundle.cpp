@@ -49,6 +49,7 @@ extern "C" const struct effect_interface_s gLvmEffectInterface;
         }\
     }
 
+<<<<<<< HEAD
 
 static inline int16_t clamp16(int32_t sample)
 {
@@ -59,6 +60,8 @@ static inline int16_t clamp16(int32_t sample)
     return sample;
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 // Namespaces
 namespace android {
 namespace {
@@ -717,6 +720,16 @@ int LvmBundle_init(EffectContext *pContext){
 }   /* end LvmBundle_init */
 
 
+<<<<<<< HEAD
+=======
+static inline int16_t clamp16(int32_t sample)
+{
+    if ((sample>>15) ^ (sample>>31))
+        sample = 0x7FFF ^ (sample>>31);
+    return sample;
+}
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 //----------------------------------------------------------------------------
 // LvmBundle_process()
 //----------------------------------------------------------------------------
@@ -2462,9 +2475,12 @@ int Effect_setEnabled(EffectContext *pContext, bool enabled)
     LOGV("\tEffect_setEnabled() type %d, enabled %d", pContext->EffectType, enabled);
 
     if (enabled) {
+<<<<<<< HEAD
         // Bass boost or Virtualizer can be temporarily disabled if playing over device speaker due
         // to their nature.
         bool tempDisabled = false;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         switch (pContext->EffectType) {
             case LVM_BASS_BOOST:
                 if (pContext->pBundledContext->bBassEnabled == LVM_TRUE) {
@@ -2477,7 +2493,10 @@ int Effect_setEnabled(EffectContext *pContext, bool enabled)
                 pContext->pBundledContext->SamplesToExitCountBb =
                      (LVM_INT32)(pContext->pBundledContext->SamplesPerSecond*0.1);
                 pContext->pBundledContext->bBassEnabled = LVM_TRUE;
+<<<<<<< HEAD
                 tempDisabled = pContext->pBundledContext->bBassTempDisabled;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             case LVM_EQUALIZER:
                 if (pContext->pBundledContext->bEqualizerEnabled == LVM_TRUE) {
@@ -2502,7 +2521,10 @@ int Effect_setEnabled(EffectContext *pContext, bool enabled)
                 pContext->pBundledContext->SamplesToExitCountVirt =
                      (LVM_INT32)(pContext->pBundledContext->SamplesPerSecond*0.1);
                 pContext->pBundledContext->bVirtualizerEnabled = LVM_TRUE;
+<<<<<<< HEAD
                 tempDisabled = pContext->pBundledContext->bVirtualizerTempDisabled;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 break;
             case LVM_VOLUME:
                 if (pContext->pBundledContext->bVolumeEnabled == LVM_TRUE) {
@@ -2516,9 +2538,13 @@ int Effect_setEnabled(EffectContext *pContext, bool enabled)
                 LOGV("\tEffect_setEnabled() invalid effect type");
                 return -EINVAL;
         }
+<<<<<<< HEAD
         if (!tempDisabled) {
             LvmEffect_enable(pContext);
         }
+=======
+        LvmEffect_enable(pContext);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     } else {
         switch (pContext->EffectType) {
             case LVM_BASS_BOOST:
@@ -2693,11 +2719,16 @@ int Effect_process(effect_handle_t     self,
             LOGV("\tLVM_ERROR : LvmBundle_process returned error %d", lvmStatus);
             return lvmStatus;
         }
+<<<<<<< HEAD
     } else {
+=======
+    }else{
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         //LOGV("\tEffect_process Not Calling process with %d effects enabled, %d called: Effect %d",
         //pContext->pBundledContext->NumberEffectsEnabled,
         //pContext->pBundledContext->NumberEffectsCalled, pContext->EffectType);
         // 2 is for stereo input
+<<<<<<< HEAD
         if (pContext->config.outputCfg.accessMode == EFFECT_BUFFER_ACCESS_ACCUMULATE) {
             for (size_t i=0; i < outBuffer->frameCount*2; i++){
                 outBuffer->s16[i] =
@@ -2706,6 +2737,9 @@ int Effect_process(effect_handle_t     self,
         } else {
             memcpy(outBuffer->raw, inBuffer->raw, outBuffer->frameCount*sizeof(LVM_INT16)*2);
         }
+=======
+        memcpy(outBuffer->raw, inBuffer->raw, outBuffer->frameCount*sizeof(LVM_INT16)*2);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     return status;
@@ -3064,10 +3098,16 @@ int Effect_command(effect_handle_t  self,
             LOGV("\tEffect_command cmdCode Case: EFFECT_CMD_SET_DEVICE start");
             uint32_t device = *(uint32_t *)pCmdData;
 
+<<<<<<< HEAD
             if (pContext->EffectType == LVM_BASS_BOOST) {
                 if((device == AUDIO_DEVICE_OUT_SPEAKER) ||
                         (device == AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT) ||
                         (device == AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER)){
+=======
+            if(pContext->EffectType == LVM_BASS_BOOST){
+                if((device == AUDIO_DEVICE_OUT_SPEAKER)||(device == AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT)||
+                   (device == AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER)){
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     LOGV("\tEFFECT_CMD_SET_DEVICE device is invalid for LVM_BASS_BOOST %d",
                           *(int32_t *)pCmdData);
                     LOGV("\tEFFECT_CMD_SET_DEVICE temporary disable LVM_BAS_BOOST");
@@ -3076,6 +3116,7 @@ int Effect_command(effect_handle_t  self,
                     // the effect must still report its original state as this can only be changed
                     // by the ENABLE/DISABLE command
 
+<<<<<<< HEAD
                     if (pContext->pBundledContext->bBassEnabled == LVM_TRUE) {
                         LOGV("\tEFFECT_CMD_SET_DEVICE disable LVM_BASS_BOOST %d",
                              *(int32_t *)pCmdData);
@@ -3083,12 +3124,22 @@ int Effect_command(effect_handle_t  self,
                     }
                     pContext->pBundledContext->bBassTempDisabled = LVM_TRUE;
                 } else {
+=======
+                    if(pContext->pBundledContext->bBassEnabled == LVM_TRUE){
+                        LOGV("\tEFFECT_CMD_SET_DEVICE disable LVM_BASS_BOOST %d",
+                             *(int32_t *)pCmdData);
+                        android::LvmEffect_disable(pContext);
+                        pContext->pBundledContext->bBassTempDisabled = LVM_TRUE;
+                    }
+                }else{
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     LOGV("\tEFFECT_CMD_SET_DEVICE device is valid for LVM_BASS_BOOST %d",
                          *(int32_t *)pCmdData);
 
                     // If a device supports bassboost and the effect has been temporarily disabled
                     // previously then re-enable it
 
+<<<<<<< HEAD
                     if (pContext->pBundledContext->bBassEnabled == LVM_TRUE) {
                         LOGV("\tEFFECT_CMD_SET_DEVICE re-enable LVM_BASS_BOOST %d",
                              *(int32_t *)pCmdData);
@@ -3101,6 +3152,19 @@ int Effect_command(effect_handle_t  self,
                 if((device == AUDIO_DEVICE_OUT_SPEAKER)||
                         (device == AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT)||
                         (device == AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER)){
+=======
+                    if(pContext->pBundledContext->bBassTempDisabled == LVM_TRUE){
+                        LOGV("\tEFFECT_CMD_SET_DEVICE re-enable LVM_BASS_BOOST %d",
+                             *(int32_t *)pCmdData);
+                        android::LvmEffect_enable(pContext);
+                        pContext->pBundledContext->bBassTempDisabled = LVM_FALSE;
+                    }
+                }
+            }
+            if(pContext->EffectType == LVM_VIRTUALIZER){
+                if((device == AUDIO_DEVICE_OUT_SPEAKER)||(device == AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT)||
+                   (device == AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER)){
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     LOGV("\tEFFECT_CMD_SET_DEVICE device is invalid for LVM_VIRTUALIZER %d",
                           *(int32_t *)pCmdData);
                     LOGV("\tEFFECT_CMD_SET_DEVICE temporary disable LVM_VIRTUALIZER");
@@ -3109,6 +3173,7 @@ int Effect_command(effect_handle_t  self,
                     // the effect must still report its original state as this can only be changed
                     // by the ENABLE/DISABLE command
 
+<<<<<<< HEAD
                     if (pContext->pBundledContext->bVirtualizerEnabled == LVM_TRUE) {
                         LOGV("\tEFFECT_CMD_SET_DEVICE disable LVM_VIRTUALIZER %d",
                               *(int32_t *)pCmdData);
@@ -3116,18 +3181,36 @@ int Effect_command(effect_handle_t  self,
                     }
                     pContext->pBundledContext->bVirtualizerTempDisabled = LVM_TRUE;
                 } else {
+=======
+                    if(pContext->pBundledContext->bVirtualizerEnabled == LVM_TRUE){
+                        LOGV("\tEFFECT_CMD_SET_DEVICE disable LVM_VIRTUALIZER %d",
+                              *(int32_t *)pCmdData);
+                        android::LvmEffect_disable(pContext);
+                        pContext->pBundledContext->bVirtualizerTempDisabled = LVM_TRUE;
+                    }
+                }else{
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                     LOGV("\tEFFECT_CMD_SET_DEVICE device is valid for LVM_VIRTUALIZER %d",
                           *(int32_t *)pCmdData);
 
                     // If a device supports virtualizer and the effect has been temporarily disabled
                     // previously then re-enable it
 
+<<<<<<< HEAD
                     if(pContext->pBundledContext->bVirtualizerEnabled == LVM_TRUE){
                         LOGV("\tEFFECT_CMD_SET_DEVICE re-enable LVM_VIRTUALIZER %d",
                               *(int32_t *)pCmdData);
                         android::LvmEffect_enable(pContext);
                     }
                     pContext->pBundledContext->bVirtualizerTempDisabled = LVM_FALSE;
+=======
+                    if(pContext->pBundledContext->bVirtualizerTempDisabled == LVM_TRUE){
+                        LOGV("\tEFFECT_CMD_SET_DEVICE re-enable LVM_VIRTUALIZER %d",
+                              *(int32_t *)pCmdData);
+                        android::LvmEffect_enable(pContext);
+                        pContext->pBundledContext->bVirtualizerTempDisabled = LVM_FALSE;
+                    }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
             LOGV("\tEffect_command cmdCode Case: EFFECT_CMD_SET_DEVICE end");

@@ -28,6 +28,7 @@ import android.util.Slog;
 
 /**
  * Base class for code that will receive intents sent by sendBroadcast().
+<<<<<<< HEAD
  *
  * <p>If you don't need to send broadcasts across applications, consider using
  * this class with {@link android.support.v4.content.LocalBroadcastManager} instead
@@ -43,6 +44,13 @@ import android.util.Slog;
  * tag in your <code>AndroidManifest.xml</code>.
  * 
  * <p><em><strong>Note:</strong></em>
+=======
+ * You can either dynamically register an instance of this class with
+ * {@link Context#registerReceiver Context.registerReceiver()}
+ * or statically publish an implementation through the
+ * {@link android.R.styleable#AndroidManifestReceiver &lt;receiver&gt;}
+ * tag in your <code>AndroidManifest.xml</code>. <em><strong>Note:</strong></em>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * &nbsp;&nbsp;&nbsp;If registering a receiver in your
  * {@link android.app.Activity#onResume() Activity.onResume()}
  * implementation, you should unregister it in 
@@ -96,8 +104,13 @@ import android.util.Slog;
  * 
  * <p>Topics covered here:
  * <ol>
+<<<<<<< HEAD
  * <li><a href="#Security">Security</a>
  * <li><a href="#ReceiverLifecycle">Receiver Lifecycle</a>
+=======
+ * <li><a href="#ReceiverLifecycle">Receiver Lifecycle</a>
+ * <li><a href="#Permissions">Permissions</a>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <li><a href="#ProcessLifecycle">Process Lifecycle</a>
  * </ol>
  *
@@ -108,6 +121,7 @@ import android.util.Slog;
  * developer guide.</p>
  * </div>
  *
+<<<<<<< HEAD
  * <a name="Security"></a>
  * <h3>Security</h3>
  *
@@ -141,6 +155,34 @@ import android.util.Slog;
  * <p>Access permissions can be enforced by either the sender or receiver
  * of a broadcast.
  *
+=======
+ * <a name="ReceiverLifecycle"></a>
+ * <h3>Receiver Lifecycle</h3>
+ * 
+ * <p>A BroadcastReceiver object is only valid for the duration of the call
+ * to {@link #onReceive}.  Once your code returns from this function,
+ * the system considers the object to be finished and no longer active.
+ * 
+ * <p>This has important repercussions to what you can do in an
+ * {@link #onReceive} implementation: anything that requires asynchronous
+ * operation is not available, because you will need to return from the
+ * function to handle the asynchronous operation, but at that point the
+ * BroadcastReceiver is no longer active and thus the system is free to kill
+ * its process before the asynchronous operation completes.
+ * 
+ * <p>In particular, you may <i>not</i> show a dialog or bind to a service from
+ * within a BroadcastReceiver.  For the former, you should instead use the
+ * {@link android.app.NotificationManager} API.  For the latter, you can
+ * use {@link android.content.Context#startService Context.startService()} to
+ * send a command to the service.
+ * 
+ * <a name="Permissions"></a>
+ * <h3>Permissions</h3>
+ * 
+ * <p>Access permissions can be enforced by either the sender or receiver
+ * of an Intent.
+ * 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <p>To enforce a permission when sending, you supply a non-null
  * <var>permission</var> argument to
  * {@link Context#sendBroadcast(Intent, String)} or
@@ -150,7 +192,11 @@ import android.util.Slog;
  * {@link android.R.styleable#AndroidManifestUsesPermission &lt;uses-permission&gt;}
  * tag in their <code>AndroidManifest.xml</code>) will be able to receive
  * the broadcast.
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <p>To enforce a permission when receiving, you supply a non-null
  * <var>permission</var> when registering your receiver -- either when calling
  * {@link Context#registerReceiver(BroadcastReceiver, IntentFilter, String, android.os.Handler)}
@@ -161,6 +207,7 @@ import android.util.Slog;
  * {@link android.R.styleable#AndroidManifestUsesPermission &lt;uses-permission&gt;}
  * tag in their <code>AndroidManifest.xml</code>) will be able to send an
  * Intent to the receiver.
+<<<<<<< HEAD
  *
  * <p>See the <a href="{@docRoot}guide/topics/security/security.html">Security and Permissions</a>
  * document for more information on permissions and security in general.
@@ -185,6 +232,12 @@ import android.util.Slog;
  * use {@link android.content.Context#startService Context.startService()} to
  * send a command to the service.
  *
+=======
+ * 
+ * <p>See the <a href="{@docRoot}guide/topics/security/security.html">Security and Permissions</a>
+ * document for more information on permissions and security in general.
+ * 
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
  * <a name="ProcessLifecycle"></a>
  * <h3>Process Lifecycle</h3>
  * 

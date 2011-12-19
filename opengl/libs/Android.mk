@@ -8,7 +8,10 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= 	       \
 	EGL/egl_tls.cpp        \
+<<<<<<< HEAD
 	EGL/egl_cache.cpp      \
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 	EGL/egl_display.cpp    \
 	EGL/egl_object.cpp     \
 	EGL/egl.cpp 	       \
@@ -50,6 +53,7 @@ ifeq ($(TARGET_HAVE_TEGRA_ERRATA_657451),true)
   LOCAL_CFLAGS += -DHAVE_TEGRA_ERRATA_657451
 endif
 
+<<<<<<< HEAD
 ifneq ($(MAX_EGL_CACHE_ENTRY_SIZE),)
   LOCAL_CFLAGS += -DMAX_EGL_CACHE_ENTRY_SIZE=$(MAX_EGL_CACHE_ENTRY_SIZE)
 endif
@@ -61,6 +65,12 @@ endif
 include $(BUILD_SHARED_LIBRARY)
 installed_libEGL := $(LOCAL_INSTALLED_MODULE)
 
+=======
+include $(BUILD_SHARED_LIBRARY)
+installed_libEGL := $(LOCAL_INSTALLED_MODULE)
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 # OpenGL drivers config file
 ifneq ($(BOARD_EGL_CFG),)
 
@@ -183,3 +193,7 @@ LOCAL_MODULE:= libETC1
 include $(BUILD_SHARED_LIBRARY)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

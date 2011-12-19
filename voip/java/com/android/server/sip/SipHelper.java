@@ -73,7 +73,11 @@ import javax.sip.message.Response;
  */
 class SipHelper {
     private static final String TAG = SipHelper.class.getSimpleName();
+<<<<<<< HEAD
     private static final boolean DEBUG = false;
+=======
+    private static final boolean DEBUG = true;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final boolean DEBUG_PING = false;
 
     private SipStack mSipStack;

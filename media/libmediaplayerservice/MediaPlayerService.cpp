@@ -589,10 +589,13 @@ player_type getPlayerType(const char* url)
         }
     }
 
+<<<<<<< HEAD
     if (!strncasecmp("rtsp://", url, 7)) {
         return NU_PLAYER;
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // use MidiFile for MIDI extensions
     int lenURL = strlen(url);
     for (int i = 0; i < NELEM(FILE_EXTS); ++i) {
@@ -788,6 +791,17 @@ status_t MediaPlayerService::Client::setDataSource(
     return mStatus;
 }
 
+<<<<<<< HEAD
+=======
+status_t MediaPlayerService::Client::setVideoSurface(const sp<Surface>& surface)
+{
+    LOGV("[%d] setVideoSurface(%p)", mConnId, surface.get());
+    sp<MediaPlayerBase> p = getPlayer();
+    if (p == 0) return UNKNOWN_ERROR;
+    return p->setVideoSurface(surface);
+}
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 void MediaPlayerService::Client::disconnectNativeWindow() {
     if (mConnectedWindow != NULL) {
         status_t err = native_window_api_disconnect(mConnectedWindow.get(),

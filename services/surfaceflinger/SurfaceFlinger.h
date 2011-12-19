@@ -46,6 +46,10 @@ namespace android {
 
 class Client;
 class DisplayHardware;
+<<<<<<< HEAD
+=======
+class FreezeLock;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 class Layer;
 class LayerDim;
 class LayerScreenshot;
@@ -168,7 +172,13 @@ public:
     virtual sp<IMemoryHeap>             getCblk() const;
     virtual void                        bootFinished();
     virtual void                        setTransactionState(const Vector<ComposerState>& state,
+<<<<<<< HEAD
                                                             int orientation, uint32_t flags);
+=======
+                                                            int orientation);
+    virtual status_t                    freezeDisplay(DisplayID dpy, uint32_t flags);
+    virtual status_t                    unfreezeDisplay(DisplayID dpy, uint32_t flags);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual int                         setOrientation(DisplayID dpy, int orientation, uint32_t flags);
     virtual bool                        authenticateSurfaceTexture(const sp<ISurfaceTexture>& surface) const;
 
@@ -186,8 +196,11 @@ public:
 
             status_t renderScreenToTexture(DisplayID dpy,
                     GLuint* textureName, GLfloat* uOut, GLfloat* vOut);
+<<<<<<< HEAD
             status_t renderScreenToTextureLocked(DisplayID dpy,
                     GLuint* textureName, GLfloat* uOut, GLfloat* vOut);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             status_t postMessageAsync(const sp<MessageBase>& msg,
                     nsecs_t reltime=0, uint32_t flags = 0);
@@ -268,10 +281,18 @@ private:
     struct State {
         State() {
             orientation = ISurfaceComposer::eOrientationDefault;
+<<<<<<< HEAD
+=======
+            freezeDisplay = 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
         LayerVector     layersSortedByZ;
         uint8_t         orientation;
         uint8_t         orientationFlags;
+<<<<<<< HEAD
+=======
+        uint8_t         freezeDisplay;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     };
 
     virtual bool        threadLoop();
@@ -330,7 +351,27 @@ private:
             status_t turnElectronBeamOnImplLocked(int32_t mode);
             status_t electronBeamOffAnimationImplLocked();
             status_t electronBeamOnAnimationImplLocked();
+<<<<<<< HEAD
 
+=======
+            status_t renderScreenToTextureLocked(DisplayID dpy,
+                    GLuint* textureName, GLfloat* uOut, GLfloat* vOut);
+
+            friend class FreezeLock;
+            sp<FreezeLock> getFreezeLock() const;
+            inline void incFreezeCount() {
+                if (mFreezeCount == 0)
+                    mFreezeDisplayTime = 0;
+                mFreezeCount++;
+            }
+            inline void decFreezeCount() { if (mFreezeCount > 0) mFreezeCount--; }
+            inline bool hasFreezeRequest() const { return mFreezeDisplay; }
+            inline bool isFrozen() const { 
+                return (mFreezeDisplay || mFreezeCount>0) && mBootFinished;
+            }
+
+            
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             void        debugFlashRegions();
             void        debugShowFPS() const;
             void        drawWormhole() const;
@@ -344,8 +385,12 @@ private:
     volatile    int32_t                 mTransactionFlags;
                 Condition               mTransactionCV;
                 SortedVector< sp<LayerBase> > mLayerPurgatory;
+<<<<<<< HEAD
                 bool                    mTransationPending;
                 Vector< sp<LayerBase> > mLayersPendingRemoval;
+=======
+                bool                    mResizeTransationPending;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                 // protected by mStateLock (but we could use another lock)
                 GraphicPlane                mGraphicPlanes[1];
@@ -372,7 +417,14 @@ private:
                 Region                      mWormholeRegion;
                 bool                        mVisibleRegionsDirty;
                 bool                        mHwWorkListDirty;
+<<<<<<< HEAD
                 int32_t                     mElectronBeamAnimationMode;
+=======
+                bool                        mFreezeDisplay;
+                int32_t                     mElectronBeamAnimationMode;
+                int32_t                     mFreezeCount;
+                nsecs_t                     mFreezeDisplayTime;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 Vector< sp<LayerBase> >     mVisibleLayersSortedByZ;
 
 
@@ -408,6 +460,23 @@ private:
 };
 
 // ---------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+
+class FreezeLock : public LightRefBase<FreezeLock> {
+    SurfaceFlinger* mFlinger;
+public:
+    FreezeLock(SurfaceFlinger* flinger)
+        : mFlinger(flinger) {
+        mFlinger->incFreezeCount();
+    }
+    ~FreezeLock() {
+        mFlinger->decFreezeCount();
+    }
+};
+
+// ---------------------------------------------------------------------------
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }; // namespace android
 
 #endif // ANDROID_SURFACE_FLINGER_H

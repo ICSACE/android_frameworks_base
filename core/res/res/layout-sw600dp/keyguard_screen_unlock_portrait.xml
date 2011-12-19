@@ -23,6 +23,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
     <!-- top: status -->
     <RelativeLayout
         android:layout_height="0dip"
@@ -73,22 +74,45 @@
             android:layout_width="354dip"
             android:layout_height="354dip"
             android:layout_marginTop="50dip"/>
+=======
+    <!-- top: status and emergency/forgot pattern buttons -->
+    <LinearLayout
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/keyguard_screen_status_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="134dip"
+            android:layout_marginLeft="266dip"/>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         <!-- Emergency and forgot pattern buttons. -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+<<<<<<< HEAD
             style="?android:attr/buttonBarStyle"
             android:gravity="center"
             android:weightSum="2">
+=======
+            android:gravity="center_horizontal">
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
             <Button android:id="@+id/forgotPatternButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+<<<<<<< HEAD
                 style="?android:attr/buttonBarButtonStyle"
                 android:drawableLeft="@drawable/lockscreen_forgot_password_button"
+=======
+                style="@style/Widget.Button.Transparent"
+                android:drawableLeft="@drawable/ic_emergency"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 android:drawablePadding="8dip"
                 android:text="@string/lockscreen_forgot_pattern_button_text"
                 android:visibility="gone"
@@ -98,7 +122,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+<<<<<<< HEAD
                 style="?android:attr/buttonBarButtonStyle"
+=======
+                style="@style/Widget.Button.Transparent"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 android:drawableLeft="@drawable/ic_emergency"
                 android:drawablePadding="8dip"
                 android:text="@string/lockscreen_emergency_call"
@@ -109,5 +137,22 @@
 
     </LinearLayout>
 
+<<<<<<< HEAD
+=======
+    <!-- right side: lock pattern -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:gravity="center"
+        >
+        <com.android.internal.widget.LockPatternView android:id="@+id/lockPattern"
+            android:layout_width="354dip"
+            android:layout_height="354dip"
+            android:layout_marginTop="50dip"
+          />
+    </LinearLayout>
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </com.android.internal.widget.LinearLayoutWithDefaultTouchRecepient>
 

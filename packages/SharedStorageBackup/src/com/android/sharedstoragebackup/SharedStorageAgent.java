@@ -2,8 +2,16 @@ package com.android.sharedstoragebackup;
 
 import android.app.backup.FullBackupAgent;
 import android.app.backup.FullBackup;
+<<<<<<< HEAD
 import android.app.backup.FullBackupDataOutput;
 import android.content.Context;
+=======
+import android.app.backup.BackupDataInput;
+import android.app.backup.BackupDataOutput;
+import android.app.backup.FullBackupDataOutput;
+import android.content.Context;
+import android.os.Environment;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.ParcelFileDescriptor;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
@@ -37,7 +45,10 @@ public class SharedStorageAgent extends FullBackupAgent {
         // hierarchy backup process on them.  By convention in the Storage Manager, the
         // "primary" shared storage volume is first in the list.
         if (mVolumes != null) {
+<<<<<<< HEAD
             if (DEBUG) Slog.i(TAG, "Backing up " + mVolumes.length + " shared volumes");
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             for (int i = 0; i < mVolumes.length; i++) {
                 StorageVolume v = mVolumes[i];
                 // Express the contents of volume N this way in the tar stream:
@@ -56,7 +67,11 @@ public class SharedStorageAgent extends FullBackupAgent {
     public void onRestoreFile(ParcelFileDescriptor data, long size,
             int type, String domain, String relpath, long mode, long mtime)
             throws IOException {
+<<<<<<< HEAD
         if (DEBUG) Slog.d(TAG, "Shared restore: [ " + domain + " : " + relpath + "]");
+=======
+        Slog.d(TAG, "Shared restore: [ " + domain + " : " + relpath + "]");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         File outFile = null;
 

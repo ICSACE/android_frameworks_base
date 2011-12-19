@@ -752,6 +752,7 @@ static void Surface_copyFrom(
     }
 }
 
+<<<<<<< HEAD
 static void Surface_transferFrom(
         JNIEnv* env, jobject clazz, jobject other)
 {
@@ -771,6 +772,8 @@ static void Surface_transferFrom(
     setSurface(env, other, 0);
 }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 static void Surface_readFromParcel(
         JNIEnv* env, jobject clazz, jobject argParcel)
 {
@@ -839,7 +842,10 @@ static JNINativeMethod gSurfaceMethods[] = {
     {"destroy",             "()V",  (void*)Surface_destroy },
     {"release",             "()V",  (void*)Surface_release },
     {"copyFrom",            "(Landroid/view/Surface;)V",  (void*)Surface_copyFrom },
+<<<<<<< HEAD
     {"transferFrom",        "(Landroid/view/Surface;)V",  (void*)Surface_transferFrom },
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     {"isValid",             "()Z",  (void*)Surface_isValid },
     {"lockCanvasNative",    "(Landroid/graphics/Rect;)Landroid/graphics/Canvas;",  (void*)Surface_lockCanvas },
     {"unlockCanvasAndPost", "(Landroid/graphics/Canvas;)V", (void*)Surface_unlockCanvasAndPost },

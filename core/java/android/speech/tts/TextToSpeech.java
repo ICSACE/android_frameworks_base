@@ -31,6 +31,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -38,6 +39,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+=======
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 /**
  *
@@ -150,6 +157,7 @@ public class TextToSpeech {
     }
 
     /**
+<<<<<<< HEAD
      * Constants and parameter names for controlling text-to-speech. These include:
      *
      * <ul>
@@ -169,6 +177,9 @@ public class TextToSpeech {
      *         through {@link TextToSpeech#getFeatures(java.util.Locale)}.
      *     </li>
      * </ul>
+=======
+     * Constants and parameter names for controlling text-to-speech.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     public class Engine {
 
@@ -456,6 +467,7 @@ public class TextToSpeech {
          */
         public static final String KEY_PARAM_PAN = "pan";
 
+<<<<<<< HEAD
         /**
          * Feature key for network synthesis. See {@link TextToSpeech#getFeatures(Locale)}
          * for a description of how feature keys work. If set (and supported by the engine
@@ -475,6 +487,8 @@ public class TextToSpeech {
          * text on-device (without making network requests).
          */
         public static final String KEY_FEATURE_EMBEDDED_SYNTHESIS = "embeddedTts";
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private final Context mContext;
@@ -482,7 +496,11 @@ public class TextToSpeech {
     private OnInitListener mInitListener;
     // Written from an unspecified application thread, read from
     // a binder thread.
+<<<<<<< HEAD
     private volatile UtteranceProgressListener mUtteranceProgressListener;
+=======
+    private volatile OnUtteranceCompletedListener mUtteranceCompletedListener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private final Object mStartLock = new Object();
 
     private String mRequestedEngine;
@@ -490,7 +508,10 @@ public class TextToSpeech {
     private final Map<String, Uri> mUtterances;
     private final Bundle mParams = new Bundle();
     private final TtsEngines mEnginesHelper;
+<<<<<<< HEAD
     private final String mPackageName;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private volatile String mCurrentEngine = null;
 
     /**
@@ -519,6 +540,7 @@ public class TextToSpeech {
      * @param engine Package name of the TTS engine to use.
      */
     public TextToSpeech(Context context, OnInitListener listener, String engine) {
+<<<<<<< HEAD
         this(context, listener, engine, null);
     }
 
@@ -530,12 +552,15 @@ public class TextToSpeech {
      */
     public TextToSpeech(Context context, OnInitListener listener, String engine,
             String packageName) {
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mContext = context;
         mInitListener = listener;
         mRequestedEngine = engine;
 
         mEarcons = new HashMap<String, Uri>();
         mUtterances = new HashMap<String, Uri>();
+<<<<<<< HEAD
         mUtteranceProgressListener = null;
 
         mEnginesHelper = new TtsEngines(mContext);
@@ -544,11 +569,19 @@ public class TextToSpeech {
         } else {
             mPackageName = mContext.getPackageName();
         }
+=======
+
+        mEnginesHelper = new TtsEngines(mContext);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         initTts();
     }
 
     private String getPackageName() {
+<<<<<<< HEAD
         return mPackageName;
+=======
+        return mContext.getPackageName();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     private <R> R runActionNoReconnect(Action<R> action, R errorResult, String method) {
@@ -870,6 +903,7 @@ public class TextToSpeech {
     }
 
     /**
+<<<<<<< HEAD
      * Queries the engine for the set of features it supports for a given locale.
      * Features can either be framework defined, e.g.
      * {@link TextToSpeech.Engine#KEY_FEATURE_NETWORK_SYNTHESIS} or engine specific.
@@ -900,6 +934,8 @@ public class TextToSpeech {
     }
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Checks whether the TTS engine is busy speaking. Note that a speech item is
      * considered complete once it's audio data has been sent to the audio mixer, or
      * written to a file. There might be a finite lag between this point, and when
@@ -1105,10 +1141,13 @@ public class TextToSpeech {
             copyFloatParam(bundle, params, Engine.KEY_PARAM_VOLUME);
             copyFloatParam(bundle, params, Engine.KEY_PARAM_PAN);
 
+<<<<<<< HEAD
             // Copy feature strings defined by the framework.
             copyStringParam(bundle, params, Engine.KEY_FEATURE_NETWORK_SYNTHESIS);
             copyStringParam(bundle, params, Engine.KEY_FEATURE_EMBEDDED_SYNTHESIS);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             // Copy over all parameters that start with the name of the
             // engine that we are currently connected to. The engine is
             // free to interpret them as it chooses.
@@ -1164,6 +1203,7 @@ public class TextToSpeech {
      * @param listener The listener to use.
      *
      * @return {@link #ERROR} or {@link #SUCCESS}.
+<<<<<<< HEAD
      *
      * @deprecated Use {@link #setOnUtteranceProgressListener(UtteranceProgressListener)}
      *        instead.
@@ -1186,6 +1226,11 @@ public class TextToSpeech {
      */
     public int setOnUtteranceProgressListener(UtteranceProgressListener listener) {
         mUtteranceProgressListener = listener;
+=======
+     */
+    public int setOnUtteranceCompletedListener(final OnUtteranceCompletedListener listener) {
+        mUtteranceCompletedListener = listener;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return TextToSpeech.SUCCESS;
     }
 
@@ -1241,6 +1286,7 @@ public class TextToSpeech {
         private ITextToSpeechService mService;
         private final ITextToSpeechCallback.Stub mCallback = new ITextToSpeechCallback.Stub() {
             @Override
+<<<<<<< HEAD
             public void onDone(String utteranceId) {
                 UtteranceProgressListener listener = mUtteranceProgressListener;
                 if (listener != null) {
@@ -1261,6 +1307,12 @@ public class TextToSpeech {
                 UtteranceProgressListener listener = mUtteranceProgressListener;
                 if (listener != null) {
                     listener.onStart(utteranceId);
+=======
+            public void utteranceCompleted(String utteranceId) {
+                OnUtteranceCompletedListener listener = mUtteranceCompletedListener;
+                if (listener != null) {
+                    listener.onUtteranceCompleted(utteranceId);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 }
             }
         };

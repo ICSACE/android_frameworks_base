@@ -42,7 +42,10 @@
 #include <surfaceflinger/ISurfaceComposerClient.h>
 
 #include <core/SkBitmap.h>
+<<<<<<< HEAD
 #include <core/SkStream.h>
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 #include <images/SkImageDecoder.h>
 
 #include <GLES/gl.h>
@@ -151,6 +154,7 @@ status_t BootAnimation::initTexture(void* buffer, size_t len)
     //StopWatch watch("blah");
 
     SkBitmap bitmap;
+<<<<<<< HEAD
     SkMemoryStream  stream(buffer, len);
     SkImageDecoder* codec = SkImageDecoder::Factory(&stream);
     codec->setDitherImage(false);
@@ -160,6 +164,11 @@ status_t BootAnimation::initTexture(void* buffer, size_t len)
                 SkImageDecoder::kDecodePixels_Mode);
         delete codec;
     }
+=======
+    SkImageDecoder::DecodeMemory(buffer, len,
+            &bitmap, SkBitmap::kRGB_565_Config,
+            SkImageDecoder::kDecodePixels_Mode);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // ensure we can call getPixels(). No need to call unlock, since the
     // bitmap will go out of scope when we return from this method.
@@ -350,10 +359,17 @@ bool BootAnimation::android()
         glEnable(GL_BLEND);
         glBindTexture(GL_TEXTURE_2D, mAndroid[0].name);
         glDrawTexiOES(xc, yc, 0, mAndroid[0].w, mAndroid[0].h);
+<<<<<<< HEAD
 
         EGLBoolean res = eglSwapBuffers(mDisplay, mSurface);
         if (res == EGL_FALSE)
             break;
+=======
+//KAI FIX
+//        EGLBoolean res = eglSwapBuffers(mDisplay, mSurface);
+//        if (res == EGL_FALSE)
+//            break;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // 12fps: don't animate too fast to preserve CPU
         const nsecs_t sleepTime = 83333 - ns2us(systemTime() - now);
@@ -532,3 +548,7 @@ bool BootAnimation::movie()
 
 }
 ; // namespace android
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e

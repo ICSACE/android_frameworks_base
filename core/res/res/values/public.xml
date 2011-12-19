@@ -1974,4 +1974,8 @@
   <public type="color" name="holo_orange_dark" id="0x01060019" />
   <public type="color" name="holo_purple" id="0x0106001a" />
   <public type="color" name="holo_blue_bright" id="0x0106001b" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </resources>

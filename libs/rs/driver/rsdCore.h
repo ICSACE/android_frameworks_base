@@ -28,9 +28,13 @@ typedef void (* InvokeFunc_t)(void);
 typedef void (*WorkerCallback_t)(void *usr, uint32_t idx);
 
 typedef void (*outer_foreach_t)(const void *,
+<<<<<<< HEAD
     const android::renderscript::RsForEachStubParamStruct *,
                                 uint32_t x1, uint32_t x2,
                                 uint32_t instep, uint32_t outstep);
+=======
+    const android::renderscript::RsForEachStubParamStruct *);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 typedef struct RsdSymbolTableRec {
     const char * mName;

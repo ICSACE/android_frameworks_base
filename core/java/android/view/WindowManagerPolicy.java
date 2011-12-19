@@ -238,6 +238,7 @@ public interface WindowManagerPolicy {
         public WindowManager.LayoutParams getAttrs();
 
         /**
+<<<<<<< HEAD
          * Return whether this window needs the menu key shown.  Must be called
          * with window lock held, because it may need to traverse down through
          * window list to determine the result.
@@ -246,6 +247,8 @@ public interface WindowManagerPolicy {
         public boolean getNeedsMenuLw(WindowState bottom);
 
         /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
          * Retrieve the current system UI visibility flags associated with
          * this window.
          */

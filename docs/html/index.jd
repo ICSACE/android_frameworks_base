@@ -129,6 +129,7 @@ href="{@docRoot}resources/dashboard/platform-versions.html">Learn more &raquo;</
     'sdk': {
       'layout':"imgLeft",
       'icon':"sdk-small.png",
+<<<<<<< HEAD
       'name':"Android 4.0.3",
       'img':"ics-android.png",
       'title':"Android 4.0.3",
@@ -139,6 +140,18 @@ href="{@docRoot}resources/dashboard/platform-versions.html">Learn more &raquo;</
 + "<p>For information about API changes in 4.0.3 (API level 15), read the "
 + "<a href='{@docRoot}sdk/android-4.0.3.html'>platform notes</a> and <a "
 + "href='{@docRoot}sdk/api_diff/15/changes.html'>diff report</a>. If you're new to Android, "
+=======
+      'name':"Android 4.0",
+      'img':"ics-android.png",
+      'title':"Ice Cream Sandwich!",
+      'desc': "<p>Android 4.0 is here, delivering a unified UI for phones and tablets and "
++ "innovative features for users and developers. Check out the <a "
++ "href='http://developer.android.com/sdk/android-4.0-highlights.html'>Platform Highlights</a> "
++ "for an overview of the new features in Android 4.0.</p>"
++ "<p>For more information about API changes, read the "
++ "<a href='{@docRoot}sdk/android-4.0.html'>platform notes</a> and <a "
++ "href='{@docRoot}sdk/api_diff/14/changes.html'>diff report</a>. If you're new to Android, "
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 + "get started with the <a href='/sdk/index.html'>SDK starter package</a>.</p>"
     },
 

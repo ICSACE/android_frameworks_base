@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.app.ActivityManagerNative;
+<<<<<<< HEAD
 import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -34,15 +35,30 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+=======
+import android.app.Dialog;
+import android.app.KeyguardManager;
+import android.app.PendingIntent;
+import android.app.Notification;
+import android.app.StatusBarManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Rect;
+<<<<<<< HEAD
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
+=======
+import android.graphics.drawable.LayerDrawable;
+import android.provider.Settings;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -72,6 +88,7 @@ import android.widget.TextView;
 
 import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.statusbar.StatusBarNotification;
+<<<<<<< HEAD
 import com.android.systemui.R;
 import com.android.systemui.recent.RecentTasksLoader;
 import com.android.systemui.recent.RecentsPanelView;
@@ -79,12 +96,22 @@ import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBar;
 import com.android.systemui.statusbar.StatusBarIconView;
+=======
+
+import com.android.systemui.R;
+import com.android.systemui.statusbar.*;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BluetoothController;
 import com.android.systemui.statusbar.policy.CompatModeButton;
 import com.android.systemui.statusbar.policy.LocationController;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.Prefs;
+<<<<<<< HEAD
+=======
+import com.android.systemui.recent.RecentTasksLoader;
+import com.android.systemui.recent.RecentsPanelView;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 public class TabletStatusBar extends StatusBar implements
         HeightReceiver.OnBarHeightChangedListener,
@@ -168,6 +195,10 @@ public class TabletStatusBar extends StatusBar implements
     NetworkController mNetworkController;
 
     ViewGroup mBarContents;
+<<<<<<< HEAD
+=======
+    LayoutTransition mBarContentsLayoutTransition;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     // hide system chrome ("lights out") support
     View mShadow;
@@ -460,6 +491,22 @@ public class TabletStatusBar extends StatusBar implements
         }
 
         mBarContents = (ViewGroup) sb.findViewById(R.id.bar_contents);
+<<<<<<< HEAD
+=======
+        // layout transitions for the status bar's contents
+        mBarContentsLayoutTransition = new LayoutTransition();
+        // add/removal will fade as normal
+        mBarContentsLayoutTransition.setAnimator(LayoutTransition.APPEARING,
+                ObjectAnimator.ofFloat(null, "alpha", 0f, 1f));
+        mBarContentsLayoutTransition.setAnimator(LayoutTransition.DISAPPEARING,
+                ObjectAnimator.ofFloat(null, "alpha", 1f, 0f));
+        // no animations for siblings on change: just jump into place please
+        mBarContentsLayoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, null);
+        mBarContentsLayoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, null);
+        // quick like bunny
+        mBarContentsLayoutTransition.setDuration(250 * (DEBUG?10:1));
+        mBarContents.setLayoutTransition(mBarContentsLayoutTransition);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // the whole right-hand side of the bar
         mNotificationArea = sb.findViewById(R.id.notificationArea);
@@ -508,6 +555,7 @@ public class TabletStatusBar extends StatusBar implements
         mMenuButton = mNavigationArea.findViewById(R.id.menu);
         mRecentButton = mNavigationArea.findViewById(R.id.recent_apps);
         mRecentButton.setOnClickListener(mOnClickListener);
+<<<<<<< HEAD
 
         LayoutTransition lt = new LayoutTransition();
         lt.setDuration(250);
@@ -525,6 +573,9 @@ public class TabletStatusBar extends StatusBar implements
                     View view, int transitionType) {}
         });
         mNavigationArea.setLayoutTransition(lt);
+=======
+        mNavigationArea.setLayoutTransition(mBarContentsLayoutTransition);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         // no multi-touch on the nav buttons
         mNavigationArea.setMotionEventSplittingEnabled(false);
 
@@ -536,7 +587,10 @@ public class TabletStatusBar extends StatusBar implements
 
         mCompatModeButton = (CompatModeButton) sb.findViewById(R.id.compatModeButton);
         mCompatModeButton.setOnClickListener(mOnClickListener);
+<<<<<<< HEAD
         mCompatModeButton.setVisibility(View.GONE);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         // for redirecting errant bar taps to the IME
         mFakeSpaceBar = sb.findViewById(R.id.fake_space_bar);
@@ -609,12 +663,15 @@ public class TabletStatusBar extends StatusBar implements
 
         mHeightReceiver.addOnBarHeightChangedListener(this);
 
+<<<<<<< HEAD
         // receive broadcasts
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         context.registerReceiver(mBroadcastReceiver, filter);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return sb;
     }
 
@@ -989,12 +1046,15 @@ public class TabletStatusBar extends StatusBar implements
                         | StatusBarManager.DISABLE_BACK 
                         | StatusBarManager.DISABLE_HOME)) != 0) {
             setNavigationVisibility(state);
+<<<<<<< HEAD
 
             if ((state & StatusBarManager.DISABLE_RECENT) != 0) {
                 // close recents if it's visible
                 mHandler.removeMessages(MSG_CLOSE_RECENTS_PANEL);
                 mHandler.sendEmptyMessage(MSG_CLOSE_RECENTS_PANEL);
             }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -1054,6 +1114,7 @@ public class TabletStatusBar extends StatusBar implements
     }
 
     public void animateCollapse() {
+<<<<<<< HEAD
         animateCollapse(false);
     }
 
@@ -1064,6 +1125,12 @@ public class TabletStatusBar extends StatusBar implements
             mHandler.removeMessages(MSG_CLOSE_RECENTS_PANEL);
             mHandler.sendEmptyMessage(MSG_CLOSE_RECENTS_PANEL);
         }
+=======
+        mHandler.removeMessages(MSG_CLOSE_NOTIFICATION_PANEL);
+        mHandler.sendEmptyMessage(MSG_CLOSE_NOTIFICATION_PANEL);
+        mHandler.removeMessages(MSG_CLOSE_RECENTS_PANEL);
+        mHandler.sendEmptyMessage(MSG_CLOSE_RECENTS_PANEL);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mHandler.removeMessages(MSG_CLOSE_INPUT_METHODS_PANEL);
         mHandler.sendEmptyMessage(MSG_CLOSE_INPUT_METHODS_PANEL);
         mHandler.removeMessages(MSG_CLOSE_COMPAT_MODE_PANEL);
@@ -1289,8 +1356,14 @@ public class TabletStatusBar extends StatusBar implements
     public void onClickRecentButton() {
         if (DEBUG) Slog.d(TAG, "clicked recent apps; disabled=" + mDisabled);
         if ((mDisabled & StatusBarManager.DISABLE_EXPAND) == 0) {
+<<<<<<< HEAD
             int msg = (mRecentsPanel.getVisibility() == View.VISIBLE)
                 ? MSG_CLOSE_RECENTS_PANEL : MSG_OPEN_RECENTS_PANEL;
+=======
+            int msg = (mRecentsPanel.getVisibility() == View.GONE)
+                ? MSG_OPEN_RECENTS_PANEL
+                : MSG_CLOSE_RECENTS_PANEL;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             mHandler.removeMessages(msg);
             mHandler.sendEmptyMessage(msg);
         }
@@ -1749,10 +1822,15 @@ public class TabletStatusBar extends StatusBar implements
     }
 
     void workAroundBadLayerDrawableOpacity(View v) {
+<<<<<<< HEAD
         Drawable bgd = v.getBackground();
         if (!(bgd instanceof LayerDrawable)) return;
 
         LayerDrawable d = (LayerDrawable) bgd;
+=======
+        LayerDrawable d = (LayerDrawable)v.getBackground();
+        if (d == null) return;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         v.setBackgroundDrawable(null);
         d.setOpacity(PixelFormat.TRANSLUCENT);
         v.setBackgroundDrawable(d);
@@ -1818,8 +1896,11 @@ public class TabletStatusBar extends StatusBar implements
             row.setDrawingCacheEnabled(true);
         }
 
+<<<<<<< HEAD
         applyLegacyRowBackground(sbn, content);
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         entry.row = row;
         entry.content = content;
         entry.expanded = expanded;
@@ -1828,6 +1909,7 @@ public class TabletStatusBar extends StatusBar implements
         return true;
     }
 
+<<<<<<< HEAD
     void applyLegacyRowBackground(StatusBarNotification sbn, View content) {
         if (sbn.notification.contentView.getLayoutId() !=
                 com.android.internal.R.layout.status_bar_latest_event_content) {
@@ -1846,6 +1928,8 @@ public class TabletStatusBar extends StatusBar implements
         }
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public void clearAll() {
         try {
             mBarService.onClearAllNotifications();
@@ -1863,6 +1947,7 @@ public class TabletStatusBar extends StatusBar implements
         mHandler.sendEmptyMessage(msg);
     }
 
+<<<<<<< HEAD
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -1888,6 +1973,8 @@ public class TabletStatusBar extends StatusBar implements
         }
     };
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     public class TouchOutsideListener implements View.OnTouchListener {
         private int mMsg;
         private StatusBarPanel mPanel;

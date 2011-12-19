@@ -781,9 +781,12 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
      * {@link GLSurfaceView#setEGLWindowSurfaceFactory(EGLWindowSurfaceFactory)}
      */
     public interface EGLWindowSurfaceFactory {
+<<<<<<< HEAD
         /**
          *  @return null if the surface cannot be constructed.
          */
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         EGLSurface createWindowSurface(EGL10 egl, EGLDisplay display, EGLConfig config,
                 Object nativeWindow);
         void destroySurface(EGL10 egl, EGLDisplay display, EGLSurface surface);
@@ -793,6 +796,7 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         public EGLSurface createWindowSurface(EGL10 egl, EGLDisplay display,
                 EGLConfig config, Object nativeWindow) {
+<<<<<<< HEAD
             EGLSurface result = null;
             try {
                 result = egl.eglCreateWindowSurface(display, config, nativeWindow, null);
@@ -806,6 +810,9 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 Log.e(TAG, "eglCreateWindowSurface", e);
             }
             return result;
+=======
+            return egl.eglCreateWindowSurface(display, config, nativeWindow, null);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
 
         public void destroySurface(EGL10 egl, EGLDisplay display,
@@ -1069,8 +1076,14 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 int error = mEgl.eglGetError();
                 if (error == EGL10.EGL_BAD_NATIVE_WINDOW) {
                     Log.e("EglHelper", "createWindowSurface returned EGL_BAD_NATIVE_WINDOW.");
+<<<<<<< HEAD
                 }
                 return null;
+=======
+                    return null;
+                }
+                throwEglException("createWindowSurface", error);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             /*

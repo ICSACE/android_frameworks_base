@@ -137,9 +137,15 @@ public class StaticLayout extends Layout {
 
         mMeasured = MeasuredText.obtain();
 
+<<<<<<< HEAD
         generate(source, bufstart, bufend, paint, outerwidth, textDir, spacingmult,
                  spacingadd, includepad, includepad, ellipsizedWidth,
                  ellipsize);
+=======
+        generate(source, bufstart, bufend, paint, outerwidth, align, textDir,
+                 spacingmult, spacingadd, includepad, includepad,
+                 ellipsizedWidth, ellipsize);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
         mMeasured = MeasuredText.recycle(mMeasured);
         mFontMetricsInt = null;
@@ -157,10 +163,17 @@ public class StaticLayout extends Layout {
 
     /* package */ void generate(CharSequence source, int bufStart, int bufEnd,
                         TextPaint paint, int outerWidth,
+<<<<<<< HEAD
                         TextDirectionHeuristic textDir, float spacingmult,
                         float spacingadd, boolean includepad,
                         boolean trackpad, float ellipsizedWidth,
                         TextUtils.TruncateAt ellipsize) {
+=======
+                        Alignment align, TextDirectionHeuristic textDir,
+                        float spacingmult, float spacingadd,
+                        boolean includepad, boolean trackpad,
+                        float ellipsizedWidth, TextUtils.TruncateAt ellipsize) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         mLineCount = 0;
 
         int v = 0;
@@ -328,7 +341,13 @@ public class StaticLayout extends Layout {
                                     whichPaint = mWorkPaint;
                                 }
 
+<<<<<<< HEAD
                                 float wid = bm.getWidth() * -whichPaint.ascent() / bm.getHeight();
+=======
+                                float wid = bm.getWidth() *
+                                            -whichPaint.ascent() /
+                                            bm.getHeight();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
                                 w += wid;
                                 hasTabOrEmoji = true;
@@ -396,6 +415,7 @@ public class StaticLayout extends Layout {
                                 okBottom = fitBottom;
                         }
                     } else {
+<<<<<<< HEAD
                         final boolean moreChars = (j + 1 < spanEnd);
                         int endPos;
                         int above, below, top, bottom;
@@ -439,6 +459,69 @@ public class StaticLayout extends Layout {
                                 currentTextWidth, paint, moreChars);
                         here = endPos;
 
+=======
+                            final boolean moreChars = (j + 1 < spanEnd);
+                            if (ok != here) {
+                                // Log.e("text", "output ok " + here + " to " +ok);
+
+                                while (ok < spanEnd && chs[ok - paraStart] == CHAR_SPACE) {
+                                    ok++;
+                                }
+
+                                v = out(source,
+                                        here, ok,
+                                        okAscent, okDescent, okTop, okBottom,
+                                        v,
+                                        spacingmult, spacingadd, chooseHt,
+                                        chooseHtv, fm, hasTabOrEmoji,
+                                        needMultiply, paraStart, chdirs, dir, easy,
+                                        ok == bufEnd, includepad, trackpad,
+                                        chs, widths, paraStart,
+                                        ellipsize, ellipsizedWidth, okWidth,
+                                        paint, moreChars);
+
+                                here = ok;
+                            } else if (fit != here) {
+                                // Log.e("text", "output fit " + here + " to " +fit);
+                                v = out(source,
+                                        here, fit,
+                                        fitAscent, fitDescent,
+                                        fitTop, fitBottom,
+                                        v,
+                                        spacingmult, spacingadd, chooseHt,
+                                        chooseHtv, fm, hasTabOrEmoji,
+                                        needMultiply, paraStart, chdirs, dir, easy,
+                                        fit == bufEnd, includepad, trackpad,
+                                        chs, widths, paraStart,
+                                        ellipsize, ellipsizedWidth, fitWidth,
+                                        paint, moreChars);
+
+                                here = fit;
+                            } else {
+                                // Log.e("text", "output one " + here + " to " +(here + 1));
+                                // XXX not sure why the existing fm wasn't ok.
+                                // measureText(paint, mWorkPaint,
+                                //             source, here, here + 1, fm, tab,
+                                //             null);
+
+                                v = out(source,
+                                        here, here+1,
+                                        fm.ascent, fm.descent,
+                                        fm.top, fm.bottom,
+                                        v,
+                                        spacingmult, spacingadd, chooseHt,
+                                        chooseHtv, fm, hasTabOrEmoji,
+                                        needMultiply, paraStart, chdirs, dir, easy,
+                                        here + 1 == bufEnd, includepad,
+                                        trackpad,
+                                        chs, widths, paraStart,
+                                        ellipsize, ellipsizedWidth,
+                                        widths[here - paraStart], paint, moreChars);
+
+                                here = here + 1;
+                            }
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                         if (here < spanStart) {
                             // didn't output all the text for this span
                             // we've measured the raw widths, though, so
@@ -481,10 +564,17 @@ public class StaticLayout extends Layout {
                         v,
                         spacingmult, spacingadd, chooseHt,
                         chooseHtv, fm, hasTabOrEmoji,
+<<<<<<< HEAD
                         needMultiply, chdirs, dir, easy, bufEnd,
                         includepad, trackpad, chs,
                         widths, paraStart, ellipsize,
                         ellipsizedWidth, w, paint, paraEnd != bufEnd);
+=======
+                        needMultiply, paraStart, chdirs, dir, easy,
+                        paraEnd == bufEnd, includepad, trackpad,
+                        chs, widths, paraStart,
+                        ellipsize, ellipsizedWidth, w, paint, paraEnd != bufEnd);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             }
 
             paraStart = paraEnd;
@@ -505,10 +595,17 @@ public class StaticLayout extends Layout {
                     v,
                     spacingmult, spacingadd, null,
                     null, fm, false,
+<<<<<<< HEAD
                     needMultiply, null, DEFAULT_DIR, true, bufEnd,
                     includepad, trackpad, null,
                     null, bufStart, ellipsize,
                     ellipsizedWidth, 0, paint, false);
+=======
+                    needMultiply, bufEnd, null, DEFAULT_DIR, true,
+                    true, includepad, trackpad,
+                    null, null, bufStart,
+                    ellipsize, ellipsizedWidth, 0, paint, false);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         }
     }
 
@@ -608,12 +705,21 @@ public class StaticLayout extends Layout {
                       float spacingmult, float spacingadd,
                       LineHeightSpan[] chooseHt, int[] chooseHtv,
                       Paint.FontMetricsInt fm, boolean hasTabOrEmoji,
+<<<<<<< HEAD
                       boolean needMultiply, byte[] chdirs, int dir,
                       boolean easy, int bufEnd, boolean includePad,
                       boolean trackPad, char[] chs,
                       float[] widths, int widthStart, TextUtils.TruncateAt ellipsize,
                       float ellipsisWidth, float textWidth,
                       TextPaint paint, boolean moreChars) {
+=======
+                      boolean needMultiply, int pstart, byte[] chdirs,
+                      int dir, boolean easy, boolean last,
+                      boolean includePad, boolean trackPad,
+                      char[] chs, float[] widths, int widthStart,
+                      TextUtils.TruncateAt ellipsize, float ellipsisWidth,
+                      float textWidth, TextPaint paint, boolean moreChars) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         int j = mLineCount;
         int off = j * mColumns;
         int want = off + mColumns + TOP;
@@ -663,7 +769,11 @@ public class StaticLayout extends Layout {
                 above = top;
             }
         }
+<<<<<<< HEAD
         if (end == bufEnd) {
+=======
+        if (last) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (trackPad) {
                 mBottomPadding = bottom - below;
             }

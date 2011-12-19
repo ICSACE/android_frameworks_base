@@ -140,6 +140,15 @@ public:
     // Supported number of preview frames per second.
     // Example value: "24,15,10". Read.
     static const char KEY_SUPPORTED_PREVIEW_FRAME_RATES[];
+<<<<<<< HEAD
+=======
+    // The mode of preview frame rate.
+    // Example value: "frame-rate-auto, frame-rate-fixed".
+    static const char KEY_PREVIEW_FRAME_RATE_MODE[];
+    static const char KEY_SUPPORTED_PREVIEW_FRAME_RATE_MODES[];
+    static const char KEY_PREVIEW_FRAME_RATE_AUTO_MODE[];
+    static const char KEY_PREVIEW_FRAME_RATE_FIXED_MODE[];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // The dimensions for captured pictures in pixels (width x height).
     // Example value: "1024x768". Read/write.
     static const char KEY_PICTURE_SIZE[];
@@ -159,6 +168,10 @@ public:
     // The height (in pixels) of EXIF thumbnail in Jpeg picture.
     // Example value: "384". Read/write.
     static const char KEY_JPEG_THUMBNAIL_HEIGHT[];
+<<<<<<< HEAD
+=======
+    static const char KEY_SUPPORTED_THUMBNAIL_SIZES[];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Supported EXIF thumbnail sizes (width x height). 0x0 means not thumbnail
     // in EXIF.
     // Example value: "512x384,320x240,0x0". Read only.
@@ -202,6 +215,34 @@ public:
     // header.
     // Example value: "21.0" or "-5". Write only.
     static const char KEY_GPS_ALTITUDE[];
+<<<<<<< HEAD
+=======
+    static const char KEY_GPS_LATITUDE_REF[];
+    static const char KEY_GPS_LONGITUDE_REF[];
+    static const char KEY_GPS_ALTITUDE_REF[];
+    static const char KEY_GPS_STATUS[];
+    static const char KEY_EXIF_DATETIME[];
+
+    static const char KEY_AUTO_EXPOSURE[];
+    static const char KEY_SUPPORTED_AUTO_EXPOSURE[];
+    static const char KEY_ISO_MODE[];
+    static const char KEY_SUPPORTED_ISO_MODES[];
+    static const char KEY_LENSSHADE[] ;
+    static const char KEY_SUPPORTED_LENSSHADE_MODES[] ;
+    static const char KEY_SHARPNESS[];
+    static const char KEY_MAX_SHARPNESS[];
+    static const char KEY_CONTRAST[];
+    static const char KEY_MAX_CONTRAST[];
+    static const char KEY_SATURATION[];
+    static const char KEY_MAX_SATURATION[];
+
+    // Values for auto exposure settings.
+    static const char AUTO_EXPOSURE_FRAME_AVG[];
+    static const char AUTO_EXPOSURE_CENTER_WEIGHTED[];
+    static const char AUTO_EXPOSURE_SPOT_METERING[];
+
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // GPS timestamp (UTC in seconds since January 1, 1970). This should be
     // stored in JPEG EXIF header.
     // Example value: "1251192757". Write only.
@@ -221,6 +262,16 @@ public:
     // Supported color effect settings.
     // Example value: "none,mono,sepia". Read only.
     static const char KEY_SUPPORTED_EFFECTS[];
+<<<<<<< HEAD
+=======
+    //Touch Af/AEC settings.
+    static const char KEY_TOUCH_AF_AEC[];
+    static const char KEY_SUPPORTED_TOUCH_AF_AEC[];
+    //Touch Index for AEC.
+    static const char KEY_TOUCH_INDEX_AEC[];
+    //Touch Index for AF.
+    static const char KEY_TOUCH_INDEX_AF[];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Current antibanding setting.
     // Example value: "auto" or ANTIBANDING_XXX constants. Read/write.
     static const char KEY_ANTIBANDING[];
@@ -531,6 +582,15 @@ public:
     // Value for KEY_FOCUS_DISTANCES.
     static const char FOCUS_DISTANCE_INFINITY[];
 
+<<<<<<< HEAD
+=======
+    //Continuous AF.
+    static const char KEY_CAF[];
+    static const char KEY_CONTINUOUS_AF[];
+    static const char KEY_SUPPORTED_CAF[];
+    static const char KEY_SUPPORTED_CONTINUOUS_AF[];
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Values for white balance settings.
     static const char WHITE_BALANCE_AUTO[];
     static const char WHITE_BALANCE_INCANDESCENT[];
@@ -552,6 +612,13 @@ public:
     static const char EFFECT_BLACKBOARD[];
     static const char EFFECT_AQUA[];
 
+<<<<<<< HEAD
+=======
+    // Values for Touch AF/AEC
+    static const char TOUCH_AF_AEC_OFF[] ;
+    static const char TOUCH_AF_AEC_ON[] ;
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Values for antibanding settings.
     static const char ANTIBANDING_AUTO[];
     static const char ANTIBANDING_50HZ[];
@@ -597,6 +664,10 @@ public:
     // and KEY_VIDEO_FRAME_FORMAT
     static const char PIXEL_FORMAT_YUV422SP[];
     static const char PIXEL_FORMAT_YUV420SP[]; // NV21
+<<<<<<< HEAD
+=======
+    //static const char PIXEL_FORMAT_YUV420P[];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static const char PIXEL_FORMAT_YUV422I[]; // YUY2
     static const char PIXEL_FORMAT_YUV420P[]; // YV12
     static const char PIXEL_FORMAT_RGB565[];
@@ -613,6 +684,10 @@ public:
     // Focus is set at infinity. Applications should not call
     // CameraHardwareInterface.autoFocus in this mode.
     static const char FOCUS_MODE_INFINITY[];
+<<<<<<< HEAD
+=======
+    static const char FOCUS_MODE_NORMAL[];
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Macro (close-up) focus mode. Applications should call
     // CameraHardwareInterface.autoFocus to start the focus in this mode.
     static const char FOCUS_MODE_MACRO[];
@@ -644,6 +719,7 @@ public:
     // than FOCUS_MODE_CONTINUOUS_VIDEO. Auto focus starts when the parameter is
     // set.
     //
+<<<<<<< HEAD
     // Applications can call CameraHardwareInterface.autoFocus in this mode. If
     // the autofocus is in the middle of scanning, the focus callback will
     // return when it completes. If the autofocus is not scanning, focus
@@ -655,6 +731,17 @@ public:
     // called. Restarting the preview will not resume the continuous autofocus.
     // To stop continuous focus, applications should change the focus mode to
     // other modes.
+=======
+    // If applications call CameraHardwareInterface.autoFocus in this mode, the
+    // focus callback will immediately return with a boolean that indicates
+    // whether the focus is sharp or not. The apps can then decide if they want
+    // to take a picture immediately or to change the focus mode to auto, and
+    // run a full autofocus cycle. The focus position is locked after autoFocus
+    // call. If applications want to resume the continuous focus,
+    // cancelAutoFocus must be called. Restarting the preview will not resume
+    // the continuous autofocus. To stop continuous focus, applications should
+    // change the focus mode to other modes.
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static const char FOCUS_MODE_CONTINUOUS_PICTURE[];
 
 private:

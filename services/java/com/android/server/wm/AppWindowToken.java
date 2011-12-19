@@ -77,9 +77,12 @@ class AppWindowToken extends WindowToken {
     // Last visibility state we reported to the app token.
     boolean reportedVisible;
 
+<<<<<<< HEAD
     // Last drawn state we reported to the app token.
     boolean reportedDrawn;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     // Set to true when the token has been removed from the window mgr.
     boolean removed;
 
@@ -280,7 +283,10 @@ class AppWindowToken extends WindowToken {
 
         int numInteresting = 0;
         int numVisible = 0;
+<<<<<<< HEAD
         int numDrawn = 0;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         boolean nowGone = true;
 
         if (WindowManagerService.DEBUG_VISIBILITY) Slog.v(WindowManagerService.TAG, "Update reported visibility: " + this);
@@ -311,7 +317,10 @@ class AppWindowToken extends WindowToken {
             }
             numInteresting++;
             if (win.isDrawnLw()) {
+<<<<<<< HEAD
                 numDrawn++;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 if (!win.isAnimating()) {
                     numVisible++;
                 }
@@ -321,6 +330,7 @@ class AppWindowToken extends WindowToken {
             }
         }
 
+<<<<<<< HEAD
         boolean nowDrawn = numInteresting > 0 && numDrawn >= numInteresting;
         boolean nowVisible = numInteresting > 0 && numVisible >= numInteresting;
         if (!nowGone) {
@@ -342,6 +352,11 @@ class AppWindowToken extends WindowToken {
             }
             reportedDrawn = nowDrawn;
         }
+=======
+        boolean nowVisible = numInteresting > 0 && numVisible >= numInteresting;
+        if (WindowManagerService.DEBUG_VISIBILITY) Slog.v(WindowManagerService.TAG, "VIS " + this + ": interesting="
+                + numInteresting + " visible=" + numVisible);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         if (nowVisible != reportedVisible) {
             if (WindowManagerService.DEBUG_VISIBILITY) Slog.v(
                     WindowManagerService.TAG, "Visibility changed in " + this
@@ -383,7 +398,10 @@ class AppWindowToken extends WindowToken {
         pw.print(prefix); pw.print("hiddenRequested="); pw.print(hiddenRequested);
                 pw.print(" clientHidden="); pw.print(clientHidden);
                 pw.print(" willBeHidden="); pw.print(willBeHidden);
+<<<<<<< HEAD
                 pw.print(" reportedDrawn="); pw.print(reportedDrawn);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
                 pw.print(" reportedVisible="); pw.println(reportedVisible);
         if (paused || freezingScreen) {
             pw.print(prefix); pw.print("paused="); pw.print(paused);

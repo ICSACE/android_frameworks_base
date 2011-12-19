@@ -157,8 +157,11 @@ public interface CommandsInterface {
 
     // GSM SMS fail cause for acknowledgeLastIncomingSMS. From TS 23.040, 9.2.3.22.
     static final int GSM_SMS_FAIL_CAUSE_MEMORY_CAPACITY_EXCEEDED    = 0xD3;
+<<<<<<< HEAD
     static final int GSM_SMS_FAIL_CAUSE_USIM_APP_TOOLKIT_BUSY       = 0xD4;
     static final int GSM_SMS_FAIL_CAUSE_USIM_DATA_DOWNLOAD_ERROR    = 0xD5;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     static final int GSM_SMS_FAIL_CAUSE_UNSPECIFIED_ERROR           = 0xFF;
 
     // CDMA SMS fail cause for acknowledgeLastIncomingCdmaSms.  From TS N.S0005, 6.5.2.125.
@@ -294,7 +297,11 @@ public interface CommandsInterface {
     void setOnNewGsmBroadcastSms(Handler h, int what, Object obj);
     void unSetOnNewGsmBroadcastSms(Handler h);
 
+<<<<<<< HEAD
     /**
+=======
+   /**
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Register for NEW_SMS_ON_SIM unsolicited message
      *
      * AsyncResult.result is an int array containing the index of new SMS
@@ -1118,6 +1125,7 @@ public interface CommandsInterface {
     void acknowledgeLastIncomingCdmaSms(boolean success, int cause, Message response);
 
     /**
+<<<<<<< HEAD
      * Acknowledge successful or failed receipt of last incoming SMS,
      * including acknowledgement TPDU to send as the RP-User-Data element
      * of the RP-ACK or RP-ERROR PDU.
@@ -1132,6 +1140,11 @@ public interface CommandsInterface {
      * parameters equivalent to 27.007 AT+CRSM command
      * response.obj will be an AsyncResult
      * response.obj.result will be an IccIoResult on success
+=======
+     * parameters equivalent to 27.007 AT+CRSM command
+     * response.obj will be an AsyncResult
+     * response.obj.userObj will be a IccIoResult on success
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      */
     void iccIO (int command, int fileid, String path, int p1, int p2, int p3,
             String data, String pin2, Message response);
@@ -1311,12 +1324,15 @@ public interface CommandsInterface {
     void queryAvailableBandMode (Message response);
 
     /**
+<<<<<<< HEAD
      * Set the current preferred network type. This will be the last
      * networkType that was passed to setPreferredNetworkType.
      */
     void setCurrentPreferredNetworkType();
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      *  Requests to set the preferred network type for searching and registering
      * (CS/PS domain, RAT, and operation mode)
      * @param networkType one of  NT_*_TYPE
@@ -1405,6 +1421,7 @@ public interface CommandsInterface {
     public void sendEnvelope(String contents, Message response);
 
     /**
+<<<<<<< HEAD
      * Send ENVELOPE to the SIM, such as an SMS-PP data download envelope
      * for a SIM data download message. This method has one difference
      * from {@link #sendEnvelope}: The SW1 and SW2 status bytes from the UICC response
@@ -1421,6 +1438,8 @@ public interface CommandsInterface {
     public void sendEnvelopeWithStatus(String contents, Message response);
 
     /**
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
      * Accept or reject the call setup request from SIM.
      *
      * @param accept   true if the call is to be accepted, false otherwise.

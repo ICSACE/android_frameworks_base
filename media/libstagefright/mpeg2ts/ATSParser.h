@@ -33,6 +33,7 @@ struct MediaSource;
 
 struct ATSParser : public RefBase {
     enum DiscontinuityType {
+<<<<<<< HEAD
         DISCONTINUITY_NONE              = 0,
         DISCONTINUITY_TIME              = 1,
         DISCONTINUITY_AUDIO_FORMAT      = 2,
@@ -45,6 +46,11 @@ struct ATSParser : public RefBase {
             DISCONTINUITY_AUDIO_FORMAT
                 | DISCONTINUITY_VIDEO_FORMAT
                 | DISCONTINUITY_TIME,
+=======
+        DISCONTINUITY_NONE,
+        DISCONTINUITY_SEEK,
+        DISCONTINUITY_FORMATCHANGE
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     };
 
     enum Flags {
@@ -73,22 +79,38 @@ struct ATSParser : public RefBase {
 
     bool PTSTimeDeltaEstablished();
 
+<<<<<<< HEAD
     enum {
         // From ISO/IEC 13818-1: 2000 (E), Table 2-29
         STREAMTYPE_RESERVED             = 0x00,
-        STREAMTYPE_MPEG1_VIDEO          = 0x01,
-        STREAMTYPE_MPEG2_VIDEO          = 0x02,
-        STREAMTYPE_MPEG1_AUDIO          = 0x03,
-        STREAMTYPE_MPEG2_AUDIO          = 0x04,
-        STREAMTYPE_MPEG2_AUDIO_ADTS     = 0x0f,
-        STREAMTYPE_MPEG4_VIDEO          = 0x10,
-        STREAMTYPE_H264                 = 0x1b,
-    };
-
+=======
 protected:
     virtual ~ATSParser();
 
 private:
+    enum {
+        // From ISO/IEC 13818-1: 2000 (E), Table 2-29
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
+        STREAMTYPE_MPEG1_VIDEO          = 0x01,
+        STREAMTYPE_MPEG2_VIDEO          = 0x02,
+        STREAMTYPE_MPEG1_AUDIO          = 0x03,
+        STREAMTYPE_MPEG2_AUDIO          = 0x04,
+<<<<<<< HEAD
+        STREAMTYPE_MPEG2_AUDIO_ADTS     = 0x0f,
+=======
+        STREAMTYPE_MPEG2_AUDIO_ATDS     = 0x0f,
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
+        STREAMTYPE_MPEG4_VIDEO          = 0x10,
+        STREAMTYPE_H264                 = 0x1b,
+    };
+
+<<<<<<< HEAD
+protected:
+    virtual ~ATSParser();
+
+private:
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     struct Program;
     struct Stream;
 

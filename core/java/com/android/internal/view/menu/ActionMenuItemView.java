@@ -18,7 +18,10 @@ package com.android.internal.view.menu;
 
 import android.content.Context;
 import android.content.res.Resources;
+<<<<<<< HEAD
 import android.content.res.TypedArray;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -47,8 +50,13 @@ public class ActionMenuItemView extends LinearLayout
     private ImageButton mImageButton;
     private Button mTextButton;
     private boolean mAllowTextWithIcon;
+<<<<<<< HEAD
     private boolean mExpandedFormat;
     private int mMinWidth;
+=======
+    private boolean mShowTextAllCaps;
+    private boolean mExpandedFormat;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
     public ActionMenuItemView(Context context) {
         this(context, null);
@@ -63,11 +71,15 @@ public class ActionMenuItemView extends LinearLayout
         final Resources res = context.getResources();
         mAllowTextWithIcon = res.getBoolean(
                 com.android.internal.R.bool.config_allowActionMenuItemTextWithIcon);
+<<<<<<< HEAD
         TypedArray a = context.obtainStyledAttributes(attrs,
                 com.android.internal.R.styleable.ActionMenuItemView, 0, 0);
         mMinWidth = a.getDimensionPixelSize(
                 com.android.internal.R.styleable.ActionMenuItemView_minWidth, 0);
         a.recycle();
+=======
+        mShowTextAllCaps = res.getBoolean(com.android.internal.R.bool.config_actionMenuItemAllCaps);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     @Override
@@ -233,6 +245,7 @@ public class ActionMenuItemView extends LinearLayout
         cheatSheet.show();
         return true;
     }
+<<<<<<< HEAD
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -250,4 +263,6 @@ public class ActionMenuItemView extends LinearLayout
                     heightMeasureSpec);
         }
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

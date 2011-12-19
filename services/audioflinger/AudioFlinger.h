@@ -776,7 +776,11 @@ private:
 
         virtual int             getTrackName_l() = 0;
         virtual void            deleteTrackName_l(int name) = 0;
+<<<<<<< HEAD
         virtual uint32_t        activeSleepTimeUs();
+=======
+        virtual uint32_t        activeSleepTimeUs() = 0;
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         virtual uint32_t        idleSleepTimeUs() = 0;
         virtual uint32_t        suspendSleepTimeUs() = 0;
 
@@ -833,6 +837,10 @@ private:
                                                 Vector< sp<Track> > *tracksToRemove);
         virtual     int         getTrackName_l();
         virtual     void        deleteTrackName_l(int name);
+<<<<<<< HEAD
+=======
+        virtual     uint32_t    activeSleepTimeUs();
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         virtual     uint32_t    idleSleepTimeUs();
         virtual     uint32_t    suspendSleepTimeUs();
 
@@ -1246,10 +1254,13 @@ private:
         // corresponding to a suspend all request.
         static const int        kKeyForSuspendAll = 0;
 
+<<<<<<< HEAD
         // minimum duration during which we force calling effect process when last track on
         // a session is stopped or removed to allow effect tail to be rendered
         static const int        kProcessTailDurationMs = 1000;
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         void process_l();
 
         void lock() {
@@ -1290,8 +1301,12 @@ private:
         void decTrackCnt() { android_atomic_dec(&mTrackCnt); }
         int32_t trackCnt() { return mTrackCnt;}
 
+<<<<<<< HEAD
         void incActiveTrackCnt() { android_atomic_inc(&mActiveTrackCnt);
                                    mTailBufferCount = mMaxTailBuffers; }
+=======
+        void incActiveTrackCnt() { android_atomic_inc(&mActiveTrackCnt); }
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         void decActiveTrackCnt() { android_atomic_dec(&mActiveTrackCnt); }
         int32_t activeTrackCnt() { return mActiveTrackCnt;}
 
@@ -1342,8 +1357,11 @@ private:
         int16_t *mOutBuffer;        // chain output buffer
         volatile int32_t mActiveTrackCnt;  // number of active tracks connected
         volatile int32_t mTrackCnt;        // number of tracks connected
+<<<<<<< HEAD
         int32_t mTailBufferCount;   // current effect tail buffer count
         int32_t mMaxTailBuffers;    // maximum effect tail buffers
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         bool mOwnInBuffer;          // true if the chain owns its input buffer
         int mVolumeCtrlIdx;         // index of insert effect having control over volume
         uint32_t mLeftVolume;       // previous volume on left channel

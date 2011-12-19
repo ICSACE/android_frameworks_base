@@ -95,6 +95,7 @@ public class WebChromeClient {
     public void onHideCustomView() {}
 
     /**
+<<<<<<< HEAD
      * Request the host application to create a new window. If the host
      * application chooses to honor this request, it should return true from
      * this method, create a new WebView to host the window, insert it into the
@@ -122,6 +123,29 @@ public class WebChromeClient {
      */
     public boolean onCreateWindow(WebView view, boolean isDialog,
             boolean isUserGesture, Message resultMsg) {
+=======
+     * Request the host application to create a new Webview. The host
+     * application should handle placement of the new WebView in the view
+     * system. The default behavior returns null.
+     * @param view The WebView that initiated the callback.
+     * @param dialog True if the new window is meant to be a small dialog
+     *               window.
+     * @param userGesture True if the request was initiated by a user gesture
+     *                    such as clicking a link.
+     * @param resultMsg The message to send when done creating a new WebView.
+     *                  Set the new WebView through resultMsg.obj which is 
+     *                  WebView.WebViewTransport() and then call
+     *                  resultMsg.sendToTarget();
+     * @return Similar to javscript dialogs, this method should return true if
+     *         the client is going to handle creating a new WebView. Note that
+     *         the WebView will halt processing if this method returns true so
+     *         make sure to call resultMsg.sendToTarget(). It is undefined
+     *         behavior to call resultMsg.sendToTarget() after returning false
+     *         from this method.
+     */
+    public boolean onCreateWindow(WebView view, boolean dialog,
+            boolean userGesture, Message resultMsg) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         return false;
     }
 

@@ -39,12 +39,20 @@ few administrative tasks, including setting up and maintaining your product list
 site, registering test accounts, and handling refunds when necessary.</p>
 
 <p>You must have an Android Market publisher account to register test accounts. And you must have a
+<<<<<<< HEAD
 Google Checkout merchant account to create a product list and issue refunds to your users. If you
+=======
+Google Checkout Merchant account to create a product list and issue refunds to your users. If you
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 already have a publisher account on Android Market, you can use your existing account. You do not
 need to register for a new account to support in-app billing. If you do not have a publisher
 account, you can register as an Android Market developer and set up a publisher account at the
 Android Market <a href="http://market.android.com/publish">publisher site</a>. If you do not have a
+<<<<<<< HEAD
 Google Checkout merchant account, you can register for one at the <a
+=======
+Google Checkout Merchant account, you can register for one at the <a
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 href="http://checkout.google.com">Google Checkout site</a>.</p>
 
 <h2 id="billing-list-setup">Creating a Product List</h2>
@@ -57,7 +65,11 @@ items that are listed in another application's product list.</p>
 <p>You can access an application's product list by clicking the <strong>In-App Products</strong>
 link that appears under each of the applications that are listed for your publisher account (see
 figure 1). The <strong>In-App Products</strong> link appears only if you have a Google Checkout
+<<<<<<< HEAD
 merchant account and an application's manifest includes the <code>com.android.vending.BILLING</code>
+=======
+Merchant account and an application's manifest includes the <code>com.android.vending.BILLING</code>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 permission.</p>
 
 <img src="{@docRoot}images/billing_product_list_entry.png" height="548" id="figure1" />
@@ -71,11 +83,16 @@ product description, and price (see figure 2). The product list stores only meta
 you are selling in your application. It does not store any digital content. You are responsible for
 storing and delivering the digital content that you sell in your applications.</p>
 
+<<<<<<< HEAD
 <img src="{@docRoot}images/billing_product_list.png" height="658" id="figure2" />
+=======
+<img src="{@docRoot}images/billing_product_list.png" height="560" id="figure2" />
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <p class="img-caption">
   <strong>Figure 2.</strong> An application's product list.
 </p>
 
+<<<<<<< HEAD
 <p>You can create a product list for any published application or any draft application that's been
 uploaded and saved to the Android Market site. However, you must have a Google Checkout merchant
 account and the application's manifest must include the <code>com.android.vending.BILLING</code>
@@ -102,6 +119,17 @@ number of in-app items.</p>
 <h3 id="billing-form-add">Adding items one at a time to a product list</h3>
 
 <p>To add an item to a product list using the In-app Products UI, follow these steps:</p>
+=======
+<p>You can create a product list for a published application or a draft application that's been
+uploaded and saved to the Android Market site. However, you must have a Google Checkout Merchant
+account and the application's manifest must include the <code>com.android.vending.BILLING</code>
+permission. If an application's manifest does not include this permission, you will be able to edit
+existing items in the product list but you will not be able to add new items to the list. For more
+information, see <a href="#billing-permission">Modifying your application's AndroidManifest.xml
+file</a>.</p>
+
+<p>To create a product list for an application, follow these steps:</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <ol>
   <li><a href="http://market.android.com/publish">Log in</a> to your publisher account.</li>
@@ -109,7 +137,11 @@ number of in-app items.</p>
   <strong>In-app Products</strong>.</li>
   <li>On the In-app Products List page, click <strong>Add in-app product</strong>.</li>
   <li>On the Create New In-app Product page (see figure 3), provide details about the item you are
+<<<<<<< HEAD
   selling and then click <strong>Save</strong> or <strong>Publish</strong>.</li>
+=======
+  selling and then click <strong>Save</strong>.</li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 </ol>
 
 <img src="{@docRoot}images/billing_list_form.png" height="840" id="figure3" />
@@ -126,6 +158,7 @@ number of in-app items.</p>
     (0-9), underlines (_), and dots (.). The product ID "android.test" is reserved, as are all
     product IDs that start with "android.test."</p>
     <p>In addition, you cannot modify an item's product ID after it is created, and you cannot reuse
+<<<<<<< HEAD
     a product ID.</p>
   </li>
   <li><strong>Purchase Type</strong>
@@ -138,12 +171,27 @@ number of in-app items.</p>
     <p>An item's publishing state can be <strong>Published</strong> or <strong>Unpublished
     </strong>. To be visible to a user during checkout, an item's publishing state must be set to
     <strong>Published</strong> and the item's application must be published on Android Market.</p>
+=======
+    a product ID, even if you delete the item previously using the product ID.</p>
+  </li>
+  <li><strong>Purchase type</strong>
+    <p>The purchase type can be "managed per user account" or "unmanaged." You can specify an item's
+    purchase type only through the publisher site and you can never change an item's purchase type
+    once you specify it. For more information, see <a href="#billing_purchase_type">Choosing a
+    purchase type</a> later in this document.</p>
+  </li>
+  <li><strong>Publishing State</strong>
+    <p>An item's publishing state can be "published" or "unpublished." However, to be visible to a
+    user during checkout, an item's publishing state must be set to "published" and the item's
+    application must be published on Android Market.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <p class="note"><strong>Note:</strong> This is not true for test accounts. An item is visible to
     a test account if the application is not published and the item is published. See <a
     href="{@docRoot}guide/market/billing/billing_testing.html#billing-testing-real">Testing In-app
     Billing</a> for more information.</p>
   </li>
   <li><strong>Language</strong>
+<<<<<<< HEAD
     <p>The language setting determines which languages are used to display the item title and
     item description during checkout. A product list inherits its default language from the
     parent application. You can add more languages by clicking <strong>add language</strong>. You
@@ -151,6 +199,9 @@ number of in-app items.</p>
     language by selecting the <strong>Fill fields with auto translation</strong> checkbox (see
     figure 4). If you do not use the auto translation feature, you must provide the translated
     versions of the title and description.</p>
+=======
+    <p>A product list inherits its language from the parent application.</p>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   </li>
   <li><strong>Title</strong>
     <p>The title is a short descriptor for the item. For example, "Sleeping potion." Titles must be
@@ -164,6 +215,7 @@ number of in-app items.</p>
     visible to users during checkout. Descriptions can be up to 80 characters in length.</p>
   </li>
   <li><strong>Price</strong>
+<<<<<<< HEAD
     <p>You must provide a default price in your home currency. You can also provide prices in other
     currencies, but you can do this only if a currency's corresponding country is listed as a
     target country for your application. You can specify target countries on the Edit Application
@@ -178,6 +230,11 @@ number of in-app items.</p>
   <strong>Figure 4.</strong> Specifying additional currencies and additional languages for the
   item title and description.
 </p>
+=======
+    <p>Every item must have a price greater than zero; you cannot set a price of "0" (free).</p>
+  </li>
+</ul>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 
 <p>For more information about product IDs and product lists, see <a
 href="http://market.android.com/support/bin/answer.py?answer=1072599">Creating In-App Product
@@ -188,6 +245,7 @@ Pricing</a>.</p>
 <p class="note"><strong>Note</strong>: Be sure to plan your product ID namespace. You cannot reuse
 or modify product IDs after you save them.</p>
 
+<<<<<<< HEAD
 <h3 id="billing-bulk-add">Adding a batch of items to a product list</h3>
 
 <p>To add a batch of items to a product list using a CSV file, you first need to create your CSV
@@ -379,6 +437,8 @@ file.
 </strong> on the In-app Product List page. This is useful if you have manually added items to
 a product list and you want to start managing the product list through a CSV file.</p>
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 <h3 id="billing-purchase-type">Choosing a Purchase Type</h3>
 
 <p>An item's purchase type controls how Android Market manages the purchase of the item. There are
@@ -419,7 +479,11 @@ times.</p>
 
 <p>In-app billing does not allow users to send a refund request to Android Market. Refunds for
 in-app purchases must be directed to you (the application developer). You can then process the
+<<<<<<< HEAD
 refund through your Google Checkout merchant account. When you do this, Android Market receives a
+=======
+refund through your Google Checkout Merchant account. When you do this, Android Market receives a
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 refund notification from Google Checkout, and Android Market sends a refund message to your
 application. For more information, see <a
 href="{@docRoot}guide/market/billing/billing_overview.html#billing-action-notify">Handling
@@ -461,15 +525,25 @@ accounts yourself and distribute the credentials to your developers or testers.<
   <li><a href="http://market.android.com/publish">Log in</a> to your publisher account.</li>
   <li>On the upper left part of the page, under your name, click <strong>Edit profile</strong>.</li>
   <li>On the Edit Profile page, scroll down to the Licensing &amp; In-app Billing panel (see figure
+<<<<<<< HEAD
   5).</li>
+=======
+  4).</li>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   <li>In Test Accounts, add the email addresses for the test accounts you want to register,
   separating each account with a comma.</li>
   <li>Click <strong>Save</strong> to save your profile changes.</li>
 </ol>
 
+<<<<<<< HEAD
 <img src="{@docRoot}images/billing_public_key.png" height="510" id="figure5" />
 <p class="img-caption">
   <strong>Figure 5.</strong> The Licensing and In-app Billing panel of your account's Edit Profile
+=======
+<img src="{@docRoot}images/billing_public_key.png" height="510" id="figure4" />
+<p class="img-caption">
+  <strong>Figure 4.</strong> The Licensing and In-app Billing panel of your account's Edit Profile
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
   page lets you register test accounts.
 </p>
 

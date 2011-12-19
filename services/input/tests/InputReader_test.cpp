@@ -609,10 +609,13 @@ private:
         }
     }
 
+<<<<<<< HEAD
     virtual String8 getKeyCharacterMapFile(int32_t deviceId) const {
         return String8();
     }
 
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual bool isExternal(int32_t deviceId) const {
         return false;
     }

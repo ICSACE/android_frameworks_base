@@ -41,18 +41,24 @@ public:
 
         status_t capture();
 
+<<<<<<< HEAD
     virtual void initStates(uint32_t w, uint32_t h, uint32_t flags);
     virtual uint32_t doTransaction(uint32_t flags);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     virtual void onDraw(const Region& clip) const;
     virtual bool isOpaque() const         { return false; }
     virtual bool isSecure() const         { return false; }
     virtual bool isProtectedByApp() const { return false; }
     virtual bool isProtectedByDRM() const { return false; }
     virtual const char* getTypeId() const { return "LayerScreenshot"; }
+<<<<<<< HEAD
 
 private:
     status_t captureLocked();
     void initTexture(GLfloat u, GLfloat v);
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 };
 
 // ---------------------------------------------------------------------------

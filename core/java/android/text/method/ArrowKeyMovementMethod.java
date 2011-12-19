@@ -197,18 +197,28 @@ public class ArrowKeyMovementMethod extends BaseMovementMethod implements Moveme
     @Override
     protected boolean leftWord(TextView widget, Spannable buffer) {
         final int selectionEnd = widget.getSelectionEnd();
+<<<<<<< HEAD
         final WordIterator wordIterator = widget.getWordIterator();
         wordIterator.setCharSequence(buffer, selectionEnd, selectionEnd);
         return Selection.moveToPreceding(buffer, wordIterator, isSelecting(buffer));
+=======
+        mWordIterator.setCharSequence(buffer, selectionEnd, selectionEnd);
+        return Selection.moveToPreceding(buffer, mWordIterator, isSelecting(buffer));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     /** {@hide} */
     @Override
     protected boolean rightWord(TextView widget, Spannable buffer) {
         final int selectionEnd = widget.getSelectionEnd();
+<<<<<<< HEAD
         final WordIterator wordIterator = widget.getWordIterator();
         wordIterator.setCharSequence(buffer, selectionEnd, selectionEnd);
         return Selection.moveToFollowing(buffer, wordIterator, isSelecting(buffer));
+=======
+        mWordIterator.setCharSequence(buffer, selectionEnd, selectionEnd);
+        return Selection.moveToFollowing(buffer, mWordIterator, isSelecting(buffer));
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     }
 
     @Override
@@ -324,6 +334,11 @@ public class ArrowKeyMovementMethod extends BaseMovementMethod implements Moveme
         return sInstance;
     }
 
+<<<<<<< HEAD
+=======
+    private WordIterator mWordIterator = new WordIterator();
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     private static final Object LAST_TAP_DOWN = new Object();
     private static ArrowKeyMovementMethod sInstance;
 }

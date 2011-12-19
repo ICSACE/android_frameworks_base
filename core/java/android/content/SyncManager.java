@@ -24,7 +24,10 @@ import com.google.android.collect.Maps;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.OnAccountsUpdateListener;
+<<<<<<< HEAD
 import android.app.ActivityManager;
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -87,6 +90,7 @@ public class SyncManager implements OnAccountsUpdateListener {
     private static final long MAX_TIME_PER_SYNC;
 
     static {
+<<<<<<< HEAD
         final boolean isLargeRAM = ActivityManager.isLargeRAM();
         int defaultMaxInitSyncs = isLargeRAM ? 5 : 2;
         int defaultMaxRegularSyncs = isLargeRAM ? 2 : 1;
@@ -94,6 +98,10 @@ public class SyncManager implements OnAccountsUpdateListener {
                 SystemProperties.getInt("sync.max_init_syncs", defaultMaxInitSyncs);
         MAX_SIMULTANEOUS_REGULAR_SYNCS =
                 SystemProperties.getInt("sync.max_regular_syncs", defaultMaxRegularSyncs);
+=======
+        MAX_SIMULTANEOUS_INITIALIZATION_SYNCS = SystemProperties.getInt("sync.max_init_syncs", 5);
+        MAX_SIMULTANEOUS_REGULAR_SYNCS = SystemProperties.getInt("sync.max_regular_syncs", 2);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
         LOCAL_SYNC_DELAY =
                 SystemProperties.getLong("sync.local_sync_delay", 30 * 1000 /* 30 seconds */);
         MAX_TIME_PER_SYNC =
@@ -422,8 +430,12 @@ public class SyncManager implements OnAccountsUpdateListener {
         intent.setComponent(syncAdapterInfo.componentName);
         if (!mContext.bindService(intent,
                 new InitializerServiceConnection(account, authority, mContext, mMainHandler),
+<<<<<<< HEAD
                 Context.BIND_AUTO_CREATE | Context.BIND_NOT_FOREGROUND
                 | Context.BIND_ALLOW_OOM_MANAGEMENT)) {
+=======
+                Context.BIND_AUTO_CREATE | Context.BIND_NOT_FOREGROUND)) {
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             Log.w(TAG, "initializeSyncAdapter: failed to bind to " + intent);
         }
     }
@@ -978,8 +990,12 @@ public class SyncManager implements OnAccountsUpdateListener {
                     mContext, 0, new Intent(Settings.ACTION_SYNC_SETTINGS), 0));
             mBound = true;
             final boolean bindResult = mContext.bindService(intent, this,
+<<<<<<< HEAD
                     Context.BIND_AUTO_CREATE | Context.BIND_NOT_FOREGROUND
                     | Context.BIND_ALLOW_OOM_MANAGEMENT);
+=======
+                    Context.BIND_AUTO_CREATE | Context.BIND_NOT_FOREGROUND);
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             if (!bindResult) {
                 mBound = false;
             }

@@ -17,9 +17,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+<<<<<<< HEAD
     android:background="#CC000000"
     android:orientation="vertical">
 
+=======
+    android:background="#CC666666"
+    android:orientation="vertical">
+
+    <ImageView android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:drawable/divider_horizontal_dark" />
+
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

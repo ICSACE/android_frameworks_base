@@ -132,7 +132,11 @@ public final class GsmMmiCode extends Handler implements MmiCode {
     // See TS 22.030 6.5.2 "Structure of the MMI"
 
     static Pattern sPatternSuppService = Pattern.compile(
+<<<<<<< HEAD
         "((\\*|#|\\*#|\\*\\*|##)(\\d{2,3})(\\*([^*#]*)(\\*([^*#]*)(\\*([^*#]*)(\\*([^*#]*))?)?)?)?#)([^#]*)");
+=======
+        "((\\*|#|\\*#|\\*\\*|##)(\\d{2,3})(\\*([^*#]*)(\\*([^*#]*)(\\*([^*#]*)(\\*([^*#]*))?)?)?)?#)(.*)");
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 /*       1  2                    3          4  5       6   7         8    9     10  11             12
 
          1 = Full string up to and including #
@@ -141,7 +145,11 @@ public final class GsmMmiCode extends Handler implements MmiCode {
          5 = SIA
          7 = SIB
          9 = SIC
+<<<<<<< HEAD
          10 = dialing number which must not include #, e.g. *SCn*SI#DN format
+=======
+         10 = dialing number
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 */
 
     static final int MATCH_GROUP_POUND_STRING = 1;
@@ -1338,6 +1346,7 @@ public final class GsmMmiCode extends Handler implements MmiCode {
      * SpecialCharSequenceMgr class.
      */
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("GsmMmiCode {");
@@ -1354,4 +1363,6 @@ public final class GsmMmiCode extends Handler implements MmiCode {
         sb.append("}");
         return sb.toString();
     }
+=======
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
 }

@@ -30,6 +30,7 @@
 
     <!-- top: status -->
     <RelativeLayout
+<<<<<<< HEAD
         android:layout_height="0dip"
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -64,6 +65,17 @@
 
         </RelativeLayout>
 
+=======
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <include layout="@layout/keyguard_screen_status_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="134dip"
+            android:layout_marginLeft="266dip"/>
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
     </RelativeLayout>
 
     <LinearLayout
@@ -82,6 +94,7 @@
             android:drawablePadding="4dip"
             />
 
+<<<<<<< HEAD
         <com.android.internal.widget.multiwaveview.MultiWaveView
             android:id="@+id/unlock_widget"
             android:orientation="horizontal"
@@ -103,6 +116,13 @@
             android:verticalOffset="60dip"
             android:feedbackCount="3"
             android:vibrationDuration="20"
+=======
+        <com.android.internal.widget.WaveView
+            android:id="@+id/unlock_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+>>>>>>> e3fc4d0ba9f68910f3a9cbecf266073bd28e1f9e
             />
 
         <!-- emergency call button shown when sim is PUKd and tab_selector is hidden -->
